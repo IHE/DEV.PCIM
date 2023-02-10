@@ -11,11 +11,11 @@ alt="IHE_LOGO_for_tf-docs" />
 
 **(PCIM)**
 
-**Revision 1.1 – Trial Implementation**
+**Revision 1.x – Trial Implementation**
 
-Date: December 7, 2018
+Date: xxx,xx,2023
 
-Author: IHE PCD Technical Committee
+Author: IHE Devices Technical Committee
 
 Email: pcd@ihe.net
 
@@ -26,12 +26,12 @@ Public Comment versions.
 
 **Foreword**
 
-This is a supplement to the IHE Patient Care Device Domain Technical
+This is a supplement to the IHE Devices Domain Technical
 Framework. Each supplement undergoes a process of public comment and
 trial implementation before being incorporated into the volumes of the
 Technical Frameworks.
 
-This supplement is published on December 7, 2018 for trial
+This supplement is published on xx,xx 7, 2023 for trial
 implementation and may be available for testing at subsequent IHE
 Connectathons. The supplement may be amended based on the results of
 testing. Following successful testing it will be incorporated into the
