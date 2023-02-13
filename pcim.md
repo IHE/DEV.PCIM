@@ -3,7 +3,7 @@
 <img src="./media/image1.jpeg" style="width:1.79722in;height:0.91875in"
 alt="IHE_LOGO_for_tf-docs" />
 
-**IHE Patient Care Device**
+**IHE Devices**
 
 **Technical Framework Supplement**
 
@@ -17,7 +17,7 @@ Date: xxx,xx,2023
 
 Author: IHE Devices Technical Committee
 
-Email: pcd@ihe.net
+Email: dev@ihe.net
 
 **Please verify you have the most recent version of this document.** See
 [here](http://ihe.net/Technical_Frameworks/) for Trial Implementation
@@ -399,7 +399,7 @@ candidate devices for an association
 
 [4 National Extensions [54](#national-extensions)](#national-extensions)
 
-#  Introduction to this Supplement
+# Introduction to this Supplement
 
 This supplement to the IHE Patient Care Device Technical Frameworks adds
 the rationale and implementation details of the Point-of-Care Identity
@@ -714,17 +714,13 @@ information is displayed to the operator for verification. Once
 verified, a message is originated by the Association with the following
 information:
 
--   Patient identifier unique within the scope of the institution
+- Patient identifier unique within the scope of the institution
 
--   Method of data capture (for example, scanned device bar code and
-    patient wrist band, fixed device location, etc.)
+- Method of data capture (for example, scanned device bar code and patient wrist band, fixed device location, etc.)
 
--   Time parameters (typically effective begin time of the association.
-    In the case where only a single set of observation from the device
-    is expected, as for a spot-check monitor, the end time of the
-    association is simultaneous with the beginning time)
+- Time parameters (typically effective begin time of the association. In the case where only a single set of observation from the device is expected, as for a spot-check monitor, the end time of the association is simultaneous with the beginning time)
 
--   Authorized performing participant
+- Authorized performing participant
 
 ##### 7.4.2.1.3 Pre-conditions:
 
@@ -850,18 +846,18 @@ the use cases profiled in this document, implementers should be familiar
 with the following profiles within the IT Infrastructure Technical
 Framework:
 
--   Patient Administration Management Profile
+- Patient Administration Management Profile
 
--   Patient Demographics Query
+- Patient Demographics Query
 
--   ITI Patient Demographic Query - Patient Demographic Reporter
+- ITI Patient Demographic Query - Patient Demographic Reporter
 
 A Patient Demographic Consumer in IT Infrastructure might be used by a
 Device-Patient Association Reporter to allow presentation of a pick list
 of candidate patients to associate with one or more devices at the
 point-of-care.
 
-<span id="_Toc531937557" class="anchor"></span>Appendices
+Appendices
 
 None
 
