@@ -15,7 +15,7 @@ PCIM CP List and Status
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |PCIM Single Device Per Association/Disassociation Report Clarification
-|<<cp_nn2.adoc,NN2>>
+|xref:cp_nn2.adoc[NN2]
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
@@ -36,17 +36,17 @@ PCIM CP List and Status
 
 
 |PCIM Foundational
-|<<cp_nn6.adoc,NN6>>
+|xref:cp_nn6.adoc[NN6]
 |In-progress
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |DEV-51/52 and OBX-11 semantics (association error resolution scenarios) 
-|<<cp_nn7.adoc,NN7>>
+|xref:cp_nn7.adoc[NN7]
 |Assigned
-|Chris Matthes (cmathes@epic.com)
+|Chris Mathes (cmathes@epic.com)
 
 |DEV-52 semantics and structure 
-|<<cp_nn8.adoc,NN8>>
+|xref:cp_nn8.adoc[NN8]
 |Assigned
 |Ali Nakoulima (ali.nakoulima@oracle.com)
 
