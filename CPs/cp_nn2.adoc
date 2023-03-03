@@ -1,0 +1,74 @@
+[.text-center]
+= IHE Change Proposal
+
+[.text-center]
+== Tracking Information
+[cols="1,1"]
+|===
+
+|IHE Domain/Program
+|DEV Domain / Patient Care Device (PCD) Program
+
+|Change Proposal ID:
+|CP-PCD-NN2
+
+|Change Proposal Status:
+|Draft
+
+|Date of last update:
+|2022-05-24
+
+|Person Assigned:
+|Eldon Metz
+
+|===
+
+[.text-center]
+== Change Proposal Summary Information
+
+[cols="1,1"]
+|===
+
+2+^|PCIM Single Device Per Association/Disassociation Report Clarification
+
+|Submitter’s Name(s) and e-mail address(es):
+|Eldon Metz, emetz@innovisionmedical.com
+
+|Submission Date:
+|TBD
+
+|Integration Profile(s) affected:
+|Point-of-Care Identity Management (PCIM)
+
+|Actor(s) affected:
+|Device-Patient Association Consumer +
+Device-Patient Association Manager +
+Device-Patient Association Reporter
+
+|IHE Technical Framework or Supplement modified:
+|PCIM Profile TI revision 1.1, dated 2018-12-07
+
+|Volume(s) and Section(s) affected:
+|Trial Implementation, Multiple Sections
+
+2+|Rationale for Change:
+
+Clarifications in the reporter introduction that a patient device reporter reports on a single device per report message.
+
+This Change Proposal (CP) proposes changes to implement profile clarifications and positions for the above issues.
+
+|===
+
+[.text-left]
+
+=== *Section 7.1.1.1 Device-Patient Association Reporter*, _replace the paragraph on line 270 on page 14 to explicitly state that a report is for a single device patient association event_:
+
+
+==== [underline]#Existing Text:#
+
+The Device-Patient Association Reporter represents a system or person that is asserts that a given device is attached or removed from a specific patient. For each such event, the unique Patient ID, Device ID, and timestamp must be reported.
+
+==== [underline]#Proposed Text:#
+
+The Device-Patient Association Reporter represents a system or person that asserts in the form of a report that a specific device is attached or removed from a specific patient at an optionally specified location. Each report message represents a single device patient association assertion. For each such assertion event, the unique Patient ID, Device ID, and timestamp must be reported.
+

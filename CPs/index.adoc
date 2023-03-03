@@ -1,0 +1,56 @@
+[.text-center]
+# CP Worklist
+
+[.text-center]
+PCIM CP List and Status
+
+[cols="1,1,1,1"]
+|===
+
+|Description|CP #|Status|Author
+
+|PCIM OBR Universal Service Identifier and Begin/End Time Stamps 
+|NN1
+|Draft
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|PCIM Single Device Per Association/Disassociation Report Clarification
+|<<cp_nn2.adoc,NN2>>
+|Draft
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|PCIM Deterministic Snapshot and Real-Time Query Results
+|NN3
+|Draft
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|PCIM Device-Patient Association Manager Error Responses
+|NN4
+|Draft
+|Bill Haralson (William.Haralson@icumed.com)
+
+|Adding an Optional Order ID to PCIM Transactions
+|NN5
+|Draft
+|Tom Kowalczyk (Tom.Kowalczyk@BBraunUSA.com)
+
+
+|PCIM Foundational
+|<<cp_nn6.adoc,NN6>>
+|In-progress
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|DEV-51/52 and OBX-11 semantics (association error resolution scenarios) 
+|<<cp_nn7.adoc,NN7>>
+|Assigned
+|Chris Matthes (cmathes@epic.com)
+
+|DEV-52 semantics and structure 
+|<<cp_nn8.adoc,NN8>>
+|Assigned
+|Ali Nakoulima (ali.nakoulima@oracle.com)
+
+|Commit level and application level acknowledgement requirements
+|NNX
+|TBD
+|TBD

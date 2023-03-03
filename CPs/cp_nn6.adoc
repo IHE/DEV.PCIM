@@ -1,0 +1,327 @@
+[.text-center]
+= IHE Change Proposal
+
+[.text-center]
+== Tracking Information
+[cols="1,1"]
+|===
+
+|IHE Domain/Program
+|DEV Domain / Patient Care Device (PCD) Program
+
+|Change Proposal ID:
+|CP-PCD-NN6
+
+|Change Proposal Status:
+|Draft
+
+|Date of last update:
+|2023-03-02
+
+|Person Assigned:
+|Eldon Metz
+
+|===
+
+[.text-center]
+== Change Proposal Summary Information
+
+[cols="1,1"]
+|===
+
+2+^|PCIM Foundational Changes
+
+|Submitter’s Name(s) and e-mail address(es):
+|Eldon Metz, emetz@innovisionmedical.com
+
+|Submission Date:
+|TBD
+
+|Integration Profile(s) affected:
+|Point-of-Care Identity Management (PCIM)
+
+|Actor(s) affected:
+|Device-Patient Association Consumer +
+Device-Patient Association Manager +
+Device-Patient Association Reporter
+
+|IHE Technical Framework or Supplement modified:
+|PCIM Profile TI revision 1.1, dated 2018-12-07
+
+|Volume(s) and Section(s) affected:
+|Trial Implementation, Multiple Sections
+
+2+|Rationale for Change:
+
+After completing HIMSS showcase demonstrations and Connectathon Testing events for PCIM in 2022, followed by  discussion on design and practical implementation and roll-out within the PCIM working group meetings, the working group members agreed on foundational changes that simplify the design and align better to existing system architectures to minimize roll-out time. The following changes are proposed:
+
+- PCD-17 (assert association) and PCD-18 (assert disassociation) transactions are deprecated and instead combining into a DEV-51 (assert association state) transaction.
+
+- A DEV-52 (report association state) transaction is added to reflect the manager to consumer reporting of real-time association status events. A separate transaction between the manager and consumer actors than that between the reporter and manager actors is consistent with IHE assignments and it allows for different message content and constraints.
+
+- The DEV-19 (query associations subscription) transaction is now optional and no longer includes a “snapshot” in the response. 
+
+-	The PCD-20 transaction and DREG actor are eliminated from this specification.  References to MEM DMC capabilities to address registration and reporting of device association availability have been added.
+
+This Change Proposal (CP) proposes changes to implement profile clarifications and positions for the above issues.
+
+|===
+
+[.text-left]
+
+=== *1 Section Appendix A – Actor Summary Definitions*, _modify the definitions in the table on line 213 as shown below and also adding the acroynm text in the name column and a new OID column._:
+
+
+==== [underline]#Existing Table:#
+
+[cols="1,1"]
+|===
+|Actor Name|Definition
+
+|Device-Patient Association Reporter
+|A system that asserts a device-patient association, disassociation, or attributes related to either such as current state or starting and ending times.
+
+|Device-Patient Association Manager 
+|A system that records, manages, and serves records of device-patient associations.
+
+|Device-Patient Association Consumer
+|A system or person that queries a Device-Patient Association Manager for device-patient association records, either as a snapshot of current associations or as a subscription for ongoing updates.
+
+|Device Registrant
+|A system (including the device itself) or person that, when the device is setup for use by a Device-Patient Association Manager, uniquely identifies a device instance that may participate in device-patient associations.
+
+|===
+
+==== [underline]#Proposed Table:#
+
+[cols="1,1,1"]
+|===
+|Actor Name and Acronym|Definition|Actor OID
+
+|Device-Patient Association Reporter (DPAR)
+|A system that asserts a device-patient association or disassociation with the attributes related including location, starting and ending times, and observers involved. The system may be fully automated or require human machine interaction (HMI). Provisions are made so systems may report assertions that are final or those that require additional user validation.
+|1.3.6.1.4.1.19376.1.6.3.22
+
+|Device-Patient Association Consumer (DPAC)
+|A system that receives device-patient association records from the manager in real-time. There is an option to dynamically filter the device-patient association records it wishes to receive via a subscription query.
+|1.3.6.1.4.1.19376.1.6.3.23
+
+|Device-Patient Association Manager (DPAM) 
+|A system that receives and manages association assertions and association state and coordinates conflict resolution. The system serves records that match device-patient association queries in real-time. The system is required to provide an HMI to allow responsible observers to validate assertions that require it.
+|1.3.6.1.4.1.19376.1.6.3.24
+
+|===
+
+=== *2 Section Appendix B – Transaction Summary Definitions*, _modify the table on line 218 to update the transcation names, definitions and numbers_:
+
+[.text-left]
+==== [underline]#Existing Table:#
+
+[cols="1,1"]
+|===
+|Transaction Name and Number|Definition
+
+|Assert Device-Patient Association
+|A Device-Patient Association Reporter asserts to a Device-Patient Association Manager that a device has been associated with a patient, or updates data concerning a reported assertion.
+
+|Assert Device-Patient Disassociation
+|A Device-Patient Association Reporter asserts to a Device-Patient Association Manager that the association between a device and patient has been terminated.
+
+|Query Device-Patient Associations
+|A Device-Patient Association Consumer sends a query to a Device-Patient Association Manager concerning the devices associated with a patient or set of patients currently or at a stated past time. The Device-Patient Association Manager responds with the requested information.
+
+|Register Device
+|A Device Registrant sends, updates or deletes a record of identifying information on a device instance for storage and use by the Device-Patient Association Manager.
+
+|===
+[.text-left]
+==== [underline]#Proposed Table:#
+
+[cols="1,1,1"]
+|===
+|Transaction Name and Number|Definition|Transaction OID
+
+|Query Associations 
+(DEV-19)
+|A Device-Patient Association Consumer sends an optional query to a Device-Patient Association Manager with filter criteria. The Device-Patient Association Manager  sets up a real-time subscription with the specified filter criteria applied. 
+|1.3.6.1.4.1.19376.1.6.1.19.1
+
+|Assert Association State
+(DEV-51) 
+|A Device-Patient Association Reporter asserts to a Device-Patient Association Manager that a device has been associated or disassociated with a patient and optional location. It may also report updated data for a previously reported assertion.
+|1.3.6.1.4.1.19376.1.6.1.51.1 
+
+|Report Association State
+(DEV-52)  
+|A Device-Patient Association Manager reports to a Device-Patient Association Consumer that a device has been associated or disassociated with a patient with optional location. It may also report an update for an existing association.
+|1.3.6.1.4.1.19376.1.6.1.52.1
+
+|===
+
+=== *3	PCIM Actors, Transactions, and Content Modules*, _replace Figure 7.1-1 on page 13 with updated actor name, number and definitions_:
+
+[.text-left]
+==== [underline]#Existing Figure:#
+image::original-actor-transaction-diagram.png[]
+
+[.text-left]
+==== [underline]#Proposed Figure:#
+image::proposed-actor-transaction-diagram.png[]
+
+=== *4 PCIM Actors, Transactions, and Content Modules*, _replace Table 7.1-1 PCIM Profile – Actors and Transactions on page 14 with updated actor names, transactions and optionality value_:
+
+[big red yellow-background]*WIP*
+
+[.text-left]
+==== [underline]#Original Table:#
+
+[cols="1,1,1,1,1"]
+|===
+|Actors|Transactions|Initiator or Responder|Optionality|Reference
+
+|===
+[.text-left]
+==== [underline]#Proposed Table:#
+
+[cols="1,1,1,1"]
+|===
+|Actors|Transactions|Initiator or Responder|Optionality|Reference
+
+
+|===
+
+[.text-left]
+=== *5 Section 7.1.1.1 Device-Patient Association Reporter*, _change the paragraph on line 270_:
+
+==== [underline]#Existing Text:#
+The Device-Patient Association Reporter represents a system or person that is asserts that a given device is attached or removed from a specific patient. For each such event, the unique Patient ID, Device ID, and timestamp must be reported. 
+
+==== [underline]#Proposed Text:#
+The Device-Patient Association Reporter represents a system that asserts that a given device is associated or disassociated with a specific patient. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. If the report is validated, the report observation shall be marked final, otherwise it shall be marked as requiring validation.
+
+[.text-left]
+=== *6 Section 7.1.1.2 Device-Patient Association Manager*, _change the paragraph on line 274_:
+
+==== [underline]#Existing Text:#
+The Device-Patient Association Manager represents a system that collects and persists information on what devices are currently or were connected to patients within a defined scope, such as a clinical unit, at a given time, and can communicate these associations as query responses, event notifications, or both. 
+ 
+
+==== [underline]#Proposed Text:#
+The Device-Patient Association Manager represents a system that collects and persists
+information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as query responses, event notifications, or both if requested. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts. [big red yellow-background]*Add an out-of-scope statement that describes the possibility of an actor that provides retrospective capabilities and why that makes sense)*
+
+[.text-left]
+=== *7	Section 7.1.1.3 Device-Patient Association Consumer*, _change the paragraph on line 279_:
+
+==== [underline]#Existing Text:#
+The Device-Patient Association Consumer represents a system or person that is has a
+requirement to receive information on what devices are or were connected to which patients. A common example is a critical care system that charts device observations for a patient. 
+ 
+==== [underline]#Proposed Text:#
+The Device-Patient Association Consumer represents a system that needs to receive information on what devices are associated with which patients. Common examples are a medical device or critical care system that charts device observations for a patient. The system may receive association updates in real-time, if desired. [big red yellow-background]*Do we need to add text to capture multiple devices attached to a patient through other devices, e.g. Physio Mon with a EtCO2, Ventilator connection*
+
+[.text-left]
+=== *8	Section 7.1.1.4 Device-Registrant*, _delete the paragraph on line 283_ or change to reference MEMDMC?:
+
+==== [underline]#Existing Text:#
+The Device Registrant represents a system or person that maintains the list of medical devices that can be connected to a patient. The list entry for each device typically includes the device type, location (may not apply if the device is mobile), and unique identity. 
+ 
+==== [underline]#Proposed Text:#
+[big red yellow-background]*The MEMDMC DMIR is an actor that enables automated contributions to the list of medical devices that can be associated with a patient. The list entry for each device typically includes the device type, location (may not apply if the device is mobile), model, manufacturer and unique identity.*
+
+[.text-left]
+=== *9	Section 7.1.1.4 Device-Registrant*, delete the two paragraphs starting at line 287 and tie them into an MEMDMC reference:
+
+==== [underline]#Existing Text:#
+Where this is a person, it is most likely hospital staff that is interacting directly with the Device- Patient Association Manager through its user interface. 
+Where it is a system, it may be a comprehensive device inventory system, a “gateway” system, or even the device itself. 
+
+ 
+==== [underline]#Proposed Text:#
+[big red yellow-background]*The MEMDMC DMIR may automated device registration. The DMIR may be a “gateway” system or medical device itself.*
+
+[.text-left]
+=== *10	PCIM Actor Options*, change the first two paragraphs starting at line 293 to address the change in optionality and options:
+
+==== [underline]#Existing Text:#
+The Device-Patient Association Consumer has two options available for receiving data from the Device-Patient Association Manager. The first option is to query the Manager for a snapshot of current associations, either by sending a patient identifier and receiving back the associated device(s) or by sending a device identifier and receiving back the associated patient. The second option is to receive an unsolicited continuous stream of association and disassociation events from the Manager as they occur. The Device-Patient Association Manager should support sending data via both methods, and the Device-Patient Association Consumer may support one or both methods. 
+Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes. 
+ 
+==== [underline]#Proposed Text:#
+The Device-Patient Association Consumer may optionally query the Device-Patient Association Manager for configuration and filtering of patient association status in real-time. The query to the Manager results in an immediate delivery from the manager of the active associations based on the query filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support the query option. 
+
+Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes. 
+
+[.text-left]
+=== *11	PCIM Actor and Options*, change the table near line 303:
+
+[.text-left]
+==== [underline]#Existing Table:#
+
+[cols="1,1,1"]
+|===
+|Actor|Option Name|Reference
+
+|Device-Patient Association Consumer 
+|Snapshot Option
+|7.2.1
+
+|Device-Patient Association Consumer 
+|Subscription Option
+|7.2.2
+
+|Device-Patient Association Manager 
+|Snapshot Option
+|7.2.1
+
+|Device-Patient Association Manager 
+|Subscription Option
+|7.2.2
+
+|Device-Patient Association Reporter 
+|No options defined
+|
+
+|Device Registrant
+|No options defined
+|
+
+|===
+[.text-left]
+==== [underline]#Proposed Table:#
+
+[cols="1,1,1"]
+|===
+|Actor|Option Name|Reference
+
+|Device-Patient Association Consumer 
+|Query Option
+|7.2.1
+
+|Device-Patient Association Manager 
+|Query Option
+|7.2.1
+
+|Device-Patient Association Reporter 
+|No options defined
+|7.2.1
+
+|===
+
+[.text-left]
+=== *12	Snapshot Option*, move and alter text to address change in quey approach and option status in section 3.19, addressed later in this CP:
+
+[.text-left]
+=== *13	Subscription Option*, re-number to 7.2.1 and update to reflect query option changes:
+
+==== [underline]#Existing Text:#
+The snapshot option applies to query and response interactions between Device-Patient Association Consumer and Device-Patient Association Manager and specifies that the query response desired is a continuing subscription to changes in device-patient associations. 
+A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19. 
+
+==== [underline]#Proposed Text:#
+The query option applies to query and response interactions between Device-Patient Association Consumer and Device-Patient Association Manager and specifies that the query response desired is a filtered real-time delivery of changes in device-patient associations. 
+
+A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19. 
+
+
+
