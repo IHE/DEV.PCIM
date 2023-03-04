@@ -16,5 +16,12 @@ asciidoctor {
   sources {
     include '*.adoc'
   }
+  resources {
+    from(sourceDir) {
+        include '*.png'
+        include 'images/**'
+        include 'resources/**'
+    }
+}
   outputDir file('CPs/html')
 }
