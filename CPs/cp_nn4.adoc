@@ -1,0 +1,62 @@
+[.text-center]
+= IHE Change Proposal
+
+[.text-center]
+== Tracking Information
+[cols="1,1"]
+|===
+
+|IHE Domain/Program
+|DEV Domain / Patient Care Device (PCD) Program
+
+|Change Proposal ID:
+|CP-PCD-NN4
+
+|Change Proposal Status:
+|Draft
+
+|Date of last update:
+|2022-08-01
+
+|Person Assigned:
+|Bill Haralson
+
+|===
+
+[.text-center]
+== Change Proposal Summary Information
+
+[cols="1,1"]
+|===
+
+2+^|PCIM Device-Patient Association Manager Error Responses
+
+|Submitter’s Name(s) and e-mail address(es):
+|Bill Haralson, William.Haralson@icumed.com
+
+|Submission Date:
+|TBD
+
+|Integration Profile(s) affected:
+|Point-of-Care Identity Management (PCIM)
+
+|Actor(s) affected:
+|Device-Patient Association Manager +
+Device-Patient Association Reporter
+
+|IHE Technical Framework or Supplement modified:
+|PCIM Profile TI revision 1.1, dated 2018-12-07
+
+|Volume(s) and Section(s) affected:
+|Trial Implementation, Multiple Sections
+
+2+|Rationale for Change:
+
+Additional clarification on how the Device-Patient Association Manager reports errors back to the Device-Patient Association Reporter. New error codes defining the specific errors are added.
+
+This Change Proposal (CP) proposes changes to implement profile clarifications and positions for the above issues.
+
+|===
+
+
+
