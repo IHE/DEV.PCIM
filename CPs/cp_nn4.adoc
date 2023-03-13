@@ -29,7 +29,7 @@
 [cols="1,1"]
 |===
 
-2+^|PCIM Device-Patient Association Manager Error Responses
+2+^|*PCIM Device-Patient Association Manager Error Responses*
 
 |Submitter’s Name(s) and e-mail address(es):
 |Bill Haralson, William.Haralson@icumed.com
@@ -60,7 +60,7 @@ This Change Proposal (CP) proposes changes to implement profile clarifications a
 
 |===
 
-_Section 3.17.4.1.2_ *Message Semantics* _Add the following new section after this section on page 24:_
+| _Section 3.17.4.1.2_ *Message Semantics* _Add the following new section after this section on page 24:_
 
 |===
 
@@ -77,10 +77,9 @@ If the message is accepted by the Device-Patient Association Manager, the commit
 
 [.text-left]
 Message acceptance is based on: 
-* All required segments and fields are present per this specification and the IHE Patient Care Device Technical Framework, Vol. 2 (PCD-TF-2): Transactions.
 
 [.text-left]
-
+*  All required segments and fields are present per this specification and the IHE Patient Care Device Technical Framework, Vol. 2 (PCD-TF-2): Transactions.
 *  No incorrect data types are present.
 *  Validation of fields that must contain specific values as defined in this specification and PCD-TF-2 (e.g., MSH-21 must be "correct value").
 
@@ -89,16 +88,16 @@ If MSH-16 (Application Acknowledgement Type) is valued as "ER" or "AL", the Devi
 
 [.text-left]
 
-*  Specified device is unknown 
+*  Specified device is unknown. 
 *  Specified device is associated with another patient.
-*  Specified patient is unknown 
+*  Specified patient is unknown. 
 
 [.text-left]
 If the message from the Device-Patient Association Reporter is rejected, the application acknowledgement will contain the value AR or AE in MSA-1, based upon HL7 enhanced acknowledgment rules (see 1140 HL7 v2.6, Section 2.9.2.2). The reason for rejection is provided in the ERR segment.
 
 |===
 
-_Section 3.18.4.2_ *Device-Patient Disassociation Acknowledgment* _Replace the existing text with additional detail on error reporting:_
+| _Section 3.18.4.2_ *Device-Patient Disassociation Acknowledgment,* _Replace the existing text with additional detail on error reporting:_
 
 |===
 
@@ -113,16 +112,18 @@ The reply to the Device-Patient Association Report is an ordinary HL7 Acknowledg
 
 [.text-left]
 The Device-Patient Association Manager responds to the Device-Patient Association Reporter using commit and application acknowledgments in a similar manner to PCD-17 requests. See section 3.17.4.2.
-If MSH-16 (Application Acknowledgement Type) is valued as "ER" or "AL", the Device-Patient Association Manager may report an application acknowledgement error using the application acknowledgement Message (ACK^R01^ACK) for errors such as:
 
 [.text-left]
-*  Specified device is unknown 
+If MSH-16 (Application Acknowledgement Type) is valued as "ER" or "AL", the Device-Patient Association Manager may report an application acknowledgement error using the application acknowledgement Message (ACK\^R01^ACK) for errors such as:
+
+[.text-left]
+*  Specified device is unknown. 
 *  Specified device is not associated with a patient.
-*  Specified patient is unknown
+*  Specified patient is unknown.
 
 |===
 
-*A.1.2.1 MSH Message Header,* _Replace the existing text with the following:_
+| *A.1.2.1 MSH Message Header,* _Replace the existing text with the following:_
 
 |===
 
@@ -144,7 +145,7 @@ Since this message is effectively an unsolicited observation report, the content
 
 |===
 
-*A.1.2.6 Participation (Observation Participation),* _Add the following two new section after this section on page 41:_
+| *A.1.2.6 PRT - Participation (Observation Participation),* _Add the following two new section after this section on page 41:_
 
 |===
 
@@ -177,7 +178,7 @@ _Note that the definition of the range of error codes available for use by this 
 
 |_Lower limit + 2_
 |Unknown device
-|Specified device is unknown .
+|Specified device is unknown.
 
 |_Lower limit + 3_
 |Unknown patient
