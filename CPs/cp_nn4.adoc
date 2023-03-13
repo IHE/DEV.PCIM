@@ -58,5 +58,163 @@ This Change Proposal (CP) proposes changes to implement profile clarifications a
 
 |===
 
+|===
+
+_Section 3.17.4.1.2_ *Message Semantics* _Add the following new section after this section on page 24:_
+
+|===
+
+[.text-left]
+
+*Section 3.17.4.2 Device-Patient Association Acknowledgment* 
+
+[.text-left]
+
+The Device-Patient Association Manager validates the message and responds with a commit level acknowledgment message (ACK\^R01^ACK). If an error condition is detected and if MSH-16 (Application Acknowledgement Type) in the ORU\^R01^ORU_R01 message is valued as "ER" or "AL", the Device-Patient Association Manager responds with an application acknowledgment message (ACK\^R01^ACK).
+
+[.text-left]
+If the message is accepted by the Device-Patient Association Manager, the commit acknowledgment will contain the value CA in MSA-1. If not, the commit acknowledgment will contain either CR or CE, based upon HL7 enhanced acknowledgment rules (see HL7 v2.6, Section 2.9.3.2).
+
+[.text-left]
+Message acceptance is based on: 
+* All required segments and fields are present per this specification and the IHE Patient Care Device Technical Framework, Vol. 2 (PCD-TF-2): Transactions.
+
+[.text-left]
+
+*  No incorrect data types are present.
+*  Validation of fields that must contain specific values as defined in this specification and PCD-TF-2 (e.g., MSH-21 must be "correct value").
+
+[.text-left]
+If MSH-16 (Application Acknowledgement Type) is valued as "ER" or "AL", the Device-Patient Association Manager may report an application acknowledgement error using the application acknowledgement message (ACK\^R01^ACK) for errors such as:
+
+[.text-left]
+
+*  Specified device is unknown 
+*  Specified device is associated with another patient.
+*  Specified patient is unknown 
+
+[.text-left]
+If the message from the Device-Patient Association Reporter is rejected, the application acknowledgement will contain the value AR or AE in MSA-1, based upon HL7 enhanced acknowledgment rules (see 1140 HL7 v2.6, Section 2.9.2.2). The reason for rejection is provided in the ERR segment.
+
+|===
+
+_Section 3.18.4.2_ *Device-Patient Disassociation Acknowledgment* _Replace the existing text with additional detail on error reporting:_
+
+|===
+
+[.text-left]
+[.underline]#Existing Text:#
+
+[.text-left]
+The reply to the Device-Patient Association Report is an ordinary HL7 Acknowledgment. 
+
+[.text-left]
+[.underline]#Proposed Text:#
+
+[.text-left]
+The Device-Patient Association Manager responds to the Device-Patient Association Reporter using commit and application acknowledgments in a similar manner to PCD-17 requests. See section 3.17.4.2.
+If MSH-16 (Application Acknowledgement Type) is valued as "ER" or "AL", the Device-Patient Association Manager may report an application acknowledgement error using the application acknowledgement Message (ACK^R01^ACK) for errors such as:
+
+[.text-left]
+*  Specified device is unknown 
+*  Specified device is not associated with a patient.
+*  Specified patient is unknown
+
+|===
+
+*A.1.2.1 MSH Message Header,* _Replace the existing text with the following:_
+
+|===
+
+[.text-left]
+[.underline]#Existing Text:#
+
+[.text-left]
+Since this message is effectively an unsolicited observation report, the contents of the MSH segment follow the specifications for [PCD-01] in PCD-TF-2 Appendix B.1, except that MSH-21 is valued “IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.17^ISO” to identify it as a message representing a device-patient association.
+
+[.text-left]
+[.underline]#Proposed Text:#
+
+[.text-left]
+Since this message is effectively an unsolicited observation report, the contents of the MSH segment follow the specifications for [PCD-01] in PCD-TF-2 Appendix B.1 with the following exceptions:
+
+[.text-left]
+*  MSH-16 values correspond to those found in PCD TF-2, Table 3.3.4.4.1-1. This allows the Device-Patient Association Reporter to indicate to the Device-Patient Association Manager whether it can process application acknowledgments and under what conditions to send the additional acknowledgment.  The Device-Patient Association Manager must send (or not send) application acknowledgments as specified by this field. This profile recommends that MSH-16 always be set to “AL” (always) to receive complete message processing confirmation. If this is not possible, this value should be set to “ER” (error/reject). The MSH-16 value has no effect on Device-Patient Association Consumers that receive PCD-17 or PCD-18 messages.
+*  MSH-21 is valued “IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.17^ISO” to identify it as a message representing a device-patient association.
+
+|===
+
+*A.1.2.6 Participation (Observation Participation),* _Add the following two new section after this section on page 41:_
+
+|===
+
+[.text-left]
+*A.1.2.7 MSA – Message Acknowledgment Segment*
+[.text-left]
+See PCD-TF-2 Appendix B.2.
+
+[.text-left]
+*A.1.2.8 ERR – ERR Segment*
+[.text-left]
+Refer to PCD-TF-2 Appendix B.3 for general usage notes on the ERR segment.
+
+[.text-left]
+The list of error codes that can occur during the processing of PCD-17 and PCD-18 messages are listed below. The application acknowledgment received from the Device-Patient Association Manager should contain the Code and Text in ERR-5.1 and ERR-5.2 respectively. ERR-5.9 can also be used to contain additional text related to the error.
+
+[.text-left]
+_Note that the definition of the range of error codes available for use by this profile is TBD. It is assumed that error codes will start at the lower limit of the range and be incremented by one as new error codes are added._ 
+
+[cols="2,3,4",options=header]
+|===
+
+|Code
+|Text
+|Example
+
+|_Lower limit + 1_
+|Other error
+|Used when other errors are not applicable.
+
+|_Lower limit + 2_
+|Unknown device
+|Specified device is unknown .
+
+|_Lower limit + 3_
+|Unknown patient
+|Specified patient is unknown.
+
+|_Lower limit + 4_
+|Device is associated with another patient
+|A device-patient association or disassociation request was received, but the device specified in the request is associated with a different patient.
+
+|_Lower limit + 5_
+|Device is not associated with a patient
+|A device-patient disassociation request was received, but the device specified in the request is not associated with a patient.
+
+|_Lower limit + 6_
+|Unknown location
+|Specified location is unknown.
+
+|_Lower limit + 7_
+|Device-Patient association rejected.
+|Device-Patient Association Reporter sent an unvalidated Device-Patient association request (OBX-11 is not equal to \‘F\’). Association request was rejected by the participating user.
+
+|_Lower limit + 8_
+|User is unauthorized.
+|Participating user is unauthorized to perform request.
+
+|_Lower limit + 9_
+|Unknown user
+|Participating user is not known by the Device-Patient Association Manager.
+
+|===
+
+
+
+
+
+
+
+
 
 
