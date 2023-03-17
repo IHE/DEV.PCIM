@@ -29,7 +29,7 @@ DEV-52
 
 |PCIM Device-Patient Association Manager Error Responses
 |NN4
-|
+|xref:cp_nn4.adoc[NN4]
 |Draft
 |Bill Haralson (William.Haralson@icumed.com)
 
