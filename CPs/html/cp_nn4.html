@@ -487,7 +487,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock">PCIM Device-Patient Association Manager Error Responses</p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>PCIM Device-Patient Association Manager Error Responses</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Submitter’s Name(s) and e-mail address(es):</p></td>
@@ -521,13 +521,226 @@ Device-Patient Association Reporter</p></td>
 </tr>
 </tbody>
 </table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section 3.17.4.1.2</em> <strong>Message Semantics</strong> <em>Add the following new section after this section on page 24:</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><strong>Section 3.17.4.2 Device-Patient Association Acknowledgment</strong></p>
+</div>
+<div class="paragraph text-left">
+<p>The Device-Patient Association Manager validates the message and responds with a commit level acknowledgment message (ACK^R01^ACK). If an error condition is detected and if MSH-16 (Application Acknowledgement Type) in the ORU^R01^ORU_R01 message is valued as "ER" or "AL", the Device-Patient Association Manager responds with an application acknowledgment message (ACK^R01^ACK).</p>
+</div>
+<div class="paragraph text-left">
+<p>If the message is accepted by the Device-Patient Association Manager, the commit acknowledgment will contain the value CA in MSA-1. If not, the commit acknowledgment will contain either CR or CE, based upon HL7 enhanced acknowledgment rules (see HL7 v2.6, Section 2.9.3.2).</p>
+</div>
+<div class="paragraph text-left">
+<p>Message acceptance is based on:</p>
+</div>
+<div class="ulist text-left">
+<ul>
+<li>
+<p>All required segments and fields are present per this specification and the IHE Patient Care Device Technical Framework, Vol. 2 (PCD-TF-2): Transactions.</p>
+</li>
+<li>
+<p>No incorrect data types are present.</p>
+</li>
+<li>
+<p>Validation of fields that must contain specific values as defined in this specification and PCD-TF-2 (e.g., MSH-21 must be "correct value").</p>
+</li>
+</ul>
+</div>
+<div class="paragraph text-left">
+<p>If MSH-16 (Application Acknowledgement Type) is valued as "ER" or "AL", the Device-Patient Association Manager may report an application acknowledgement error using the application acknowledgement message (ACK^R01^ACK) for errors such as:</p>
+</div>
+<div class="ulist text-left">
+<ul>
+<li>
+<p>Specified device is unknown.</p>
+</li>
+<li>
+<p>Specified device is associated with another patient.</p>
+</li>
+<li>
+<p>Specified patient is unknown.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph text-left">
+<p>If the message from the Device-Patient Association Reporter is rejected, the application acknowledgement will contain the value AR or AE in MSA-1, based upon HL7 enhanced acknowledgment rules (see 1140 HL7 v2.6, Section 2.9.2.2). The reason for rejection is provided in the ERR segment.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section 3.18.4.2</em> <strong>Device-Patient Disassociation Acknowledgment,</strong> <em>Replace the existing text with additional detail on error reporting:</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The reply to the Device-Patient Association Report is an ordinary HL7 Acknowledgment.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The Device-Patient Association Manager responds to the Device-Patient Association Reporter using commit and application acknowledgments in a similar manner to PCD-17 requests. See section 3.17.4.2.</p>
+</div>
+<div class="paragraph text-left">
+<p>If MSH-16 (Application Acknowledgement Type) is valued as "ER" or "AL", the Device-Patient Association Manager may report an application acknowledgement error using the application acknowledgement Message (ACK^R01^ACK) for errors such as:</p>
+</div>
+<div class="ulist text-left">
+<ul>
+<li>
+<p>Specified device is unknown.</p>
+</li>
+<li>
+<p>Specified device is not associated with a patient.</p>
+</li>
+<li>
+<p>Specified patient is unknown.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.1.2.1 MSH Message Header,</strong> <em>Replace the existing text with the following:</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>Since this message is effectively an unsolicited observation report, the contents of the MSH segment follow the specifications for [PCD-01] in PCD-TF-2 Appendix B.1, except that MSH-21 is valued “IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO” to identify it as a message representing a device-patient association.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>Since this message is effectively an unsolicited observation report, the contents of the MSH segment follow the specifications for [PCD-01] in PCD-TF-2 Appendix B.1 with the following exceptions:</p>
+</div>
+<div class="ulist text-left">
+<ul>
+<li>
+<p>MSH-16 values correspond to those found in PCD TF-2, Table 3.3.4.4.1-1. This allows the Device-Patient Association Reporter to indicate to the Device-Patient Association Manager whether it can process application acknowledgments and under what conditions to send the additional acknowledgment.  The Device-Patient Association Manager must send (or not send) application acknowledgments as specified by this field. This profile recommends that MSH-16 always be set to “AL” (always) to receive complete message processing confirmation. If this is not possible, this value should be set to “ER” (error/reject). The MSH-16 value has no effect on Device-Patient Association Consumers that receive PCD-17 or PCD-18 messages.</p>
+</li>
+<li>
+<p>MSH-21 is valued “IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO” to identify it as a message representing a device-patient association.</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.1.2.6 PRT - Participation (Observation Participation),</strong> <em>Add the following two new section after this section on page 41:</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><strong>A.1.2.7 MSA – Message Acknowledgment Segment</strong></p>
+</div>
+<div class="paragraph text-left">
+<p>See PCD-TF-2 Appendix B.2.</p>
+</div>
+<div class="paragraph text-left">
+<p><strong>A.1.2.8 ERR – ERR Segment</strong></p>
+</div>
+<div class="paragraph text-left">
+<p>Refer to PCD-TF-2 Appendix B.3 for general usage notes on the ERR segment.</p>
+</div>
+<div class="paragraph text-left">
+<p>The list of error codes that can occur during the processing of PCD-17 and PCD-18 messages are listed below. The application acknowledgment received from the Device-Patient Association Manager should contain the Code and Text in ERR-5.1 and ERR-5.2 respectively. ERR-5.9 can also be used to contain additional text related to the error.</p>
+</div>
+<div class="paragraph text-left">
+<p><em>Note that the definition of the range of error codes available for use by this profile is TBD. It is assumed that error codes will start at the lower limit of the range and be incremented by one as new error codes are added.</em></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 22.2222%;">
+<col style="width: 33.3333%;">
+<col style="width: 44.4445%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Text</th>
+<th class="tableblock halign-left valign-top">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 1</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Other error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used when other errors are not applicable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 2</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unknown device</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specified device is unknown.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 3</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unknown patient</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specified patient is unknown.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 4</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device is associated with another patient</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A device-patient association or disassociation request was received, but the device specified in the request is associated with a different patient.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 5</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device is not associated with a patient</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A device-patient disassociation request was received, but the device specified in the request is not associated with a patient.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 6</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unknown location</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specified location is unknown.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 7</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient association rejected.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter sent an unvalidated Device-Patient association request (OBX-11 is not equal to \‘F\’). Association request was rejected by the participating user.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 8</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User is unauthorized.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participating user is unauthorized to perform request.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 9</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unknown user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participating user is not known by the Device-Patient Association Manager.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0-SNAPSHOT<br>
-Last updated 2023-03-07 13:22:45 -0800
+Last updated 2023-03-17 07:25:09 -0700
 </div>
 </div>
 </body>
