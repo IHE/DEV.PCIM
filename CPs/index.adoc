@@ -28,8 +28,9 @@ DEV-52
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |PCIM Device-Patient Association Manager Error Responses
-|NN4
 |xref:cp_nn4.adoc[NN4]
+|DEV-51 +
+DEV-52
 |Draft
 |Bill Haralson (William.Haralson@icumed.com)
 
