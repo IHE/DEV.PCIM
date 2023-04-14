@@ -215,7 +215,7 @@ The Device-Patient Association Reporter represents a system or person that is as
 [underline]#Proposed Text:#
 
 [.text-left]
-The Device-Patient Association Reporter represents a system that asserts that a given device is associated or disassociated with a specific patient. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. If the report is validated, the report observation shall be marked final, otherwise it shall be marked as requiring validation.
+The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. If the report is validated, the report observation shall be marked final, otherwise it shall be marked as requiring validation.
 
 |===
 
@@ -232,7 +232,7 @@ The Device-Patient Association Manager represents a system that collects and per
 [underline]#Proposed Text:#
 
 [.text-left]
-The Device-Patient Association Manager represents a system that collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as query responses, event notifications, or both if requested. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts. [big red yellow-background]*Add an out-of-scope statement that describes the possibility of an actor that provides retrospective capabilities and why that makes sense)*
+The Device-Patient Association Manager actor collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as event notifications. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts.  [big red yellow-background]*Add an out-of-scope statement that describes the possibility of an actor that provides retrospective capabilities and why that makes sense, do this in the section that lists out-of-scope items*
 
 |===
 
@@ -249,7 +249,7 @@ requirement to receive information on what devices are or were connected to whic
 [underline]#Proposed Text:#
 
 [.text-left]
-The Device-Patient Association Consumer represents a system that needs to receive information on what devices are associated with which patients. Common examples are a medical device or critical care system that charts device observations for a patient. The system may receive association updates in real-time, if desired. [big red yellow-background]*Do we need to add text to capture multiple devices attached to a patient through other devices, e.g. Physio Mon with a EtCO2, Ventilator connection*
+The Device-Patient Association Consumer actor receives information on what devices are associated with which patients. Common examples are a medical device or critical care system that charts device observations for a patient. The actor receives association updates in real-time. 
 
 |===
 
@@ -263,14 +263,15 @@ The Device-Patient Association Consumer represents a system that needs to receiv
 [.text-left]
 The Device Registrant represents a system or person that maintains the list of medical devices that can be connected to a patient. The list entry for each device typically includes the device type, location (may not apply if the device is mobile), and unique identity. 
  
+[.text-left]
 [underline]#Proposed Text:#
 
 [.text-left]
-[big red yellow-background]*The MEMDMC DMIR is an actor that enables automated contributions to the list of medical devices that can be associated with a patient. The list entry for each device typically includes the device type, location (may not apply if the device is mobile), model, manufacturer and unique identity.*
+The IHE MEM DMC DMIR is an actor that enables automated contributions to the list of medical devices that can be associated with a patient. 
 
 |===
 
-|_Section 7.1.1.4_ *Device-Registrant*, delete the two paragraphs starting at line 287 and tie them into an MEMDMC reference_:
+|_Section 7.1.1.4_ *Device-Registrant*, delete the two paragraphs starting at line 287 and tie them into an MEM DMC reference_:
 
 |===
 
@@ -284,7 +285,8 @@ Where it is a system, it may be a comprehensive device inventory system, a “ga
 [.text-left]
 [underline]#Proposed Text:#
 
-[big red yellow-background]*The MEMDMC DMIR may automated device registration. The DMIR may be a “gateway” system or medical device itself.*
+[.text-left]
+The IHE MEM DMC DMIR may automate device registration. Device registration may also be manually accomplished during system setup and maintenance.
 
 |===
 
@@ -303,8 +305,9 @@ Options that may be selected for each actor in this profile, if any, are listed 
 [underline]#Proposed Text:#
 
 [.text-left]
-The Device-Patient Association Consumer may optionally query the Device-Patient Association Manager for configuration and filtering of patient association status in real-time. The query to the Manager results in an immediate delivery from the manager of the active associations based on the query filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support the query option. 
+The Device-Patient Association Consumer may optionally filter events sent by the Device-Patient Association Manager. The filter request to the Manager results in an immediate delivery from the manager of the active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option. 
 
+[.text-left]
 Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes. 
 
 |===
@@ -353,11 +356,11 @@ Options that may be selected for each actor in this profile, if any, are listed 
 |Actor|Option Name|Reference
 
 |Device-Patient Association Consumer 
-|Query Option
+|Filtering Option
 |7.2.1
 
 |Device-Patient Association Manager 
-|Query Option
+|Filtering Option
 |7.2.1
 
 |Device-Patient Association Reporter 
@@ -368,7 +371,7 @@ Options that may be selected for each actor in this profile, if any, are listed 
 
 |===
 
-|*Snapshot Option*, _move and alter text to address change in quey approach and option status in section 3.19, addressed later in this CP_:
+|*Snapshot Option*, _move and alter text to address change in query approach and option status in section 3.19, addressed later in this CP_:
 
 |===
 
@@ -387,9 +390,406 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-The query option applies to query and response interactions between Device-Patient Association Consumer and Device-Patient Association Manager and specifies that the query response desired is a filtered real-time delivery of changes in device-patient associations. 
+The filtering option applies to interactions between Device-Patient Association Consumer and Device-Patient Association Manager and specifies that the communication between consumer and manager is a filtered real-time delivery of changes in device-patient associations. 
 
 A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19. 
 
+|===
+
+|*7.4.2.3.1 Description*, _update to reflect that retrospective queries are currently out of scope_:
+
+|=== 
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+A Device-Patient Association Consumer may query a Device-Patient Association Manager for a list of devices associated with a particular patient at present, or at a designated time in the past, or more generally for a snapshot of the Device-Patient Association map. 
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+A Device-Patient Association Consumer may filter association messages from a Device-Patient Association Manager for the list of devices associated with particular patients at present. Retrospective queries are currently out of scope. 
+
+|===
+
+|*7.4.2.3.2 Process Flow*, _update to eliminate query verbiage _:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager can respond to a targeted query by sending a query response message. 
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the present association records for each patient it is configured to receive.
+
+|===
+
+|*7.4.2.4.1 Description*, _update to reflect query vs filtering nomenclature changes_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+A device (or another system) may require the identity of the patient it is connected to, for display or other purposes, but not have this information available to it, so the profile provides for a Device-Patient Association Consumer to query the Device-Patient Association Manager for this information.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+A device (or another system) may require the identity of the patient it is connected to, for display or other purposes, but not have this information available to it, so the profile provides for a Device-Patient Association Consumer to receive reports from the Device-Patient Association Manager that provide this information for the devices it is configured to receive them for.
+
+|===
+
+|*7.4.2.4.2 Process Flow*, _remove query text and add detail_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+The identity of the patient associated with a device (or the lack of an associated patient identity) may be queried for. 
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the present association records for each device it is configured to receive.
+
+|===
+
+|*7.4.2.5 Use Case #5 Device Registrant Registers a Device with the Device-Patient Association Manager*, _remove section_:
+
+|=== 
+
+|===
+
+|*7.4.2.6 Use Case #6 Query the Device Registrant for a list of candidate devices for an association*, _remove section_:
+
+|=== 
+
+|===
+
+|*3.17 Assert Device-Patient Association [PCD-17]*, _rename to_: *Assert Device-Patient Association [DEV-51]*
+
+|=== 
+
+|===
+
+|*3.17.1 Scope*, _update paragraph on line 456 to indicate both association and disassociation events are covered in the transaction_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+This transaction is used to by a Device-Patient Association Reporter to assert that an association has been established between a device and a patient, or to update information reported previously by that reporter.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+This transaction is used to by a Device-Patient Association Reporter to assert that an association has been established or broken between a device and a patient, or to update information reported previously by that reporter.
+
+|===
+
+|*3.17.2 Actor Roles*, _update table 3.17.2-1: Actor Roles to address association and disassociation_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Table:#
+
+[cols="1,1"]
+|===
+
+|Actor:
+|Device-Patient Association Reporter
+
+|Role:
+|Reporter – the source of the assertion. Identifies the device, the patient, the authority for the association, and the effective time.
+
+|Actor:
+|Device-Patient Association Manager
+
+|Role:
+|Manager – establishes a persistent record of the association.
+
+|===
+[.text-left]
+[underline]#Proposed Table:#
+
+[cols="1,1"]
+|===
+|Actor|Role
+
+|Device-Patient Association Reporter
+|The source of the assertion. Identifies the device, the patient, the authority for the association or disassociation, and the effective time.
+
+|Device-Patient Association Manager
+|Establishes or updates the persistent record of the association.
+
+|===
+
+|===
+
+|*3.17.4.1 Device-Patient Association Report*, _update paragraph on line 469, restricting to one device patient association assertion per message_:
+
+|=== 
 
 
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+This is an HL7 Version 2 message giving details of the association being asserted. The message may assert association between more than one device and one patient.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+This is an HL7 Version 2 message giving details of the association being asserted. The message asserts an association between one device and one patient.
+
+|===
+
+|*3.17.4.1.1 Trigger Events*, _update paragraph on line 473, to represent association and disassociation_:
+
+|=== 
+
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+This message is triggered at the beginning of an interval when the logical connection between a device and the data it originates and a particular patient is established, after that connection has been verified by a human user able to check its validity at the point of care.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+This message is triggered at the beginning or ending of an interval when the logical connection between a device and the data it originates for a particular patient is established, after that connection or disconnection has been verified by a human user able to check its validity at the point of care.
+
+|===
+
+|*3.17.4.1.2 Message Semantics*, _update last sentence on line 511, to represent association and disassociation_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+If the checks are passed, the Manager establishes a record of the existence of the association and its effective time.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+After these checks, the Manager logs the result and returns an appropriate positive or negative acknowledgement to the Reporter. The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken.
+If the checks are passed, the Manager establishes a record of the beginning or ending of the association and the effective time.
+
+|===
+
+|*3.18 Assert Device-Patient Disassociation [PCD-18]*, _remove section as association and disassociation are now a single transaction_:
+
+|=== 
+
+|===
+
+|*3.19 Query Device-Patient Associations [PCD-19]*, _rename to_: *Query Device-Patient Associations [DEV-19]*
+
+|=== 
+
+|===
+
+|*3.19.2 Actor Roles*, _update use case diagram to reference DEV-19 instead of PCD-19_
+
+|=== 
+
+|===
+
+|*3.19.2 Actor Roles*, _update table 3.19.2-1: Actor Roles to remove "snapshot" terminology_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Table:#
+
+[cols="1,1"]
+|===
+
+|Actor:
+|Device-Patient Association Consumer
+
+|Role:
+|Requests information on Device-Patient Associations. This may be filtered for device, for patient, or for time interval. It may request a current “snapshot” of active associations, or optionally for an ongoing feed of device-patient association information.
+
+|Actor:
+|Device-Patient Association Manager
+
+|Role:
+|Fulfills a request from a Device-Patient Association Consumer for device-patient association information in the manner specified by the Consumer
+
+|===
+[.text-left]
+[underline]#Proposed Table:#
+
+[cols="1,1"]
+|===
+|Actor|Role
+
+|Device-Patient Association Consumer
+|Establishes an real-time message reporting subscription filter for Device-Patient Associations. This may be filtered for device or for patient. It establishes an ongoing feed of device-patient association information.
+
+|Device-Patient Association Manager
+|Fulfills a request from a Device-Patient Association Consumer for device-patient association information filtered as specified by the Consumer
+
+|===
+
+|===
+
+|*3.19.4.1 Device-Patient Association Query*, _update paragraph on line 565, to eliminate snapshot and use of device association report [DEV-52] transaction_:
+
+|=== 
+
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+This message from a Device-Patient Association Consumer requests a response from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are preconfigured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
+There are multiple use cases:
+[.text-left]
+1. A request for a ‘current snapshot’ of associations filtered as specified by the query parameters.
+2. A request for an ongoing real-time feed of changes in associations.
+3. Possibly less important would be request for a ‘replay’ of data from a specified time period in the past.
+
+[.text-left]
+Trying to fit these cases with the array of patterns present in Chapter 5 (Queries) of the HL7 Specification presents some puzzles. This profile chooses the QSB publish-subscribe paradigm, matching option 1, as the general case and treats 2 and 3 as special cases of it using some special semantics of query parameters described below.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+This message from a Device-Patient Association Consumer requests a response from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are preconfigured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
+This profile chooses the QSB publish-subscribe paradigm, where the request is for an ongoing real-time feed of changes in associations using special semantics of query parameters described below.
+
+|===
+
+|*3.19.4.1.1 Trigger Events*, _update paragraph on line 582, indicating primary purpose and eliminating out of scope concepts such as retrospective querying_:
+
+|=== 
+
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+This message is triggered by the Device-Patient Association Consumer when it requires information about a device or devices associated with a patient currently or in the past (within the period available from the Device-Patient Association Manager). It may also be used to request a continuing feed of data concerning changes in device-patient associations within the scope of the Device-Patient Association Manager.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+This message is triggered by the Device-Patient Association Consumer when it requires information about current associations for devices or patients in the form of a continuing feed of data.
+
+
+|=== 
+
+|*3.19.4.1.2 Message Semantics*, _update paragraph on line 588, eliminating out of scope concepts such as retrospective querying_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+This message is a query specification. It gives the scope of the information wanted by the
+Device-Patient Association Consumer in response to the query: what patients, units, devices and time periods are pertinent. See Appendix 0 for details of HL7 segment contents and semantics.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+This message is a query specification. It gives the scope of the information wanted by the
+Device-Patient Association Consumer in response to the query: what patients, units, devices are pertinent. See Appendix 0 for details of HL7 segment contents and semantics.
+
+|=== 
+
+|*3.19.4.1.3 Expected Actions*, _update paragraph on line 595, eliminating snapshot querying_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+The management of the query and response connection between the Device-Patient Association Consumer and the Device-Patient Association Manager in the case of an ongoing subscription is an implementation detail, but one practical method is for the Device-Patient Association Manager to maintain an open TCP listen port to accepts connections from one or more Device- Patient Association Consumer clients and then to open an individual TCP connection with each requester that persists as long as the client is connected and the query is valid (within its time limits, if any). For a non-subscription, “snapshot”-type query, the Device-Patient Association Manager could just respond on the static connection that the query comes in on.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+The management of the query and response connection between the Device-Patient Association Consumer and the Device-Patient Association Manager in the case of an ongoing subscription is an implementation detail, but one practical method is for the Device-Patient Association Manager to maintain an open TCP listen port to accepts connections from one or more Device- Patient Association Consumer clients and then to open an individual TCP connection with each requester that persists as long as the client is connected and the query is valid (within its time limits, if any).
+
+|=== 
+
+|*3.19.4.2 Device-Patient Association Query Response*, _update paragraph on line 604, to indicate the response is simply an Ack_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+The response carries the requested data if the Device-Patient Association Manager has any matching the specification. If there is none available, the response is in effect an empty frame with zero data records in the position that data would be expected. If the request is ill-formed (incorrect syntax or impossible query specification), an indication of the nature of the error should be returned.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+The response is a commit-level acknowledgement. If the request is ill-formed (incorrect syntax or impossible query specification), an indication of the nature of the error should be returned.
+
+|===
+
+|*3.19.4.2.1 Trigger Events*, _update paragraph on line 610, to remove reference to snapshot option_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query request from the Device-Patient Association Consumer. This trigger may request a snapshot of current state (Snapshot Option), or request the setting up of a sequence of messages triggered by a state change in the device-patient associations (Subscription Option).
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query request from the Device-Patient Association Consumer. This trigger requests the setting up of a sequence of messages initated by the current association status and then subsequently triggered by a state change in the device-patient associations.
+
+|===
+
+|*3.20 Register Device [PCD-20]*, _remove section_:
+
+|=== 
+
+|===
+|*Volume 2 Namespace Additions*, _update table with OIDs_:
+
+|=== 
+[.text-left]
+[underline]#Existing Table:#
+
+[cols="1,1"]
+|===
+|OID,Refers to
+|Actor:
+|Device-Patient Association Consumer
+
+|Role:
+|Requests information on Device-Patient Associations. This may be filtered for device, for patient, or for time interval. It may request a current “snapshot” of active associations, or optionally for an ongoing feed of device-patient association information.
+
+|Actor:
+|Device-Patient Association Manager
+
+|Role:
+|Fulfills a request from a Device-Patient Association Consumer for device-patient association information in the manner specified by the Consumer
+
+|===
+[.text-left]
+[underline]#Proposed Table:#
+
+[cols="1,1"]
+|===
+|Actor|Role
+
+|Device-Patient Association Consumer
+|Establishes an real-time message reporting subscription filter for Device-Patient Associations. This may be filtered for device or for patient. It establishes an ongoing feed of device-patient association information.
+
+|Device-Patient Association Manager
+|Fulfills a request from a Device-Patient Association Consumer for device-patient association information filtered as specified by the Consumer
+
+|===

@@ -774,7 +774,7 @@ image::proposed-actor-transaction-diagram.png[]</p>
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The Device-Patient Association Reporter represents a system that asserts that a given device is associated or disassociated with a specific patient. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. If the report is validated, the report observation shall be marked final, otherwise it shall be marked as requiring validation.</p>
+<p>The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. If the report is validated, the report observation shall be marked final, otherwise it shall be marked as requiring validation.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -796,7 +796,7 @@ image::proposed-actor-transaction-diagram.png[]</p>
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The Device-Patient Association Manager represents a system that collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as query responses, event notifications, or both if requested. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts. <strong class="big red yellow-background">Add an out-of-scope statement that describes the possibility of an actor that provides retrospective capabilities and why that makes sense)</strong></p>
+<p>The Device-Patient Association Manager actor collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as event notifications. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts.  <strong class="big red yellow-background">Add an out-of-scope statement that describes the possibility of an actor that provides retrospective capabilities and why that makes sense, do this in the section that lists out-of-scope items</strong></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -819,7 +819,7 @@ requirement to receive information on what devices are or were connected to whic
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The Device-Patient Association Consumer represents a system that needs to receive information on what devices are associated with which patients. Common examples are a medical device or critical care system that charts device observations for a patient. The system may receive association updates in real-time, if desired. <strong class="big red yellow-background">Do we need to add text to capture multiple devices attached to a patient through other devices, e.g. Physio Mon with a EtCO2, Ventilator connection</strong></p>
+<p>The Device-Patient Association Consumer actor receives information on what devices are associated with which patients. Common examples are a medical device or critical care system that charts device observations for a patient. The actor receives association updates in real-time.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -837,11 +837,11 @@ requirement to receive information on what devices are or were connected to whic
 <div class="paragraph text-left">
 <p>The Device Registrant represents a system or person that maintains the list of medical devices that can be connected to a patient. The list entry for each device typically includes the device type, location (may not apply if the device is mobile), and unique identity.</p>
 </div>
-<div class="paragraph">
+<div class="paragraph text-left">
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p><strong class="big red yellow-background">The MEMDMC DMIR is an actor that enables automated contributions to the list of medical devices that can be associated with a patient. The list entry for each device typically includes the device type, location (may not apply if the device is mobile), model, manufacturer and unique identity.</strong></p>
+<p>The IHE MEM DMC DMIR is an actor that enables automated contributions to the list of medical devices that can be associated with a patient.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -849,7 +849,7 @@ requirement to receive information on what devices are or were connected to whic
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section 7.1.1.4</em> <strong>Device-Registrant</strong>, delete the two paragraphs starting at line 287 and tie them into an MEMDMC reference_:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section 7.1.1.4</em> <strong>Device-Registrant</strong>, delete the two paragraphs starting at line 287 and tie them into an MEM DMC reference_:</p></td>
 </tr>
 </tbody>
 </table>
@@ -863,8 +863,8 @@ Where it is a system, it may be a comprehensive device inventory system, a “ga
 <div class="paragraph text-left">
 <p><span class="underline">Proposed Text:</span></p>
 </div>
-<div class="paragraph">
-<p><strong class="big red yellow-background">The MEMDMC DMIR may automated device registration. The DMIR may be a “gateway” system or medical device itself.</strong></p>
+<div class="paragraph text-left">
+<p>The IHE MEM DMC DMIR may automate device registration. Device registration may also be manually accomplished during system setup and maintenance.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -887,9 +887,9 @@ Options that may be selected for each actor in this profile, if any, are listed 
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The Device-Patient Association Consumer may optionally query the Device-Patient Association Manager for configuration and filtering of patient association status in real-time. The query to the Manager results in an immediate delivery from the manager of the active associations based on the query filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support the query option.</p>
+<p>The Device-Patient Association Consumer may optionally filter events sent by the Device-Patient Association Manager. The filter request to the Manager results in an immediate delivery from the manager of the active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option.</p>
 </div>
-<div class="paragraph">
+<div class="paragraph text-left">
 <p>Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -970,12 +970,12 @@ Options that may be selected for each actor in this profile, if any, are listed 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Query Option</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filtering Option</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.2.1</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Query Option</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filtering Option</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.2.1</p></td>
 </tr>
 <tr>
@@ -991,7 +991,7 @@ Options that may be selected for each actor in this profile, if any, are listed 
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Snapshot Option</strong>, <em>move and alter text to address change in quey approach and option status in section 3.19, addressed later in this CP</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Snapshot Option</strong>, <em>move and alter text to address change in query approach and option status in section 3.19, addressed later in this CP</em>:</p></td>
 </tr>
 </tbody>
 </table>
@@ -1016,18 +1016,603 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The query option applies to query and response interactions between Device-Patient Association Consumer and Device-Patient Association Manager and specifies that the query response desired is a filtered real-time delivery of changes in device-patient associations.</p>
+<p>The filtering option applies to interactions between Device-Patient Association Consumer and Device-Patient Association Manager and specifies that the communication between consumer and manager is a filtered real-time delivery of changes in device-patient associations.</p>
 </div>
 <div class="paragraph">
 <p>A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19.</p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.3.1 Description</strong>, <em>update to reflect that retrospective queries are currently out of scope</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>A Device-Patient Association Consumer may query a Device-Patient Association Manager for a list of devices associated with a particular patient at present, or at a designated time in the past, or more generally for a snapshot of the Device-Patient Association map.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>A Device-Patient Association Consumer may filter association messages from a Device-Patient Association Manager for the list of devices associated with particular patients at present. Retrospective queries are currently out of scope.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.3.2 Process Flow</strong>, _update to eliminate query verbiage _:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager can respond to a targeted query by sending a query response message.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the present association records for each patient it is configured to receive.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.4.1 Description</strong>, <em>update to reflect query vs filtering nomenclature changes</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>A device (or another system) may require the identity of the patient it is connected to, for display or other purposes, but not have this information available to it, so the profile provides for a Device-Patient Association Consumer to query the Device-Patient Association Manager for this information.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>A device (or another system) may require the identity of the patient it is connected to, for display or other purposes, but not have this information available to it, so the profile provides for a Device-Patient Association Consumer to receive reports from the Device-Patient Association Manager that provide this information for the devices it is configured to receive them for.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.4.2 Process Flow</strong>, <em>remove query text and add detail</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The identity of the patient associated with a device (or the lack of an associated patient identity) may be queried for.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the present association records for each device it is configured to receive.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.5 Use Case #5 Device Registrant Registers a Device with the Device-Patient Association Manager</strong>, <em>remove section</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.6 Use Case #6 Query the Device Registrant for a list of candidate devices for an association</strong>, <em>remove section</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17 Assert Device-Patient Association [PCD-17]</strong>, <em>rename to</em>: <strong>Assert Device-Patient Association [DEV-51]</strong></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17.1 Scope</strong>, <em>update paragraph on line 456 to indicate both association and disassociation events are covered in the transaction</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This transaction is used to by a Device-Patient Association Reporter to assert that an association has been established between a device and a patient, or to update information reported previously by that reporter.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This transaction is used to by a Device-Patient Association Reporter to assert that an association has been established or broken between a device and a patient, or to update information reported previously by that reporter.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17.2 Actor Roles</strong>, <em>update table 3.17.2-1: Actor Roles to address association and disassociation</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Table:</span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Role:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reporter – the source of the assertion. Identifies the device, the patient, the authority for the association, and the effective time.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Role:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manager – establishes a persistent record of the association.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Table:</span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Actor</th>
+<th class="tableblock halign-left valign-top">Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The source of the assertion. Identifies the device, the patient, the authority for the association or disassociation, and the effective time.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Establishes or updates the persistent record of the association.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17.4.1 Device-Patient Association Report</strong>, <em>update paragraph on line 469, restricting to one device patient association assertion per message</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This is an HL7 Version 2 message giving details of the association being asserted. The message may assert association between more than one device and one patient.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This is an HL7 Version 2 message giving details of the association being asserted. The message asserts an association between one device and one patient.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17.4.1.1 Trigger Events</strong>, <em>update paragraph on line 473, to represent association and disassociation</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This message is triggered at the beginning of an interval when the logical connection between a device and the data it originates and a particular patient is established, after that connection has been verified by a human user able to check its validity at the point of care.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This message is triggered at the beginning or ending of an interval when the logical connection between a device and the data it originates for a particular patient is established, after that connection or disconnection has been verified by a human user able to check its validity at the point of care.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17.4.1.2 Message Semantics</strong>, <em>update last sentence on line 511, to represent association and disassociation</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>If the checks are passed, the Manager establishes a record of the existence of the association and its effective time.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>After these checks, the Manager logs the result and returns an appropriate positive or negative acknowledgement to the Reporter. The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken.
+If the checks are passed, the Manager establishes a record of the beginning or ending of the association and the effective time.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.18 Assert Device-Patient Disassociation [PCD-18]</strong>, <em>remove section as association and disassociation are now a single transaction</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.19 Query Device-Patient Associations [PCD-19]</strong>, <em>rename to</em>: <strong>Query Device-Patient Associations [DEV-19]</strong></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.19.2 Actor Roles</strong>, <em>update use case diagram to reference DEV-19 instead of PCD-19</em></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.19.2 Actor Roles</strong>, <em>update table 3.19.2-1: Actor Roles to remove "snapshot" terminology</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Table:</span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Role:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requests information on Device-Patient Associations. This may be filtered for device, for patient, or for time interval. It may request a current “snapshot” of active associations, or optionally for an ongoing feed of device-patient association information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Role:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fulfills a request from a Device-Patient Association Consumer for device-patient association information in the manner specified by the Consumer</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Table:</span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Actor</th>
+<th class="tableblock halign-left valign-top">Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Establishes an real-time message reporting subscription filter for Device-Patient Associations. This may be filtered for device or for patient. It establishes an ongoing feed of device-patient association information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fulfills a request from a Device-Patient Association Consumer for device-patient association information filtered as specified by the Consumer</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.19.4.1 Device-Patient Association Query</strong>, <em>update paragraph on line 565, to eliminate snapshot and use of device association report [DEV-52] transaction</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This message from a Device-Patient Association Consumer requests a response from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are preconfigured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
+There are multiple use cases:</p>
+</div>
+<div class="olist arabic text-left">
+<ol class="arabic">
+<li>
+<p>A request for a ‘current snapshot’ of associations filtered as specified by the query parameters.</p>
+</li>
+<li>
+<p>A request for an ongoing real-time feed of changes in associations.</p>
+</li>
+<li>
+<p>Possibly less important would be request for a ‘replay’ of data from a specified time period in the past.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph text-left">
+<p>Trying to fit these cases with the array of patterns present in Chapter 5 (Queries) of the HL7 Specification presents some puzzles. This profile chooses the QSB publish-subscribe paradigm, matching option 1, as the general case and treats 2 and 3 as special cases of it using some special semantics of query parameters described below.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This message from a Device-Patient Association Consumer requests a response from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are preconfigured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
+This profile chooses the QSB publish-subscribe paradigm, where the request is for an ongoing real-time feed of changes in associations using special semantics of query parameters described below.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.19.4.1.1 Trigger Events</strong>, <em>update paragraph on line 582, indicating primary purpose and eliminating out of scope concepts such as retrospective querying</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This message is triggered by the Device-Patient Association Consumer when it requires information about a device or devices associated with a patient currently or in the past (within the period available from the Device-Patient Association Manager). It may also be used to request a continuing feed of data concerning changes in device-patient associations within the scope of the Device-Patient Association Manager.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This message is triggered by the Device-Patient Association Consumer when it requires information about current associations for devices or patients in the form of a continuing feed of data.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.19.4.1.2 Message Semantics</strong>, <em>update paragraph on line 588, eliminating out of scope concepts such as retrospective querying</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This message is a query specification. It gives the scope of the information wanted by the
+Device-Patient Association Consumer in response to the query: what patients, units, devices and time periods are pertinent. See Appendix 0 for details of HL7 segment contents and semantics.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This message is a query specification. It gives the scope of the information wanted by the
+Device-Patient Association Consumer in response to the query: what patients, units, devices are pertinent. See Appendix 0 for details of HL7 segment contents and semantics.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.19.4.1.3 Expected Actions</strong>, <em>update paragraph on line 595, eliminating snapshot querying</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The management of the query and response connection between the Device-Patient Association Consumer and the Device-Patient Association Manager in the case of an ongoing subscription is an implementation detail, but one practical method is for the Device-Patient Association Manager to maintain an open TCP listen port to accepts connections from one or more Device- Patient Association Consumer clients and then to open an individual TCP connection with each requester that persists as long as the client is connected and the query is valid (within its time limits, if any). For a non-subscription, “snapshot”-type query, the Device-Patient Association Manager could just respond on the static connection that the query comes in on.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The management of the query and response connection between the Device-Patient Association Consumer and the Device-Patient Association Manager in the case of an ongoing subscription is an implementation detail, but one practical method is for the Device-Patient Association Manager to maintain an open TCP listen port to accepts connections from one or more Device- Patient Association Consumer clients and then to open an individual TCP connection with each requester that persists as long as the client is connected and the query is valid (within its time limits, if any).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.19.4.2 Device-Patient Association Query Response</strong>, <em>update paragraph on line 604, to indicate the response is simply an Ack</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The response carries the requested data if the Device-Patient Association Manager has any matching the specification. If there is none available, the response is in effect an empty frame with zero data records in the position that data would be expected. If the request is ill-formed (incorrect syntax or impossible query specification), an indication of the nature of the error should be returned.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The response is a commit-level acknowledgement. If the request is ill-formed (incorrect syntax or impossible query specification), an indication of the nature of the error should be returned.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.19.4.2.1 Trigger Events</strong>, <em>update paragraph on line 610, to remove reference to snapshot option</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query request from the Device-Patient Association Consumer. This trigger may request a snapshot of current state (Snapshot Option), or request the setting up of a sequence of messages triggered by a state change in the device-patient associations (Subscription Option).</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query request from the Device-Patient Association Consumer. This trigger requests the setting up of a sequence of messages initated by the current association status and then subsequently triggered by a state change in the device-patient associations.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.20 Register Device [PCD-20]</strong>, <em>remove section</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Volume 2 Namespace Additions</strong>, <em>update table with OIDs</em>:</th>
+</tr>
+</thead>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Table:</span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OID,Refers to</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor:</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Role:</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requests information on Device-Patient Associations. This may be filtered for device, for patient, or for time interval. It may request a current “snapshot” of active associations, or optionally for an ongoing feed of device-patient association information.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actor:</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Role:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Table:</span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Actor</th>
+<th class="tableblock halign-left valign-top">Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Establishes an real-time message reporting subscription filter for Device-Patient Associations. This may be filtered for device or for patient. It establishes an ongoing feed of device-patient association information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fulfills a request from a Device-Patient Association Consumer for device-patient association information filtered as specified by the Consumer</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0-SNAPSHOT<br>
-Last updated 2023-03-17 07:52:25 -0700
+Last updated 2023-04-14 06:53:06 -0700
 </div>
 </div>
 </body>
