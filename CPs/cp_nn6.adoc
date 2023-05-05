@@ -793,3 +793,245 @@ This message and the activity of preparing it, is triggered in the Device-Patien
 |Fulfills a request from a Device-Patient Association Consumer for device-patient association information filtered as specified by the Consumer
 
 |===
+
+|=== 
+
+|*A.1 Report Device-Patient Association and Disassociation*, _update paragraph on line 703, to reference new transaction numbering_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+As all of the use cases identified in this profile can be considered observations (it was observed
+that device d1 was connected to patient p1 starting at t1 and ending at t2), the ORU message structure is used throughout this profile to manage associations. This description also serves for a
+Report Device-Patient Disassociation – the only difference between the Association and Disassociation messages is the content of OBX-5. The Message Structure and attendant notes also serve to specify the segment pattern to be expected in responses to Query for Device-Patient Associations [PCD-19] messages. The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with – it serves as useful background information and contains details on some fields that are not covered in this profile.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+As all of the use cases identified in this profile can be considered observations (it was observed
+that device d1 was connected to patient p1 starting at t1 and ending at t2), the ORU message structure is used throughout this profile to manage associations. This description also serves for a
+Report Device-Patient Disassociation – the only difference between the Association and Disassociation messages is the content of OBX-5. The Message Structure and attendant notes also serve to specify the segment pattern to be expected in Report Association State [DEV-52] messages. The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with – it serves as useful background information and contains details on some fields that are not covered in this profile.
+
+|===
+
+|*A.1.1 Message Structure*, _update paragraph on line 716, to reference new transaction numbering and single device per patient association in a single report_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.17.1^ISO” to identify it as a Report Device-Patient Association. In the context of this use case, the message is constrained to reporting association(s) for a single patient. This could be single device, single patient, or multiple devices associated to a
+single patient.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.17.1^ISO” to identify it as a Report Device-Patient Association. In the context of this use case, the message is constrained to reporting association(s) for a single patient and device. 
+
+|===
+
+|*A.1.2.1 Message Structure*, _update paragraph on line 724, to reference new transaction numbering and fix typo in OID_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+Since this message is effectively an unsolicited observation report, the contents of the MSH segment follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued "IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.17.1^ISO" to identify it as a message representing a device-patient association.
+
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+Since this message is effectively an unsolicited observation report, the contents of the MSH segment follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued "IHE_PCD_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO" to identify it as a message representing a device-patient association.
+
+|===
+
+|*A.2.1 Scope*, _update paragraph on line 834, removing snapshot option and to clarify query is optional_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+This query allows a system to request a list of the device-patient associations meeting specified conditions. Note that “snapshot” and “subscription” request modes are supported.
+
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+This optional query allows a system to dynamically configure a filtered subscription for a list of the device-patient associations meeting specified conditions.
+
+|===
+
+|*A.2.3 Details of Device-Patient Association Query Message [PCD-19]*, _change PCD-19 to DEV-19 in section heading_:
+
+|===
+
+|===
+
+|*A.2.3 Details of Device-Patient Association Query Message [PCD-19]*, _update section on line 840, removing snapshot option, updating transaction numbering, removing retrospective option and clarifying that this query message is optional_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+This message is used by a Device-Patient Association Consumer to request device-patient association information from a Device-Patient Association Manager, specifying filtering by patient identification, by location or by device identification. It may also be limited to a particular time (often the time the message is originated), a time interval, or it may specify an
+open-ended time interval, signifying that the Device-Patient Association Consumer is requesting an ongoing real-time subscription to device-patient association information (possibly filtered as just described) that is received from Device-Patient Association Reporters. The query takes the form of a QSB publish and subscribe query as described in HL7 Chapter 5, Section 5.7.3.1. It is almost identical to the profile for the QSB\^Z83^QSB_Q16 trigger with ORU\^R01^ORU_R01 response trigger described in Section 5.7.3.1 of the HL7 specification except that the query parameters are different to accommodate the semantics of filtering for device-patient associations, and the observation reports given as the response to the query, while conforming to the ORU_R01 message structure, have the specific semantics of transaction Device-Patient Association Reports [PCD-17].
+
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+This message is used by a Device-Patient Association Consumer to request current device-patient association information from a Device-Patient Association Manager followed by a on-going subscription to ongoing real-time device-patient association information, specifying filtering by patient identification, by location or by device identification.  The query takes the form of a QSB publish and subscribe query as described in HL7 Chapter 5, Section 5.7.3.1. It is almost identical to the profile for the QSB\^Z83^QSB_Q16 trigger with ORU\^R01^ORU_R01 response trigger described in Section 5.7.3.1 of the HL7 specification except that the query parameters are different to accommodate the semantics of filtering for device-patient associations, and the observation reports given as the response to the query, while conforming to the ORU_R01 message structure, have the specific semantics of transaction Device-Patient Association Reports [DEV-52].
+
+|===
+
+|*Table A.2.3-1*, _change PCD-17 to DEV-51 in Value column for Response Characteristics and Based on Segment Pattern Name rows_:
+
+|=== 
+
+|===
+
+|*A.2.3 Details of Device Patient Association Query Message [PCD-19]*, _update paragraph on line 866, removing bolus/snapshot text and updating transaction references_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+Note that this segment pattern, unlike some segment patterns, is not introduced by any “header” type extra segments, but instead is a straight sequenced of repeats of [PCD-17] messages reporting device-patient association events, filtered according to the query parameters. This implies that it should be the same connection as the query was sent from the Device-Patient Association Consumer to the Device-Patient Association Manager, so there can be no confusion with other messages not from this profile. Since there is no end indication in the message sequence, either, in the case of a bolus query getting current state information (see the discussion under the RCP segment, RCP-3), the Device-Patient Association Manager will close the connection initiated by the Device-Patient Association Consumer when all the data have been sent. A new connection must then be connected if and when another query is sent.
+
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+Note that this segment pattern, unlike some segment patterns, is not introduced by any “header” type extra segments, but instead is a straight sequenced of repeats of [DEV-52] messages reporting current device-patient association events followed by ongoing real-time updates to device-patient association events, filtered according to optional query parameters. If the connection is lost, the manager must continue to try and establish a new connection to the consumer, always sending the current device-patient association events once the connection is re-established.
+
+|===
+
+|*A.2.3.1 MSH Segment*, _update paragraph on line 878, updating transaction references_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+As for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued as IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.19^ISO.
+
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+As for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued as IHE_PCD_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.52.1^ISO.
+
+|===
+
+|*A.2.3.2-3 Identifiers for field, component, or subcomponent in QPD.3 User Parameters*, _update table to remove retrospective query capability by removing last two rows for FLD OBR.7 and OBR.8_:
+
+|===
+|=== 
+
+|*A.2.4-2 RCP Response Control Parameter for Field Description and Commentary*, _Set Response Modality row Description to "R for Real time"_:
+
+|===
+
+|===
+
+|*A.2.4 RCP Segment*, _update text between line 925 and 938, removing bolus text and clarifying real-time configuration_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+The supported values of RCP-3 Response Modality are R (Real Time) or T (Bolus).
+In bolus mode all the available associations are sent at once. A Device-Patient Association Manager supporting the Snapshot Option must support this mode. The Device-Patient Association Consumer wanting a continuous real-time feed of association events may need to make a bolus query first to get all existing associations meeting the desired filter specification to
+930 get the starting state.
+In real-time mode, association records are sent as they arrive at the Device-Patient Association Manager. A Device-Patient Association Manager supporting the Snapshot Option must support this mode of operation, and a Device-Patient Association Consumer supporting the Snapshot option must be able to process the segment pattern.
+935 Because the segment pattern for real-time mode has no start or end indication, the Device-Patient Association Manager will signal the completion of a bolus query by closing the connection to the Device-Patient Association Consumer. The Device-Patient Association Consumer will then make a new connection for the real-time continuing query.
+
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+The supported values of RCP-3 Response Modality is R (Real Time).
+The Device-Patient Association Consumer must support receiving a continuous real-time feed of association events and will receive all existing associations when the connection is first established that meet the desired filter specification to get the starting state. After that initial state is received, association records are sent as they arrive at the Device-Patient Association Manager. The Device-Patient Association Consumer can optionally configure (or reconfigure) filter criteria and even cancel the continuing real-time query dynamically. 
+
+|===
+
+|*A.3 Register Device*, _remove section_:
+
+|*A.4 Example Messages*, _update reporter message for Example 1 on line 985 to use the new transaction numbering_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+|AL||8859/1|||IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.17^ISO
+
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+|AL||8859/1|||IHE_PCD_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+
+|===
+
+|*A.4 Example Messages*, _update manager application level acknowledgementfor Example 1 on line 1005 to use the new transaction numbering_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+||8859/1|||IHE_PCD_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+||8859/1|||IHE_PCD_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+
+|===
+
+|*A.4 Example Messages*, _update manager application level acknowledgement for Example 2 on line 1019 to use the new transaction numbering_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+7|||AL|AL||8859/1|||IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.17^ISO
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+7|||AL|AL||8859/1|||IHE_PCD_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+|===
+
+|*A.4 Example Messages*, _Remove Example 3 for registration, lines 1039-1047_:
+
+|=== 
+
+|===
+
+|*A.4 Example Messages*, _update reference for Example 4 on line 1057 to use the new transaction numbering_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+The Device-Patient Association Manager responds by starting a continuous stream of Device- Patient Association [PCD-17] messages, starting with message(s) giving the current device
+associations of the patient (which will require the Device-Patient Association Manager to access that information and format it in [PCD-17] form).
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+The Device-Patient Association Manager responds by starting a continuous stream of Report Association [DEV-52] messages, starting with message(s) giving the current device
+associations of the patient (which will require the Device-Patient Association Manager to access that information and format it in [DEV-52] form).
