@@ -829,7 +829,7 @@ single patient.
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.17.1^ISO” to identify it as a Report Device-Patient Association. In the context of this use case, the message is constrained to reporting association(s) for a single patient and device. 
+MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.17.1^ISO” to identify it as a Report Device-Patient Association. In the context of this use case, the message is constrained to reporting association(s) for a single patient and device. 
 
 |===
 
@@ -846,7 +846,7 @@ Since this message is effectively an unsolicited observation report, the content
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-Since this message is effectively an unsolicited observation report, the contents of the MSH segment follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued "IHE_PCD_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO" to identify it as a message representing a device-patient association.
+Since this message is effectively an unsolicited observation report, the contents of the MSH segment follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued "IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO" to identify it as a message representing a device-patient association.
 
 |===
 
@@ -927,7 +927,7 @@ As for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valu
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-As for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued as IHE_PCD_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.52.1^ISO.
+As for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued as IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.52.1^ISO.
 
 |===
 
@@ -979,7 +979,7 @@ The Device-Patient Association Consumer must support receiving a continuous real
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-|AL||8859/1|||IHE_PCD_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+|AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
 
 |===
 
@@ -995,7 +995,7 @@ The Device-Patient Association Consumer must support receiving a continuous real
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-||8859/1|||IHE_PCD_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
 
 |===
 
@@ -1011,7 +1011,7 @@ The Device-Patient Association Consumer must support receiving a continuous real
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-7|||AL|AL||8859/1|||IHE_PCD_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
 |===
 
 |*A.4 Example Messages*, _Remove Example 3 for registration, lines 1039-1047_:
