@@ -170,10 +170,12 @@ This Change Proposal (CP) proposes changes to implement profile clarifications a
 
 [.text-left]
 [underline]#Existing Figure:#
+
 image::original-actor-transaction-diagram.png[]
 
 [.text-left]
 [underline]#Proposed Figure:#
+
 image::proposed-actor-transaction-diagram.png[]
 
 |===
