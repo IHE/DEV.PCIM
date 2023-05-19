@@ -467,7 +467,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date of last update:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2023-05-05</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2023-05-19</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Person Assigned:</p></td>
@@ -719,11 +719,56 @@ Device-Patient Association Reporter</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><strong class="big red yellow-background">WIP</strong></p>
-</div>
 <div class="paragraph text-left">
 <p><span class="underline">Original Table:</span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actors</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transactions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Initiator or Responder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optionality</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reference</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Device-Patient Association Reporter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Report Device-Patient Association</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2 3.17</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Report Device-Patient Disassociation</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2 3.18</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query Device-Patient Associations</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.19</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Registrant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Report Registered Device Details</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.20</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Table:</span></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -742,25 +787,35 @@ Device-Patient Association Reporter</p></td>
 <th class="tableblock halign-left valign-top">Reference</th>
 </tr>
 </thead>
-</table>
-<div class="paragraph text-left">
-<p><span class="underline">Proposed Table:</span></p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
+<tbody>
 <tr>
-<th class="tableblock halign-left valign-top">Actors</th>
-<th class="tableblock halign-left valign-top">Transactions</th>
-<th class="tableblock halign-left valign-top">Initiator or Responder</th>
-<th class="tableblock halign-left valign-top">Optionality</th>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Report Device-Patient Association or Disassociation</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2 3.51</p></td>
 </tr>
-</thead>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query Device-Patient Associations</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.19</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Device-Patient Manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Report Device-Patient Associations</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.52</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Filter Device-Patient Association Reports Dynamically</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.19</p></td>
+</tr>
+</tbody>
 </table>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -804,7 +859,7 @@ Device-Patient Association Reporter</p></td>
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The Device-Patient Association Manager actor collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as event notifications. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts.  <strong class="big red yellow-background">Add an out-of-scope statement that describes the possibility of an actor that provides retrospective capabilities and why that makes sense, do this in the section that lists out-of-scope items</strong></p>
+<p>The Device-Patient Association Manager actor collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as event notifications. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1137,6 +1192,22 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 </tr>
 </tbody>
 </table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.7 Out of Scope Items</strong>, insert section 7.7 around line 448 that specifies out of scope items_:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>An actor that supports retrospective queries was considered. For the use cases outlined, it was noted that they require accurate up-to-date patient identification for transferring patient information with observations and alarms. Retrospective queries, although useful, were considered functionality deemed secondary and for further consideration in the future.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 100%;">
@@ -1950,7 +2021,7 @@ associations of the patient (which will require the Device-Patient Association M
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0-SNAPSHOT<br>
-Last updated 2023-05-19 07:09:57 -0700
+Last updated 2023-05-19 07:36:28 -0700
 </div>
 </div>
 </body>

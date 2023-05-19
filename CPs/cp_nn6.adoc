@@ -16,7 +16,7 @@
 |Draft
 
 |Date of last update:
-|2023-05-05
+|2023-05-19
 
 |Person Assigned:
 |Eldon Metz
@@ -184,22 +184,67 @@ image::proposed-actor-transaction-diagram.png[]
 
 |===
 
-[big red yellow-background]*WIP*
-
 [.text-left]
 [underline]#Original Table:#
 
 [cols="1,1,1,1,1"]
 |===
 |Actors|Transactions|Initiator or Responder|Optionality|Reference
+.2+|Device-Patient Association Reporter
+|Report Device-Patient Association
+|
+|R
+|PCD TF-2 3.17
+
+|Report Device-Patient Disassociation
+|
+|R
+|PCD TF-2 3.18
+
+|Device-Patient Association Consumer
+|Query Device-Patient Associations
+|
+|O
+|PCD TF-2: 3.19
+
+
+|Device-Patient Registrant
+|Report Registered Device Details
+|
+|R
+|PCD TF-2: 3.20
 
 |===
 [.text-left]
 [underline]#Proposed Table:#
 
-[cols="1,1,1,1"]
+[cols="1,1,1,1,1"]
 |===
 |Actors|Transactions|Initiator or Responder|Optionality|Reference
+
+|Device-Patient Association Reporter
+|Report Device-Patient Association or Disassociation
+|
+|R
+|PCD TF-2 3.51
+
+|Device-Patient Association Consumer
+|Query Device-Patient Associations
+|
+|O
+|PCD TF-2: 3.19
+
+
+.2+|Device-Patient Manager
+|Report Device-Patient Associations
+|
+|R
+|PCD TF-2: 3.52
+
+|Filter Device-Patient Association Reports Dynamically
+|
+|O
+|PCD TF-2: 3.19
 
 |===
 
@@ -234,7 +279,7 @@ The Device-Patient Association Manager represents a system that collects and per
 [underline]#Proposed Text:#
 
 [.text-left]
-The Device-Patient Association Manager actor collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as event notifications. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts.  [big red yellow-background]*Add an out-of-scope statement that describes the possibility of an actor that provides retrospective capabilities and why that makes sense, do this in the section that lists out-of-scope items*
+The Device-Patient Association Manager actor collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as event notifications. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts. 
 
 |===
 
@@ -470,6 +515,18 @@ For status display or for error-checking and diagnostic purposes, the Device-Pat
 |*7.4.2.6 Use Case #6 Query the Device Registrant for a list of candidate devices for an association*, _remove section_:
 
 |=== 
+
+
+|===
+
+|*7.7 Out of Scope Items*, insert section 7.7 around line 448 that specifies out of scope items_:
+
+|=== 
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+An actor that supports retrospective queries was considered. For the use cases outlined, it was noted that they require accurate up-to-date patient identification for transferring patient information with observations and alarms. Retrospective queries, although useful, were considered functionality deemed secondary and for further consideration in the future.
 
 |===
 
