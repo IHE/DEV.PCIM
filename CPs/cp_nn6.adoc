@@ -250,6 +250,28 @@ image::proposed-actor-transaction-diagram.png[]
 
 |===
 
+|_Section 7_ *Point-of-Care Identity Management (PCIM) Profile*, _change the paragraph on line 235_:
+
+|===
+
+[underline]#Existing Text:#
+
+[.text-left]
+The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7®1
+v2 standard messaging for devices and IT systems at an acute-care point-of-care to exchange and
+synchronize information about the identity of specific devices collecting clinical information
+about a specific patient, to:
+
+[underline]#Proposed Text:#
+
+[.text-left]
+The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7®1
+v2 standard messaging for devices and IT systems at a point-of-care to exchange and
+synchronize information about the identity of specific devices collecting clinical information
+about a specific patient, to:
+
+|===
+
 |_Section 7.1.1.1_ *Device-Patient Association Reporter*, _change the paragraph on line 270_:
 
 |===
