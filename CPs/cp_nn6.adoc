@@ -284,7 +284,7 @@ The Device-Patient Association Reporter represents a system or person that is as
 [underline]#Proposed Text:#
 
 [.text-left]
-The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. If the report is validated, the report observation shall be marked final, otherwise it shall be marked as requiring validation.
+The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. The reporter may update existing associations. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. If the report is validated, the report observation status field shall be marked final, otherwise it shall be marked as requiring validation.
 
 |===
 
