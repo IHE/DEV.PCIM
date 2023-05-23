@@ -355,7 +355,7 @@ Where it is a system, it may be a comprehensive device inventory system, a “ga
 [underline]#Proposed Text:#
 
 [.text-left]
-The IHE MEM DMC DMIR may automate device registration. Device registration may also be manually accomplished during system setup and maintenance.
+The list of medical devices that can be associated with the patient may be preconfigured or automated with MEM DMC DMIR. Device registration may also be manually accomplished during system setup and maintenance. Examples of information available from MEM DMC are the device model, manufacturer, serial number, and network end point (ip address, port).
 
 |===
 
