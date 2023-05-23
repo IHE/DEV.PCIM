@@ -545,6 +545,13 @@ For status display or for error-checking and diagnostic purposes, the Device-Pat
 
 |=== 
 
+
+|===
+
+|*7.7.1 Retrospective Queries*, insert section 7.7.1 around line 448 that specifies out of scope item_:
+
+|=== 
+
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
