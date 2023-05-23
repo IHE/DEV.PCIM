@@ -16,7 +16,7 @@
 |Draft
 
 |Date of last update:
-|2023-05-19
+|2023-05-22
 
 |Person Assigned:
 |Eldon Metz
@@ -115,7 +115,7 @@ This Change Proposal (CP) proposes changes to implement profile clarifications a
 
 |===
 
-|_Section Appendix B_ *Transaction Summary Definitions*, _modify the table on line 218 to update the transcation names, definitions and numbers_:
+|_Section Appendix B_ *Transaction Summary Definitions*, _modify the table on line 218 to update the transaction names, definitions and numbers_:
 
 |===
 [.text-left]
@@ -892,7 +892,7 @@ MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 A
 
 |===
 
-|*A.1.2.1 Message Structure*, _update paragraph on line 724, to reference new transaction numbering and fix typo in OID_:
+|*A.1.2.1 Message Header*, _update paragraph on line 724, to reference new transaction numbering and fix typo in OID_:
 
 |=== 
 
@@ -1042,7 +1042,7 @@ The Device-Patient Association Consumer must support receiving a continuous real
 
 |===
 
-|*A.4 Example Messages*, _update manager application level acknowledgementfor Example 1 on line 1005 to use the new transaction numbering_:
+|*A.4 Example Messages*, _update manager application level acknowledgement for Example 1 on line 1005 to use the new transaction numbering_:
 
 |=== 
 
