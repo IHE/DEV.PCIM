@@ -465,9 +465,46 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 
 |===
 
-|*7.4.2.3.1 Description*, _update to reflect that retrospective queries are currently out of scope_:
+|*7.4.2.1.1 Use Case #1 Associating Device with Patient: Process Flow*, _change title to 'Process Flow' and correct grammer in second sentence_
+
+|===
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+This use case can be driven by an authorized user responsible for entering, verifying, or both, the
+beginning and ending of an association between a device and a particular patient. The should be
+based on first person awareness of the situation at the point of care. Automatic Identification and
+Data Capture methods such as barcodes or RFID should be used to assist the workflow and
+increase data reliability to the maximum feasible extent.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+This use case can be driven by an authorized user responsible for entering, verifying, or both, the
+beginning and ending of an association between a device and a particular patient. This should be
+based on first person awareness of the situation at the point of care. Automatic Identification and
+Data Capture methods such as barcodes or RFID should be used to assist the workflow and
+increase data reliability to the maximum feasible extent.
+
+|===
+
+|*7.4.2.1.3 Pre-conditions:*, _fix grammer in second sentence of paragraph 370--change 'Device identify' to 'Device identity'_
+
+|===
+
+|===
+
+|*7.4.2.3 Use Case #3 Query for the Devices for a Patient*, _change title to 'Use Case #3 Filter Devices for a Patient'_
+
+|===
+
+|===
+
+|*7.4.2.3.1 Description*, _update to reflect that retrospective queries are currently out of scope_
 
 |=== 
+
 [.text-left]
 [underline]#Existing Text:#
 [.text-left]
@@ -476,7 +513,7 @@ A Device-Patient Association Consumer may query a Device-Patient Association Man
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-A Device-Patient Association Consumer may filter association messages from a Device-Patient Association Manager for the list of devices associated with particular patients at present. Retrospective queries are currently out of scope. 
+A Device-Patient Association Manager may filter association messages to a Device-Patient Association Consumer for the list of devices associated with particular patients at present. Retrospective queries are currently out of scope. 
 
 |===
 
@@ -496,35 +533,9 @@ For status display or for error-checking and diagnostic purposes, the Device-Pat
 
 |===
 
-|*7.4.2.4.1 Description*, _update to reflect query vs filtering nomenclature changes_:
+|*7.4.2.4 Use Case #4 Query the Associated Patient for a Device*, _remove section_:
 
 |=== 
-
-[.text-left]
-[underline]#Existing Text:#
-[.text-left]
-A Device-Patient Association Consumer may query a Device-Patient Association Manager for a list of devices associated with a particular patient at present, or at a designated time in the past, or more generally for a snapshot of the Device-Patient Association map. 
-
-[.text-left]
-[underline]#Proposed Text:#
-[.text-left]
-A Device-Patient Association Manager may filter association messages to a Device-Patient Association Consumer for the list of devices associated with particular patients at present. Retrospective queries are currently out of scope. 
-
-|===
-
-|*7.4.2.4.2 Process Flow*, _remove query text and add detail_:
-
-|=== 
-
-[.text-left]
-[underline]#Existing Text:#
-[.text-left]
-The identity of the patient associated with a device (or the lack of an associated patient identity) may be queried for. 
-
-[.text-left]
-[underline]#Proposed Text:#
-[.text-left]
-For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the present association records for each device it is configured to receive.
 
 |===
 
