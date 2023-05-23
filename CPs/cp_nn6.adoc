@@ -340,7 +340,7 @@ The IHE MEM DMC DMIR is an actor that enables automated contributions to the lis
 
 |===
 
-|_Section 7.1.1.4_ *Device-Registrant*, delete the two paragraphs starting at line 287 and tie them into an MEM DMC reference_:
+|_Section 7.1.1.4_ *Device-Registration*, _change the section title to Device Registration and delete the two paragraphs starting at line 287 and tie them into an MEM DMC reference_:
 
 |===
 
