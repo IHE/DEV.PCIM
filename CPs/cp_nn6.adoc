@@ -359,7 +359,7 @@ The list of medical devices that can be associated with the patient may be preco
 
 |===
 
-|*PCIM Actor Options*, change the first two paragraphs starting at line 293 to address the change in optionality and options:
+|*7.2 PCIM Actor Options*, change the first two paragraphs starting at line 293 to address the change in optionality and options:
 
 |===
 
@@ -381,7 +381,7 @@ Options that may be selected for each actor in this profile, if any, are listed 
 
 |===
 
-|*PCIM Actor and Options*, _change the table near line 303_:
+|*7.2-1 PCIM Actor Options*, _change the table near line 303_:
 
 |===
 
