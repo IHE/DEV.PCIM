@@ -318,7 +318,7 @@ requirement to receive information on what devices are or were connected to whic
 [underline]#Proposed Text:#
 
 [.text-left]
-The Device-Patient Association Consumer actor receives information on what devices are associated with which patients. Common examples are a medical device or critical care system that charts device observations for a patient. The actor receives association updates in real-time. 
+The Device-Patient Association Consumer actor receives information on what devices are associated with which patients. The actor initially receives current association status followed by updates in real-time. Common examples are a medical device or critical care system that charts device observations for a patient. The actor receives association updates in real-time. 
 
 |===
 
