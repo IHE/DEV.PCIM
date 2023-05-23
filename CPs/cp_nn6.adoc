@@ -374,7 +374,7 @@ Options that may be selected for each actor in this profile, if any, are listed 
 [underline]#Proposed Text:#
 
 [.text-left]
-The Device-Patient Association Consumer may optionally filter events sent by the Device-Patient Association Manager. The filter request to the Manager results in an immediate delivery from the manager of the active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option. 
+The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option. 
 
 [.text-left]
 Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes. 
@@ -459,8 +459,8 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-The filtering option applies to interactions between Device-Patient Association Consumer and Device-Patient Association Manager and specifies that the communication between consumer and manager is a filtered real-time delivery of changes in device-patient associations. 
-
+The filtering option applies to interactions between Device-Patient Association Manager and Device-Patient Association Consumer and specifies that the communication between manager and consumer is a filtered real-time delivery of changes in device-patient associations. 
+[.text-left]
 A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19. 
 
 |===
@@ -503,12 +503,12 @@ For status display or for error-checking and diagnostic purposes, the Device-Pat
 [.text-left]
 [underline]#Existing Text:#
 [.text-left]
-A device (or another system) may require the identity of the patient it is connected to, for display or other purposes, but not have this information available to it, so the profile provides for a Device-Patient Association Consumer to query the Device-Patient Association Manager for this information.
+A Device-Patient Association Consumer may query a Device-Patient Association Manager for a list of devices associated with a particular patient at present, or at a designated time in the past, or more generally for a snapshot of the Device-Patient Association map. 
 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-A device (or another system) may require the identity of the patient it is connected to, for display or other purposes, but not have this information available to it, so the profile provides for a Device-Patient Association Consumer to receive reports from the Device-Patient Association Manager that provide this information for the devices it is configured to receive them for.
+A Device-Patient Association Manager may filter association messages to a Device-Patient Association Consumer for the list of devices associated with particular patients at present. Retrospective queries are currently out of scope. 
 
 |===
 
