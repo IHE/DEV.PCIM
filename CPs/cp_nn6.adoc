@@ -529,7 +529,7 @@ For status display or for error-checking and diagnostic purposes, the Device-Pat
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the present association records for each patient it is configured to receive.
+For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the current association records for each patient it is configured to receive.
 
 |===
 
