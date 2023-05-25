@@ -513,7 +513,7 @@ A Device-Patient Association Consumer may query a Device-Patient Association Man
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-A Device-Patient Association Manager may filter association messages to a Device-Patient Association Consumer for the list of devices associated with particular patients at present. Retrospective queries are currently out of scope. 
+A Device-Patient Association Manager may filter association messages to a Device-Patient Association Consumer for current and ongoing devices associated with particular patients. Retrospective queries are currently out of scope. 
 
 |===
 
