@@ -473,7 +473,7 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 [underline]#Existing Text:#
 [.text-left]
 This use case can be driven by an authorized user responsible for entering, verifying, or both, the
-beginning or ending of an association between a device and a particular patient. The should be
+beginning and ending of an association between a device and a particular patient. The should be
 based on first person awareness of the situation at the point of care. Automatic Identification and
 Data Capture methods such as barcodes or RFID should be used to assist the workflow and
 increase data reliability to the maximum feasible extent.
@@ -482,7 +482,7 @@ increase data reliability to the maximum feasible extent.
 [underline]#Proposed Text:#
 [.text-left]
 This use case can be driven by an authorized user responsible for entering, verifying, or both, the
-beginning and ending of an association between a device and a particular patient. This should be
+beginning or ending of an association between a device and a particular patient. This should be
 based on first person awareness of the situation at the point of care. Automatic Identification and
 Data Capture methods such as barcodes or RFID should be used to assist the workflow and
 increase data reliability to the maximum feasible extent.
