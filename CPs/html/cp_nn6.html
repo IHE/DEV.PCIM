@@ -932,7 +932,7 @@ requirement to receive information on what devices are or were connected to whic
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The IHE MEM DMC DMIR is an actor that enables automated contributions to the list of medical devices that can be associated with a patient.</p>
+<p>The IHE MEM DMC profile enables automated contributions to the list of medical devices that can be associated with a patient.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -955,7 +955,7 @@ Where it is a system, it may be a comprehensive device inventory system, a “ga
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The list of medical devices that can be associated with the patient may be preconfigured or automated with MEM DMC DMIR. Device registration may also be manually accomplished during system setup and maintenance. Examples of information available from MEM DMC are the device model, manufacturer, serial number, and network end point (ip address, port).</p>
+<p>The list of medical devices that can be associated with the patient may be preconfigured or automated with MEM DMC. Device registration may also be manually accomplished during system setup and maintenance. Examples of information available from MEM DMC are the device model, manufacturer, serial number, and network end point (ip address, port).</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1137,7 +1137,7 @@ increase data reliability to the maximum feasible extent.</p>
 </div>
 <div class="paragraph text-left">
 <p>This use case can be driven by an authorized user responsible for entering, verifying, or both, the
-beginning and ending of an association between a device and a particular patient. This should be
+beginning or ending of an association between a device and a particular patient. This should be
 based on first person awareness of the situation at the point of care. Automatic Identification and
 Data Capture methods such as barcodes or RFID should be used to assist the workflow and
 increase data reliability to the maximum feasible extent.</p>
@@ -1182,7 +1182,7 @@ increase data reliability to the maximum feasible extent.</p>
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>A Device-Patient Association Manager may filter association messages to a Device-Patient Association Consumer for the list of devices associated with particular patients at present. Retrospective queries are currently out of scope.</p>
+<p>A Device-Patient Association Manager may filter association messages to a Device-Patient Association Consumer for current and ongoing device patient associations. Retrospective queries are currently out of scope.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1204,7 +1204,7 @@ increase data reliability to the maximum feasible extent.</p>
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the present association records for each patient it is configured to receive.</p>
+<p>For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the current association records for each patient it is configured to receive.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2075,7 +2075,7 @@ associations of the patient (which will require the Device-Patient Association M
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0-SNAPSHOT<br>
-Last updated 2023-05-23 14:55:43 -0400
+Last updated 2023-05-25 09:20:02 -0400
 </div>
 </div>
 </body>
