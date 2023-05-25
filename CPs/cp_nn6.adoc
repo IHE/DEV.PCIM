@@ -336,7 +336,7 @@ The Device Registrant represents a system or person that maintains the list of m
 [underline]#Proposed Text:#
 
 [.text-left]
-The IHE MEM DMC is an actor that enables automated contributions to the list of medical devices that can be associated with a patient. 
+The IHE MEM DMC profile enables automated contributions to the list of medical devices that can be associated with a patient. 
 
 |===
 
