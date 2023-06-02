@@ -1348,11 +1348,11 @@ increase data reliability to the maximum feasible extent.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The source of the assertion. Identifies the device, the patient, the responsible observer or automated system that is triggering the assertion for the association or disassociation, and the effective time. If the responsible observer verifies at the reporter, the manager does not need to verify. The reporter must record the responsible authority when verification occurs at the reporter. The reporter must include in the observation the status field that indicates whether the assertion requires validation or is final (already verified).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The source of the assertion. Identifies the device, the patient, the responsible observer or automated system that is triggering the assertion for the association or disassociation, and the effective time. If the responsible observer verifies at the reporter, the manager does not need to verify. The reporter must record the responsible observer when verification occurs. The reporter must include in the observation the status field that indicates whether the assertion requires validation or is final (already verified).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Establishes or updates the persistent record of the association. The manager must provide a HMI to verify association and disassociation assertions. The manager is also responsible for conflict resolution with the HMI and corresponding HL7 ACK error codes at commit or application levels.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Establishes or updates the persistent record of the association. The manager must provide a HMI to verify association and disassociation assertions. The manager is also responsible for conflict resolution with the HMI and sending corresponding HL7 ACK error codes at commit or application levels. Note that the HMI need not be constrained to running on the same device as the manager. For example, the HMI may be in the form of a mobile app.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2097,7 +2097,7 @@ associations of the patient (which will require the Device-Patient Association M
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0-SNAPSHOT<br>
-Last updated 2023-06-02 08:12:34 -0700
+Last updated 2023-06-02 08:51:33 -0700
 </div>
 </div>
 </body>
