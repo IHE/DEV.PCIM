@@ -666,7 +666,7 @@ This message is triggered at the beginning or ending of an interval when the log
 
 |===
 
-|*3.17.4.1.2 Message Semantics*, _update last sentence on line 511, to represent association and disassociation and to suggest using a technical alert notify human user_:
+|*3.17.4.1.2 Message Semantics*, _update last sentence on line 511, to represent association and disassociation and to suggest using a technical alert to effectively notify human user_:
 
 |=== 
 
