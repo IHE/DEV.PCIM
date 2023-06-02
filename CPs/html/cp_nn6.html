@@ -1406,7 +1406,29 @@ increase data reliability to the maximum feasible extent.</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17.4.1.2 Message Semantics</strong>, <em>update last sentence on line 511, to represent association and disassociation</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17.4.1.2 Message Grammar</strong>, <em>update line 793 to specify device and human instead of device, human</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The form of the message is similar to an unsolicited observation report, with supplementary PRT segments identifying the device, human operator originating the association.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The form of the message is similar to an unsolicited observation report, with supplementary PRT segments identifying the device and human operator originating the association.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17.4.1.2 Message Semantics</strong>, <em>update last sentence on line 511, to represent association and disassociation and to suggest using a technical alert to effectively notify human user</em>:</p></td>
 </tr>
 </tbody>
 </table>
@@ -1420,7 +1442,7 @@ increase data reliability to the maximum feasible extent.</p>
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>After these checks, the Manager logs the result and returns an appropriate positive or negative acknowledgement to the Reporter. The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken.
+<p>After these checks, the Manager logs the result and returns an appropriate positive or negative acknowledgement to the Reporter. The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken. In this case, a technical alert should be raised using the ACM profile, the details of this are out of scope for this document.
 If the checks are passed, the Manager establishes a record of the beginning or ending of the association and the effective time.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -2075,7 +2097,7 @@ associations of the patient (which will require the Device-Patient Association M
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0-SNAPSHOT<br>
-Last updated 2023-06-01 14:54:58 -0700
+Last updated 2023-06-02 08:12:34 -0700
 </div>
 </div>
 </body>
