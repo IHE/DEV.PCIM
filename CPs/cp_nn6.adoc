@@ -666,6 +666,22 @@ This message is triggered at the beginning or ending of an interval when the log
 
 |===
 
+|*3.17.4.1.2 Message Grammar*, _update sentence on line 793 to specify device and human instead of device, human_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+The form of the message is similar to an unsolicited observation report, with supplementary PRT segments identifying the device, human operator originating the association.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+The form of the message is similar to an unsolicited observation report, with supplementary PRT segments identifying the device and human operator originating the association.
+
+|===
+
 |*3.17.4.1.2 Message Semantics*, _update last sentence on line 511, to represent association and disassociation and to suggest using a technical alert to effectively notify human user_:
 
 |=== 
