@@ -707,11 +707,16 @@ The descriptions of these messages do not repeat all information in the related 
 The base version of HL7 used in IHE PCD Profiles is version 2.6;
 however, this profile uses the semantics of the PRT segment which was not introduced until version 2.7 and not extended with full details of the Unique Device Identifier until version 2.8.2.
 
-== A.1 Report Device-Patient Association and Disassociation
+== A.1 Assert and Report Device-Patient Association and Disassociation
 
 As all of the use cases identified in this profile can be considered observations (it was observed
 that device d1 was connected to patient p1 starting at t1 and ending at t2), the ORU message structure is used throughout this profile to manage associations. This description also serves for a
-Report Device-Patient Disassociation – the only difference between the Association and Disassociation messages is the content of OBX-5. The Message Structure and attendant notes also serve to specify the segment pattern to be expected in Report Association State [DEV-52] messages. The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with – it serves as useful background information and contains details on some fields that are not covered in this profile.
+Assert or Report Device-Patient Disassociation – the only difference between the Association and Disassociation messages is the content of OBX-5. The Message Structure and attendant notes also serve to specify the segment pattern to be expected in Report Association State [DEV-52] messages. The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with – it serves as useful background information and contains details on some fields that are not covered in this profile.
+
+Assertions and Report messages for DEV-51 and DEV-52 transactions, respectively, use the same structure, with the following differences:
+
+  . A report must always have a OBX-11 status field of "Final"
+  . A report may contain an additional participant segment of the responsible observer (human) that validated the association using the Manager HMI 
 
 === A.1.1 Message Structure
 
@@ -751,7 +756,7 @@ Table A.1.1-1: Report Device Patient Association
 |
 |===
 
-MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.17.1^ISO” to identify it as a Report Device-Patient Association. In the context of this use case, the message is constrained to reporting association(s) for a single patient and device. 
+MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Assert Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Report Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device. 
 
 === A.1.2 Segments
 
@@ -913,12 +918,13 @@ Can only be changed with a corrected association record.
 
 ==== A.1.2.6 PRT -- Participation (Observation Participation)
 
-This segment conveys information about persons and/or devices that participated in the association, ancillary to the patient and device that are its subjects.
-There will be PRT messages identifying the patient, the device, and the responsible observer of a device-patient association following an OBX message as described in Section 0.
+This segment conveys information about persons and/or devices and systems that participated in the association, ancillary to the patient and device that are its subjects.
+There will be PRT messages identifying the device, responsible observer and/or reporting system of a device-patient association following an OBX message as described in Section 0.
 For example:
 
 * A nurse that established and/or validated an association
 * A device gateway
+* A reporter system sending a non-validated assertion
 * The device itself, if the patient ID is entered directly onto the device
 
 Table A.1.2.6-1: PRT Fields+++<table>++++++<colgroup>++++++<col style="width: 8%">++++++</col>+++
@@ -1193,7 +1199,7 @@ This optional query allows a system to dynamically configure a filtered subscrip
 
 === A.2.3 Details of Device-Patient Association Query Message [DEV-19]
 
-This message is used by a Device-Patient Association Consumer to request current device-patient association information from a Device-Patient Association Manager followed by a on-going subscription to ongoing real-time device-patient association information, specifying filtering by patient identification, by location or by device identification.  The query takes the form of a QSB publish and subscribe query as described in HL7 Chapter 5, Section 5.7.3.1. It is almost identical to the profile for the QSB\^Z83^QSB_Q16 trigger with ORU\^R01^ORU_R01 response trigger described in Section 5.7.3.1 of the HL7 specification except that the query parameters are different to accommodate the semantics of filtering for device-patient associations, and the observation reports given as the response to the query, while conforming to the ORU_R01 message structure, have the specific semantics of transaction Device-Patient Association Reports [DEV-52].
+This message is used by a Device-Patient Association Consumer to request current device-patient association information from a Device-Patient Association Manager followed by a on-going subscription to ongoing real-time device-patient association information, specifying filtering by location or device identification.  The query takes the form of a QSB publish and subscribe query as described in HL7 Chapter 5, Section 5.7.3.1. It is almost identical to the profile for the QSB\^Z83^QSB_Q16 trigger with ORU\^R01^ORU_R01 response trigger described in Section 5.7.3.1 of the HL7 specification except that the query parameters are different to accommodate the semantics of filtering for device-patient associations, and the observation reports sent in real-time and constrained by the filtering, while conforming to the ORU_R01 message structure, have the specific semantics of transaction Device-Patient Association Reports [DEV-52].
 
 For identification, the arbitrary "`local`" (i.e., not issued by the HL7 organization) trigger event Z66 is used for the query/subscription message.
 This applies for initial testing but is subject to change before this profile is submitted for final text.
@@ -1222,16 +1228,14 @@ Table A.2.3-1: Query Profile
 | ORU{caret}R01{caret}ORU_R01
 
 | Query Characteristics
-| Returns device-patient associations as constrained in the input parameters
+| Triggers a realtime subscription with filtering. No results are returned directly.
 
 | Purpose
-| Sends device-patient association records, filtered as defined in input parameters
+| Requests filtering of device-patient association records, as defined in input parameters
 
 | Response Characteristics
-| The response contains [DEV-51] device-patient association reports known to the Device-Patient Association Manager, filtered by the query parameters.
+| The response contains a commit-level ACK.
 
-| Based on Segment Pattern
-| R01 as constrained by transaction [PCD-01] (see details in PCD TF-2 3.10 and with the semantics of transaction [PCD-17] as in this profile.
 |===
 
 Table A.2.3-2: QBP{caret}Z66{caret}QBP{caret}QBP_Z66 Query Grammar - QBP Message Segments
@@ -1260,47 +1264,12 @@ Table A.2.3-2: QBP{caret}Z66{caret}QBP{caret}QBP_Z66 Query Grammar - QBP Message
 | 5.5.6
 |===
 
-For the segment pattern to be expected in the response to this query, see the definition of the ORU{caret}R01 Message Structure in PCD TF-2, which is a specialization of the ORU{caret}R01 Message Structure in HL7 Chapter 7, Section 7.3.1, ORU -- Unsolicited Observation Message (Event R01), as follows:
+An ACK is expected as response to this query, see the definition of the ORU{caret}R01 Message Structure in PCD TF-2
 
-Table A.2.3-3: Query Response Message Structure
+The results of a successful query results in the manager sending all [DEV-52] messages reporting current device-patient association events followed by ongoing real-time updates to device-patient association events, all filtered according to optional query parameters. If the connection is lost, the manager must continue to try and establish a new connection to the consumer, always sending the current device-patient association events matching the filter once the connection is re-established.
 
-|===
-| *Segments* | *Description*
 
-| MSH
-| Message Header
-
-| [{ SFT }]
-| Software Segment
-
-| [UAC]
-| User Authentication Credential
-
-| PID
-| Patient Identification
-
-| [PV1]
-| Patient Visit Information (for room bed)
-
-| OBR
-| Observation Request
-
-| {
-| _One group for each device being associated with patient identified in the PID_
-
-| OBX
-| Observation Result
-
-| { PRT }
-| Participation -- _One PRT segment for device, one for responsible person_
-
-| }
-|
-|===
-
-Note that this segment pattern, unlike some segment patterns, is not introduced by any “header” type extra segments, but instead is a straight sequenced of repeats of [DEV-52] messages reporting current device-patient association events followed by ongoing real-time updates to device-patient association events, filtered according to optional query parameters. If the connection is lost, the manager must continue to try and establish a new connection to the consumer, always sending the current device-patient association events once the connection is re-established.
-
-==== A.2.3.1 MSH Segment
+==== A.2.3.1 MSH Segment for realtime DEV-52 messages
 
 As for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued as IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.52.1^ISO.
 
@@ -1402,9 +1371,6 @@ Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User
 | FLD
 | ELEMENT NAME
 
-| PID.3.1
-| Patient Identifier List -- ID number
-
 | PV1.3.1
 | Assignes Patient Location -- Point of Care
 
@@ -1421,16 +1387,16 @@ Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User
 
 The QueryTag (QPD.2) is used to identify a query instance and therefore must be unique for each query.
 
-The User Parameters field (QPD.3) is used to specify "`filtering`" values, so that the query response can be limited to, for example, the records matching a particular Patient Identifier (by including a PID.3 specification), a particular device (by adding a Participation Device PRT specification) and so on.
-If multiple specifications are given, the responding system "`AND`"s the specifications together, so that for example, a patient identifier and a device identifier specification result in the response only gives associations involving that patient and device.
+The User Parameters field (QPD.3) is used to specify "`filtering`" values, so that the query response can be limited to, for example, the records matching a particular Assigned Location (by including a PV1.3.1 specification), a particular device (by adding a Participation Device PRT specification) and so on.
+If multiple specifications are given, the responding system "`AND`"s the specifications together, so that for example, a patient identifier and a device identifier specification result in the response only gives associations involving that patient location and device.
 
 The form of the User Parameters specifications in QPD.3 field uses one or more repetition of the CSC data type (separated by the HL7 repetition separator, by default the tilde character ~), one for each query parameter to be specified, with each repetition using the QSC data type.
 This data type takes the form of a component specifying the field, component, or subcomponent to filter on as @<seg>.<field number>.<component number>.<subcomponent number>, followed by a logical operator component (normally EQ for "`equals`"), and a component giving the value sought for that field.
 An example would be:
 
-@PID.3.1.1{caret}EQ{caret}MR123~@PRT.10{caret}EQ{caret}PUMP1
+@PV1.3.1{caret}EQ{caret}MICU~@PRT.10{caret}EQ{caret}PUMP1
 
-This means limit the messages given in response to ones involving patient identifier MR123 and device identifier PUMP1.
+This means limit the messages given in response to ones involving patient location at point of care MICU and device identifier PUMP1.
 
 The Device-Patient Association Manager is responsible for executing the search in accordance with the filters.
 The different query parameter filters are ANDed together, that is, only associations where all query parameters match the sought value will be sent by the Device-Patient Association Manager.
