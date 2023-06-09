@@ -467,7 +467,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date of last update:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2023-05-19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2023-05-22</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Person Assigned:</p></td>
@@ -593,7 +593,7 @@ Device-Patient Association Reporter</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer (DPAC)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A system that receives device-patient association records from the manager in real-time. There is an option to dynamically filter the device-patient association records it wishes to receive via a subscription query.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A system that receives device-patient association records from the manager in real-time. Record filters can be pre-configured or optionally, dynamically added via a subscription query.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.3.23</p></td>
 </tr>
 <tr>
@@ -609,7 +609,7 @@ Device-Patient Association Reporter</p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section Appendix B</em> <strong>Transaction Summary Definitions</strong>, <em>modify the table on line 218 to update the transcation names, definitions and numbers</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section Appendix B</em> <strong>Transaction Summary Definitions</strong>, <em>modify the table on line 218 to update the transaction names, definitions and numbers</em>:</p></td>
 </tr>
 </tbody>
 </table>
@@ -823,6 +823,34 @@ Device-Patient Association Reporter</p></td>
 </colgroup>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section 7</em> <strong>Point-of-Care Identity Management (PCIM) Profile</strong>, <em>change the paragraph on line 235</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7®1
+v2 standard messaging for devices and IT systems at an acute-care point-of-care to exchange and
+synchronize information about the identity of specific devices collecting clinical information
+about a specific patient, to:</p>
+</div>
+<div class="paragraph">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7®1
+v2 standard messaging for devices and IT systems at a point-of-care to exchange and
+synchronize information about the identity of specific devices collecting clinical information
+about a specific patient, to:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section 7.1.1.1</em> <strong>Device-Patient Association Reporter</strong>, <em>change the paragraph on line 270</em>:</p></td>
 </tr>
 </tbody>
@@ -837,7 +865,7 @@ Device-Patient Association Reporter</p></td>
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. If the report is validated, the report observation shall be marked final, otherwise it shall be marked as requiring validation.</p>
+<p>The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. The reporter may update existing associations. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. If the report is validated, the report observation status field shall be marked final, otherwise it shall be marked as requiring validation.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -882,7 +910,7 @@ requirement to receive information on what devices are or were connected to whic
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The Device-Patient Association Consumer actor receives information on what devices are associated with which patients. Common examples are a medical device or critical care system that charts device observations for a patient. The actor receives association updates in real-time.</p>
+<p>The Device-Patient Association Consumer actor receives information on what devices are associated with which patients. The actor initially receives current association status followed by updates in real-time. Common examples are a medical device or critical care system that charts device observations for a patient. The actor receives association updates in real-time.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -904,7 +932,7 @@ requirement to receive information on what devices are or were connected to whic
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The IHE MEM DMC DMIR is an actor that enables automated contributions to the list of medical devices that can be associated with a patient.</p>
+<p>The IHE MEM DMC profile enables automated contributions to the list of medical devices that can be associated with a patient.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -912,7 +940,7 @@ requirement to receive information on what devices are or were connected to whic
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section 7.1.1.4</em> <strong>Device-Registrant</strong>, delete the two paragraphs starting at line 287 and tie them into an MEM DMC reference_:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section 7.1.1.4</em> <strong>Device-Registration</strong>, <em>change the section title to Device Registration and delete the two paragraphs starting at line 287 and tie them into an MEM DMC reference</em>:</p></td>
 </tr>
 </tbody>
 </table>
@@ -927,7 +955,7 @@ Where it is a system, it may be a comprehensive device inventory system, a “ga
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The IHE MEM DMC DMIR may automate device registration. Device registration may also be manually accomplished during system setup and maintenance.</p>
+<p>The list of medical devices that can be associated with the patient may be preconfigured or automated with MEM DMC. Device registration may also be manually accomplished during system setup and maintenance. Examples of information available from MEM DMC are the device model, manufacturer, serial number, and network end point (ip address, port).</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -935,7 +963,7 @@ Where it is a system, it may be a comprehensive device inventory system, a “ga
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>PCIM Actor Options</strong>, change the first two paragraphs starting at line 293 to address the change in optionality and options:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.2 PCIM Actor Options</strong>, change the first two paragraphs starting at line 293 to address the change in optionality and options:</p></td>
 </tr>
 </tbody>
 </table>
@@ -950,7 +978,7 @@ Options that may be selected for each actor in this profile, if any, are listed 
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The Device-Patient Association Consumer may optionally filter events sent by the Device-Patient Association Manager. The filter request to the Manager results in an immediate delivery from the manager of the active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option.</p>
+<p>The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option.</p>
 </div>
 <div class="paragraph text-left">
 <p>Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes.</p>
@@ -961,7 +989,7 @@ Options that may be selected for each actor in this profile, if any, are listed 
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>PCIM Actor and Options</strong>, <em>change the table near line 303</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.2-1 PCIM Actor Options</strong>, <em>change the table near line 303</em>:</p></td>
 </tr>
 </tbody>
 </table>
@@ -1044,7 +1072,7 @@ Options that may be selected for each actor in this profile, if any, are listed 
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No options defined</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7.2.1</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
@@ -1079,9 +1107,9 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>The filtering option applies to interactions between Device-Patient Association Consumer and Device-Patient Association Manager and specifies that the communication between consumer and manager is a filtered real-time delivery of changes in device-patient associations.</p>
+<p>The filtering option applies to interactions between Device-Patient Association Manager and Device-Patient Association Consumer and specifies that the communication between manager and consumer is a filtered real-time delivery of changes in device-patient associations.</p>
 </div>
-<div class="paragraph">
+<div class="paragraph text-left">
 <p>A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1090,7 +1118,57 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.3.1 Description</strong>, <em>update to reflect that retrospective queries are currently out of scope</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.1.1 Use Case #1 Associating Device with Patient: Process Flow</strong>, <em>change title to 'Process Flow' and correct grammer in second sentence</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This use case can be driven by an authorized user responsible for entering, verifying, or both, the
+beginning and ending of an association between a device and a particular patient. The should be
+based on first person awareness of the situation at the point of care. Automatic Identification and
+Data Capture methods such as barcodes or RFID should be used to assist the workflow and
+increase data reliability to the maximum feasible extent.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>This use case can be driven by an authorized user responsible for entering, verifying, or both, the
+beginning or ending of an association between a device and a particular patient. This should be
+based on first person awareness of the situation at the point of care. Automatic Identification and
+Data Capture methods such as barcodes or RFID should be used to assist the workflow and
+increase data reliability to the maximum feasible extent.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.1.3 Pre-conditions:</strong>, <em>fix grammer in second sentence of paragraph 370&#8212;&#8203;change 'Device identify' to 'Device identity'</em></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.3 Use Case #3 Query for the Devices for a Patient</strong>, <em>change title to 'Use Case #3 Filter Devices for a Patient'</em></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.3.1 Description</strong>, <em>update to reflect that retrospective queries are currently out of scope</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -1104,7 +1182,7 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>A Device-Patient Association Consumer may filter association messages from a Device-Patient Association Manager for the list of devices associated with particular patients at present. Retrospective queries are currently out of scope.</p>
+<p>A Device-Patient Association Manager may filter association messages to a Device-Patient Association Consumer for current and ongoing device patient associations. Retrospective queries are currently out of scope.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1126,7 +1204,7 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the present association records for each patient it is configured to receive.</p>
+<p>For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the current association records for each patient it is configured to receive.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1134,44 +1212,10 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.4.1 Description</strong>, <em>update to reflect query vs filtering nomenclature changes</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.4 Use Case #4 Query the Associated Patient for a Device</strong>, <em>remove section</em>:</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph text-left">
-<p><span class="underline">Existing Text:</span></p>
-</div>
-<div class="paragraph text-left">
-<p>A device (or another system) may require the identity of the patient it is connected to, for display or other purposes, but not have this information available to it, so the profile provides for a Device-Patient Association Consumer to query the Device-Patient Association Manager for this information.</p>
-</div>
-<div class="paragraph text-left">
-<p><span class="underline">Proposed Text:</span></p>
-</div>
-<div class="paragraph text-left">
-<p>A device (or another system) may require the identity of the patient it is connected to, for display or other purposes, but not have this information available to it, so the profile provides for a Device-Patient Association Consumer to receive reports from the Device-Patient Association Manager that provide this information for the devices it is configured to receive them for.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.4.2.4.2 Process Flow</strong>, <em>remove query text and add detail</em>:</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph text-left">
-<p><span class="underline">Existing Text:</span></p>
-</div>
-<div class="paragraph text-left">
-<p>The identity of the patient associated with a device (or the lack of an associated patient identity) may be queried for.</p>
-</div>
-<div class="paragraph text-left">
-<p><span class="underline">Proposed Text:</span></p>
-</div>
-<div class="paragraph text-left">
-<p>For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the present association records for each device it is configured to receive.</p>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 100%;">
@@ -1199,6 +1243,16 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.7 Out of Scope Items</strong>, insert section 7.7 around line 448 that specifies out of scope items_:</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>7.7.1 Retrospective Queries</strong>, insert section 7.7.1 around line 448 that specifies out of scope item_:</p></td>
 </tr>
 </tbody>
 </table>
@@ -1294,11 +1348,11 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The source of the assertion. Identifies the device, the patient, the authority for the association or disassociation, and the effective time.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The source of the assertion. Identifies the device, the patient, the responsible observer or automated system that is triggering the assertion for the association or disassociation, and the effective time. If the responsible observer verifies at the reporter, the manager does not need to verify. The reporter must record the responsible observer when verification occurs. The reporter must include in the observation the status field that indicates whether the assertion requires validation or is final (already verified).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Establishes or updates the persistent record of the association.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Establishes or updates the persistent record of the association. The manager must provide a HMI to verify association and disassociation assertions. The manager is also responsible for conflict resolution with the HMI and sending corresponding HL7 ACK error codes at commit or application levels. Note that the HMI need not be constrained to running on the same device as the manager. For example, the HMI may be in the form of a mobile app.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1352,7 +1406,29 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17.4.1.2 Message Semantics</strong>, <em>update last sentence on line 511, to represent association and disassociation</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17.4.1.2 Message Grammar</strong>, <em>update line 793 to specify device and human instead of device, human</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The form of the message is similar to an unsolicited observation report, with supplementary PRT segments identifying the device, human operator originating the association.</p>
+</div>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>The form of the message is similar to an unsolicited observation report, with supplementary PRT segments identifying the device and human operator originating the association.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.17.4.1.2 Message Semantics</strong>, <em>update last sentence on line 511, to represent association and disassociation and to suggest using a technical alert to effectively notify human user</em>:</p></td>
 </tr>
 </tbody>
 </table>
@@ -1366,7 +1442,7 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>After these checks, the Manager logs the result and returns an appropriate positive or negative acknowledgement to the Reporter. The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken.
+<p>After these checks, the Manager logs the result and returns an appropriate positive or negative acknowledgement to the Reporter. The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken. In this case, a technical alert should be raised using the ACM profile, the details of this are out of scope for this document.
 If the checks are passed, the Manager establishes a record of the beginning or ending of the association and the effective time.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1740,7 +1816,7 @@ single patient.</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.1.2.1 Message Structure</strong>, <em>update paragraph on line 724, to reference new transaction numbering and fix typo in OID</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.1.2.1 Message Header</strong>, <em>update paragraph on line 724, to reference new transaction numbering and fix typo in OID</em>:</p></td>
 </tr>
 </tbody>
 </table>
@@ -1943,7 +2019,7 @@ The Device-Patient Association Consumer must support receiving a continuous real
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.4 Example Messages</strong>, <em>update manager application level acknowledgementfor Example 1 on line 1005 to use the new transaction numbering</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.4 Example Messages</strong>, <em>update manager application level acknowledgement for Example 1 on line 1005 to use the new transaction numbering</em>:</p></td>
 </tr>
 </tbody>
 </table>
@@ -2021,7 +2097,7 @@ associations of the patient (which will require the Device-Patient Association M
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0-SNAPSHOT<br>
-Last updated 2023-05-19 07:36:28 -0700
+Last updated 2023-06-02 08:51:33 -0700
 </div>
 </div>
 </body>

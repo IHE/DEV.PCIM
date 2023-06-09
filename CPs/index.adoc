@@ -15,13 +15,13 @@ DEV-52
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
-|PCIM Single Device Per Association/Disassociation Report Clarification
+|[line-through]#PCIM Single Device Per Association/Disassociation Report Clarification#
 |xref:cp_nn2.adoc[NN2]
 |DEV-51
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
-|PCIM Deterministic Snapshot and Real-Time Query Results
+|[line-through]#PCIM Deterministic Snapshot and Real-Time Query Results#
 |NN3
 |
 |Draft

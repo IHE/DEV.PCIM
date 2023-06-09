@@ -1,28 +1,23 @@
+= Integrating the Healthcare Enterprise
 :doctype: book
-
-*Integrating the Healthcare Enterprise*
-
-image::./media/image1.jpeg[IHE_LOGO_for_tf-docs,2]
+//:title-page-background-image: image::./media/image1.jpeg[IHE_LOGO_for_tf-docs,2]
+:toc:
 
 *IHE Devices*
-
 *Technical Framework Supplement*
 
 *Point-of-Care Identity Management*
-
 *(PCIM)*
 
 *Revision 1.x -- Trial Implementation*
 
 Date: xxx,xx,2023
-
 Author: IHE Devices Technical Committee
-
 Email: dev@ihe.net
 
 *Please verify you have the most recent version of this document.* See http://ihe.net/Technical_Frameworks/[here] for Trial Implementation and Final Text versions and http://ihe.net/Public_Comment/[here] for Public Comment versions.
 
-*Foreword*
+= Foreword
 
 This is a supplement to the IHE Devices Domain Technical Framework.
 Each supplement undergoes a process of public comment and trial implementation before being incorporated into the volumes of the Technical Frameworks.
@@ -49,261 +44,6 @@ Information about the IHE Patient Care Device domain can be found at http://ihe.
 Information about the organization of IHE Technical Frameworks and Supplements and the process used to create them can be found at http://ihe.net/IHE_Process/ and http://ihe.net/Profiles/.
 
 The current version of the IHE Patient Care Device Domain Technical Framework can be found at http://ihe.net/Technical_Frameworks/.
-
-CONTENTS
-
-<<introduction-to-this-supplement,Introduction to this Supplement [7](#introduction-to-this-supplement)>>
-
-<<open-issues-and-questions,Open Issues and Questions [7](#open-issues-and-questions)>>
-
-<<closed-issues,Closed Issues [7](#closed-issues)>>
-
-<<general-introduction-and-shared-appendices,General Introduction and Shared Appendices [8](#general-introduction-and-shared-appendices)>>
-
-<<_Toc531937516,Appendix A -- Actor Summary Definitions [8](#_Toc531937516)>>
-
-<<_Toc531937517,Appendix B -- Transaction Summary Definitions [8](#_Toc531937517)>>
-
-<<_Toc531937518,Appendix D -- Glossary [9](#_Toc531937518)>>
-
-<<_Toc345074647,*Volume 1 -- Profiles [11](#_Toc345074647)*>>
-
-<<copyright-licenses,Copyright Licenses [11](#copyright-licenses)>>
-
-<<domain-specific-additions,Domain-specific additions [11](#domain-specific-additions)>>
-
-<<point-of-care-identity-management-pcim-profile,7 Point-of-Care Identity Management (PCIM) Profile [12](#point-of-care-identity-management-pcim-profile)>>
-
-<<pcim-actors-transactions-and-content-modules,7.1 PCIM Actors, Transactions, and Content Modules [12](#pcim-actors-transactions-and-content-modules)>>
-
-<<actor-descriptions-and-actor-profile-requirements,7.1.1 Actor Descriptions and Actor Profile Requirements [14](#actor-descriptions-and-actor-profile-requirements)>>
-
-<<device-patient-association-reporter,7.1.1.1 Device-Patient Association Reporter [14](#device-patient-association-reporter)>>
-
-<<device-patient-association-manager,7.1.1.2 Device-Patient Association Manager [14](#device-patient-association-manager)>>
-
-<<device-patient-association-consumer,7.1.1.3 Device-Patient Association Consumer [14](#device-patient-association-consumer)>>
-
-<<device-registrant,7.1.1.4 Device Registrant [14](#device-registrant)>>
-
-<<pcim-actor-options,7.2 PCIM Actor Options [15](#pcim-actor-options)>>
-
-<<snapshot-option,7.2.1 Snapshot Option [15](#snapshot-option)>>
-
-<<subscription-option,7.2.2 Subscription Option [16](#subscription-option)>>
-
-<<pcim-required-actor-groupings,7.3 PCIM Required Actor Groupings [16](#pcim-required-actor-groupings)>>
-
-<<pcim-overview,7.4 PCIM Overview [16](#pcim-overview)>>
-
-<<concepts,7.4.1 Concepts [16](#concepts)>>
-
-<<use-cases,7.4.2 Use Cases [16](#use-cases)>>
-
-<<use-case-1-associating-device-with-patient,7.4.2.1 Use Case #1: Associating Device with Patient [16](#use-case-1-associating-device-with-patient)>>
-
-<<use-case-1-associating-device-with-patient-process-flow,7.4.2.1.1 Use Case #1 Associating Device with Patient: Process Flow [16](#use-case-1-associating-device-with-patient-process-flow)>>
-
-<<use-case-description,7.4.2.1.2 Use Case Description [17](#use-case-description)>>
-
-<<pre-conditions,7.4.2.1.3 Pre-conditions: [17](#pre-conditions)>>
-
-<<main-flow,7.4.2.1.4 Main Flow: [17](#main-flow)>>
-
-<<post-conditions,7.4.2.1.5 Post-conditions: [18](#post-conditions)>>
-
-<<use-case-2-disassociating-device-from-patient,7.4.2.2 Use Case #2: Disassociating Device From Patient [18](#use-case-2-disassociating-device-from-patient)>>
-
-<<description,7.4.2.2.1 Description [18](#description)>>
-
-<<process-flow,7.4.2.2.2 Process Flow [18](#process-flow)>>
-
-<<use-case-3-query-for-the-devices-for-a-patient,7.4.2.3 Use Case #3 Query for the Devices for a Patient [18](#use-case-3-query-for-the-devices-for-a-patient)>>
-
-<<description-1,7.4.2.3.1 Description [18](#description-1)>>
-
-<<process-flow-1,7.4.2.3.2 Process Flow [18](#process-flow-1)>>
-
-<<use-case-4-query-the-associated-patient-for-a-device,7.4.2.4 Use Case #4 Query the Associated Patient for a Device [18](#use-case-4-query-the-associated-patient-for-a-device)>>
-
-<<description-2,7.4.2.4.1 Description [18](#description-2)>>
-
-<<process-flow-2,7.4.2.4.2 Process Flow [19](#process-flow-2)>>
-
-<<use-case-5-device-registrant-registers-a-device-with-the-device-patient-association-manager,7.4.2.5 Use Case #5 Device Registrant Registers a Device with the Device-Patient Association Manager [19](#use-case-5-device-registrant-registers-a-device-with-the-device-patient-association-manager)>>
-
-<<description-3,7.4.2.5.1 Description [19](#description-3)>>
-
-<<process-flow-3,7.4.2.5.2 Process Flow [19](#process-flow-3)>>
-
-<<use-case-6-query-the-device-registrant-for-a-list-of-candidate-devices-for-an-association,7.4.2.6 Use Case #6 Query the Device Registrant for a list of candidate devices for an association [19](#use-case-6-query-the-device-registrant-for-a-list-of-candidate-devices-for-an-association)>>
-
-<<pcim-security-considerations,7.5 PCIM Security Considerations [19](#pcim-security-considerations)>>
-
-<<pcim-cross-profile-considerations,7.6 PCIM Cross Profile Considerations [19](#pcim-cross-profile-considerations)>>
-
-<<_Toc531937557,Appendices [21](#_Toc531937557)>>
-
-<<_Toc336000611,*Volume 2 -- Transactions [22](#_Toc336000611)*>>
-
-<<assert-device-patient-association-pcd-17,3.17 Assert Device-Patient Association [PCD-17] [22](#assert-device-patient-association-pcd-17)>>
-
-<<scope,3.17.1 Scope [22](#scope)>>
-
-<<actor-roles,3.17.2 Actor Roles [22](#actor-roles)>>
-
-<<_Toc531937562,3.17.3 Referenced Standards [22](#_Toc531937562)>>
-
-<<interaction-diagram,3.17.4 Interaction Diagram [23](#interaction-diagram)>>
-
-<<device-patient-association-report,3.17.4.1 Device-Patient Association Report [23](#device-patient-association-report)>>
-
-<<trigger-events,3.17.4.1.1 Trigger Events [23](#trigger-events)>>
-
-<<message-semantics,3.17.4.1.2 Message Semantics [23](#message-semantics)>>
-
-<<assert-device-patient-disassociation-pcd-18,3.18 Assert Device-Patient Disassociation [PCD-18] [24](#assert-device-patient-disassociation-pcd-18)>>
-
-<<scope-1,3.18.1 Scope [24](#scope-1)>>
-
-<<actor-roles-1,3.18.2 Actor Roles [24](#actor-roles-1)>>
-
-<<_Toc531937570,3.18.3 Referenced Standards [25](#_Toc531937570)>>
-
-<<interaction-diagram-1,3.18.4 Interaction Diagram [25](#interaction-diagram-1)>>
-
-<<device-patient-disassociation-report,3.18.4.1 Device-Patient Disassociation Report [25](#device-patient-disassociation-report)>>
-
-<<trigger-events-1,3.18.4.1.1 Trigger Events [25](#trigger-events-1)>>
-
-<<message-semantics-1,3.18.4.1.2 Message Semantics [26](#message-semantics-1)>>
-
-<<expected-actions,3.18.4.1.3 Expected Actions [26](#expected-actions)>>
-
-<<device-patient-disassociation-acknowledgement,3.18.4.2 Device-Patient Disassociation Acknowledgement [26](#device-patient-disassociation-acknowledgement)>>
-
-<<security-considerations,3.18.3 Security Considerations [26](#security-considerations)>>
-
-<<query-device-patient-associations-pcd-19,3.19 Query Device-Patient Associations [PCD-19] [26](#query-device-patient-associations-pcd-19)>>
-
-<<scope-2,3.19.1 Scope [26](#scope-2)>>
-
-<<actor-roles-2,3.19.2 Actor Roles [26](#actor-roles-2)>>
-
-<<_Toc531937581,3.19.3 Referenced Standards [27](#_Toc531937581)>>
-
-<<interaction-diagram-2,3.19.4 Interaction Diagram [27](#interaction-diagram-2)>>
-
-<<device-patient-association-query,3.19.4.1 Device-Patient Association Query [27](#device-patient-association-query)>>
-
-<<trigger-events-2,3.19.4.1.1 Trigger Events [28](#trigger-events-2)>>
-
-<<message-semantics-2,3.19.4.1.2 Message Semantics [28](#message-semantics-2)>>
-
-<<expected-actions-1,3.19.4.1.3 Expected Actions [28](#expected-actions-1)>>
-
-<<device-patient-association-query-response,3.19.4.2 Device-Patient Association Query Response [28](#device-patient-association-query-response)>>
-
-<<trigger-events-3,3.19.4.2.1 Trigger Events [29](#trigger-events-3)>>
-
-<<message-semantics-3,3.19.4.2.2 Message Semantics [29](#message-semantics-3)>>
-
-<<expected-actions-2,3.19.4.2.3 Expected Actions [29](#expected-actions-2)>>
-
-<<security-considerations-1,3.19.5 Security Considerations [29](#security-considerations-1)>>
-
-<<register-device-pcd-20,3.20 Register Device [PCD-20] [29](#register-device-pcd-20)>>
-
-<<scope-3,3.20.1 Scope [29](#scope-3)>>
-
-<<actor-roles-3,3.20.2 Actor Roles [30](#actor-roles-3)>>
-
-<<referenced-standards-3,3.20.3 Referenced Standards [30](#referenced-standards-3)>>
-
-<<interaction-diagram-3,3.20.4 Interaction Diagram [31](#interaction-diagram-3)>>
-
-<<mfn---master-file-notification---general,3.20.4.1 MFN - Master File Notification - General [31](#mfn--master-file-notification--general)>>
-
-<<trigger-events-4,3.20.4.1.1 Trigger Events [31](#trigger-events-4)>>
-
-<<message-semantics-4,3.20.4.1.2 Message Semantics [31](#message-semantics-4)>>
-
-<<expected-actions-3,3.20.4.1.3 Expected Actions [31](#expected-actions-3)>>
-
-<<ack---general-acknowledgement,3.20.4.2 ACK - General Acknowledgement [32](#ack--general-acknowledgement)>>
-
-<<trigger-events-5,3.20.4.2.1 Trigger Events [32](#trigger-events-5)>>
-
-<<message-semantics-5,3.20.4.2.2 Message Semantics [32](#message-semantics-5)>>
-
-<<expected-actions-4,3.20.4.2.3 Expected Actions [32](#expected-actions-4)>>
-
-<<security-considerations-2,3.20.5 Security Considerations [32](#security-considerations-2)>>
-
-<<security-audit-considerations,3.20.5.1 Security Audit Considerations [32](#security-audit-considerations)>>
-
-<<volume-2-namespace-additions,Volume 2 Namespace Additions [33](#volume-2-namespace-additions)>>
-
-<<_Toc531937608,Appendices [34](#_Toc531937608)>>
-
-<<appendix-a-proposed-messages,Appendix A -- Proposed Messages [35](#appendix-a-proposed-messages)>>
-
-<<a.1-report-device-patient-association-and-disassociation,A.1 Report Device-Patient Association and Disassociation [35](#a.1-report-device-patient-association-and-disassociation)>>
-
-<<a.1.1-message-structure,A.1.1 Message Structure [35](#a.1.1-message-structure)>>
-
-<<a.1.2-segments,A.1.2 Segments [36](#a.1.2-segments)>>
-
-<<a.1.2.1-msh-message-header,A.1.2.1 MSH -- Message Header [36](#a.1.2.1-msh-message-header)>>
-
-<<a.1.2.2-pid-patient-identification,A.1.2.2 PID -- Patient Identification [36](#a.1.2.2-pid-patient-identification)>>
-
-<<_Toc531937615,A.1.2.3 PV1 Patient Visit Information [36](#_Toc531937615)>>
-
-<<a.1.2.4-obr-order-request,A.1.2.4 OBR -- Order Request [36](#a.1.2.4-obr-order-request)>>
-
-<<a.1.2.5-obx-observation-for-patient-id,A.1.2.5 OBX -- Observation (for Patient ID) [37](#a.1.2.5-obx-observation-for-patient-id)>>
-
-<<a.1.2.6-prt-participation-observation-participation,A.1.2.6 PRT -- Participation (Observation Participation) [38](#a.1.2.6-prt-participation-observation-participation)>>
-
-<<a.2-device-patient-association-query-message,A.2 Device-Patient Association Query Message [41](#a.2-device-patient-association-query-message)>>
-
-<<a.2.1-scope,A.2.1 Scope [41](#a.2.1-scope)>>
-
-<<a.2.2-use-case-roles,A.2.2 Use Case Roles [42](#a.2.2-use-case-roles)>>
-
-<<a.2.3-details-of-device-patient-association-query-message-pcd-19,A.2.3 Details of Device-Patient Association Query Message [PCD-19] [42](#a.2.3-details-of-device-patient-association-query-message-pcd-19)>>
-
-<<a.2.3.1-msh-segment,A.2.3.1 MSH Segment [44](#a.2.3.1-msh-segment)>>
-
-<<a.2.3.2-qpd-segment,A.2.3.2 QPD Segment [44](#a.2.3.2-qpd-segment)>>
-
-<<a.2.4-rcp-segment,A.2.4 RCP Segment [46](#a.2.4-rcp-segment)>>
-
-<<_Toc531937626,A.2.5 Cancelling a Subscription [47](#_Toc531937626)>>
-
-<<a.3-register-device,A.3 Register Device [48](#a.3-register-device)>>
-
-<<a.3.1-message-structure,A.3.1 Message Structure [48](#a.3.1-message-structure)>>
-
-<<a.3.2-segments,A.3.2 Segments [48](#a.3.2-segments)>>
-
-<<a.3.2.1-msh-message-header,A.3.2.1 MSH -- Message Header [48](#a.3.2.1-msh-message-header)>>
-
-<<a.3.2.2-mfi-master-file-identification-segment,A.3.2.2 MFI -- Master File Identification Segment [48](#a.3.2.2-mfi-master-file-identification-segment)>>
-
-<<a.3.2.3-mfe-master-file-entry,A.3.2.3 MFE -- Master File Entry [49](#a.3.2.3-mfe-master-file-entry)>>
-
-<<_Toc531937633,A.3.2.4.
-PRT -- Participation Information Segment [49](#_Toc531937633)>>
-
-<<a.4-example-messages,A.4 Example Messages [49](#a.4-example-messages)>>
-
-<<_Toc345074694,*Volume 3 -- Content Modules [53](#_Toc345074694)*>>
-
-<<_Toc345074737,*Volume 4 -- National Extensions [54](#_Toc345074737)*>>
-
-<<national-extensions,4 National Extensions [54](#national-extensions)>>
 
 = Introduction to this Supplement
 
