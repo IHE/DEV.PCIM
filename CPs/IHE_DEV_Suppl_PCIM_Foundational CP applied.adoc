@@ -329,9 +329,21 @@ For example, selection of the patient and the devices could be accomplished on a
 
 ==== 7.4.2.1 Use Case #1: Associating Device with Patient
 
+===== 7.4.2.1.1 Description
+
 A Device-Patient Association Reporter asserts a device-patient association to a Device-Patient Association Manager.
 
-===== 7.4.2.1.1 Process Flow
+An authorized person at the point of care and able to see the patient and the devices has gathered and checked the unique identifying information for a patient and one or more devices that are designated to originate observations on that patient.
+Before being sent, the information is displayed to the operator for verification.
+Once verified, a message is originated by the Association with the following information:
+
+* Patient identifier unique within the scope of the institution
+* Method of data capture (for example, scanned device bar code and patient wrist band, fixed device location, etc.)
+* Time parameters (typically effective begin time of the association.
+In the case where only a single set of observation from the device is expected, as for a spot-check monitor, the end time of the association is simultaneous with the beginning time)
+* Authorized performing participant
+
+===== 7.4.2.1.2 Process Flow
 
 This use case can be driven by an authorized user responsible for entering, verifying, or both, the
 beginning or ending of an association between a device and a particular patient. This should be
@@ -343,18 +355,6 @@ For example, a device with its own "`admission`" process, the act of manipulatin
 For another example, a device with a fixed location and a known patient associated with the location may be appropriate to originate a device-patient association.
 
 These means of identification are specific to the clinical environment in question, and standard procedures of risk analysis at the institution should be applied to assure that patient safety is adequately protected.
-
-===== 7.4.2.1.2 Use Case Description
-
-An authorized person at the point of care and able to see the patient and the devices has gathered and checked the unique identifying information for a patient and one or more devices that are designated to originate observations on that patient.
-Before being sent, the information is displayed to the operator for verification.
-Once verified, a message is originated by the Association with the following information:
-
-* Patient identifier unique within the scope of the institution
-* Method of data capture (for example, scanned device bar code and patient wrist band, fixed device location, etc.)
-* Time parameters (typically effective begin time of the association.
-In the case where only a single set of observation from the device is expected, as for a spot-check monitor, the end time of the association is simultaneous with the beginning time)
-* Authorized performing participant
 
 ===== 7.4.2.1.3 Pre-conditions:
 
@@ -388,6 +388,22 @@ In some cases, the device itself is capable of determining that the association 
 It may be appropriate to note this event on a user interface and get confirmation that it is correct.
 It also could be appropriate to ask whether other devices on record as being connected to the same patient are still connected or not.
 
+===== 7.4.2.2.3 Pre-conditions:
+
+Patient is to be disassociated with a device.
+Patient has been assigned unique identifier at registration which has been collected and verified at the point of care.
+Device identity has been registered for use.
+The identities of patient and device(s) have been collected and verified by an authorized person.
+The patient has already been associated with a device.
+
+===== 7.4.2.2.4 Main Flow:
+
+Device-Patient Association reporter originates a message with the specific information on the disassociation and its time of ending.
+
+===== 7.4.2.2.5 Post-conditions:
+
+After completion of this use case, a record identifying the patient and the associated device and giving the end time of the association correlated with the starting time is persisted by the Device-Patient Association Manager.
+
 ==== 7.4.2.3 Use Case #3 Filter Devices for a Patient
 
 ===== 7.4.2.3.1 Description
@@ -397,6 +413,20 @@ A Device-Patient Association Manager may filter association messages to a Device
 ===== 7.4.2.3.2 Process Flow
 
 For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the current association records for each patient it is configured to receive.
+
+===== 7.4.2.3.3 Pre-conditions:
+
+Patient has been assigned unique identifier at registration which has been collected and verified at the point of care.
+Device identity has been registered for use.
+The identities of patient and device(s) are known to the system or person performing the filtering.
+
+===== 7.4.2.3.4 Main Flow:
+
+A Device-Patient Association Consumer originates a message to the Device-Patient Association Manager with the specific filter information for the devices to receive filtered association reports for.
+
+===== 7.4.2.3.5 Post-conditions:
+
+After completion of this use case, if the manager supports the filtering option, a subscription filter for the requested devices and the requesting consumer is persisted and any matching association reports are sent by the Device-Patient Association Manager to the Device-Patient Association Consumer. If the manager does not support the filtering option, an appropriate error code is sent to the consumer when the filter request message is received.
 
 == 7.5 PCIM Security Considerations
 
