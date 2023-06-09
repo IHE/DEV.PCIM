@@ -458,9 +458,9 @@ None
 
 = Volume 2 -- Transactions
 
-Insert in Section 3 as new Section 3.17
-
 == Assert Device-Patient Association [DEV-51]
+
+Insert in Section 3 as new Section 3.51
 
 === Scope
 
@@ -470,7 +470,7 @@ This transaction is used by a Device-Patient Association Reporter to assert that
 
 The roles in this transaction are defined in the following table and may be played by the actors listed:
 
-Table 3.17.2-1: Actor Roles
+Table 3.51.2-1: Actor Roles
 
 |===
 |Actor|Role
@@ -488,17 +488,17 @@ HL7 2.6 Chapters 2, 3, 5 and 7
 
 === Interaction Diagram
 
-==== 3.17.4.1 Device-Patient Association Report
+==== 3.51.4.1 Device-Patient Association Report
 
 This is an HL7 Version 2 message giving details of the association being asserted. The message asserts an association between one device and one patient.
 
 The manager may receive this message from multiple Reporter instances.
 
-===== 3.17.4.1.1 Trigger Events
+===== 3.51.4.1.1 Trigger Events
 
 This message is triggered when a logical connection between a device and a particular patient is established or removed, or when an attribute associated with an existing device-patient association has changed. If the event has been verified by a user, the message represents a final association. 
 
-===== 3.17.4.1.2 Message Semantics
+===== 3.51.4.1.2 Message Semantics
 
 The significant content of the message is the following:
 
@@ -520,7 +520,7 @@ See Appendix 0 for details of HL7 V2 messages.
 
 On receipt of the message, the manager system checks for valid syntax and that the:
 
-. originating Reporter system and human user are authorized for their roles
+. originating reporter system and human user are included
 . the device is a member of the set of registered device instances and has no current conflicting association recorded (e.g., a single-patient device has an active association with a different patient)
 . the patient identity provided corresponds to a known person in an appropriate status (e.g., admitted)
 
@@ -528,11 +528,83 @@ After these checks, the Manager logs the result and returns an appropriate posit
 
 If the checks are passed, the Manager establishes a record of the beginning or ending of the association and the effective time.
 
+== Report Device-Patient Association [DEV-52]
+
+Insert in Section 3 as new Section 3.52
+
+=== Scope
+
+This transaction is used by a Device-Patient Association Manager to report to Device-Patient Association Consumers that an association has been established or broken between a device and a patient, or to update information reported previously.
+
+=== Actor Roles
+
+The roles in this transaction are defined in the following table and may be played by the actors listed:
+
+Table 3.52.2-1: Actor Roles
+
+|===
+|Actor|Role
+
+|Device-Patient Association Manager
+|Reports confirmed association events to consumers. The manager must provide a HMI to verify association and disassociation assertions from a reporter if required, and once verified it persists the record and reports it to any consumers configured to receive the events in real-time. The manager should support filtering of messages, and may support dynamic filtering requested by the consumer. The manager must send current associations for all devices that the consumer is configured to receive reports for immediately after a connection is established.
+
+|Device-Patient Association Consumer
+|The receiver of the verified and final association report.  The consumer initially receives current association status followed by updates in real-time on a connection established by the Manager. It may optionally send a filter dynamically in the form a HL7 query or that filter may be pre-configured. When a association report is successfully received, a commit-level accept acknowledgement must be returned the the Manager.
+
+|===
+
+=== Referenced Standards
+
+HL7 2.6 Chapters 2, 3, 5 and 7
+
+=== Interaction Diagram
+
+==== 3.52.4.1 Device-Patient Association Report
+
+This is an HL7 Version 2 message giving details of the association being reported. The message reports an association between one device and one patient.
+
+The manager must send this message to all configured Consumer instances.
+
+===== 3.51.4.1.1 Trigger Events
+
+This message is triggered when a final (validated) association or disassociation is received.
+
+The significant content of the message is the following:
+
+* Confirmed unique identity of patient, preferably derived from an AIDC (Automatic Identification and Data Capture) such as scanning the patient wristband or reading an RFID tag.
+Code used to identify the patient must be chosen so as to be unique at least over the scope of the set of patients seen over all information systems in the institution, such as a Medical Record Number issued by the institution for the patient, or, if available, a national id number.
+The type and issuing entity shall be recorded with the code.
+Additional identity codes may be provided at the discretion of the institution.
+Note that any code identifiable with an individual patient must by secured from misuse in accordance with applicable legal and policy procedures.
+* Unique identity of Device.
+This again is determined by site considerations.
+It is preferable to use a universally unique identification of the individual instance of the device, such as an IEEE EUI-64 or a Unique Device Identifier such as one produced in accordance with the US FDA (or other regulatory agency) UDI standards.
+If this is not possible, then another universal identification scheme such as EUI-64 or a local identification scheme allowing all device instances in the institution to be uniquely distinguished and tracked may be used.
+Additional identification codes may be included.
+Whatever code is used should be possible to record automatically, as manual data entry has a high error rate, and correct identification is a patient safety concern.
+* Identity of the reporter system that originated the association or disassociation.
+* Identity of the authorized person responsible for obtaining and visually confirming the identity information for the patient and the device.
+
+The form of the message is similar to an unsolicited observation report, with supplementary PRT segments identifying the device, reporter system and human operator validating the association.
+
+See Appendix 0 for details of HL7 V2 messages.
+
+On receipt of the message, the consumer system checks for valid syntax and that the:
+
+. originating reporter system and human user are included
+. the device is a member of the set of registered device instances and has no current conflicting association recorded (e.g., a single-patient device has an active association with a different patient)
+. the patient identity provided corresponds to a known person in an appropriate status (e.g., admitted)
+
+After these checks, the consumer returns an appropriate positive or negative commit-level acknowledgement to the Manager.
+
+If the checks are passed, the Consumer utilizes the record of the beginning or ending of the association and the effective time for the specified patient and device.
+If a commit-level acknowledgement is received by the Manager, it logs the message as delivered successfully to the Consumer.
+
 == 3.19 Query Device-Patient Associations [DEV-19]
 
 === Scope
 
-This transaction is used by a Device Patient Association Consumer to access device-patient association information held by a Device Patient Association Manager.
+This transaction is used by a Device Patient Association Consumer to access filtered device-patient association information held by a Device Patient Association Manager.
 
 As stated previously, the DEV-19 transaction is optional. The Device-Patient Association Manager shall return an appropriate error status to the Device-Patient Association Consumer if it does not support this transaction.
 
