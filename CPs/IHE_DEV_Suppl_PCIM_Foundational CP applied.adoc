@@ -279,7 +279,7 @@ The list of medical devices that can be associated with the patient may be pre-c
 
 == 7.2 PCIM Actor Options
 
-The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option. 
+The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the current active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option. 
 
 [.text-left]
 Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes. 
@@ -623,7 +623,7 @@ Table 3.19.2-1: Actor Roles
 |Actor|Role
 
 |Device-Patient Association Consumer
-|Establishes an real-time message reporting subscription filter for Device-Patient Associations. This may be filtered for device or for patient. It establishes an ongoing feed of device-patient association information.
+|Establishes an real-time message reporting subscription filter for Device-Patient Associations. This may be filtered for device or location. It establishes an ongoing feed of device-patient association information.
 
 |Device-Patient Association Manager
 |Fulfills a request from a Device-Patient Association Consumer for device-patient association information filtered as specified by the Consumer
@@ -638,7 +638,7 @@ HL7 2.6 Chapters 2, 3, 5 and 7
 
 ==== 3.19.4.1 Device-Patient Association Query
 
-This message from a Device-Patient Association Consumer requests a response from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are preconfigured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
+This message from a Device-Patient Association Consumer requests a response from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are pre-configured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
 This profile chooses the QSB publish-subscribe paradigm, where the request is for an ongoing real-time feed of changes in associations using special semantics of query parameters described below.
 
 ===== 3.19.4.1.1 Trigger Events
@@ -713,9 +713,9 @@ As all of the use cases identified in this profile can be considered observation
 that device d1 was connected to patient p1 starting at t1 and ending at t2), the ORU message structure is used throughout this profile to manage associations. This description also serves for a
 Assert or Report Device-Patient Disassociation – the only difference between the Association and Disassociation messages is the content of OBX-5. The Message Structure and attendant notes also serve to specify the segment pattern to be expected in Report Association State [DEV-52] messages. The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with – it serves as useful background information and contains details on some fields that are not covered in this profile.
 
-Assertions and Report messages for DEV-51 and DEV-52 transactions, respectively, use the same structure, with the following differences:
+Assertions and Report messages for DEV-51 and DEV-52 transactions, respectively, use the same structure, with the following differences that pertain to DEV-52:
 
-  . A report must always have a OBX-11 status field of "Final"
+  . A report must always have a OBX-11 status that is not "R" (requires validation)
   . A report may contain an additional participant segment of the responsible observer (human) that validated the association using the Manager HMI 
 
 === A.1.1 Message Structure
@@ -1372,7 +1372,7 @@ Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User
 | ELEMENT NAME
 
 | PV1.3.1
-| Assignes Patient Location -- Point of Care
+| Assigned Patient Location -- Point of Care
 
 | PV1.3.2
 | Assigned Patient Location -- Room

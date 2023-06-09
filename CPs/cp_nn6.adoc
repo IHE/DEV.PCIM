@@ -383,7 +383,7 @@ Options that may be selected for each actor in this profile, if any, are listed 
 [underline]#Proposed Text:#
 
 [.text-left]
-The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option. 
+The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the current active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option. 
 
 [.text-left]
 Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes. 
@@ -913,7 +913,7 @@ This transaction is used by a Device Patient Association Consumer to access filt
 |Actor|Role
 
 |Device-Patient Association Consumer
-|Establishes an real-time message reporting subscription filter for Device-Patient Associations. This may be filtered for device or for patient. It establishes an ongoing feed of device-patient association information.
+|Establishes an real-time message reporting subscription filter for Device-Patient Associations. This may be filtered for device or location. It establishes an ongoing feed of device-patient association information.
 
 |Device-Patient Association Manager
 |Fulfills a request from a Device-Patient Association Consumer for device-patient association information filtered as specified by the Consumer
@@ -1094,9 +1094,9 @@ As all of the use cases identified in this profile can be considered observation
 that device d1 was connected to patient p1 starting at t1 and ending at t2), the ORU message structure is used throughout this profile to manage associations. This description also serves for a
 Report Device-Patient Disassociation – the only difference between the Association and Disassociation messages is the content of OBX-5. The Message Structure and attendant notes also serve to specify the segment pattern to be expected in Report Association State [DEV-52] messages. The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with – it serves as useful background information and contains details on some fields that are not covered in this profile.
 
-Assertions and Report messages for DEV-51 and DEV-52 transactions, respectively, use the same structure, with the following differences:
+Assertions and Report messages for DEV-51 and DEV-52 transactions, respectively, use the same structure, with the following differences for DEV-52:
 
-  . A report must always have a OBX-11 status field of "Final"
+  . A report must not have a OBX-11 status field value of 'R' (requires validation)
   . A report may contain an additional participant segment of the responsible observer (human) that validated the association using the Manager HMI 
 
 |===
