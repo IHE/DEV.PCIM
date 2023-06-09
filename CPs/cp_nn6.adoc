@@ -729,9 +729,9 @@ If the checks are passed, the Manager establishes a record of the beginning or e
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-As stated previously, the DEV-19 transation is optional. The Device-Patient Association Manager _should_ return an appropriate error status to the Device-Patient Association Consumer if it does not support this transaction. 
+As stated previously, the DEV-19 transaction is optional. The Device-Patient Association Manager shall return an appropriate error status to the Device-Patient Association Consumer if it does not support this transaction. 
 If the DEV-19 transaction is not supported, and the network connection between the Device-Patient Association Manager and Device-Patient Association Consumer is lost, 
-the Device-Patient Association Manager _should_ send DEV-52 messages for all current Device-Patient associations to the Device-Patient Association Consumer when network connectivity is restored. 
+the Device-Patient Association Manager shall send DEV-52 messages for all current Device-Patient associations to the Device-Patient Association Consumer when network connectivity is restored. 
 
 |===
 
