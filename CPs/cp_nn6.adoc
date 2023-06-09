@@ -507,7 +507,7 @@ increase data reliability to the maximum feasible extent.
 
 |===
 
-|*7.4.2.1.2 Use Case Description, _remove this heading number and update numbers below as the text is now combined into 7.4.2.1.1 heading description_
+|*7.4.2.1.2 Use Case Description*, _remove this heading number and update numbers below as the text is now combined into 7.4.2.1.1 heading description_
 
 |===
 
@@ -600,8 +600,6 @@ After completion of this use case, if the manager supports the filtering option,
 
 |===
 
-|===
-
 |*7.4.2.4 Use Case #4 Query the Associated Patient for a Device*, _remove section_:
 
 |=== 
@@ -639,7 +637,7 @@ An actor that supports retrospective queries was considered. For the use cases o
 
 |===
 
-|*3.17 Assert Device-Patient Association [PCD-17]*, _rename to_: *Assert Device-Patient Association [DEV-51] and all subsequent sections are named 3.51 instead of 3.52*
+|*3.17 Assert Device-Patient Association [PCD-17]*, _rename to_: *Assert Device-Patient Association [DEV-51] and all subsequent sections are named 3.51 instead of 3.17*
 
 |=== 
 
@@ -753,12 +751,6 @@ originating reporter system and human user are included in the message
 
 |===
 
-|*3.17.4.1.2 Message Semantics*, _update last sentence on line 511, to represent association and disassociation_:
-
-The form of the message is similar to an unsolicited observation report, with supplementary PRT segments identifying the device and human operator originating the association.
-
-|===
-
 |*3.17.4.1.2 Message Semantics*, _update last sentence on line 511, to represent association and disassociation and to suggest using a technical alert to effectively notify human user_:
 
 |=== 
@@ -783,6 +775,8 @@ If the checks are passed, the Manager establishes a record of the beginning or e
 |===
 
 |*3.52 Report Device-Patient Association [DEV-52]*, _add new sections for DEV-52_:
+
+|===
 
 [.text-left]
 [underline]#Proposed  Text:#
@@ -866,6 +860,8 @@ If a commit-level acknowledgement is received by the Manager, it logs the messag
 
 |=== 
 
+|===
+
 |*Query Device-Patient Associations*, _update scope to specify the transaction is used to filter_:
 
 |=== 
@@ -879,8 +875,6 @@ This transaction is used by a Device Patient Association Consumer to access devi
 [underline]#Proposed Text:#
 [.text-left]
 This transaction is used by a Device Patient Association Consumer to access filtered device-patient association information held by a Device Patient Association Manager.
-
-|===
 
 |===
 
@@ -1185,9 +1179,9 @@ For example:
 * A reporter system sending a non-validated assertion
 * The device itself, if the patient ID is entered directly onto the device
 
-|===
 
 |===
+
 |*A.2.1 Scope*, _update paragraph on line 834, removing snapshot option and to clarify query is optional_:
 
 |=== 
@@ -1484,6 +1478,10 @@ The Device-Patient Association Consumer must support receiving a continuous real
 |===
 
 |*A.3 Register Device*, _remove section_:
+
+|===
+
+|===
 
 |*A.4 Example Messages*, _update reporter message for Example 1 on line 985 to use the new transaction numbering_:
 
