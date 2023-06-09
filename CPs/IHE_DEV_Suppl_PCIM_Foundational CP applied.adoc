@@ -190,7 +190,7 @@ Add new Section 7
 
 = 7 Point-of-Care Identity Management (PCIM) Profile
 
-The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7^®^footnote:1[HL7 is the registered trademark of Health Level Seven International.] v2 standard messaging for devices and IT systems at an acute-care point-of-care to exchange and synchronize information about the identity of specific devices collecting clinical information about a specific patient, to:
+The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7^®^footnote:1[HL7 is the registered trademark of Health Level Seven International.] v2 standard messaging for devices and IT systems at a point-of-care to exchange and synchronize information about the identity of specific devices collecting clinical information about a specific patient, to:
 
 * Assist in the reliable association of the collected data to the proper patient record, based on first-hand observation and data entry by a person at the point of care, specifically designed to avoid wrong attribution of data from before or after the period of actual measurement on the patient.
 * Assist in maintaining a correct "`census`" of devices that frequently move between patients such as infusion pumps, and mechanical ventilators.
@@ -226,14 +226,22 @@ Table 7.1-1: PCIM Profile - Actors and Transactions
 |R
 |PCD TF-2 3.51
 
-|Device-Patient Association Consumer
+.2+|Device-Patient Association Consumer
+|Consume Device-Patient Associations
+|
+|R
+|PCD TF-2: 3.52
 |Query Device-Patient Associations
 |
 |O
 |PCD TF-2: 3.19
 
+.3+|Device-Patient Manager
+|Consume Device-Patient Association Assertions
+|
+|R
+|PCD TF-2: 3.51
 
-.2+|Device-Patient Manager
 |Report Device-Patient Associations
 |
 |R
@@ -253,7 +261,7 @@ This section documents any additional requirements on profile's actors.
 
 ==== 7.1.1.1 Device-Patient Association Reporter
 
-The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. If the report is validated, the report observation shall be marked final, otherwise it shall be marked as requiring validation.
+The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. The reporter may update existing associations. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. If the report is validated, the report observation status field shall be marked final, otherwise it shall be marked as requiring validation.
 
 ==== 7.1.1.2 Device-Patient Association Manager
 
@@ -261,18 +269,19 @@ The Device-Patient Association Manager actor collects and persists information o
 
 ==== 7.1.1.3 Device-Patient Association Consumer
 
-The Device-Patient Association Consumer actor receives information on what devices are associated with which patients. Common examples are a medical device or critical care system that charts device observations for a patient. The actor receives association updates in real-time. 
+The Device-Patient Association Consumer actor receives information on what devices are associated with which patients. The actor initially receives current association status followed by updates in real-time. Common examples are a medical device or critical care system that charts device observations for a patient. The actor receives association updates in real-time. 
 
-==== 7.1.1.4 Device Registration via IHE MEM DMC
+==== 7.1.1.4 Device Registration
 
-The IHE MEM DMC DMIR is an actor that enables automated contributions to the list of medical devices that can be associated with a patient.
+The IHE MEM DMC profile enables automated contributions to the list of medical devices that can be associated with a patient.
 
-The IHE MEM DMC DMIR may automate device registration. Device registration may also be manually accomplished during system setup and maintenance.
+The list of medical devices that can be associated with the patient may be pre-configured or automated with MEM DMC. Device registration may also be manually accomplished during system setup and maintenance. Examples of information available from MEM DMC are the device model, manufacturer, serial number, and network end point (ip address, port).
 
 == 7.2 PCIM Actor Options
 
-The Device-Patient Association Consumer may optionally filter events sent by the Device-Patient Association Manager. The filter request to the Manager results in an immediate delivery from the manager of the active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option. 
+The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option. 
 
+[.text-left]
 Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes. 
 
 Table 7.2-1: PCIM -- Actors and Options
@@ -290,14 +299,14 @@ Table 7.2-1: PCIM -- Actors and Options
 
 |Device-Patient Association Reporter 
 |No options defined
-|7.2.1
+|
 
 |===
 
 === 7.2.1 Subscription Option
 
-The filtering option applies to interactions between Device-Patient Association Consumer and Device-Patient Association Manager and specifies that the communication between consumer and manager is a filtered real-time delivery of changes in device-patient associations. 
-
+The filtering option applies to interactions between Device-Patient Association Manager and Device-Patient Association Consumer and specifies that the communication between manager and consumer is a filtered real-time delivery of changes in device-patient associations. 
+[.text-left]
 A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19. 
 
 == 7.3 PCIM Required Actor Groupings
@@ -322,11 +331,13 @@ For example, selection of the patient and the devices could be accomplished on a
 
 A Device-Patient Association Reporter asserts a device-patient association to a Device-Patient Association Manager.
 
-===== 7.4.2.1.1 Use Case #1 Associating Device with Patient: Process Flow
+===== 7.4.2.1.1 Process Flow
 
-This use case can be driven by an authorized user responsible for entering, verifying, or both, the beginning and ending of an association between a device and a particular patient.
-The should be based on first person awareness of the situation at the point of care.
-Automatic Identification and Data Capture methods such as barcodes or RFID should be used to assist the workflow and increase data reliability to the maximum feasible extent.
+This use case can be driven by an authorized user responsible for entering, verifying, or both, the
+beginning or ending of an association between a device and a particular patient. This should be
+based on first person awareness of the situation at the point of care. Automatic Identification and
+Data Capture methods such as barcodes or RFID should be used to assist the workflow and
+increase data reliability to the maximum feasible extent.
 In certain circumstances and with appropriate risk analysis, the association may be automatically generated.
 For example, a device with its own "`admission`" process, the act of manipulating the user interface at the point of care to "`admit`" a patient to the device may be deemed a patient-safe way of generating validated information of this device-patient association.
 For another example, a device with a fixed location and a known patient associated with the location may be appropriate to originate a device-patient association.
@@ -349,7 +360,7 @@ In the case where only a single set of observation from the device is expected, 
 
 Patient is to be associated with a device for clinical observations.
 Patient has been assigned unique identifier at registration which has been collected and verified at the point of care.
-Device identify has been registered for use.
+Device identity has been registered for use.
 The identities of patient and device(s) have been collected and verified by an authorized person.
 
 ===== 7.4.2.1.4 Main Flow:
@@ -377,25 +388,15 @@ In some cases, the device itself is capable of determining that the association 
 It may be appropriate to note this event on a user interface and get confirmation that it is correct.
 It also could be appropriate to ask whether other devices on record as being connected to the same patient are still connected or not.
 
-==== 7.4.2.3 Use Case #3 Query for the Devices for a Patient
+==== 7.4.2.3 Use Case #3 Filter Devices for a Patient
 
 ===== 7.4.2.3.1 Description
 
-A Device-Patient Association Consumer may filter association messages from a Device-Patient Association Manager for the list of devices associated with particular patients at present. Retrospective queries are currently out of scope. 
+A Device-Patient Association Manager may filter association messages to a Device-Patient Association Consumer for current and ongoing device patient associations. Retrospective queries are currently out of scope. 
 
 ===== 7.4.2.3.2 Process Flow
 
-For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the present association records for each patient it is configured to receive.
-
-==== 7.4.2.4 Use Case #4 Query the Associated Patient for a Device
-
-===== 7.4.2.4.1 Description
-
-A device (or another system) may require the identity of the patient it is connected to, for display or other purposes, but not have this information available to it, so the profile provides for a Device-Patient Association Consumer to receive reports from the Device-Patient Association Manager that provide this information for the devices it is configured to receive them for.
-
-===== 7.4.2.4.2 Process Flow
-
-For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the present association records for each device it is configured to receive.
+For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the current association records for each patient it is configured to receive.
 
 == 7.5 PCIM Security Considerations
 
@@ -433,7 +434,7 @@ Insert in Section 3 as new Section 3.17
 
 === Scope
 
-This transaction is used to by a Device-Patient Association Reporter to assert that an association has been established or broken between a device and a patient, or to update information reported previously by that reporter.
+This transaction is used by a Device-Patient Association Reporter to assert that an association has been established or broken between a device and a patient, or to update information reported previously by that reporter.
 
 === Actor Roles
 
@@ -445,10 +446,10 @@ Table 3.17.2-1: Actor Roles
 |Actor|Role
 
 |Device-Patient Association Reporter
-|The source of the assertion. Identifies the device, the patient, the authority for the association or disassociation, and the effective time.
+|The source of the assertion. Identifies the device, the patient, the responsible observer or automated system that is triggering the assertion for the association or disassociation, and the effective time. If the responsible observer verifies at the reporter, the manager does not need to verify. The reporter must record the responsible observer when verification occurs. The reporter must include in the observation the status field that indicates whether the assertion requires validation or is final (already verified).
 
 |Device-Patient Association Manager
-|Establishes or updates the persistent record of the association.
+|Establishes or updates the persistent record of the association. The manager must provide a HMI to verify association and disassociation assertions. The manager is also responsible for conflict resolution with the HMI and sending corresponding HL7 ACK error codes at commit or application levels. Note that the HMI need not be constrained to running on the same device as the manager. For example, the HMI may be in the form of a mobile app.
 |===
 
 === Referenced Standards
