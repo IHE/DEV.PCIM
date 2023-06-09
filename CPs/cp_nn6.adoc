@@ -474,9 +474,18 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 
 |===
 
-|*7.4.2.1.1 Use Case #1 Associating Device with Patient: Process Flow*, _change title to 'Process Flow' and correct grammar in second sentence_
+|*7.4.2.1 Use Case #1*, _combine description from 7.4.2.1 and 7.4.2.1.2 into single heading named 7.4.2.1.1 right under the name of the use case to match surrounding use case text_
 
 |===
+
+|===
+
+|*7.4.2.1.1 Use Case #1 Associating Device with Patient: Process Flow*, _change title to 'Process Flow' and heading number to 7.4.2.1.2 and correct grammar in second sentence_
+
+|===
+
+
+===== 7.4.2.1.1 Process Flow
 
 [.text-left]
 [underline]#Existing Text:#
@@ -495,6 +504,12 @@ beginning or ending of an association between a device and a particular patient.
 based on first person awareness of the situation at the point of care. Automatic Identification and
 Data Capture methods such as barcodes or RFID should be used to assist the workflow and
 increase data reliability to the maximum feasible extent.
+
+|===
+
+|*7.4.2.1.2 Use Case Description, _remove this heading number and update numbers below as the text is now combined into 7.4.2.1.1 heading description_
+
+|===
 
 |===
 
@@ -539,6 +554,47 @@ For status display or for error-checking and diagnostic purposes, the Device-Pat
 [underline]#Proposed Text:#
 [.text-left]
 For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the current association records for each patient it is configured to receive.
+
+
+|===
+
+|*7.4.2.2 Add Pre-conditions*, _Main Flow and Post-Conditions for Use Case #2_:
+
+===== 7.4.2.2.3 Pre-conditions:
+
+Patient is to be disassociated with a device.
+Patient has been assigned unique identifier at registration which has been collected and verified at the point of care.
+Device identity has been registered for use.
+The identities of patient and device(s) have been collected and verified by an authorized person.
+The patient has already been associated with a device.
+
+===== 7.4.2.2.4 Main Flow:
+
+Device-Patient Association reporter originates a message with the specific information on the disassociation and its time of ending.
+
+===== 7.4.2.2.5 Post-conditions:
+
+After completion of this use case, a record identifying the patient and the associated device and giving the end time of the association correlated with the starting time is persisted by the Device-Patient Association Manager.
+
+|===
+
+|*7.4.2.3 Add Pre-conditions*, _Main Flow and Post-Conditions for Use Case #3_:
+
+===== 7.4.2.3.3 Pre-conditions:
+
+Patient has been assigned unique identifier at registration which has been collected and verified at the point of care.
+Device identity has been registered for use.
+The identities of patient and device(s) are known to the system or person performing the filtering.
+
+===== 7.4.2.3.4 Main Flow:
+
+A Device-Patient Association Consumer originates a message to the Device-Patient Association Manager with the specific filter information for the devices to receive filtered association reports for.
+
+===== 7.4.2.3.5 Post-conditions:
+
+After completion of this use case, if the manager supports the filtering option, a subscription filter for the requested devices and the requesting consumer is persisted and any matching association reports are sent by the Device-Patient Association Manager to the Device-Patient Association Consumer. If the manager does not support the filtering option, an appropriate error code is sent to the consumer when the filter request message is received.
+
+|===
 
 |===
 
