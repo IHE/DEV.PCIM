@@ -16,7 +16,7 @@
 |Draft
 
 |Date of last update:
-|2023-05-22
+|2023-06-09
 
 |Person Assigned:
 |Eldon Metz
@@ -731,11 +731,13 @@ This message is triggered at the beginning of an interval when the logical conne
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-This message is triggered at the beginning or ending of an interval when the logical connection between a device and the data it originates for a particular patient is established, after that connection or disconnection has been verified by a human user able to check its validity at the point of care.
+This message is triggered when a logical connection between a device and a 
+particular patient is established or removed, or when an attribute associated with an existing device-patient association has changed. If the event has been verified by a user, the message represents
+a final association.
 
 |===
 
-|*3.17.4.1.2 Message Semantics*, _update check #1 to not require manager to check user and system authorization:
+|*3.17.4.1.2 Message Grammar*, _update sentence on line 793 to specify device and human instead of device, human_:
 
 |=== 
 
@@ -753,6 +755,12 @@ originating reporter system and human user are included in the message
 
 |*3.17.4.1.2 Message Semantics*, _update last sentence on line 511, to represent association and disassociation_:
 
+The form of the message is similar to an unsolicited observation report, with supplementary PRT segments identifying the device and human operator originating the association.
+
+|===
+
+|*3.17.4.1.2 Message Semantics*, _update last sentence on line 511, to represent association and disassociation and to suggest using a technical alert to effectively notify human user_:
+
 |=== 
 
 [.text-left]
@@ -763,7 +771,7 @@ If the checks are passed, the Manager establishes a record of the existence of t
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-After these checks, the Manager logs the result and returns an appropriate positive or negative acknowledgement to the Reporter. The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken.
+After these checks, the Manager logs the result and returns an appropriate positive or negative acknowledgement to the Reporter. The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken. In this case, a technical alert should be raised using the ACM profile, the details of this are out of scope for this document. 
 If the checks are passed, the Manager establishes a record of the beginning or ending of the association and the effective time.
 
 |===
@@ -854,7 +862,7 @@ If a commit-level acknowledgement is received by the Manager, it logs the messag
 
 |===
 
-|*3.19 Query Device-Patient Associations [PCD-19]*, _rename to_: *Query Device-Patient Associations [DEV-19]*
+|*3.19 Query Device-Patient Associations [PCD-19]*, _rename to_: *Filter Device-Patient Associations [DEV-19]*
 
 |=== 
 
@@ -873,6 +881,19 @@ This transaction is used by a Device Patient Association Consumer to access devi
 This transaction is used by a Device Patient Association Consumer to access filtered device-patient association information held by a Device Patient Association Manager.
 
 |===
+
+|===
+
+|*3.19.1 Scope*, _add additional text describe optionality_
+
+|=== 
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+As stated previously, the DEV-19 transaction is optional. The Device-Patient Association Manager shall return an appropriate error status to the Device-Patient Association Consumer if it does not support this transaction. 
+If the DEV-19 transaction is not supported, and the network connection between the Device-Patient Association Manager and Device-Patient Association Consumer is lost, 
+the Device-Patient Association Manager shall send DEV-52 messages for all current Device-Patient associations to the Device-Patient Association Consumer when network connectivity is restored. 
 
 |===
 
@@ -980,7 +1001,7 @@ Device-Patient Association Consumer in response to the query: what patients, uni
 [underline]#Proposed Text:#
 [.text-left]
 This message is a query specification. It gives the scope of the information wanted by the
-Device-Patient Association Consumer in response to the query: what patients, units, devices are pertinent. See Appendix 0 for details of HL7 segment contents and semantics.
+Device-Patient Association Consumer in response to the query: what devices are pertinent. See Appendix 0 for details of HL7 segment contents and semantics.
 
 |=== 
 
@@ -1028,7 +1049,7 @@ This message and the activity of preparing it, is triggered in the Device-Patien
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query request from the Device-Patient Association Consumer. This trigger requests the setting up of a sequence of messages initated by the current association status and then subsequently triggered by a state change in the device-patient associations.
+This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query request from the Device-Patient Association Consumer. This trigger initially requests the setting up of a sequence of messages reporting all device-patient associations matching the filter criteria. Once the initial device-patient associations have been sent, subsequent changes in the device-patient association state will trigger additional messages to be sent to the Device-Patient Association Consumer as long as the current subscription is in effect. A subscription remains in effect until it is cancelled or replaced with a new subscription request by the Device-Patient Association Consumer.  
 
 |===
 
