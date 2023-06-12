@@ -885,7 +885,8 @@ This transaction is used by a Device Patient Association Consumer to access filt
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-As stated previously, the DEV-19 transaction is optional. The Device-Patient Association Manager shall return an appropriate error status to the Device-Patient Association Consumer if it does not support this transaction. 
+As stated previously, the DEV-19 transaction is optional. If the message is accepted by the Device-Patient Association Manager, the accept acknowledgment shall contain the value CA in MSA-1.
+If this message is not supported, MSA-1 shall contain the value CR, ERR-3 (HL7 Error Code) shall contain the value 200 (Unsupported Message Type), and ERR-4 (Severity) shall contain the value E.
 If the DEV-19 transaction is not supported, and the network connection between the Device-Patient Association Manager and Device-Patient Association Consumer is lost, 
 the Device-Patient Association Manager shall send DEV-52 messages for all current Device-Patient associations to the Device-Patient Association Consumer when network connectivity is restored. 
 
