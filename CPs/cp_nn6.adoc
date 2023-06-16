@@ -16,7 +16,7 @@
 |Draft
 
 |Date of last update:
-|2023-06-09
+|2023-06-16
 
 |Person Assigned:
 |Eldon Metz
@@ -1151,7 +1151,7 @@ Since this message is effectively an unsolicited observation report, the content
 
 |===
 
-|*A.1.2.3 PV1 Patient Visit Information*, _remove sentence describing patient filter option '_:
+|*A.1.2.3 PV1 Patient Visit Information*, _remove sentence describing patient filter option_:
 
 |=== 
 
@@ -1167,6 +1167,61 @@ In this profile, the PV1 segment is used to convey patient location information 
 [.text-left]
 See transaction [PCD-01] for basic information (PCD TF-2 Appendix B.6).
 In this profile, the PV1 segment is used to convey patient location information in PV1-3 Assigned Patient Location.
+
+|===
+
+|*A.1.2.4 OBR-4 Order Request*, _modify the paragraph on line 743 on page 36-37, by modifying text and including a table of field definitions with data types and optionality_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+This segment serves as a wrapper for an association observation. It provides the association message with a unique identifier that can be used for tracking messages from all sources in the overall configuration of systems. The OBR segment also specifies the unique identifier for the patient device association service.
+
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+This segment serves as a wrapper for an association observation.
+It gives the association message a unique identifier in the Filler Order Number OBR-3.
+This is a required field: it acts as an association object instance identifier for tracking is used for tracking messages from all sources in the overall configuration of systems, so it must be constrained by some method of generation that assures that duplicate identifiers between sources are not possible.
+It gives the timestamp of the beginning of the association (OBR-7), and when it is known, the end of the association (OBR-8).
+
+Table A.1.2.5-1: OBR Fields
+
+|===
+| *SEQ* | *DT* | *OPT*  | *Description*
+
+| 1
+| SI
+| O
+| Set ID - OBR
+
+| 3
+| EI
+| R
+| Unique instance identifier for the association event. Must be constrained during generation to ensure duplicate identifiers between sources are not possible.
+
+| 4
+| CE
+| R
+| Universal Service Identifier – set to 69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC
+
+| 7
+| TS
+| C
+| Earliest participant involvement
+
+| 7
+| TS
+| C
+| Latest participant involvement
+
+|===
+
+The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. 
+Each report consists of two Participant Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
 
 |===
 
@@ -1503,6 +1558,26 @@ The Device-Patient Association Consumer must support receiving a continuous real
 
 |===
 
+|*A.4 Example Messages*, _insert a sentence that adds clarity on timestamp range to the description on line 981, on page 49_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological monitor with ID MON5588.
+At 12:30, she records the association on the Critical Care application.
+As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association.
+This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager.
+
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological monitor with ID MON5588. At 12:30, she records the association on the Critical Care application. As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association. This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager. Note that since Nurse Diesel recorded the association 30 minutes after the association occurred, the timestamps for OBR-7 and OBR-8 capture that range of time in the OBR wrapper segment. Additionally, each PRT segment provides specific time for each participant. For the device equipment, when that association occurred and for the responsible observer Nurse Diesel, when it was recorded.
+
+|===
+
 |*A.4 Example Messages*, _update reporter message for Example 1 on line 985 to use the new transaction numbering_:
 
 |=== 
@@ -1510,13 +1585,38 @@ The Device-Patient Association Consumer must support receiving a continuous real
 [.text-left]
 [underline]#Existing Text:#
 [.text-left]
+....
 |AL||8859/1|||IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.17^ISO
+....
 
 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
+....
 |AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+....
+
+|===
+
+|*A.4 Example Messages*, _modify the OBR segment on line 988 on page 50_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing OBR segment:#
+[.text-left]
+....
+OBR|||15404652
+....
+
+
+[.text-left]
+[underline]#Proposed OBR segment:#
+[.text-left]
+....
+OBR|||15404652|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE ^MDC|||20160726120000|20160726123000
+....
 
 |===
 
@@ -1527,12 +1627,16 @@ The Device-Patient Association Consumer must support receiving a continuous real
 [.text-left]
 [underline]#Existing Text:#
 [.text-left]
+....
 ||8859/1|||IHE_PCD_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+....
 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
+....
 ||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+....
 
 |===
 
@@ -1543,12 +1647,38 @@ The Device-Patient Association Consumer must support receiving a continuous real
 [.text-left]
 [underline]#Existing Text:#
 [.text-left]
+....
 7|||AL|AL||8859/1|||IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.17^ISO
+....
 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
+....
 7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+....
+
+|===
+
+|*A.4 Example Messages*, _modify the OBR segment on line 1022 on page 51_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing OBR segment:#
+[.text-left]
+....
+OBR|||15404697
+....
+
+[.text-left]
+[underline]#Proposed OBR segment:#
+[.text-left]
+....
+OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC||20160726160000|20160726160000
+....
+
+
 |===
 
 |*A.4 Example Messages*, _Remove Example 3 for registration, lines 1039-1047_:
@@ -1572,3 +1702,25 @@ associations of the patient (which will require the Device-Patient Association M
 [.text-left]
 The Device-Patient Association Manager responds by starting a continuous stream of Report Association [DEV-52] messages, starting with message(s) giving the current device
 associations of the patient (which will require the Device-Patient Association Manager to access that information and format it in [DEV-52] form).
+
+|===
+
+|*A.4 Example Messages*, _add disassociate example on page 51_:
+
+|=== 
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+Example 4. At 23:00, Nurse Ratched disconnected patient McMurphy from the physiological monitor previously connected in Example 2. She presses a button and then confirms causing the disassociation to be asserted.
+
+....
+MSH|^~\&|MonitorGateway||AssocMgr||20160726230000||ORU^R01^ORU_R01|12d1586|P|2.7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51^ISO
+PID|||AB60001^^^A\^PI||McMurphy^R^P^^^^L
+PV1||E|3 WEST ICU^3001^1
+OBR|||15404712|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726230000|20160726230000
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198334^MDC_EVT_DISASSOCIATION_PATIENT_DEVICE^MDC||||||R
+PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64||20160726230000
+PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI- 64||20160726230000
+....
+

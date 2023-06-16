@@ -1883,54 +1883,48 @@ At 12:30, she records the association on the Critical Care application.
 As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association.
 This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager.
 
-MSH|{caret}~\&|CritCare||AssocMgr||20160726123002||ORU{caret}R01{caret}ORU_R01|12d15a9|P|2.7|||AL|AL||8859/1|||IHE_PCD_017{caret}IHE PCD{caret}1.3.6.1.4.1.19376.1.6.4.17{caret}ISO
-
-PID|||AB60001{caret}{caret}{caret}A{caret}PI||Spaniel{caret}C{caret}R{caret}{caret}{caret}{caret}L
-
-PV1||E|3 WEST ICU{caret}3001{caret}1
-
+....
+MSH|^~\&|CritCare||AssocMgr||20160726123002||ORU^R01^ORU_R01|12d15a9|P|2.7|||AL|AL||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
+PID|||AB60001^^^A^PI||Spaniel^C^R^^^^L
+PV1||E|3 WEST ICU^3001^1
 OBR|||15404652
-
-OBX|1|CWE|68487{caret}MDCX_ATTR_EVT_COND{caret}MDC||0{caret}MDCX_DEV_ASSOCIATE{caret}MDC||||||F
-
-PRT|1|UC||EQUIP||||||3 WEST ICU{caret}3001{caret}1|MON5588{caret}{caret}231A8456B1CB2366{caret}EUI-64|20160726120000
-
-PRT|2|UC||RO|58793{caret}Diesel{caret}N||||3 WEST ICU{caret}3001{caret}1||20160726123000
-
+OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||0^MDCX_DEV_ASSOCIATE^MDC||||||F
+PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726120000
+PRT|2|UC||RO|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000
+....
 The Association Manager first responds with the following commit level acknowledgment.
 
-MSH|{caret}~\&|AssocMgr||CritCare||20160726123002||ACK{caret}R01{caret}ACK||P|2.7
-
+....
+MSH|^~\&|AssocMgr||CritCare||20160726123002||ACK^R01^ACK||P|2.7
 MSA|CA|12d15a9
+....
 
 Once the association is fully processed, the Association Manager responds by initiating the following application level acknowledgment
 
-MSH|{caret}~\&|AssocMgr||CritCare||20160726123003||ACK{caret}R01{caret}ACK|AM52E123|P|2.7|||AL|NE||8859/1|||IHE_PCD_017{caret}IHE PCD{caret}1.3.6.1.4.1.19376.1.6.4.17{caret}ISO
-
+....
+MSH|^~\&|AssocMgr||CritCare||20160726123003||ACK^R01^ACK|AM52E123|P|2.7|||AL|NE||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
 MSA|AA|12d15a9
+....
 
 To which the Association Reporter responds with a commit level acknowledgement, completing the exchange.
 
-MSH|{caret}~\&|CritCare||AssocMgr||20160726123003||ACK{caret}R01{caret}ACK||P|2.7
-
+....
+MSH|^~\&|CritCare||AssocMgr||20160726123003||ACK^R01^ACK||P|2.7
 MSA|CA|AM52E123
+....
 
 Example 2: At 16:00, Nurse Ratched connected patient McMurphy to a continuous physiological monitor with ID MON5596.
 She enters his patient ID on the monitor and presses a button causing the association to be asserted.
 
-MSH|{caret}~\&|MonitorGateway||AssocMgr||20160726160000||ORU{caret}R01{caret}ORU_R01|12d1574|P|2.7|||AL|AL||8859/1|||IHE_PCD_017{caret}IHE PCD{caret}1.3.6.1.4.1.19376.1.6.4.17{caret}ISO
-
-PID|||AB60001{caret}{caret}{caret}A{caret}PI||McMurphy{caret}R{caret}P{caret}{caret}{caret}{caret}L
-
-PV1||E|3 WEST ICU{caret}3001{caret}1
-
+....
+MSH|^~\&|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.7|||AL|AL||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
+PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
+PV1||E|3 WEST ICU^3001^1
 OBR|||15404697
-
-OBX|1|CWE|68487{caret}MDCX_ATTR_EVT_COND{caret}MDC||0{caret}MDCX_DEV_ASSOCIATE{caret}MDC||||||R
-
-PRT|1|UC||EQUIP||||||3 WEST ICU{caret}3001{caret}1|MON5588{caret}{caret}231A8456B1CB2366{caret}EUI-64|20160726160000
-
-PRT|1|UC||AUT||||||3 WEST ICU{caret}3001{caret}1|MON5588{caret}{caret}231A8456B1CB2366{caret}EUI-64|20160726160000
+OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||0^MDCX_DEV_ASSOCIATE^MDC||||||R
+PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
+PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
+....
 
 (Acknowledgment messages not shown)
 
@@ -1943,38 +1937,37 @@ Example 3.
 A new monitor with hospital assigned key MON5588 is registered.
 It is located at 3 West ICU, Room 3001, Bed 1.
 
-MSH|{caret}~\&|DeviceMaster||AssocMgr||20160726160000||MFN{caret}M14{caret}MFN_PRT|12d1574|P|2.7|||AL|AL||8859/1|||IHE_PCD_020{caret}IHE PCD{caret}1.3.6.1.4.1.19376.1.6.4.20{caret}ISO
-
+....
+MSH|^~\&|DeviceMaster||AssocMgr||20160726160000||MFN^M14^MFN_PRT|12d1574|P|2.7|||AL|AL||8859/1|||IHE_PCD_020^IHE PCD^1.3.6.1.4.1.19376.1.6.4.20^ISO
 MFI|INV|Device Registrant|UPD|||NE
-
 MFE|MAD|||MON5588|CWE
-
-PRT|1|UC||EQUIP|||||3 WEST ICU{caret}3001{caret}1|MON5588{caret}{caret}231A8456B1CB2366{caret}EUI-64|20160726160000
+PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
+....
 
 Example 4.
 A device controller needs an ongoing feed of all devices connected to patient with identifier . The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data:
 
-MSH|{caret}~\&|||MonitoringGateway||AssocMgr||QSB{caret}Q66{caret}QSB_Q16||P|2.8|
-
-QPD|Q66{caret}Device-Patient Subscription|Q0044|@PID.3.1{caret}AB60001|
-
+....
+MSH|^~\&|||MonitoringGateway||AssocMgr||QSB^Q66^QSB_Q16||P|2.8|
+QPD|Q66^Device-Patient Subscription|Q0044|@PID.3.1^AB60001|
 RCP|I||R|||N|
+....
 
 The Device-Patient Association Manager responds by starting a continuous stream of Device-Patient Association [PCD-17] messages, starting with message(s) giving the current device associations of the patient (which will require the Device-Patient Association Manager to access that information and format it in [PCD-17] form).
 
-MSH|{caret}~\&|MonitoringGateway|||COMWEST||||ORU{caret}R01{caret}ORU_R01|4409|P|2.8|
-
-PID|||4567{caret}{caret}{caret}MPI{caret}MR|....
-
+....
+MSH|^~\&|MonitoringGateway|||COMWEST||||ORU^R01^ORU_R01|4409|P|2.8|
+PID|||4567^^^MPI^MR|....
 OBR|....
-
 OBX|...
+....
 
 To cancel the subscription, the Device-Patient Association Consumer can send the following cancel message:
 
+....
 MSH|
-
-QID|Q0044|Q66{caret}Device-Patient Subscription{caret}HL7005|
+QID|Q0044|Q66^Device-Patient Subscription^HL7005|
+....
 
 [.anchor]##Volume 3 -- Content Modules
 
