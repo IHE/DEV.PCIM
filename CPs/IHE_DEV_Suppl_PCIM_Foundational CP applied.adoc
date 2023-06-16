@@ -600,7 +600,7 @@ After these checks, the consumer returns an appropriate positive or negative com
 If the checks are passed, the Consumer utilizes the record of the beginning or ending of the association and the effective time for the specified patient and device.
 If a commit-level acknowledgement is received by the Manager, it logs the message as delivered successfully to the Consumer.
 
-== 3.19 Query Device-Patient Associations [DEV-19]
+== 3.19 Filter Device-Patient Associations [DEV-19]
 
 === Scope
 
