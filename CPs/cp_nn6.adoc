@@ -293,7 +293,7 @@ The Device-Patient Association Reporter represents a system or person that is as
 [underline]#Proposed Text:#
 
 [.text-left]
-The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. The reporter may update existing associations. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. Each report represents a single device patient association assertion. For each such assertion event, the unique Patient ID, Device ID, and timestamp must be reported. If the report is validated, the report observation status field shall be marked final, otherwise it shall be marked as requiring validation. 
+The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. The reporter may update existing associations. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. Each report represents a single device patient association assertion. If the report is validated, the report observation status field shall be marked final, otherwise it shall be marked as requiring validation. 
 
 |===
 
@@ -959,7 +959,7 @@ Trying to fit these cases with the array of patterns present in Chapter 5 (Queri
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-This message from a Device-Patient Association Consumer requests a response from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are preconfigured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
+This message from a Device-Patient Association Consumer requests a response from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are pre-configured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
 This profile chooses the QSB publish-subscribe paradigm, where the request is for an ongoing real-time feed of changes in associations using special semantics of query parameters described below.
 
 |===
@@ -1206,14 +1206,14 @@ Table A.1.2.5-1: OBR Fields
 | 4
 | CE
 | R
-| Universal Service Identifier – set to 69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC
+| Universal Service Identifier – set to 69136\^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC
 
 | 7
 | TS
 | C
 | Earliest participant involvement
 
-| 7
+| 8
 | TS
 | C
 | Latest participant involvement
