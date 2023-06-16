@@ -959,7 +959,7 @@ Trying to fit these cases with the array of patterns present in Chapter 5 (Queri
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-This message from a Device-Patient Association Consumer requests a response from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are pre-configured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
+This message from a Device-Patient Association Consumer requests a filtered real-time event stream from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are pre-configured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
 This profile chooses the QSB publish-subscribe paradigm, where the request is for an ongoing real-time feed of changes in associations using special semantics of query parameters described below.
 
 |===
@@ -1222,6 +1222,39 @@ Table A.1.2.5-1: OBR Fields
 
 The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. 
 Each report consists of two Participant Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
+
+|===
+
+|*A.1.2.5-2*, _update table to reflect terms assigned for device-patient association and disassociation_
+|===
+
+[.text-left]
+[underline]#Existing Table:#
+[.text-left]
+
+|===
+| *Observation Value* | *Description*
+
+| 0{caret}MDCX_DEV_ASSOCIATE{caret}MDC
+| Device has been associated to a patient.
+
+| 0{caret}MDCX_DEV_DISASSOCIATE{caret}MDC
+| Device has been disassociated from a patient.
+|===
+
+[.text-left]
+[underline]#Proposed Table:#
+[.text-left]
+
+|===
+| *Observation Value* | *Description*
+
+| 198332{caret}MDC_EVT_ASSOCIATION_PATIENT_DEVICE{caret}MDC
+| Device has been associated to a patient.
+
+| 198334{caret}MDC_EVT_DISASSOCIATION_PATIENT_DEVICE{caret}MDC
+| Device has been disassociated from a patient.
+|===
 
 |===
 
@@ -1586,7 +1619,7 @@ Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous phys
 [underline]#Existing Text:#
 [.text-left]
 ....
-|AL||8859/1|||IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.17^ISO
+|AL||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
 ....
 
 
@@ -1594,7 +1627,7 @@ Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous phys
 [underline]#Proposed Text:#
 [.text-left]
 ....
-|AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+|AL||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
 ....
 
 |===
@@ -1628,14 +1661,14 @@ OBR|||15404652|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE ^MDC|||20160726120000|20
 [underline]#Existing Text:#
 [.text-left]
 ....
-||8859/1|||IHE_PCD_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+||8859/1|||IHE_PCD_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
 ....
 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
 ....
-||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
 ....
 
 |===
@@ -1648,14 +1681,14 @@ OBR|||15404652|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE ^MDC|||20160726120000|20
 [underline]#Existing Text:#
 [.text-left]
 ....
-7|||AL|AL||8859/1|||IHE_PCD_017^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.17^ISO
+7|||AL|AL||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
 ....
 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
 ....
-7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
 ....
 
 |===
