@@ -820,6 +820,41 @@ It gives the association message a unique identifier in the Filler Order Number 
 This is a required field: it acts as an association object instance identifier for tracking is used for tracking messages from all sources in the overall configuration of systems, so it must be constrained by some method of generation that assures that duplicate identifiers between sources are not possible.
 It gives the timestamp of the beginning of the association (OBR-7), and when it is known, the end of the association (OBR-8).
 
+Table A.1.2.5-1: OBR Fields
+
+|===
+| *SEQ* | *DT* | *OPT*  | *Description*
+
+| 1
+| SI
+| O
+| Set ID - OBR
+
+| 3
+| EI
+| R
+| Unique instance identifier for the association event. Must be constrained during generation to ensure duplicate identifiers between sources are not possible.
+
+| 4
+| CE
+| R
+| Universal Service Identifier – set to 69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC
+
+| 7
+| TS
+| C
+| Earliest participant involvement
+
+| 7
+| TS
+| C
+| Latest participant involvement
+
+|===
+
+The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. 
+Each report consists of two Participant Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
+
 ==== A.1.2.5 OBX -- Observation (for Patient ID)
 
 This segment conveys the "`observation`" that the patient has been associated to a device.
@@ -1533,59 +1568,42 @@ See Appendix Section A.4 Example Messages, example 4.
 
 == A.4 Example Messages
 
-Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological monitor with ID MON5588.
-At 12:30, she records the association on the Critical Care application.
-As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association.
-This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager.
+Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological monitor with ID MON5588. At 12:30, she records the association on the Critical Care application. As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association. This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager. Note that since Nurse Diesel recorded the association 30 minutes after the association occurred, the timestamps for OBR-7 and OBR-8 capture that range of time in the OBR wrapper segment. Additionally, each PRT segment provides specific time for each participant. For the device equipment, when that association occurred and for the responsible observer Nurse Diesel, when it was recorded.
 
-MSH|{caret}~\&|CritCare||AssocMgr||20160726123002||ORU{caret}R01{caret}ORU_R01|12d15a9|P|2.7|||AL||AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO{caret}ISO
-
-PID|||AB60001{caret}{caret}{caret}A{caret}PI||Spaniel{caret}C{caret}R{caret}{caret}{caret}{caret}L
-
-PV1||E|3 WEST ICU{caret}3001{caret}1
-
-OBR|||15404652
-
-OBX|1|CWE|68487{caret}MDCX_ATTR_EVT_COND{caret}MDC||0{caret}MDCX_DEV_ASSOCIATE{caret}MDC||||||F
-
-PRT|1|UC||EQUIP||||||3 WEST ICU{caret}3001{caret}1|MON5588{caret}{caret}231A8456B1CB2366{caret}EUI-64|20160726120000
-
-PRT|2|UC||RO|58793{caret}Diesel{caret}N||||3 WEST ICU{caret}3001{caret}1||20160726123000
-
+....
+MSH|^~\&|CritCare||AssocMgr||20160726123002||ORU^R01^ORU_R01|12d15a9|P|2.7|||AL||AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO^ISO
+PID|||AB60001^^^A^PI||Spaniel^C^R^^^^L
+PV1||E|3 WEST ICU^3001^1
+OBR|||15404652|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE ^MDC|||20160726120000|20160726123000
+OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||0^MDCX_DEV_ASSOCIATE^MDC||||||F
+PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726120000
+PRT|2|UC||RO|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000
 The Association Manager first responds with the following commit level acknowledgment.
-
-MSH|{caret}~\&|AssocMgr||CritCare||20160726123002||ACK{caret}R01{caret}ACK||P|2.7
-
+MSH|^~\&|AssocMgr||CritCare||20160726123002||ACK^R01^ACK||P|2.7
 MSA|CA|12d15a9
-
 Once the association is fully processed, the Association Manager responds by initiating the following application level acknowledgment
-
-MSH|{caret}~\&|AssocMgr||CritCare||20160726123003||ACK{caret}R01{caret}ACK|AM52E123|P|2.7|||AL|NE||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO{caret}ISO
-
+MSH|^~\&|AssocMgr||CritCare||20160726123003||ACK^R01^ACK|AM52E123|P|2.7|||AL|NE||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO^ISO
 MSA|AA|12d15a9
+....
 
 To which the Association Reporter responds with a commit level acknowledgement, completing the exchange.
 
-MSH|{caret}~\&|CritCare||AssocMgr||20160726123003||ACK{caret}R01{caret}ACK||P|2.7
-
+....
+MSH|^~\&|CritCare||AssocMgr||20160726123003||ACK^R01^ACK||P|2.7
 MSA|CA|AM52E123
+....
 
 Example 2: At 16:00, Nurse Ratched connected patient McMurphy to a continuous physiological monitor with ID MON5596.
 She enters his patient ID on the monitor and presses a button causing the association to be asserted.
-
-MSH|{caret}~\&|MonitorGateway||AssocMgr||20160726160000||ORU{caret}R01{caret}ORU_R01|12d1574|P|2.7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
-
-PID|||AB60001{caret}{caret}{caret}A{caret}PI||McMurphy{caret}R{caret}P{caret}{caret}{caret}{caret}L
-
-PV1||E|3 WEST ICU{caret}3001{caret}1
-
-OBR|||15404697
-
-OBX|1|CWE|68487{caret}MDCX_ATTR_EVT_COND{caret}MDC||0{caret}MDCX_DEV_ASSOCIATE{caret}MDC||||||R
-
-PRT|1|UC||EQUIP||||||3 WEST ICU{caret}3001{caret}1|MON5588{caret}{caret}231A8456B1CB2366{caret}EUI-64|20160726160000
-
-PRT|1|UC||AUT||||||3 WEST ICU{caret}3001{caret}1|MON5588{caret}{caret}231A8456B1CB2366{caret}EUI-64|20160726160000
+....
+MSH|^~\&|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
+PV1||E|3 WEST ICU^3001^1
+OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE ^MDC||20160726160000|20160726160000
+OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||0^MDCX_DEV_ASSOCIATE^MDC||||||R
+PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
+PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
+....
 
 (Acknowledgment messages not shown)
 
@@ -1597,28 +1615,36 @@ This message would be sent from the Critical Care system in the role of Associat
 Example 3.
 A device controller needs an ongoing feed of all devices connected to patient with identifier . The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data:
 
-MSH|{caret}~\&|||MonitoringGateway||AssocMgr||QSB{caret}Q66{caret}QSB_Q16||P|2.8|
-
-QPD|Q66{caret}Device-Patient Subscription|Q0044|@PID.3.1{caret}AB60001|
-
+....
+MSH|^~\&|||MonitoringGateway||AssocMgr||QSB^Q66^QSB_Q16||P|2.8|
+QPD|Q66^Device-Patient Subscription|Q0044|@PID.3.1^AB60001|
 RCP|I||R|||N|
+....
 
 The Device-Patient Association Manager responds by starting a continuous stream of Report Association [DEV-52] messages, starting with message(s) giving the current device
 associations of the patient (which will require the Device-Patient Association Manager to access that information and format it in [DEV-52] form).
-
-MSH|{caret}~\&|MonitoringGateway|||COMWEST||||ORU{caret}R01{caret}ORU_R01|4409|P|2.8|
-
-PID|||4567{caret}{caret}{caret}MPI{caret}MR|....
-
+....
+MSH|^~\&|MonitoringGateway|||COMWEST||||ORU^R01^ORU_R01|4409|P|2.8|
+PID|||4567^^^MPI^MR|....
 OBR|....
-
 OBX|...
+....
 
 To cancel the subscription, the Device-Patient Association Consumer can send the following cancel message:
 
 MSH|
+QID|Q0044|Q66^Device-Patient Subscription^HL7005|
 
-QID|Q0044|Q66{caret}Device-Patient Subscription{caret}HL7005|
+Example 4. At 23:00, Nurse Ratched disconnected patient McMurphy from the physiological monitor previously connected in Example 2. She presses a button and then confirms causing the disassociation to be asserted.
+....
+MSH|^~\&|MonitorGateway||AssocMgr||20160726230000||ORU^R01^ORU_R01|12d1586|P|2.7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51^ISO
+PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
+PV1||E|3 WEST ICU^3001^1
+OBR|||15404712|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726230000|20160726230000
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198334^MDC_EVT_DISASSOCIATION_PATIENT_DEVICE^MDC||||||R
+PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64||20160726230000
+PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI- 64||20160726230000
+....
 
 [.anchor]##Volume 3 -- Content Modules
 
