@@ -8,25 +8,6 @@ PCIM CP List and Status
 |===
 |Description|CP #|Transactions|Status|Author
 
-|PCIM OBR Universal Service Identifier and Begin/End Time Stamps 
-|NN1
-|DEV-51 +
-DEV-52
-|Draft
-|Eldon Metz (emetz@innovisionmedical.com)
-
-|[line-through]#PCIM Single Device Per Association/Disassociation Report Clarification#
-|xref:cp_nn2.adoc[NN2]
-|DEV-51
-|Draft
-|Eldon Metz (emetz@innovisionmedical.com)
-
-|[line-through]#PCIM Deterministic Snapshot and Real-Time Query Results#
-|NN3
-|
-|Draft
-|Eldon Metz (emetz@innovisionmedical.com)
-
 |PCIM Device-Patient Association Manager Error Responses
 |xref:cp_nn4.adoc[NN4]
 |DEV-51 +
