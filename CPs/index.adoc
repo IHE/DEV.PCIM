@@ -13,7 +13,7 @@ PCIM CP List and Status
 |DEV-51 +
 DEV-52 +
 DEV-19
-|In-progress
+|Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |PCIM Device-Patient Association Manager Error Responses
