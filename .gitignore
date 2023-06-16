@@ -9,6 +9,7 @@
 /_gencontinuous.sh
 /_genonce.bat
 /_genonce.sh
+CPs/html
 
 # Ignore Gradle project-specific cache directory
 .gradle
