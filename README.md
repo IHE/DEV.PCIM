@@ -10,13 +10,13 @@ The Point-of-Care Identity Management (PCIM) Profile defines transactions for re
 
 We are currently working on CPs to take the [Point-of-Care Identity Management (PCIM) Revsion 1.1 - Trial implementation](https://www.ihe.net/uploadedFiles/Documents/PCD/IHE_PCD_Suppl_PCIM.pdf) to the next stage.
 
-[CP Work List](https://htmlpreview.github.io/?https://github.com/IHE/DEV.PCIM/blob/master/CPs/html/index.html)
+[CP Work List](https://github.com/IHE/DEV.PCIM/blob/master/CPs/index.adoc)
 
 ## Process
 
 We are using AsciiDoc to author our CP documents and use a GitHub flow process. Create a PR branch and make your changes and then push and assign Eldon Metz and Tom Kowalczyk as approvers for review. 
 
-To generate the HTML format for the docs for viewing, use the gradle wrapper with the asciidoctor task. The output is found in the CPs/html directory.
+To generate the HTML format for the docs, use the gradle wrapper with the asciidoctor task. The output is found in the CPs/html directory in your local workspace, they are not stored in the repository.
 
 ```./gradlew asciidoctor```
 
