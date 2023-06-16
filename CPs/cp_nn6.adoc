@@ -1151,6 +1151,25 @@ Since this message is effectively an unsolicited observation report, the content
 
 |===
 
+|*A.1.2.3 PV1 Patient Visit Information*, _remove sentence describing patient filter option '_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+See transaction [PCD-01] for basic information (PCD TF-2 Appendix B.6).
+In this profile, the PV1 segment is used to convey patient location information in PV1-3 Assigned Patient Location. This is also usable as a query filter to limit responses from the Device-Patient Association Query to matching locations.
+
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+See transaction [PCD-01] for basic information (PCD TF-2 Appendix B.6).
+In this profile, the PV1 segment is used to convey patient location information in PV1-3 Assigned Patient Location.
+
+|===
+
 |*A.1.2.6 PRT*, _clarify PRT segment is NOT used for patient but is used for system or device reporting assertion_
 
 |===
