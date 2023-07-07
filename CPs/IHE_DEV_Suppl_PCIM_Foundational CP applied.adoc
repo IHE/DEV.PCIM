@@ -613,8 +613,8 @@ HL7 2.6 Chapters 2, 3, 5 and 7
 ....
 @startuml
 hide footbox
-participant "Device-Patient Association Consumer" as consumer  
 participant "Device-Patient Association Manager"  as manager
+participant "Device-Patient Association Consumer" as consumer  
 manager -> consumer : Report Association or Disassociation
 consumer -> manager : Commit Level Acknowledgement
 @enduml
