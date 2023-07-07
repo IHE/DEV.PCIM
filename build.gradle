@@ -1,5 +1,6 @@
 plugins {
     id 'org.asciidoctor.jvm.convert' version '3.3.2'
+    id 'org.asciidoctor.jvm.pdf' version '3.3.2'
 }
 
 apply plugin: 'java'
@@ -22,6 +23,15 @@ asciidoctor {
         include 'images/**'
         include 'resources/**'
     }
+  }
+  outputDir file('CPs/output')
+  outputOptions {
+    backends = ['html', 'pdf']
+  }
+  asciidoctorj {
+    modules {
+       diagram.use() 
+       diagram.version '1.5.16' 
+    }
 }
-  outputDir file('CPs/html')
 }

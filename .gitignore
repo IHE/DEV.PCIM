@@ -16,3 +16,4 @@ CPs/html
 
 # Ignore Gradle build output directory
 build
+CPs/output
