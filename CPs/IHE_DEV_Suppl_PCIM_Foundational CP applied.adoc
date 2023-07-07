@@ -47,6 +47,7 @@ Information about the organization of IHE Technical Frameworks and Supplements a
 The current version of the IHE Patient Care Device Domain Technical Framework can be found at http://ihe.net/Technical_Frameworks/.
 
 = Introduction to this Supplement
+1
 
 This supplement to the IHE Patient Care Device Technical Frameworks adds the rationale and implementation details of the Point-of-Care Identity Management Profile to the Framework, providing a means for standards-based exchange between systems of information collected and confirmed at the point-of-care tracking the set of medical devices originating observations about each patient.
 
@@ -100,7 +101,7 @@ Add the following *new* transactions to the IHE Technical Frameworks General Int
 |A Device-Patient Association Consumer sends an optional query to a Device-Patient Association Manager with filter criteria. The Device-Patient Association Manager  sets up a real-time subscription with the specified filter criteria applied. 
 |1.3.6.1.4.1.19376.1.6.1.19.1
 
-|Assert Association State
+|Communicate Association State
 (DEV-51) 
 |A Device-Patient Association Reporter asserts to a Device-Patient Association Manager that a device has been associated or disassociated with a patient and optional location. It may also report updated data for a previously reported assertion.
 |1.3.6.1.4.1.19376.1.6.1.51.1 
@@ -211,7 +212,43 @@ Actors which have a required grouping are shown in conjoined boxes (see Section 
 
 Figure 7.1-1: PCIM Actor Diagram
 
-image::proposed-actor-transaction-diagram.png[]
+[ditaa]
+----
+          +------------------+
+          |      DPAR        |
+          |  Device-Patient  | 
+          |  Association     | 
+          |   Reporter       |           
+          +------------------+           
+                    |                  
+         DEV-51     |   
+      Communicate   |
+      Association   |
+         State      |
+                    |
+                    v                  
+          +------------------+
+          |       DPAM       |
+          |  Device-Patient  |            /------------------------------------\
+          |    Association   |            | (Optional) DPAM also participates  | 
+          |      Manager     |            | in the MEMDMC profile as a MEM     |
+          +------------------+            | DMIC actor to obtain configuration |
+                 |     ^                  | information.                       |
+      DEV-52     |     |     DEV-19       \------------------------------------/
+      Report     |     |     Filter
+    Association  |     |  Associations
+      State      |     |
+                 |     |
+                 v     :
+          +------------------+
+          |       DPAC       |
+          |  Device-Patient  | 
+          |    Association   | 
+          |     Consumer     |           
+          +------------------+      
+----
+
+// image::proposed-actor-transaction-diagram.png[]
 
 Table 7.1-1 lists the transactions for each actor directly involved in the PCIM Profile.
 To claim compliance with this profile, an actor shall support all required transactions (labeled "`R`") and may support the optional transactions (labeled "`O`").
@@ -222,7 +259,7 @@ Table 7.1-1: PCIM Profile - Actors and Transactions
 |Actors|Transactions|Initiator or Responder|Optionality|Reference
 
 |Device-Patient Association Reporter
-|Assert Device-Patient Association or Disassociation
+|Communicate Device-Patient Association or Disassociation
 |I
 |R
 |PCD TF-2 3.51
@@ -459,7 +496,7 @@ None
 
 = Volume 2 -- Transactions
 
-== Assert Device-Patient Association [DEV-51]
+== Communicate Device-Patient Association [DEV-51]
 
 Insert in Section 3 as new Section 3.51
 
@@ -490,12 +527,16 @@ HL7 2.6 Chapters 2, 3, 5 and 7
 === Interaction Diagram
 
 [plantuml, asciidoc-plant-uml-reporter-manager-interaction-diagram, svg]
+....
 @startuml
+hide footbox
 participant "Device-Patient Association Reporter" as reporter  
 participant "Device-Patient Association Manager"  as manager
-reporter -> manager : Device-Patient Association Assertion
-manager -> reporter : Assertion Acknowledgement
+reporter -> manager : Communicate Device-Patient Association
+manager -> reporter : Commit Level Acknowledgement
+manager --> reporter : Application Level Acknowledgement
 @enduml
+....
 
 ==== 3.51.4.1 Device-Patient Association Report
 
@@ -567,6 +608,17 @@ Table 3.52.2-1: Actor Roles
 HL7 2.6 Chapters 2, 3, 5 and 7
 
 === Interaction Diagram
+
+[plantuml, asciidoc-plant-uml-manager-consumer-report-interaction-diagram, svg]
+....
+@startuml
+hide footbox
+participant "Device-Patient Association Consumer" as consumer  
+participant "Device-Patient Association Manager"  as manager
+manager -> consumer : Report Association or Disassociation
+consumer -> manager : Commit Level Acknowledgement
+@enduml
+....
 
 ==== 3.52.4.1 Device-Patient Association Report
 
@@ -645,6 +697,19 @@ HL7 2.6 Chapters 2, 3, 5 and 7
 
 === Interaction Diagram
 
+[plantuml, asciidoc-plant-uml-manager-consumer-filter-interaction-diagram, svg]
+....
+@startuml
+hide footbox
+participant "Device-Patient Association Consumer" as consumer  
+participant "Device-Patient Association Manager"  as manager
+consumer --> manager : Filter Associations Query
+manager --> consumer : Filter Associations Query Acknowledgement
+manager -> consumer : Report Association or Disassociation
+consumer -> manager : Commit Level Acknowledgement
+@enduml
+....
+
 ==== 3.19.4.1 Device-Patient Association Query
 
 This message from a Device-Patient Association Consumer requests a response from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are pre-configured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
@@ -716,12 +781,12 @@ The descriptions of these messages do not repeat all information in the related 
 The base version of HL7 used in IHE PCD Profiles is version 2.6;
 however, this profile uses the semantics of the PRT segment which was not introduced until version 2.7 and not extended with full details of the Unique Device Identifier until version 2.8.2.
 
-== A.1 Assert and Report Device-Patient Association and Disassociation
+== A.1 Communicate Device-Patient Association and Disassociation
 
 As all of the use cases identified in this profile can be considered observations (it was observed
-that device d1 was connected to patient p1 starting at t1 and ending at t2), the ORU message structure is used throughout this profile to manage associations. This description is also applicable to an Assert or Report Device-Patient Disassociation scenario – the only difference between the Association and Disassociation messages is the content of OBX-5. The Message Structure and attendant notes also serve to specify the segment pattern to be expected in Report Association State [DEV-52] messages. The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with – it consists of useful background information and contains details on some fields that are not covered in this profile.
+that device d1 was connected to patient p1 starting at t1 and ending at t2), the ORU message structure is used throughout this profile to manage associations. This description is also applicable to an Communicate Device-Patient Disassociation scenario – the only difference between the Association and Disassociation messages is the content of OBX-5. The Message Structure and attendant notes also serve to specify the segment pattern to be expected in Report Association State [DEV-52] messages. The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with – it consists of useful background information and contains details on some fields that are not covered in this profile.
 
-Assertions and Report messages for DEV-51 and DEV-52 transactions, respectively, use the same structure, with the following differences that pertain to DEV-52:
+Communicate and Report Association messages for DEV-51 and DEV-52 transactions, respectively, use the same structure, with the following differences that pertain to DEV-52:
 
   . A report must always have a OBX-11 status that is not "R" (requires validation)
   . A report may contain an additional participant segment of the responsible observer (human) that validated the association using the Manager HMI 
@@ -764,7 +829,7 @@ Table A.1.1-1: Report Device Patient Association
 |
 |===
 
-MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Assert Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Report Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device. 
+MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Report Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device. 
 
 === A.1.2 Segments
 
