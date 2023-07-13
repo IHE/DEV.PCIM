@@ -729,7 +729,7 @@ This message is triggered at the beginning of an interval when the logical conne
 [underline]#Proposed Text:#
 [.text-left]
 This message is triggered when a logical connection between a device and a 
-particular patient is established or removed, or when an attribute associated with an existing device-patient association has changed. If the event has been verified by a user, the message represents a final or corrected association in the case where an attribute of a finalized association has changed.
+particular patient is established or removed, or when an attribute associated with an existing device-patient association has changed. If the event has been verified by a user, the message represents a final, updated or corrected association or disassociation.
 
 |===
 
@@ -816,9 +816,9 @@ This is an HL7 Version 2 message giving details of the association being reporte
 
 The manager must send this message to all configured Consumer instances.
 
-===== 3.51.4.1.1 Trigger Events
+===== 3.52.4.1.1 Trigger Events
 
-This message is triggered when a final (validated) association or disassociation is received.
+This message is triggered when a validated association or disassociation is received.
 
 The significant content of the message is the following:
 

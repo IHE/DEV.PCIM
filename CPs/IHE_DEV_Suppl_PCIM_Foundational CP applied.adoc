@@ -529,7 +529,7 @@ HL7 2.6 Chapters 2, 3, 5 and 7
 [plantuml, asciidoc-plant-uml-reporter-manager-interaction-diagram, svg]
 ....
 @startuml
-hide footbox
+
 participant "Device-Patient Association Reporter" as reporter  
 participant "Device-Patient Association Manager"  as manager
 reporter -> manager : Communicate Device-Patient Association
@@ -546,7 +546,7 @@ The manager may receive this message from multiple Reporter instances.
 
 ===== 3.51.4.1.1 Trigger Events
 
-This message is triggered when a logical connection between a device and a particular patient is established or removed, or when an attribute associated with an existing device-patient association has changed. If the event has been verified by a user, the message represents a final or corrected association in the case where an attribute of a finalized association has changed. 
+This message is triggered when a logical connection between a device and a particular patient is established or removed, or when an attribute associated with an existing device-patient association has changed. If the event has been verified by a user, the message represents a final, updated or corrected association or disassociation. 
 
 ===== 3.51.4.1.2 Message Semantics
 
@@ -574,7 +574,7 @@ On receipt of the message, the manager system checks for valid syntax and that t
 . the device is a member of the set of registered device instances and has no current conflicting association recorded (e.g., a single-patient device has an active association with a different patient)
 . the patient identity provided corresponds to a known person in an appropriate status (e.g., admitted)
 
-After these checks, the Manager logs the result and returns an appropriate positive or negative acknowledgement to the Reporter. The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken.
+After these checks, the Manager logs the result and returns an appropriate positive or negative acknowledgement to the Reporter. The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken. In this case, a technical alert should be raised using the ACM profile, the details of this are out of scope for this document.
 
 If the checks are passed, the Manager establishes a record of the beginning or ending of the association and the effective time.
 
@@ -626,9 +626,9 @@ This is an HL7 Version 2 message giving details of the association being reporte
 
 The manager must send this message to all configured Consumer instances.
 
-===== 3.51.4.1.1 Trigger Events
+===== 3.52.4.1.1 Trigger Events
 
-This message is triggered when a final (validated) association or disassociation is received.
+This message is triggered when a validated association or disassociation is received.
 
 The significant content of the message is the following:
 
@@ -703,8 +703,8 @@ HL7 2.6 Chapters 2, 3, 5 and 7
 hide footbox
 participant "Device-Patient Association Consumer" as consumer  
 participant "Device-Patient Association Manager"  as manager
-consumer --> manager : Filter Associations Query
-manager --> consumer : Filter Associations Query Acknowledgement
+consumer --> manager : Filter Associations
+manager --> consumer : Filter Associations Acknowledgement
 manager -> consumer : Report Association or Disassociation
 consumer -> manager : Commit Level Acknowledgement
 @enduml
