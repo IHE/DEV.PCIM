@@ -1694,7 +1694,7 @@ PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|2016072616
 
 (Acknowledgment messages not shown)
 
-Since the assertion requires validation, the Association Manager presents an HMI showing the relevant details and a confirmation button to the responsible observer, Nurse Ratched in this case, and she then press a confirmation button to validate the association. The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.
+Since the assertion requires validation, the Association Manager presents an HMI showing the relevant details and a confirmation button to the responsible observer, Nurse Ratched in this case, and she then presses a confirmation button to validate the association. The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.
 
 At 16:45, she confirms the association on the Critical Care application (or the Association Manager, depending on how the systems are integrated).
 This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager.

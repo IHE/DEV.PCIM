@@ -1823,7 +1823,7 @@ The Association Manager may then broadcast this information to subscribers (such
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-Since the assertion requires validation, the Association Manager presents an HMI showing the relevant details and a confirmation button to the responsible observer, Nurse Ratched in this case, and she then press a confirmation button to validate the association. The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.
+Since the assertion requires validation, the Association Manager presents an HMI showing the relevant details and a confirmation button to the responsible observer, Nurse Ratched in this case, and she then presses a confirmation button to validate the association. The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.
 
 |===
 
