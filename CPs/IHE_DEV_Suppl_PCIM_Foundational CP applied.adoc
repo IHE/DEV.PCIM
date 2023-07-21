@@ -79,13 +79,13 @@ Add the following *new* actors to the IHE Technical Frameworks General Introduct
 |A system that asserts a device-patient association or disassociation with the attributes related including location, starting and ending times, and observers involved. The system may be fully automated or require human machine interaction (HMI). Provisions are made so systems may report assertions that are final or those that require additional user validation.
 |1.3.6.1.4.1.19376.1.6.3.22
 
+|Device-Patient Association Manager (DPAM) 
+|A system that receives and manages association assertions and association state and coordinates conflict resolution. The system delivers records that match device-patient association query filters in real-time. The system is required to provide an HMI to allow responsible observers to validate assertions that require it.
+|1.3.6.1.4.1.19376.1.6.3.24
+
 |Device-Patient Association Consumer (DPAC)
 |A system that receives device-patient association records from the manager in real-time. There is an option to dynamically filter the device-patient association records it wishes to receive via a subscription query.
 |1.3.6.1.4.1.19376.1.6.3.23
-
-|Device-Patient Association Manager (DPAM) 
-|A system that receives and manages association assertions and association state and coordinates conflict resolution. The system delivers records that match device-patient association queries in real-time. The system is required to provide an HMI to allow responsible observers to validate assertions that require it.
-|1.3.6.1.4.1.19376.1.6.3.24
 
 |===
 
@@ -736,13 +736,13 @@ The response is a commit-level acknowledgement. If the request is ill-formed (in
 
 ===== 3.19.4.2.1 Trigger Events
 
-This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query request from the Device-Patient Association Consumer. This trigger requests the setting up of a sequence of messages initated by the current association status and then subsequently triggered by a state change in the device-patient associations.
+This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query filter request from the Device-Patient Association Consumer. This trigger initially requests the setting up of a sequence of messages reporting all device-patient associations matching the filter criteria. Once the initial device-patient associations have been sent, subsequent changes in the device-patient association state will trigger additional messages to be sent to the Device-Patient Association Consumer as long as the current subscription is in effect. A subscription remains in effect until it is cancelled or modified by the Device-Patient Association Consumer.  
+
 
 ===== 3.19.4.2.2 Message Semantics
 
-The message is made up of a frame identifying the message, a read-back of the query parameters of the request, and the requested data represented as a set of observations portraying the pertinent device-patient association states.
+The message is made up of a frame identifying the message, a read-back of the query filter parameters of the request, and a commit level acknowledgement.
 
-This response may be part of a sequence of messages sent when device-patient association state transitions happen within the scope of the request from the Device-Patient Association Consumer that initiated.
 For detailed semantics and the construction of the HL7 message structure and segment contents, see Appendix A.2.3.
 
 ===== 3.19.4.2.3 Expected Actions
@@ -817,7 +817,7 @@ Table A.1.1-1: Report Device Patient Association
 | Observation Request
 
 | {
-| _One group for each device being associated with patient identified in the PID_
+| _One group for the device being associated with patient identified in the PID_
 
 | OBX
 | Observation Result
@@ -1026,7 +1026,7 @@ Can only be changed with a corrected association record.
 ==== A.1.2.6 PRT -- Participation (Observation Participation)
 
 This segment conveys information about persons and/or devices and systems that participated in the association, ancillary to the patient and device that are its subjects.
-There will be PRT messages identifying the device, responsible observer and/or reporting system of a device-patient association following an OBX message as described in Section 0.
+There will be PRT segments identifying the device, responsible observer, and/or reporting system of a device-patient association as described in Section 0.
 For example:
 
 * A nurse that established and/or validated an association
@@ -1501,7 +1501,7 @@ Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User
 The QueryTag (QPD.2) is used to identify a query instance and therefore must be unique for each query.
 
 The User Parameters field (QPD.3) is used to specify "`filtering`" values, so that the query response can be limited to, for example, the records matching a particular Assigned Location (by including a PV1.3.1 specification), a particular device (by adding a Participation Device PRT specification) and so on.
-If multiple specifications are given, the responding system "`AND`"s the specifications together, so that for example, a patient identifier and a device identifier specification result in the response only gives associations involving that patient location and device.
+If multiple specifications are given, the responding system "`AND`"s the specifications together, so that for example, a patient location and a device identifier specification result in the response only gives associations involving that patient location and device.
 
 The form of the User Parameters specifications in QPD.3 field uses one or more repetition of the CSC data type (separated by the HL7 repetition separator, by default the tilde character ~), one for each query parameter to be specified, with each repetition using the QSC data type.
 This data type takes the form of a component specifying the field, component, or subcomponent to filter on as @<seg>.<field number>.<component number>.<subcomponent number>, followed by a logical operator component (normally EQ for "`equals`"), and a component giving the value sought for that field.
@@ -1694,17 +1694,17 @@ PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|2016072616
 
 (Acknowledgment messages not shown)
 
-The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.
+Since the assertion requires validation, the Association Manager presents an HMI showing the relevant details and a confirmation button to the responsible observer, Nurse Ratched in this case, and she then presses a confirmation button to validate the association. The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.
 
 At 16:45, she confirms the association on the Critical Care application (or the Association Manager, depending on how the systems are integrated).
 This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager.
 
 Example 3.
-A device controller needs an ongoing feed of all devices connected to patient with identifier . The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data:
+A device controller needs an ongoing feed of all devices connected to a patient in a specific room. The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data in room 10 of the MICU:
 
 ....
 MSH|^~\&|||MonitoringGateway||AssocMgr||QSB^Q66^QSB_Q16||P|2.8|
-QPD|Q66^Device-Patient Subscription|Q0044|@PID.3.1^AB60001|
+QPD|Q66^Device-Patient Subscription|Q0044|@PV1.3.1^EQ^MICU@PV1.3.2^EQ^10|
 RCP|I||R|||N|
 ....
 
