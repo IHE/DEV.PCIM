@@ -1812,6 +1812,23 @@ OBR|||15404652|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE ^MDC|||20160726120000|20
 
 |===
 
+|*A.4 Example Messages*, _update description that shows how the Manager presents the HMI to validate the asserted association in  Example 2 _:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+
+The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+Since the assertion requires validation, the Association Manager presents an HMI showing the relevant details and a confirmation button to the responsible observer, Nurse Ratched in this case, and she then press a confirmation button to validate the association. The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.
+
+|===
+
 |*A.4 Example Messages*, _update manager application level acknowledgement for Example 2 on line 1019 to use the new transaction numbering_:
 
 |=== 
