@@ -1893,7 +1893,7 @@ RCP|I||R|||N|
 [underline]#Proposed Text:#
 [.text-left]
 Example 3.
-A device controller needs an ongoing feed of all devices connected to a patient in a specifc room. The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data in room 10 of the MICU:
+A device controller needs an ongoing feed of all devices connected to a patient in a specific room. The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data in room 10 of the MICU:
 
 ....
 MSH|^~\&|||MonitoringGateway||AssocMgr||QSB^Q66^QSB_Q16||P|2.8|
