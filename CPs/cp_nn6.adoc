@@ -1081,8 +1081,6 @@ This message and the activity of preparing it, is triggered in the Device-Patien
 
 |===
 
-|===
-
 |*3.19.4.2.2 Message Semantics*, _update paragraph on line 610, to reflect that no response will be returned_:
 
 |=== 
@@ -1412,7 +1410,7 @@ For example:
 [.text-left]
 
 This segment conveys information about persons and/or devices and systems that participated in the association, ancillary to the patient and device that are its subjects.
-There will be PRT messages identifying the device, responsible observer, and/or reporting system of a device-patient association following an OBX message as described in Section 0.
+There will be PRT segments identifying the device, responsible observer, and/or reporting system of a device-patient association following an OBX message as described in Section 0.
 For example:
 
 * A nurse that established and/or validated an association
