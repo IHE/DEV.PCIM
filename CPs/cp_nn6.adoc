@@ -1042,7 +1042,30 @@ This message and the activity of preparing it, is triggered in the Device-Patien
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query request from the Device-Patient Association Consumer. This trigger initially requests the setting up of a sequence of messages reporting all device-patient associations matching the filter criteria. Once the initial device-patient associations have been sent, subsequent changes in the device-patient association state will trigger additional messages to be sent to the Device-Patient Association Consumer as long as the current subscription is in effect. A subscription remains in effect until it is cancelled or replaced with a new subscription request by the Device-Patient Association Consumer.  
+This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query filter request from the Device-Patient Association Consumer. This trigger initially requests the setting up of a sequence of messages reporting all device-patient associations matching the filter criteria. Once the initial device-patient associations have been sent, subsequent changes in the device-patient association state will trigger additional messages to be sent to the Device-Patient Association Consumer as long as the current subscription is in effect. A subscription remains in effect until it is cancelled or replaced with a new subscription request by the Device-Patient Association Consumer.  
+
+|===
+
+|===
+
+|*3.19.4.2.2 Message Semantics*, _update paragraph on line 610, to reflect that no response will be returned_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+The message is made up of a frame identifying the message, a read-back of the query parameters of the request, and the requested data represented as a set of observations portraying the pertinent device-patient association states.
+
+This response may be part of a sequence of messages sent when device-patient association state transitions happen within the scope of the request from the Device-Patient Association Consumer that initiated.
+For detailed semantics and the construction of the HL7 message structure and segment contents, see Appendix A.2.3.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+The message is made up of a frame identifying the message, a read-back of the query filter parameters of the request, and a commit level acknolwedgement that a real-time delivery  from the Device-Patient Association Manager with the filtering rules applied will commence to deliver DEV-52 messages that first include the current device patient association state.
+
+For detailed semantics and the construction of the HL7 message structure and segment contents, see Appendix A.2.3.
 
 |===
 
