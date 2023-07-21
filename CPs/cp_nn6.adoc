@@ -1172,6 +1172,84 @@ Communicate and Report Association messages for DEV-51 and DEV-52 transactions, 
 
 |===
 
+|*Table A.1.1-1 Report Deivce Patient Association *, _update to indicate single device per patient association in a single report_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Table:#
+|===
+| *Segments* | *Description*
+
+| MSH
+| Message Header
+
+| [{ SFT }]
+| Software Segment
+
+| [UAC]
+| User Authentication Credential
+
+| PID
+| Patient Identification
+
+| [PV1]
+| Patient Visit Information (for room bed)
+
+| OBR
+| Observation Request
+
+| {
+| _One group for each device being associated with patient identified in the PID_
+
+| OBX
+| Observation Result
+
+| { PRT }
+| Participation -- _One PRT segment for device, one for responsible person_
+
+| }
+|
+|===
+
+[.text-left]
+[underline]#Proposed Table:#
+|===
+| *Segments* | *Description*
+
+| MSH
+| Message Header
+
+| [{ SFT }]
+| Software Segment
+
+| [UAC]
+| User Authentication Credential
+
+| PID
+| Patient Identification
+
+| [PV1]
+| Patient Visit Information (for room bed)
+
+| OBR
+| Observation Request
+
+| {
+| _One group for the device being associated with patient identified in the PID_
+
+| OBX
+| Observation Result
+
+| { PRT }
+| Participation -- _One PRT segment for device, one for responsible person_
+
+| }
+|
+|===
+
+|===
+
 |*A.1.1 Message Structure*, _update paragraph on line 716, to reference new transaction numbering and single device per patient association in a single report_:
 
 |=== 

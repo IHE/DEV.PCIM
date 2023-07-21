@@ -817,7 +817,7 @@ Table A.1.1-1: Report Device Patient Association
 | Observation Request
 
 | {
-| _One group for each device being associated with patient identified in the PID_
+| _One group for the device being associated with patient identified in the PID_
 
 | OBX
 | Observation Result
