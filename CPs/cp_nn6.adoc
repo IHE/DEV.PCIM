@@ -175,8 +175,43 @@ image::original-actor-transaction-diagram.png[]
 
 [.text-left]
 [underline]#Proposed Figure:#
+[ditaa]
+----
+          +------------------+
+          |      DPAR        |
+          |  Device-Patient  | 
+          |  Association     | 
+          |   Reporter       |           
+          +------------------+           
+                    |                  
+         DEV-51     |   
+      Communicate   |
+      Association   |
+         State      |
+                    |
+                    v                  
+          +------------------+
+          |       DPAM       |
+          |  Device-Patient  |            /------------------------------------\
+          |    Association   |            | (Optional) DPAM also participates  | 
+          |      Manager     |            | in the MEMDMC profile as a MEM     |
+          +------------------+            | DMIC actor to obtain configuration |
+                 |     ^                  | information.                       |
+      DEV-52     |     |     DEV-19       \------------------------------------/
+      Report     |     |     Filter
+    Association  |     |  Associations
+      State      |     |
+                 |     |
+                 v     :
+          +------------------+
+          |       DPAC       |
+          |  Device-Patient  | 
+          |    Association   | 
+          |     Consumer     |           
+          +------------------+      
+----
 
-image::proposed-actor-transaction-diagram.png[]
+// image::proposed-actor-transaction-diagram.png[]
 
 |===
 
