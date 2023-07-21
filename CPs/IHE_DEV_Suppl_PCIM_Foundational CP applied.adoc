@@ -1026,7 +1026,7 @@ Can only be changed with a corrected association record.
 ==== A.1.2.6 PRT -- Participation (Observation Participation)
 
 This segment conveys information about persons and/or devices and systems that participated in the association, ancillary to the patient and device that are its subjects.
-There will be PRT messages identifying the device, responsible observer and/or reporting system of a device-patient association following an OBX message as described in Section 0.
+There will be PRT messages identifying the device, responsible observer, and/or reporting system of a device-patient association following an OBX message as described in Section 0.
 For example:
 
 * A nurse that established and/or validated an association
