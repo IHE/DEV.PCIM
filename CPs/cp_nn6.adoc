@@ -1096,7 +1096,7 @@ For detailed semantics and the construction of the HL7 message structure and seg
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-The message is made up of a frame identifying the message, a read-back of the query filter parameters of the request, and a commit level acknolwedgement that a real-time delivery  from the Device-Patient Association Manager with the filtering rules applied will commence to deliver DEV-52 messages that first include the current device patient association state.
+The message is made up of a frame identifying the message, a read-back of the query filter parameters of the request, and a commit level acknowledgement.
 
 For detailed semantics and the construction of the HL7 message structure and segment contents, see Appendix A.2.3.
 
