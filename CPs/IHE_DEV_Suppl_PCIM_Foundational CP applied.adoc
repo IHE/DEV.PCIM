@@ -1700,11 +1700,11 @@ At 16:45, she confirms the association on the Critical Care application (or the 
 This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager.
 
 Example 3.
-A device controller needs an ongoing feed of all devices connected to patient with identifier . The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data:
+A device controller needs an ongoing feed of all devices connected to a patient in a specifc room. The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data in room 10 of the MICU:
 
 ....
 MSH|^~\&|||MonitoringGateway||AssocMgr||QSB^Q66^QSB_Q16||P|2.8|
-QPD|Q66^Device-Patient Subscription|Q0044|@PID.3.1^AB60001|
+QPD|Q66^Device-Patient Subscription|Q0044|@PV1.3.1^EQ^MICU@PV1.3.2^EQ^10|
 RCP|I||R|||N|
 ....
 

@@ -1876,6 +1876,35 @@ OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC||20160726160000|2016
 
 |===
 
+|*A.4 Example Messages*, _update Example 4 (now Example 3) to filter by patient location instead of patient id_:
+
+|=== 
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+Example 3.
+A device controller needs an ongoing feed of all devices connected to patient with identifier . The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data:
+
+....
+MSH|^~\&|||MonitoringGateway||AssocMgr||QSB^Q66^QSB_Q16||P|2.8|
+QPD|Q66^Device-Patient Subscription|Q0044|@PID.3.1^AB60001|
+RCP|I||R|||N|
+....
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+Example 3.
+A device controller needs an ongoing feed of all devices connected to a patient in a specifc room. The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data in room 10 of the MICU:
+
+....
+MSH|^~\&|||MonitoringGateway||AssocMgr||QSB^Q66^QSB_Q16||P|2.8|
+QPD|Q66^Device-Patient Subscription|Q0044|@PV1.3.1^EQ^MICU@PV1.3.2^EQ^10|
+RCP|I||R|||N|
+....
+
+|===
+
 |*A.4 Example Messages*, _update reference for Example 4 on line 1057 to use the new transaction numbering_:
 
 |=== 
