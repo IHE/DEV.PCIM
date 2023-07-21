@@ -736,7 +736,7 @@ The response is a commit-level acknowledgement. If the request is ill-formed (in
 
 ===== 3.19.4.2.1 Trigger Events
 
-This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query filter request from the Device-Patient Association Consumer. This trigger initially requests the setting up of a sequence of messages reporting all device-patient associations matching the filter criteria. Once the initial device-patient associations have been sent, subsequent changes in the device-patient association state will trigger additional messages to be sent to the Device-Patient Association Consumer as long as the current subscription is in effect. A subscription remains in effect until it is cancelled or replaced with a new subscription request by the Device-Patient Association Consumer.  
+This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query filter request from the Device-Patient Association Consumer. This trigger initially requests the setting up of a sequence of messages reporting all device-patient associations matching the filter criteria. Once the initial device-patient associations have been sent, subsequent changes in the device-patient association state will trigger additional messages to be sent to the Device-Patient Association Consumer as long as the current subscription is in effect. A subscription remains in effect until it is cancelled or modified by the Device-Patient Association Consumer.  
 
 
 ===== 3.19.4.2.2 Message Semantics
