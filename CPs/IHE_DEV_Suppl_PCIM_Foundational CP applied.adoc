@@ -624,7 +624,7 @@ consumer -> manager : Commit Level Acknowledgement
 
 This is an HL7 Version 2 message giving details of the association being reported. The message reports an association between one device and one patient.
 
-The manager must send this message to all configured Consumer instances.
+The manager must send this message to all configured Consumer instances when the filter criteria matches.
 
 ===== 3.52.4.1.1 Trigger Events
 
