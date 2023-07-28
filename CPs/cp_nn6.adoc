@@ -1754,6 +1754,25 @@ The Device-Patient Association Consumer must support receiving a continuous real
 
 |===
 
+|*A.2.4, RCP Segment*, _remove unneeded RCP-1_:
+
+|===
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+
+_RCP-4 Execution and Delivery Time is required when RCP-1 contains the value of RCP-1 D (Deferred).
+It specifies when the response is to be returned.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+RCP-4 Execution and Delivery Time is required when RCP-1 contains the value of D (Deferred).
+It specifies when the response is to be returned.
+
+|===
+
 |*A.3 Register Device*, _remove section_:
 
 |===

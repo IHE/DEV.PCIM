@@ -1633,7 +1633,7 @@ Quantity limited requests are not supported, so RCP-2 Quantity Limited Request v
 The supported values of RCP-3 Response Modality is R (Real Time).
 The Device-Patient Association Consumer must support receiving a continuous real-time feed of association events and will receive all existing associations when the connection is first established that meet the desired filter specification to get the starting state. After that initial state is received, association records are sent as they arrive at the Device-Patient Association Manager. The Device-Patient Association Consumer can optionally configure (or reconfigure) filter criteria and even cancel the continuing real-time query dynamically.
 
-RCP-4 Execution and Delivery Time is required when RCP-1 contains the value of RCP-1 D (Deferred).
+RCP-4 Execution and Delivery Time is required when RCP-1 contains the value of D (Deferred).
 It specifies when the response is to be returned.
 
 RCP-5 Modify Indicator specifies whether a new subscription is being requested (value: N), or a modification is being made to an existing subscription (M).
