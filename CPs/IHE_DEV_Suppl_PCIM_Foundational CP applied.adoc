@@ -599,7 +599,7 @@ Table 3.52.2-1: Actor Roles
 |Reports confirmed association events to consumers. The manager must provide a HMI to verify association and disassociation assertions from a reporter if required, and once verified it persists the record and reports it to any consumers configured to receive the events in real-time. The manager should support filtering of messages, and may support dynamic filtering requested by the consumer. The manager must send current associations for all devices that the consumer is configured to receive reports for immediately after a connection is established.
 
 |Device-Patient Association Consumer
-|The receiver of the verified and final association report.  The consumer initially receives current association status followed by updates in real-time on a connection established by the Manager. It may optionally send a filter dynamically in the form a HL7 query or that filter may be pre-configured. When a association report is successfully received, a commit-level accept acknowledgement must be returned the the Manager.
+|The receiver of the verified and final association report. The Consumer may optionally initiate a subscription by sending a message with filtering criteria, if any, to the Manager in the form a HL7 query. The subscription and filter may also be pre-configured in the Manager. The Consumer initially receives current association status followed by updates in real-time on a connection established by the Manager.  When a association report is successfully received, a commit-level accept acknowledgement must be returned to the Manager.
 
 |===
 
@@ -727,8 +727,6 @@ Device-Patient Association Consumer in response to the query: what patients, uni
 ===== 3.19.4.1.3 Expected Actions
 
 The Device-Patient Association Manager is responsible for collecting, formatting and sending the requested information back to the querying Device-Patient Association Consumer according to the filtering specified in the query.
-
-The management of the query and response connection between the Device-Patient Association Consumer and the Device-Patient Association Manager in the case of an ongoing subscription is an implementation detail, but one practical method is for the Device-Patient Association Manager to maintain an open TCP listen port to accepts connections from one or more Device- Patient Association Consumer clients and then to open an individual TCP connection with each requester that persists as long as the client is connected and the query is valid (within its time limits, if any).
 
 ==== 3.19.4.2 Device-Patient Association Query Response
 
