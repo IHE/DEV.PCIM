@@ -1145,7 +1145,7 @@ For detailed semantics and the construction of the HL7 message structure and seg
 
 |=== 
 
-|*A.1 Report Device-Patient Association and Disassociation*, _change title to Communicate Device-Patient Association and Disassociation and update paragraph on line 703, to reference new transaction numbering and to explain the same message is used with minor differences for assertions vs reports_:
+|*A.1 Report Device-Patient Association and Disassociation*, _change title to Communicate Device-Patient Association and update paragraph on line 703, to reference new transaction numbering and to explain the same message is used with minor differences for assertions vs reports_:
 
 |=== 
 
@@ -1260,7 +1260,7 @@ single patient.
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Report Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device.  
+MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Communicate Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device.  
 
 |===
 
@@ -1352,6 +1352,34 @@ Table A.1.2.5-1: OBR Fields
 
 The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. 
 Each report consists of two Participant Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
+
+|===
+
+|*A.1.2.5*, _update title to OBX - Observation and clarify the purpose.
+
+|===
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+
+==== A.1.2.5 OBX -- Observation (for Patient ID)
+
+This segment conveys the "`observation`" that the patient has been associated to a device.
+It includes the time stamp of the association event and the device ID.
+A set of PRT segments accompanies it to convey the identity of the patient, the device, and the responsible observer.
+
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+
+==== A.1.2.5 OBX -- Observation 
+
+This segment conveys the "`observation`" that the patient has been associated or dissassociated to a device.
+It includes the time stamp of the association event and whether the event is a association or disassociation.
+
+A set of PRT segments accompanies it to convey the device, and the responsible observer. The PID segment conveys the patient identfication.
 
 |===
 
