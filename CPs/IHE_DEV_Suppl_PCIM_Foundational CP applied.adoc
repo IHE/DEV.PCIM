@@ -954,7 +954,7 @@ Table A.1.2.5-1: OBX Fields
 | CWE
 | R
 |
-| Observation Identifier -- set to 68487{caret}MDCX_ATTR_EVT_COND{caret}MDC
+| Observation Identifier -- set to 68487{caret}MDC_ATTR_EVT_COND{caret}MDC
 
 | 4
 | ST

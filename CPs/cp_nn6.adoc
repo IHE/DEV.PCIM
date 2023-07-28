@@ -1383,6 +1383,11 @@ A set of PRT segments accompanies it to convey the device, and the responsible o
 
 |===
 
+|*A.1.2.5-2*, _update table field 3 so that MDCX is now MDC_
+|===
+
+|===
+
 |*A.1.2.5-2*, _update table to reflect terms assigned for device-patient association and disassociation_
 |===
 
