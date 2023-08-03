@@ -1044,7 +1044,7 @@ The management of the query and response connection between the Device-Patient A
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-The Device-Patient Association Manager is responsible for collecting, formatting and sending the requested information back to the querying Device-Patient Association Consumer according to the filtering specified in the query.
+The Device-Patient Association Manager is responsible for collecting, formatting and sending the requested information back to the Device-Patient Association Consumer according to the filtering specified in the query.
 
 |=== 
 
