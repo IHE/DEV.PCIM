@@ -599,7 +599,7 @@ Table 3.52.2-1: Actor Roles
 |Reports confirmed association events to consumers. The manager must provide a HMI to verify association and disassociation assertions from a reporter if required, and once verified it persists the record and reports it to any consumers configured to receive the events in real-time. The manager should support filtering of messages, and may support dynamic filtering requested by the consumer. The manager must send current associations for all devices that the consumer is configured to receive reports for immediately after a connection is established.
 
 |Device-Patient Association Consumer
-|The receiver of the verified and final association report.  The consumer initially receives current association status followed by updates in real-time on a connection established by the Manager. It may optionally send a filter dynamically in the form a HL7 query or that filter may be pre-configured. When a association report is successfully received, a commit-level accept acknowledgement must be returned the the Manager.
+|The receiver of the verified and final association report. The Consumer may optionally initiate a subscription by sending a message with filtering criteria, if any, to the Manager in the form a HL7 query. The subscription and filter may also be pre-configured in the Manager. The Consumer initially receives current association status followed by updates in real-time on a connection established by the Manager.  When an association report is successfully received, a commit-level accept acknowledgement must be returned to the Manager.
 
 |===
 
@@ -624,7 +624,7 @@ consumer -> manager : Commit Level Acknowledgement
 
 This is an HL7 Version 2 message giving details of the association being reported. The message reports an association between one device and one patient.
 
-The manager must send this message to all configured Consumer instances.
+The manager must send this message to all configured Consumer instances with matching filter criteria.
 
 ===== 3.52.4.1.1 Trigger Events
 
@@ -669,7 +669,7 @@ This transaction is used by a Device Patient Association Consumer to access filt
 
 As stated previously, the DEV-19 transaction is optional. If the message is accepted by the Device-Patient Association Manager, the accept acknowledgment shall contain the value CA in MSA-1. 
 
-If this message is not supported, MSA-1 shall contain the value CR, ERR-3 (HL7 Error Code) shall contain the value 200 (Unsupported Message Type), and ERR-4 (Severity) shall contain the value E. If the DEV-19 transaction is not supported, and the network connection between the Device-Patient Association Manager and Device-Patient Association Consumer is lost, the Device-Patient Association Manager shall send DEV-52 messages for all current Device-Patient associations to the Device-Patient Association Consumer when network connectivity is restored.
+If this message is not supported, MSA-1 shall contain the value CR, ERR-3 (HL7 Error Code) shall contain the value 200 (Unsupported Message Type), and ERR-4 (Severity) shall contain the value E. If the transaction is not supported, and the network connection between the Device-Patient Association Manager and Device-Patient Association Consumer is lost, the Device-Patient Association Manager shall send DEV-52 messages for all current Device-Patient associations to the Device-Patient Association Consumer when network connectivity is restored. This ensures the Device-Patient Association Consumer hasn’t missed any association events prior to the on-going feed of associations in real-time.
 
 === Actor Roles
 
@@ -726,9 +726,7 @@ Device-Patient Association Consumer in response to the query: what patients, uni
 
 ===== 3.19.4.1.3 Expected Actions
 
-The Device-Patient Association Manager is responsible for collecting, formatting and sending the requested information back to the querying Device-Patient Association Consumer according to the filtering specified in the query.
-
-The management of the query and response connection between the Device-Patient Association Consumer and the Device-Patient Association Manager in the case of an ongoing subscription is an implementation detail, but one practical method is for the Device-Patient Association Manager to maintain an open TCP listen port to accepts connections from one or more Device- Patient Association Consumer clients and then to open an individual TCP connection with each requester that persists as long as the client is connected and the query is valid (within its time limits, if any).
+The Device-Patient Association Manager is responsible for collecting, formatting and sending the requested information back to the Device-Patient Association Consumer according to the filtering specified in the query.
 
 ==== 3.19.4.2 Device-Patient Association Query Response
 
@@ -781,7 +779,7 @@ The descriptions of these messages do not repeat all information in the related 
 The base version of HL7 used in IHE PCD Profiles is version 2.6;
 however, this profile uses the semantics of the PRT segment which was not introduced until version 2.7 and not extended with full details of the Unique Device Identifier until version 2.8.2.
 
-== A.1 Communicate Device-Patient Association and Disassociation
+== A.1 Communicate Device-Patient Association
 
 As all of the use cases identified in this profile can be considered observations (it was observed
 that device d1 was connected to patient p1 starting at t1 and ending at t2), the ORU message structure is used throughout this profile to manage associations. This description is also applicable to an Communicate Device-Patient Disassociation scenario – the only difference between the Association and Disassociation messages is the content of OBX-5. The Message Structure and attendant notes also serve to specify the segment pattern to be expected in Report Association State [DEV-52] messages. The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with – it consists of useful background information and contains details on some fields that are not covered in this profile.
@@ -793,7 +791,7 @@ Communicate and Report Association messages for DEV-51 and DEV-52 transactions, 
 
 === A.1.1 Message Structure
 
-Table A.1.1-1: Report Device Patient Association
+Table A.1.1-1: Communicate Device-Patient Association
 
 |===
 | *Segments* | *Description*
@@ -829,7 +827,7 @@ Table A.1.1-1: Report Device Patient Association
 |
 |===
 
-MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Report Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device. 
+MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Communicate Device-Patient Association. In the context of this specification, the message is constrained to communicating association(s) for a single patient and device. 
 
 === A.1.2 Segments
 
@@ -893,7 +891,7 @@ It gives the association message a unique identifier in the Filler Order Number 
 This is a required field: it acts as an association object instance identifier for tracking is used for tracking messages from all sources in the overall configuration of systems, so it must be constrained by some method of generation that assures that duplicate identifiers between sources are not possible.
 It gives the timestamp of the beginning of the association (OBR-7), and when it is known, the end of the association (OBR-8).
 
-Table A.1.2.5-1: OBR Fields
+Table A.1.2.4-1: OBR Fields
 
 |===
 | *SEQ* | *DT* | *OPT*  | *Description*
@@ -928,11 +926,12 @@ Table A.1.2.5-1: OBR Fields
 The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. 
 Each report consists of two Participant Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
 
-==== A.1.2.5 OBX -- Observation (for Patient ID)
+==== A.1.2.5 OBX -- Observation 
 
-This segment conveys the "`observation`" that the patient has been associated to a device.
-It includes the time stamp of the association event and the device ID.
-A set of PRT segments accompanies it to convey the identity of the patient, the device, and the responsible observer.
+This segment conveys the "`observation`" that the patient has been associated or dissassociated to a device.
+It includes the time stamp of the association event and whether the event is a association or disassociation.
+
+A set of PRT segments accompanies it to convey the device, and the responsible observer. The PID segment conveys the patient identfication.
 
 Table A.1.2.5-1: OBX Fields
 
@@ -955,7 +954,7 @@ Table A.1.2.5-1: OBX Fields
 | CWE
 | R
 |
-| Observation Identifier -- set to 68487{caret}MDCX_ATTR_EVT_COND{caret}MDC
+| Observation Identifier -- set to 68487{caret}MDC_ATTR_EVT_COND{caret}MDC
 
 | 4
 | ST
@@ -1503,7 +1502,7 @@ The QueryTag (QPD.2) is used to identify a query instance and therefore must be 
 The User Parameters field (QPD.3) is used to specify "`filtering`" values, so that the query response can be limited to, for example, the records matching a particular Assigned Location (by including a PV1.3.1 specification), a particular device (by adding a Participation Device PRT specification) and so on.
 If multiple specifications are given, the responding system "`AND`"s the specifications together, so that for example, a patient location and a device identifier specification result in the response only gives associations involving that patient location and device.
 
-The form of the User Parameters specifications in QPD.3 field uses one or more repetition of the CSC data type (separated by the HL7 repetition separator, by default the tilde character ~), one for each query parameter to be specified, with each repetition using the QSC data type.
+The form of the User Parameters specifications in QPD.3 field uses one or more repetition of the QSC data type (separated by the HL7 repetition separator, by default the tilde character ~), one for each query parameter to be specified, with each repetition using the QSC data type.
 This data type takes the form of a component specifying the field, component, or subcomponent to filter on as @<seg>.<field number>.<component number>.<subcomponent number>, followed by a logical operator component (normally EQ for "`equals`"), and a component giving the value sought for that field.
 An example would be:
 
@@ -1634,7 +1633,7 @@ Quantity limited requests are not supported, so RCP-2 Quantity Limited Request v
 The supported values of RCP-3 Response Modality is R (Real Time).
 The Device-Patient Association Consumer must support receiving a continuous real-time feed of association events and will receive all existing associations when the connection is first established that meet the desired filter specification to get the starting state. After that initial state is received, association records are sent as they arrive at the Device-Patient Association Manager. The Device-Patient Association Consumer can optionally configure (or reconfigure) filter criteria and even cancel the continuing real-time query dynamically.
 
-RCP-4 Execution and Delivery Time is required when RCP-1 contains the value of RCP-1 D (Deferred).
+RCP-4 Execution and Delivery Time is required when RCP-1 contains the value of D (Deferred).
 It specifies when the response is to be returned.
 
 RCP-5 Modify Indicator specifies whether a new subscription is being requested (value: N), or a modification is being made to an existing subscription (M).
