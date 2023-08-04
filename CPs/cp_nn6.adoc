@@ -835,7 +835,7 @@ Table 3.52.2-1: Actor Roles
 |Reports confirmed association events to consumers. The manager must provide a HMI to verify association and disassociation assertions from a reporter if required, and once verified it persists the record and reports it to any consumers configured to receive the events in real-time. The manager should support filtering of messages, and may support dynamic filtering requested by the consumer. The manager must send current associations for all devices that the consumer is configured to receive reports for immediately after a connection is established.
 
 |Device-Patient Association Consumer
-|The receiver of the verified and final association report. The Consumer may optionally initiate a subscription by sending a message with filtering criteria, if any, to the Manager in the form a HL7 query. The subscription and filter may also be pre-configured on the Manager. The Consumer initially receives current association status followed by updates in real-time on a connection established by the Manager.  When an association report is successfully received, a commit-level accept acknowledgement must be returned to the Manager.
+|The receiver of the verified and final association report. The Consumer may optionally initiate a subscription by sending a message with filtering criteria, if any, to the Manager in the form of a HL7 query. The subscription and filter may also be pre-configured on the Manager. The Consumer initially receives current association status followed by updates in real-time on a connection established by the Manager.  When an association report is successfully received, a commit-level accept acknowledgement must be returned to the Manager.
 
 |===
 
@@ -1260,7 +1260,7 @@ single patient.
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Communicate Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device.  
+MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Report Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device.  
 
 |===
 
@@ -1450,6 +1450,27 @@ For example:
 * A reporter system sending a non-validated assertion
 * The device itself, if the patient ID is entered directly onto the device
 
+|===
+
+|*A.2.1.6-2*, _remove unfinished sentence referencing UDI that should be included_
+
+|===
+
+[.text-left]
+[underline]#Existing Text:#
+[.text-left]
+If available, it should have as one of its values the "`human readable form`" of the Unique Device Identifier defined by the US FDA, where applicable, but in any case must contain See details in the UDI Final Rule (U.S.
+Food and Drug Administration 2013).
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+*PRT-10 Participation Device (EI)*
+
+PRT-10 should contain some form of identifier sufficient to uniquely identify the device within the scope of the overall system.
+This is a repeating field, so more than one identifier can be given.
+If available, it should have as one of its values the "`human readable form`" of the Unique Device Identifier defined by the US FDA. See details in the UDI Final Rule (U.S.
+Food and Drug Administration 2013).
 
 |===
 
