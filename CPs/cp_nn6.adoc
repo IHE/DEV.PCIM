@@ -1666,16 +1666,14 @@ Table A.2.3-1: Query Profile
 | ORU{caret}R01{caret}ORU_R01
 
 | Query Characteristics
-| Returns device-patient associations as constrained in the input parameters
+| Triggers a realtime subscription with filtering. No results are returned directly.
 
 | Purpose
-| Sends device-patient association records, filtered as defined in input parameters
+| Requests filtering of device-patient association records, as defined in input parameters
 
 | Response Characteristics
-| The response contains [DEV-51] device-patient association reports known to the Device-Patient Association Manager, filtered by the query parameters.
+| The response contains a commit-level ACK.
 
-| Based on Segment Pattern
-| R01 as constrained by transaction [PCD-01] (see details in PCD TF-2 3.10 and with the semantics of transaction [PCD-17] as in this profile.
 |===
 
 Table A.2.3-2: QBP{caret}Z66{caret}QBP{caret}QBP_Z66 Query Grammar - QBP Message Segments
@@ -1704,46 +1702,9 @@ Table A.2.3-2: QBP{caret}Z66{caret}QBP{caret}QBP_Z66 Query Grammar - QBP Message
 | 5.5.6
 |===
 
-For the segment pattern to be expected in the response to this query, see the definition of the ORU{caret}R01 Message Structure in PCD TF-2, which is a specialization of the ORU{caret}R01 Message Structure in HL7 Chapter 7, Section 7.3.1, ORU -- Unsolicited Observation Message (Event R01), as follows:
+A simple commit-level ACK is expected as response to this query, see section B.2 in IHE PCD TF VOL 2.
 
-Table A.2.3-3: Query Response Message Structure
-
-|===
-| *Segments* | *Description*
-
-| MSH
-| Message Header
-
-| [{ SFT }]
-| Software Segment
-
-| [UAC]
-| User Authentication Credential
-
-| PID
-| Patient Identification
-
-| [PV1]
-| Patient Visit Information (for room bed)
-
-| OBR
-| Observation Request
-
-| {
-| _One group for each device being associated with patient identified in the PID_
-
-| OBX
-| Observation Result
-
-| { PRT }
-| Participation -- _One PRT segment for device, one for responsible person_
-
-| }
-|
-|===
-
-Note that this segment pattern, unlike some segment patterns, is not introduced by any “header” type extra segments, but instead is a straight sequenced of repeats of [DEV-52] messages reporting current device-patient association events followed by ongoing real-time updates to device-patient association events, filtered according to optional query parameters. If the connection is lost, the manager must continue to try and establish a new connection to the consumer, always sending the current device-patient association events once the connection is re-established.
-
+The results of a successful query results in the manager sending all [DEV-52] messages reporting current device-patient association events followed by ongoing real-time updates to device-patient association events, all filtered according to optional query parameters. If the connection is lost, the manager must continue to try and establish a new connection to the consumer, always sending the current device-patient association events matching the filter once the connection is re-established.
 |===
 
 |*A.2.3.2-3 Identifiers for field, component, or subcomponent in QPD.3 User Parameters*, _update table to remove retrospective query capability by removing row for FLD PID 3.1 and last two rows for FLD OBR.7 and OBR.8_:
