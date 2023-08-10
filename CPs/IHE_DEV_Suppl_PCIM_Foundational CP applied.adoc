@@ -1319,6 +1319,33 @@ ICCBBA DIs: 2.16.840.1.113883.6.18.1.17 for Blood containers and 2.16.840.1.1138
 
 Example: |00643169001763{caret}{caret}2.51.1.1{caret}ISO|
 
+=== A.1.3 Application ACK Message
+
+Table A.1.3-1: Communicate Device-Patient Association - Application Acknowledgement Message
+
+|===
+| *Segments* | *Description* | *Usage*
+
+| MSH
+| Message Header - Defined in Appendix B.1
+| R
+
+| MSA
+| Message Acknowledgement - Defined in Appendix B.2
+| R
+
+| [{ ERR }]
+| Error - Defined in Appendix B.3.
+| C
+
+| [{ SFT }]
+| Software
+| X
+
+| [{ NTE }]
+| Notes and Comments
+| X
+
 == A.2 Device-Patient Association Query Message
 
 === A.2.1 Scope

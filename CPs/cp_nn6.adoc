@@ -1475,6 +1475,42 @@ For example:
 
 |===
 
+|*A.1.3 Application ACK Message*, _add new section to define the application ack_:
+
+|=== 
+
+=== A.1.3 Application ACK Message
+
+Table A.1.3-1: Communicate Device-Patient Association - Application Acknowledgement Message
+
+|===
+| *Segments* | *Description* | *Usage*
+
+| MSH
+| Message Header - Defined in Appendix B.1
+| R
+
+| MSA
+| Message Acknowledgement - Defined in Appendix B.2
+| R
+
+| [{ ERR }]
+| Error - Defined in Appendix B.3.
+| C
+
+| [{ SFT }]
+| Software
+| X
+
+| [{ NTE }]
+| Notes and Comments
+| X
+
+|===
+
+
+|===
+
 |*A.2.1.6-2*, _remove unfinished sentence referencing UDI that should be included_
 
 |===
