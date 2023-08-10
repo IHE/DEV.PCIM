@@ -1346,6 +1346,8 @@ Table A.1.3-1: Communicate Device-Patient Association - Application Acknowledgem
 | Notes and Comments
 | X
 
+|===
+
 == A.2 Device-Patient Association Query Message
 
 === A.2.1 Scope
