@@ -498,7 +498,7 @@ None
 
 == Communicate Device-Patient Association [DEV-51]
 
-Insert in Section 3 of IHE TF Vol 2 as new Section 3.51
+Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.51
 
 === Scope
 
@@ -580,7 +580,7 @@ If the checks are passed, the Manager establishes a record of the beginning or e
 
 == Report Device-Patient Association [DEV-52]
 
-Insert in Section 3 of IHE TF Vol 2 as new Section 3.52
+Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.52
 
 === Scope
 
@@ -663,7 +663,7 @@ If a commit-level acknowledgement is received by the Manager, it logs the messag
 
 == 3.19 Filter Device-Patient Associations [DEV-19]
 
-Insert in Section 3 of IHE TF Vol 2 as new Section 3.19
+Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.19
 
 === Scope
 
@@ -850,7 +850,7 @@ Table A.1.2.1-1: MSH Fields
 | 16
 | ID
 | R
-| Application Acknowledgement Type – Set to AL, NE or ER. See IHE TF Vol 2 Table 3.3.4.4.1-1 for description of possible values and their meaning.
+| Application Acknowledgement Type – Set to AL, NE or ER. See IHE PCD TF Vol 2 Table 3.3.4.4.1-1 for description of possible values and their meaning.
 
 | 21
 | EI
