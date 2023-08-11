@@ -817,7 +817,7 @@ If the checks are passed, the Manager establishes a record of the beginning or e
 [.text-left]
 == Report Device-Patient Association [DEV-52]
 
-Insert in Section 3 of IHE TF Vol 2 as new Section 3.52
+Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.52
 
 === Scope
 
@@ -890,7 +890,7 @@ If a commit-level acknowledgement is received by the Manager, it logs the messag
 
 |===
 
-|*3.19 Query Device-Patient Associations [PCD-19]*, _rename to_: *Filter Device-Patient Associations [DEV-19]* and add sentence "Insert in Section 3 of IHE TF Vol 2 as new Section 3.19" as top-level description.
+|*3.19 Query Device-Patient Associations [PCD-19]*, _rename to_: *Filter Device-Patient Associations [DEV-19]* and add sentence "Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.19" as top-level description.
 
 |=== 
 
@@ -1146,7 +1146,7 @@ For detailed semantics and the construction of the HL7 message structure and seg
 
 |=== 
 
-|*A.1 Report Device-Patient Association and Disassociation*, _change title to Communicate Device-Patient Association and update paragraph on line 703, to reference new transaction numbering and to explain the same message is used with minor differences for assertions vs reports, also clearly reference IHE TF Vol 2 as to where this is inserted_:
+|*A.1 Report Device-Patient Association and Disassociation*, _change title to Communicate Device-Patient Association and update paragraph on line 703, to reference new transaction numbering and to explain the same message is used with minor differences for assertions vs reports, also clearly reference IHE PCD TF Vol 2 as to where this is inserted_:
 
 |=== 
 
@@ -1293,7 +1293,7 @@ Table A.1.2.1-1: MSH Fields
 | 16
 | ID
 | R
-| Application Acknowledgement Type – Set to AL, NE or ER. See IHE TF Vol 2 Table 3.3.4.4.1-1 for description of possible values and their meaning.
+| Application Acknowledgement Type – Set to AL, NE or ER. See IHE PCD TF Vol 2 Table 3.3.4.4.1-1 for description of possible values and their meaning.
 
 | 21
 | EI
