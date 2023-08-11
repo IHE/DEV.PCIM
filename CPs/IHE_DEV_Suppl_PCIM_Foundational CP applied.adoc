@@ -574,7 +574,7 @@ On receipt of the message, the manager system checks for valid syntax and that t
 . the device is a member of the set of registered device instances and has no current conflicting association recorded (e.g., a single-patient device has an active association with a different patient)
 . the patient identity provided corresponds to a known person in an appropriate status (e.g., admitted)
 
-After these checks, the Manager logs the result and returns an appropriate positive or negative commit-level acknowledgement to the Reporter. An optional application-level acknowledgment may be sent to the Reporter after the association or disassociation is validated at the Manager.  The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken. In this case, a technical alert should be raised using the ACM profile, the details of this are out of scope for this document. 
+After these checks, the Manager logs the result and returns an appropriate positive or negative commit-level acknowledgement to the Reporter. If a positive commit-level acknowledgement is sent, an application-level acknowledgment may be sent to the Reporter after the association or disassociation is validated at the Manager (Additional detail on  application acknowledgement semantics is forthcoming). The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken. In this case, a technical alert should be raised using the ACM profile, the details of this are out of scope for this document. 
 
 If the checks are passed, the Manager establishes a record of the beginning or ending of the association and the effective time.
 
@@ -1319,7 +1319,7 @@ ICCBBA DIs: 2.16.840.1.113883.6.18.1.17 for Blood containers and 2.16.840.1.1138
 
 Example: |00643169001763{caret}{caret}2.51.1.1{caret}ISO|
 
-=== A.1.3 Application ACK Message
+=== A.1.3 Application Acknowledgement Message
 
 Table A.1.3-1: Communicate Device-Patient Association - Application Acknowledgement Message
 
