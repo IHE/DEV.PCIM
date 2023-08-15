@@ -258,33 +258,33 @@ image::original-actor-transaction-diagram.png[]
 |Actors|Transactions|Initiator or Responder|Optionality|Reference
 
 |Device-Patient Association Reporter
-|Communicate Device-Patient Association
+|Communicate Association State
 |I
 |R
 |PCD TF-2 3.51
 
 .2+|Device-Patient Association Consumer
-|Consume Device-Patient Associations
+|Consume Association State
 |R
 |R
 |PCD TF-2: 3.52
-|Query Device-Patient Associations
+|Filter Associations
 |I
 |O
 |PCD TF-2: 3.19
 
-.3+|Device-Patient Manager
-|Consume Device-Patient Association Assertions
+.3+|Device-Patient Association Manager
+|Consume Association State
 |R
 |R
 |PCD TF-2: 3.51
 
-|Report Device-Patient Associations
+|Report Association State
 |I
 |R
 |PCD TF-2: 3.52
 
-|Filter Device-Patient Association Reports Dynamically
+|Filter Associations
 |R
 |O
 |PCD TF-2: 3.19
@@ -417,7 +417,7 @@ Options that may be selected for each actor in this profile, if any, are listed 
 [underline]#Proposed Text:#
 
 [.text-left]
-The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the current active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option. 
+The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the current active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association state events. The Device-Patient Association Manager may support this subscription and filtering option.
 
 [.text-left]
 Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes. 
@@ -468,11 +468,11 @@ Options that may be selected for each actor in this profile, if any, are listed 
 |Actor|Option Name|Reference
 
 |Device-Patient Association Consumer 
-|Filtering Option
+|Subscription and Filtering Option
 |7.2.1
 
 |Device-Patient Association Manager 
-|Filtering Option
+|Subscription and Filtering Option
 |7.2.1
 
 |Device-Patient Association Reporter 
@@ -489,7 +489,7 @@ Options that may be selected for each actor in this profile, if any, are listed 
 
 |===
 
-|*Subscription Option*, _re-number to 7.2.1 and update to reflect query option changes_:
+|*Subscription Option*, _rename to 'Subscription and Filtering Option' and re-number to 7.2.1 and update to reflect query option changes_:
 
 |===
 
@@ -502,7 +502,7 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-The filtering option applies to interactions between Device-Patient Association Manager and Device-Patient Association Consumer and specifies that the communication between manager and consumer is a filtered real-time delivery of changes in device-patient associations. 
+The subscription and filtering option applies to interactions between Device-Patient Association Manager and Device-Patient Association Consumer and specifies that the communication between manager and consumer is a filtered real-time delivery of device-patient association state. 
 [.text-left]
 A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19. 
 
@@ -671,7 +671,7 @@ An actor that supports retrospective queries was considered. For the use cases o
 
 |===
 
-|*3.17 Assert Device-Patient Association [PCD-17]*, _rename to_: *Communicate Device-Patient Association [DEV-51] and all subsequent sections are named 3.51 instead of 3.17*
+|*3.17 Assert Device-Patient Association [PCD-17]*, _rename to_: *Communicate Association State [DEV-51] and all subsequent sections are named 3.51 instead of 3.17*
 
 |=== 
 
@@ -733,7 +733,7 @@ This transaction is used by a Device-Patient Association Reporter to assert that
 
 |===
 
-|*3.17.4.1 Device-Patient Association Report*, _update paragraph on line 469, restricting to one device patient association assertion per message_:
+|*3.17.4.1 Device-Patient Association Report*, _change title to 'Communicate Association State' and update interactaion diagram and paragraph on near line 469, restricting to one device patient association assertion per message_:
 
 |=== 
 
@@ -741,11 +741,33 @@ This transaction is used by a Device-Patient Association Reporter to assert that
 [.text-left]
 [underline]#Existing Text:#
 [.text-left]
+
+=== Interaction Diagram
+
+=== 3.17.4.1 Device-Patient Associatin Report
+
 This is an HL7 Version 2 message giving details of the association being asserted. The message may assert association between more than one device and one patient.
 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
+
+=== Interaction Diagram
+
+[plantuml, asciidoc-plant-uml-reporter-manager-interaction-diagram, svg]
+....
+@startuml
+
+participant "Device-Patient Association Reporter" as reporter  
+participant "Device-Patient Association Manager"  as manager
+reporter -> manager : Communicate Association State
+manager -> reporter : Commit Level Acknowledgement
+manager --> reporter : Application Level Acknowledgement
+@enduml
+....
+
+==== 3.51.4.1 Communicate Association State
+
 This is an HL7 Version 2 message giving details of the association being asserted. The message asserts an association between one device and one patient.
 
 |===
@@ -808,14 +830,14 @@ If the checks are passed, the Manager establishes a record of the beginning or e
 
 |===
 
-|*3.52 Report Device-Patient Association [DEV-52]*, _add new sections for DEV-52_:
+|*3.52 Report Association State [DEV-52]*, _add new sections for DEV-52_:
 
 |===
 
 [.text-left]
 [underline]#Proposed  Text:#
 [.text-left]
-== Report Device-Patient Association [DEV-52]
+== Report Association State [DEV-52]
 
 Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.52
 
@@ -846,7 +868,18 @@ HL7 2.6 Chapters 2, 3, 5 and 7
 
 === Interaction Diagram
 
-==== 3.52.4.1 Device-Patient Association Report
+[plantuml, asciidoc-plant-uml-manager-consumer-report-interaction-diagram, svg]
+....
+@startuml
+hide footbox
+participant "Device-Patient Association Manager"  as manager
+participant "Device-Patient Association Consumer" as consumer  
+manager -> consumer : Report Association State
+consumer -> manager : Commit Level Acknowledgement
+@enduml
+....
+
+==== 3.52.4.1 Report Association State
 
 This is an HL7 Version 2 message giving details of the association being reported. The message reports an association between one device and one patient.
 
@@ -890,7 +923,7 @@ If a commit-level acknowledgement is received by the Manager, it logs the messag
 
 |===
 
-|*3.19 Query Device-Patient Associations [PCD-19]*, _rename to_: *Filter Device-Patient Associations [DEV-19]* and add sentence "Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.19" as top-level description.
+|*3.19 Query Device-Patient Associations [PCD-19]*, _rename to_: *Filter Associations [DEV-19]* and add sentence "Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.19" as top-level description.
 
 |=== 
 
@@ -969,9 +1002,32 @@ If this message is not supported, MSA-1 shall contain the value CR, ERR-3 (HL7 E
 
 |===
 
+|=== 
+
+Insert DEV-19 interaction diagram
+
 |===
 
-|*3.19.4.1 Device-Patient Association Query*, _update paragraph on line 565, to eliminate snapshot and use of device association report [DEV-52] transaction_:
+[.text-left]
+[underline]#Proposed Diagram:#
+[.text-left]
+
+[plantuml, asciidoc-plant-uml-manager-consumer-filter-interaction-diagram, svg]
+....
+@startuml
+hide footbox
+participant "Device-Patient Association Consumer" as consumer  
+participant "Device-Patient Association Manager"  as manager
+consumer --> manager : Filter Associations
+manager --> consumer : Filter Associations Acknowledgement
+manager -> consumer : Report Association or Disassociation
+consumer -> manager : Commit Level Acknowledgement
+@enduml
+....
+
+|===
+
+|*3.19.4.1 Filter Associations*, _update paragraph on line 565, to eliminate snapshot and use of device association report [DEV-52] transaction_:
 
 |=== 
 
@@ -1049,7 +1105,7 @@ The Device-Patient Association Manager is responsible for collecting, formatting
 
 |=== 
 
-|*3.19.4.2 Device-Patient Association Query Response*, _update paragraph on line 604, to indicate the response is simply an Ack_:
+|*3.19.4.2 Filter Associations Response*, _update paragraph on line 604, to indicate the response is simply an Ack_:
 
 |=== 
 
@@ -1146,7 +1202,7 @@ For detailed semantics and the construction of the HL7 message structure and seg
 
 |=== 
 
-|*A.1 Report Device-Patient Association and Disassociation*, _change title to Communicate Device-Patient Association and update paragraph on line 703, to reference new transaction numbering and to explain the same message is used with minor differences for assertions vs reports, also clearly reference IHE PCD TF Vol 2 as to where this is inserted_:
+|*A.1 Communicate and Report Assoication STate*, _change title to Communicate Device-Patient Association and update paragraph on line 703, to reference new transaction numbering and to explain the same message is used with minor differences for assertions vs reports, also clearly reference IHE PCD TF Vol 2 as to where this is inserted_:
 
 |=== 
 
@@ -1546,7 +1602,7 @@ This query allows a system to request a list of the device-patient associations 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
-This optional query allows a system to dynamically configure a filtered subscription for a list of the device-patient associations meeting specified conditions.
+This optional message allows a system to dynamically configure a filtered subscription for a list of the device-patient associations meeting specified conditions.
 
 |===
 
