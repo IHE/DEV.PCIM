@@ -145,7 +145,7 @@ This Change Proposal (CP) proposes changes to implement profile clarifications a
 |===
 |Transaction Name and Number|Definition|Transaction OID
 
-|Query Associations 
+|Filter Associations 
 (DEV-19)
 |A Device-Patient Association Consumer sends an optional query to a Device-Patient Association Manager with filter criteria. The Device-Patient Association Manager  sets up a real-time subscription with the specified filter criteria applied. 
 |1.3.6.1.4.1.19376.1.6.1.19.1
