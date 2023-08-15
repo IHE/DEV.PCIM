@@ -1202,7 +1202,7 @@ For detailed semantics and the construction of the HL7 message structure and seg
 
 |=== 
 
-|*A.1 Communicate and Report Assoication State*, _change title to Communicate Device-Patient Association and update paragraph on line 703, to reference new transaction numbering and to explain the same message is used with minor differences for assertions vs reports, also clearly reference IHE PCD TF Vol 2 as to where this is inserted_:
+|*A.1 Communicate and Report Association State*, _change title to Communicate Device-Patient Association and update paragraph on line 703, to reference new transaction numbering and to explain the same message is used with minor differences for assertions vs reports, also clearly reference IHE PCD TF Vol 2 as to where this is inserted_:
 
 |=== 
 
