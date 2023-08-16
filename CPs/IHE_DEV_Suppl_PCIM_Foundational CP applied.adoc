@@ -96,7 +96,7 @@ Add the following *new* transactions to the IHE Technical Frameworks General Int
 |===
 |Transaction Name and Number|Definition|Transaction OID
 
-|Query Associations 
+|Filter Associations 
 (DEV-19)
 |A Device-Patient Association Consumer sends an optional query to a Device-Patient Association Manager with filter criteria. The Device-Patient Association Manager  sets up a real-time subscription with the specified filter criteria applied. 
 |1.3.6.1.4.1.19376.1.6.1.19.1
@@ -259,33 +259,33 @@ Table 7.1-1: PCIM Profile - Actors and Transactions
 |Actors|Transactions|Initiator or Responder|Optionality|Reference
 
 |Device-Patient Association Reporter
-|Communicate Device-Patient Association or Disassociation
+|Communicate Association State
 |I
 |R
 |PCD TF-2 3.51
 
 .2+|Device-Patient Association Consumer
-|Consume Device-Patient Associations
+|Consume Association State
 |R
 |R
 |PCD TF-2: 3.52
-|Query Device-Patient Associations
+|Filter Associations
 |I
 |O
 |PCD TF-2: 3.19
 
-.3+|Device-Patient Manager
-|Consume Device-Patient Association Assertions
+.3+|Device-Patient Association Manager
+|Consume Association State
 |R
 |R
 |PCD TF-2: 3.51
 
-|Report Device-Patient Associations
+|Report Association State
 |I
 |R
 |PCD TF-2: 3.52
 
-|Filter Device-Patient Association Reports Dynamically
+|Filter Associations
 |R
 |O
 |PCD TF-2: 3.19
@@ -317,7 +317,7 @@ The list of medical devices that can be associated with the patient may be pre-c
 
 == 7.2 PCIM Actor Options
 
-The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the current active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association and disassociation events. The Device-Patient Association Manager may support this filtering option. 
+The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the current active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association state events. The Device-Patient Association Manager may support this subscription and filtering option. 
 
 [.text-left]
 Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes. 
@@ -328,11 +328,11 @@ Table 7.2-1: PCIM -- Actors and Options
 |Actor|Option Name|Reference
 
 |Device-Patient Association Consumer 
-|Filtering Option
+|Subscription and Filtering Option
 |7.2.1
 
 |Device-Patient Association Manager 
-|Filtering Option
+|Subscription and Filtering Option
 |7.2.1
 
 |Device-Patient Association Reporter 
@@ -341,9 +341,9 @@ Table 7.2-1: PCIM -- Actors and Options
 
 |===
 
-=== 7.2.1 Subscription Option
+=== 7.2.1 Subscription and Filtering Option
 
-The filtering option applies to interactions between Device-Patient Association Manager and Device-Patient Association Consumer and specifies that the communication between manager and consumer is a filtered real-time delivery of changes in device-patient associations. 
+The subscription and filtering option applies to interactions between Device-Patient Association Manager and Device-Patient Association Consumer and specifies that the communication between manager and consumer is a filtered real-time delivery of device-patient association state. 
 [.text-left]
 A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19. 
 
@@ -496,7 +496,7 @@ None
 
 = Volume 2 -- Transactions
 
-== Communicate Device-Patient Association [DEV-51]
+== Communicate Association State [DEV-51]
 
 Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.51
 
@@ -532,13 +532,13 @@ HL7 2.6 Chapters 2, 3, 5 and 7
 
 participant "Device-Patient Association Reporter" as reporter  
 participant "Device-Patient Association Manager"  as manager
-reporter -> manager : Communicate Device-Patient Association
+reporter -> manager : Communicate Association State
 manager -> reporter : Commit Level Acknowledgement
 manager --> reporter : Application Level Acknowledgement
 @enduml
 ....
 
-==== 3.51.4.1 Device-Patient Association Report
+==== 3.51.4.1 Communicate Association State
 
 This is an HL7 Version 2 message giving details of the association being asserted. The message asserts an association between one device and one patient.
 
@@ -578,7 +578,7 @@ After these checks, the Manager logs the result and returns an appropriate posit
 
 If the checks are passed, the Manager establishes a record of the beginning or ending of the association and the effective time.
 
-== Report Device-Patient Association [DEV-52]
+== Report Association State [DEV-52]
 
 Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.52
 
@@ -615,12 +615,12 @@ HL7 2.6 Chapters 2, 3, 5 and 7
 hide footbox
 participant "Device-Patient Association Manager"  as manager
 participant "Device-Patient Association Consumer" as consumer  
-manager -> consumer : Report Association or Disassociation
+manager -> consumer : Report Association State
 consumer -> manager : Commit Level Acknowledgement
 @enduml
 ....
 
-==== 3.52.4.1 Device-Patient Association Report
+==== 3.52.4.1 Report Association State
 
 This is an HL7 Version 2 message giving details of the association being reported. The message reports an association between one device and one patient.
 
@@ -661,7 +661,7 @@ After these checks, the consumer returns an appropriate positive or negative com
 If the checks are passed, the Consumer utilizes the record of the beginning or ending of the association and the effective time for the specified patient and device.
 If a commit-level acknowledgement is received by the Manager, it logs the message as delivered successfully to the Consumer.
 
-== 3.19 Filter Device-Patient Associations [DEV-19]
+== 3.19 Filter Associations [DEV-19]
 
 Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.19
 
@@ -712,7 +712,7 @@ consumer -> manager : Commit Level Acknowledgement
 @enduml
 ....
 
-==== 3.19.4.1 Device-Patient Association Query
+==== 3.19.4.1 Filter Associations
 
 This message from a Device-Patient Association Consumer requests a filtered real-time event stream from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are pre-configured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
 This profile chooses the QSB publish-subscribe paradigm, where the request is for an ongoing real-time feed of changes in associations using special semantics of query parameters described below.
@@ -730,7 +730,7 @@ Device-Patient Association Consumer in response to the query: what patients, uni
 
 The Device-Patient Association Manager is responsible for collecting, formatting and sending the requested information back to the Device-Patient Association Consumer according to the filtering specified in the query.
 
-==== 3.19.4.2 Device-Patient Association Query Response
+==== 3.19.4.2 Filter Associations Response
 
 The response is a commit-level acknowledgement. If the request is ill-formed (incorrect syntax or impossible query specification), an indication of the nature of the error should be returned.
 
@@ -781,7 +781,7 @@ The descriptions of these messages do not repeat all information in the related 
 The base version of HL7 used in IHE PCD Profiles is version 2.6;
 however, this profile uses the semantics of the PRT segment which was not introduced until version 2.7 and not extended with full details of the Unique Device Identifier until version 2.8.2.
 
-== A.1 Communicate Device-Patient Association
+== A.1 Communicate and Report Association State
 
 As all of the use cases identified in this profile can be considered observations (it was observed
 that device d1 was connected to patient p1 starting at t1 and ending at t2), the ORU message structure is used throughout this profile to manage associations. This description is also applicable to an Communicate Device-Patient Disassociation scenario – the only difference between the Association and Disassociation messages is the content of OBX-5. The Message Structure and attendant notes also serve to specify the segment pattern to be expected in Report Association State [DEV-52] messages. The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with – it consists of useful background information and contains details on some fields that are not covered in this profile.
@@ -1348,11 +1348,11 @@ Table A.1.3-1: Communicate Device-Patient Association - Application Acknowledgem
 
 |===
 
-== A.2 Device-Patient Association Query Message
+== A.2 Filter Associations Message
 
 === A.2.1 Scope
 
-This optional query allows a system to dynamically configure a filtered subscription for a list of the device-patient associations meeting specified conditions.
+This optional message allows a system to dynamically configure a filtered subscription for a list of the device-patient associations meeting specified conditions.
 
 === A.2.2 Use Case Roles
 
