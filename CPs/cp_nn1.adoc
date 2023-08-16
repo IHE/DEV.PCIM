@@ -1467,7 +1467,7 @@ A set of PRT segments accompanies it to convey the device, and the responsible o
 
 |===
 
-|*A.1.2.5-2*, _update table to reflect terms assigned for device-patient association and disassociation_
+|*A.1.2.5-2*, _update table to reflect terms assigned for device-patient association and disassociation and remove text below discussion potenetial for spot vitals collection alternatives_
 |===
 
 [.text-left]
@@ -1483,6 +1483,11 @@ A set of PRT segments accompanies it to convey the device, and the responsible o
 | 0{caret}MDCX_DEV_DISASSOCIATE{caret}MDC
 | Device has been disassociated from a patient.
 |===
+
+
+A device association can be reported as a point-in-time event, in which case a separate disassociate message is not required to delineate the end of the association.
+Alternatively, the association event message can convey a duration during which the association was in effect.
+The latter is equivalent to an associate/disassociate message pair, and may be preferable for short duration associations (e.g., spot vitals collection).
 
 [.text-left]
 [underline]#Proposed Table:#

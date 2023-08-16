@@ -1014,10 +1014,6 @@ See Table A.1.2.5-3: OBX-11 Values on page <<_Ref388452675,28>>.
 | Device has been disassociated from a patient.
 |===
 
-A device association can be reported as a point-in-time event, in which case a separate disassociate message is not required to delineate the end of the association.
-Alternatively, the association event message can convey a duration during which the association was in effect.
-The latter is equivalent to an associate/disassociate message pair, and may be preferable for short duration associations (e.g., spot vitals collection).
-
 [.anchor]##Table A.1.2.5-3: OBX-11 Values
 
 |===
