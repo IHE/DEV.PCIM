@@ -30,7 +30,7 @@ DEV-52
 |Draft
 |Tom Kowalczyk (Tom.Kowalczyk@BBraunUSA.com)
 
-|DEV-51/52 and OBX-11 semantics (association error resolution scenarios with commit level and application Acknlowledgements) 
+|DEV-51/52 and OBX-11 semantics (association error resolution scenarios with commit level and application Acknowledgements) 
 |xref:cp_nn7.adoc[NN7]
 |DEV-51 +
 DEV-52
