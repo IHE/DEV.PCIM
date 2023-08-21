@@ -9,7 +9,7 @@ PCIM CP List and Status
 |Description|CP #|Transactions|Status|Author
 
 |PCIM Foundational
-|xref:cp_nn1.adoc[NN6]
+|xref:cp_nn1.adoc[NN1]
 |DEV-51 +
 DEV-52 +
 DEV-19
@@ -20,7 +20,7 @@ DEV-19
 |xref:cp_nn4.adoc[NN4]
 |DEV-51 +
 DEV-52
-|Draft
+|Actively merging this CP with CP #1
 |Bill Haralson (William.Haralson@icumed.com)
 
 |Adding an Optional Order ID to PCIM Transactions
@@ -30,24 +30,18 @@ DEV-52
 |Draft
 |Tom Kowalczyk (Tom.Kowalczyk@BBraunUSA.com)
 
-|DEV-51/52 and OBX-11 semantics (association error resolution scenarios) 
+|DEV-51/52 and OBX-11 semantics (association error resolution scenarios with commit level and application Acknowledgements) 
 |xref:cp_nn7.adoc[NN7]
 |DEV-51 +
 DEV-52
 |Assigned
-|Chris Mathes (cmathes@epic.com)
+|Chris Matthes (cmatthes@epic.com)
 
-|DEV-51 and DEV-52 semantics and structure 
+|DEV-51 semantics and structure 
 |xref:cp_nn8.adoc[NN8]
-|DEV-51 +
-DEV-52
+|DEV-51
 |Assigned
 |Ali Nakoulima (ali.nakoulima@oracle.com)
 
-|Commit level and application level acknowledgement requirements
-|NNX
-|
-|TBD
-|TBD
 
 |===
