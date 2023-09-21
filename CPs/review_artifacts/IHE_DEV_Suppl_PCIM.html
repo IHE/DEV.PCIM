@@ -470,7 +470,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_7_2_pcim_actor_options">7.2 PCIM Actor Options</a>
 <ul class="sectlevel2">
-<li><a href="#_7_2_1_subscription_and_filtering_option">7.2.1 Subscription and Filtering Option</a></li>
+<li><a href="#_7_2_1_snapshot_option">7.2.1 Snapshot Option</a></li>
+<li><a href="#_7_2_2_subscription_option">7.2.2 Subscription Option</a></li>
 </ul>
 </li>
 <li><a href="#_7_3_pcim_required_actor_groupings">7.3 PCIM Required Actor Groupings</a></li>
@@ -481,56 +482,48 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#_7_5_pcim_security_considerations">7.5 PCIM Security Considerations</a></li>
-<li><a href="#_7_6_pcim_cross_profile_considerations">7.6 PCIM Cross Profile Considerations</a></li>
-<li><a href="#_7_7_out_of_scope_items">7.7 Out of Scope Items</a></li>
-</ul>
-</li>
-<li><a href="#_volume_2transactions">Volume 2&#8201;&#8212;&#8201;Transactions</a>
-<ul class="sectlevel1">
-<li><a href="#_communicate_association_state_dev_51">Communicate Association State [DEV-51]</a>
+<li><a href="#_7_6_pcim_cross_profile_considerations">7.6 PCIM Cross Profile Considerations</a>
 <ul class="sectlevel2">
-<li><a href="#_scope">Scope</a></li>
 <li><a href="#_actor_roles">Actor Roles</a></li>
 <li><a href="#_referenced_standards">Referenced Standards</a></li>
 <li><a href="#_interaction_diagram">Interaction Diagram</a></li>
-</ul>
-</li>
-<li><a href="#_report_association_state_dev_52">Report Association State [DEV-52]</a>
-<ul class="sectlevel2">
-<li><a href="#_scope_2">Scope</a></li>
 <li><a href="#_actor_roles_2">Actor Roles</a></li>
+<li><a href="#_3_18_3_referenced_standards">3.18.3 Referenced Standards</a></li>
+<li><a href="#_3_18_4_interaction_diagram">3.18.4 Interaction Diagram</a></li>
+<li><a href="#_security_considerations">Security Considerations</a></li>
+<li><a href="#_actor_roles_3">Actor Roles</a></li>
 <li><a href="#_referenced_standards_2">Referenced Standards</a></li>
 <li><a href="#_interaction_diagram_2">Interaction Diagram</a></li>
-</ul>
-</li>
-<li><a href="#_3_19_filter_associations_dev_19">3.19 Filter Associations [DEV-19]</a>
-<ul class="sectlevel2">
-<li><a href="#_scope_3">Scope</a></li>
-<li><a href="#_actor_roles_3">Actor Roles</a></li>
+<li><a href="#_security_considerations_2">Security Considerations</a></li>
+<li><a href="#_actor_roles_4">Actor Roles</a></li>
 <li><a href="#_referenced_standards_3">Referenced Standards</a></li>
 <li><a href="#_interaction_diagram_3">Interaction Diagram</a></li>
-<li><a href="#_security_considerations">Security Considerations</a></li>
+<li><a href="#_security_considerations_3">Security Considerations</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#_volume_2_namespace_additions">Volume 2 Namespace Additions</a></li>
-<li><a href="#_appendices">Appendices</a>
+<li><a href="#_appendix_aproposed_messages">Appendix A&#8201;&#8212;&#8201;Proposed Messages</a>
 <ul class="sectlevel1">
-<li><a href="#_appendix_aproposed_messages">Appendix A&#8201;&#8212;&#8201;Proposed Messages</a></li>
-<li><a href="#_a_1_communicate_and_report_association_state">A.1 Communicate and Report Association State</a>
+<li><a href="#_a_1_report_device_patient_association_and_disassociation">A.1 Report Device-Patient Association and Disassociation</a>
 <ul class="sectlevel2">
 <li><a href="#_a_1_1_message_structure">A.1.1 Message Structure</a></li>
 <li><a href="#_a_1_2_segments">A.1.2 Segments</a></li>
-<li><a href="#_a_1_3_application_acknowledgement_message">A.1.3 Application Acknowledgement Message</a></li>
 </ul>
 </li>
-<li><a href="#_a_2_filter_associations_message">A.2 Filter Associations Message</a>
+<li><a href="#_a_2_device_patient_association_query_message">A.2 Device-Patient Association Query Message</a>
 <ul class="sectlevel2">
 <li><a href="#_a_2_1_scope">A.2.1 Scope</a></li>
 <li><a href="#_a_2_2_use_case_roles">A.2.2 Use Case Roles</a></li>
-<li><a href="#_a_2_3_details_of_device_patient_association_query_message_dev_19">A.2.3 Details of Device-Patient Association Query Message [DEV-19]</a></li>
+<li><a href="#_a_2_3_details_of_device_patient_association_query_message_pcd_19">A.2.3 Details of Device-Patient Association Query Message [PCD-19]</a></li>
 <li><a href="#_a_2_4_rcp_segment">A.2.4 RCP Segment</a></li>
+</ul>
+</li>
+<li><a href="#_a_3_register_device">A.3 Register Device</a>
+<ul class="sectlevel2">
+<li><a href="#_a_3_1_message_structure">A.3.1 Message Structure</a></li>
+<li><a href="#_a_3_2_segments">A.3.2 Segments</a></li>
 </ul>
 </li>
 <li><a href="#_a_4_example_messages">A.4 Example Messages</a></li>
@@ -608,12 +601,7 @@ When entire new sections are added, introduce with editor&#8217;s instructions t
 <h1 id="_introduction_to_this_supplement" class="sect0">Introduction to this Supplement</h1>
 <div class="openblock partintro">
 <div class="content">
-<div class="paragraph">
-<p>1</p>
-</div>
-<div class="paragraph">
-<p>This supplement to the IHE Patient Care Device Technical Frameworks adds the rationale and implementation details of the Point-of-Care Identity Management Profile to the Framework, providing a means for standards-based exchange between systems of information collected and confirmed at the point-of-care tracking the set of medical devices originating observations about each patient.</p>
-</div>
+This supplement to the IHE Patient Care Device Technical Frameworks adds the rationale and implementation details of the Point-of-Care Identity Management Profile to the Framework, providing a means for standards-based exchange between systems of information collected and confirmed at the point of care tracking the set of medical devices originating observations about each patient.
 </div>
 </div>
 <div class="sect1">
@@ -654,32 +642,31 @@ Note that these are <strong>not</strong> appendices to Volume 1.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Actor Name and Acronym</th>
+<th class="tableblock halign-left valign-top">Actor Name</th>
 <th class="tableblock halign-left valign-top">Definition</th>
-<th class="tableblock halign-left valign-top">Actor OID</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter (DPAR)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A system that asserts a device-patient association or disassociation with the attributes related including location, starting and ending times, and observers involved. The system may be fully automated or require human machine interaction (HMI). Provisions are made so systems may report assertions that are final or those that require additional user validation.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.3.22</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A system or person that asserts a device-patient association, disassociation, or attributes related to either such as current state or starting and ending times..</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager (DPAM)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A system that receives and manages association assertions and association state and coordinates conflict resolution. The system delivers records that match device-patient association query filters in real-time. The system is required to provide an HMI to allow responsible observers to validate assertions that require it.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.3.24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A system that records, manages, and serves records of device-patient associations.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer (DPAC)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A system that receives device-patient association records from the manager in real-time. There is an option to dynamically filter the device-patient association records it wishes to receive via a subscription query.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.3.23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A system or person that queries a Device-Patient Association Manager for device-patient association records, either as a snapshot of current associations or as a subscription for ongoing updates.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device Registrant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A system (including the device itself) or person that, when the device is set up for use by a Device-Patient Association Manager, uniquely identifies a device instance that may participate in device-patient associations.</p></td>
 </tr>
 </tbody>
 </table>
@@ -693,35 +680,32 @@ Note that these are <strong>not</strong> appendices to Volume 1.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Transaction Name and Number</th>
 <th class="tableblock halign-left valign-top">Definition</th>
-<th class="tableblock halign-left valign-top">Transaction OID</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Filter Associations
-(DEV-19)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A Device-Patient Association Consumer sends an optional query to a Device-Patient Association Manager with filter criteria. The Device-Patient Association Manager  sets up a real-time subscription with the specified filter criteria applied.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.1.19.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assert Device-Patient Association</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Device-Patient Association Reporter asserts to a Device-Patient Association Manager that a device has been associated with a patient, or updates data concerning a reported assertion.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communicate Association State
-(DEV-51)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A Device-Patient Association Reporter asserts to a Device-Patient Association Manager that a device has been associated or disassociated with a patient and optional location. It may also report updated data for a previously reported assertion.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.1.51.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assert Device-Patient Disassociation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Device-Patient Association Reporter asserts to a Device-Patient Association Manager that the association between a device and a patient has been terminated.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Report Association State
-(DEV-52)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A Device-Patient Association Manager reports to a Device-Patient Association Consumer that a device has been associated or disassociated with a patient with optional location. It may also report an update for an existing association.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.1.52.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query Device-Patient Associations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Device-Patient Association Consumer sends a query to a Device-Patient Association Manager concerning the devices associated with a patient or set of patients currently or at a stated past time.
+The Device-Patient Association Manager responds with the requested information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Register Device</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A Device Registrant sends, updates, or deletes a record of identifying information on a device instance for storage and use by the Device-Patient Association Manager.</p></td>
 </tr>
 </tbody>
 </table>
@@ -793,7 +777,7 @@ For example, a device and an intermediary system may be simultaneously asserting
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Receiving System</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In the context of PCIM, any system which is a consumer of device-patient association or observation messages, such as an electronic medical record system, device gateway, or a device at the point-of-care.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In the context of PCIM, any system which is a consumer of device-patient association or observation messages, such as an electronic medical record system, device gateway, or a device at the point of care.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Record</p></td>
@@ -851,12 +835,12 @@ for example, name, sex, date of birth.</p></td>
 <div class="openblock partintro">
 <div class="content">
 <div class="paragraph">
-<p>The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7<sup>®</sup><sup class="footnote" id="_footnote_1">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> v2 standard messaging for devices and IT systems at a point-of-care to exchange and synchronize information about the identity of specific devices collecting clinical information about a specific patient, to:</p>
+<p>The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7<sup>®</sup><sup class="footnote" id="_footnote_1">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup> v2 standard messaging for devices and IT systems at an acute-care point-of-care to exchange and synchronize information about the identity of specific devices collecting clinical information about a specific patient, to:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Assist in the reliable association of the collected data to the proper patient record, based on first-hand observation and data entry by a person at the point-of-care, specifically designed to avoid wrong attribution of data from before or after the period of actual measurement on the patient.</p>
+<p>Assist in the reliable association of the collected data to the proper patient record, based on first-hand observation and data entry by a person at the point of care, specifically designed to avoid wrong attribution of data from before or after the period of actual measurement on the patient.</p>
 </li>
 <li>
 <p>Assist in maintaining a correct &#8220;census&#8221; of devices that frequently move between patients such as infusion pumps, and mechanical ventilators.</p>
@@ -885,11 +869,6 @@ Actors which have a required grouping are shown in conjoined boxes (see Section 
 <div class="paragraph">
 <p>Figure 7.1-1: PCIM Actor Diagram</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/diag-abcea162ae22a9ac893616bb07e80608.png" alt="diag abcea162ae22a9ac893616bb07e80608" width="840" height="504">
-</div>
-</div>
 <div class="paragraph">
 <p>Table 7.1-1 lists the transactions for each actor directly involved in the PCIM Profile.
 To claim compliance with this profile, an actor shall support all required transactions (labeled &#8220;R&#8221;) and may support the optional transactions (labeled &#8220;O&#8221;).</p>
@@ -917,42 +896,38 @@ To claim compliance with this profile, an actor shall support all required trans
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communicate Association State</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Report Device-Patient Association</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2 3.51</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.17</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Device-Patient Association Consumer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Consume Association State</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Report Device-Patient Disassociation</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.52</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.18</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Filter Associations</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query Device-Patient Associations</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.19</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Device-Patient Association Manager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Consume Association State</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.51</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Report Association State</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device Registrant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Report Registered Device Details</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.52</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Filter Associations</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCD TF-2: 3.20</p></td>
 </tr>
 </tbody>
 </table>
@@ -965,28 +940,37 @@ This section documents any additional requirements on profile&#8217;s actors.</p
 <div class="sect3">
 <h4 id="_7_1_1_1_device_patient_association_reporter">7.1.1.1 Device-Patient Association Reporter</h4>
 <div class="paragraph">
-<p>The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. The reporter may update existing associations. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. Each report represents a single device patient association assertion. If the report is validated, the report observation status field shall be marked final, otherwise it shall be marked as requiring validation.</p>
+<p>The Device-Patient Association Reporter represents a system or person that is asserts that a given device is attached or removed from a specific patient.
+For each such event, the unique Patient ID, Device ID, and timestamp must be reported.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_7_1_1_2_device_patient_association_manager">7.1.1.2 Device-Patient Association Manager</h4>
 <div class="paragraph">
-<p>The Device-Patient Association Manager actor collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as event notifications. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts.</p>
+<p>The Device-Patient Association Manager represents a system that collects and persists information on what devices are or were connected to which patients within a defined scope, such as a clinical unit, at a given time, and can communicate these associations as query responses, event notifications, or both.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_7_1_1_3_device_patient_association_consumer">7.1.1.3 Device-Patient Association Consumer</h4>
 <div class="paragraph">
-<p>The Device-Patient Association Consumer actor receives information on what devices are associated with which patients. The actor initially receives current association status followed by updates in real-time. Common examples are a medical device or critical care system that charts device observations for a patient. The actor receives association updates in real-time.</p>
+<p>The Device-Patient Association Consumer represents a system or person that is has a requirement to receive information on what devices are or were connected to which patients.
+A common example is a critical care system that charts device observations for a patient.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_7_1_1_4_device_registration">7.1.1.4 Device Registration</h4>
+<h4 id="_7_1_1_4_device_registrant">7.1.1.4 Device Registrant</h4>
 <div class="paragraph">
-<p>The IHE MEM DMC profile enables automated contributions to the list of medical devices that can be associated with a patient.</p>
+<p>The Device Registrant represents a system or person that maintains the list of medical devices that can be connected to a patient.
+The list entry for each device typically includes the device type, location (may not apply if the device is mobile), and unique identity.</p>
 </div>
 <div class="paragraph">
-<p>The list of medical devices that can be associated with the patient may be pre-configured or automated with MEM DMC. Device registration may also be manually accomplished during system setup and maintenance. Examples of information available from MEM DMC are the device model, manufacturer, serial number, and network end point (ip address, port).</p>
+<p>The Device Registrant announces when a device is placed in or taken out of service, is relocated, and other events as required.</p>
+</div>
+<div class="paragraph">
+<p>Where this is a person, it is most likely hospital staff that is interacting directly with the Device-Patient Association Manager through its user interface.</p>
+</div>
+<div class="paragraph">
+<p>Where it is a system, it may be a comprehensive device inventory system, a &#8220;gateway&#8221; system, or even the device itself.</p>
 </div>
 </div>
 </div>
@@ -996,10 +980,14 @@ This section documents any additional requirements on profile&#8217;s actors.</p
 <h2 id="_7_2_pcim_actor_options">7.2 PCIM Actor Options</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Device-Patient Association Manager may optionally filter events sent to the Device-Patient Association Consumer. The filter request to the Manager results in an immediate delivery from the manager of the current active associations via DEV-52 messages based on the filter criteria. The Consumer then receives an unsolicited continuous stream of association state events. The Device-Patient Association Manager may support this subscription and filtering option.</p>
+<p>The Device-Patient Association Consumer has two options available for receiving data from the Device-Patient Association Manager.
+The first option is to query the Manager for a snapshot of current associations, either by sending a patient identifier and receiving back the associated device(s) or by sending a device identifier and receiving back the associated patient.
+The second option is to receive an unsolicited continuous stream of association and disassociation events from the Manager as they occur.
+The Device-Patient Association Manager should support sending data via both methods, and the Device-Patient Association Consumer may support one or both methods.</p>
 </div>
-<div class="paragraph text-left">
-<p>Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1. Dependencies between options, when applicable, are specified in notes.</p>
+<div class="paragraph">
+<p>Options that may be selected for each actor in this profile, if any, are listed in the Table 7.2-1.
+Dependencies between options, when applicable, are specified in notes.</p>
 </div>
 <div class="paragraph">
 <p>Table 7.2-1: PCIM&#8201;&#8212;&#8201;Actors and Options</p>
@@ -1020,27 +1008,51 @@ This section documents any additional requirements on profile&#8217;s actors.</p
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Subscription and Filtering Option</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Snapshot Option</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.2.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subscription Option</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.2.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Snapshot Option</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">7.2.1</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Subscription and Filtering Option</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7.2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subscription Option</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.2.2</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No options defined</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device Registrant</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No options defined</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
 <div class="sect2">
-<h3 id="_7_2_1_subscription_and_filtering_option">7.2.1 Subscription and Filtering Option</h3>
+<h3 id="_7_2_1_snapshot_option">7.2.1 Snapshot Option</h3>
 <div class="paragraph">
-<p>The subscription and filtering option applies to interactions between Device-Patient Association Manager and Device-Patient Association Consumer and specifies that the communication between manager and consumer is a filtered real-time delivery of device-patient association state.</p>
+<p>The snapshot option applies to query and response interactions between Device-Patient Association Consumer and Device-Patient Association Manager and specifies that the query response desired is a one-time transmission of current state of device-patient associations.</p>
 </div>
-<div class="paragraph text-left">
+<div class="paragraph">
+<p>A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_7_2_2_subscription_option">7.2.2 Subscription Option</h3>
+<div class="paragraph">
+<p>The snapshot option applies to query and response interactions between Device-Patient Association Consumer and Device-Patient Association Manager and specifies that the query response desired is a continuing subscription to changes in device-patient associations.</p>
+</div>
+<div class="paragraph">
 <p>A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19.</p>
 </div>
 </div>
@@ -1074,13 +1086,27 @@ For example, selection of the patient and the devices could be accomplished on a
 <h3 id="_7_4_2_use_cases">7.4.2 Use Cases</h3>
 <div class="sect3">
 <h4 id="_7_4_2_1_use_case_1_associating_device_with_patient">7.4.2.1 Use Case #1: Associating Device with Patient</h4>
-<div class="sect4">
-<h5 id="_7_4_2_1_1_description">7.4.2.1.1 Description</h5>
 <div class="paragraph">
 <p>A Device-Patient Association Reporter asserts a device-patient association to a Device-Patient Association Manager.</p>
 </div>
+<div class="sect4">
+<h5 id="_7_4_2_1_1_use_case_1_associating_device_with_patient_process_flow">7.4.2.1.1 Use Case #1 Associating Device with Patient: Process Flow</h5>
 <div class="paragraph">
-<p>An authorized person at the point-of-care and able to see the patient and the devices has gathered and checked the unique identifying information for a patient and one or more devices that are designated to originate observations on that patient.
+<p>This use case can be driven by an authorized user responsible for entering, verifying, or both, the beginning and ending of an association between a device and a particular patient.
+The should be based on first person awareness of the situation at the point of care.
+Automatic Identification and Data Capture methods such as barcodes or RFID should be used to assist the workflow and increase data reliability to the maximum feasible extent.
+In certain circumstances and with appropriate risk analysis, the association may be automatically generated.
+For example, a device with its own &#8220;admission&#8221; process, the act of manipulating the user interface at the point of care to &#8220;admit&#8221; a patient to the device may be deemed a patient-safe way of generating validated information of this device-patient association.
+For another example, a device with a fixed location and a known patient associated with the location may be appropriate to originate a device-patient association.</p>
+</div>
+<div class="paragraph">
+<p>These means of identification are specific to the clinical environment in question, and standard procedures of risk analysis at the institution should be applied to assure that patient safety is adequately protected.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_7_4_2_1_2_use_case_description">7.4.2.1.2 Use Case Description</h5>
+<div class="paragraph">
+<p>An authorized person at the point of care and able to see the patient and the devices has gathered and checked the unique identifying information for a patient and one or more devices that are designated to originate observations on that patient.
 Before being sent, the information is displayed to the operator for verification.
 Once verified, a message is originated by the Association with the following information:</p>
 </div>
@@ -1103,34 +1129,18 @@ In the case where only a single set of observation from the device is expected, 
 </div>
 </div>
 <div class="sect4">
-<h5 id="_7_4_2_1_2_process_flow">7.4.2.1.2 Process Flow</h5>
-<div class="paragraph">
-<p>This use case can be driven by an authorized user responsible for entering, verifying, or both, the
-beginning or ending of an association between a device and a particular patient. This should be
-based on first person awareness of the situation at the point-of-care. Automatic Identification and
-Data Capture methods such as barcodes or RFID should be used to assist the workflow and
-increase data reliability to the maximum feasible extent.
-In certain circumstances and with appropriate risk analysis, the association may be automatically generated.
-For example, a device with its own &#8220;admission&#8221; process, the act of manipulating the user interface at the point-of-care to &#8220;admit&#8221; a patient to the device may be deemed a patient-safe way of generating validated information of this device-patient association.
-For another example, a device with a fixed location and a known patient associated with the location may be appropriate to originate a device-patient association.</p>
-</div>
-<div class="paragraph">
-<p>These means of identification are specific to the clinical environment in question, and standard procedures of risk analysis at the institution should be applied to assure that patient safety is adequately protected.</p>
-</div>
-</div>
-<div class="sect4">
 <h5 id="_7_4_2_1_3_pre_conditions">7.4.2.1.3 Pre-conditions:</h5>
 <div class="paragraph">
 <p>Patient is to be associated with a device for clinical observations.
-Patient has been assigned unique identifier at registration which has been collected and verified at the point-of-care.
-Device identity has been registered for use.
+Patient has been assigned unique identifier at registration which has been collected and verified at the point of care.
+Device identify has been registered for use.
 The identities of patient and device(s) have been collected and verified by an authorized person.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_7_4_2_1_4_main_flow">7.4.2.1.4 Main Flow:</h5>
 <div class="paragraph">
-<p>Device-Patient Association Reporter originates a message with the specific information on the association and its time of beginning.
+<p>Device-Patient Association reporter originates a message with the specific information on the association and its time of beginning.
 When such an association message is received, the manager system is responsible for determining if any conflicting information is in the system and generating an appropriate error message to assist the responsible personnel in resolving the conflict.</p>
 </div>
 </div>
@@ -1147,7 +1157,7 @@ When such an association message is received, the manager system is responsible 
 <h5 id="_7_4_2_2_1_description">7.4.2.2.1 Description</h5>
 <div class="paragraph">
 <p>At the time the device is no longer set up to make observations on the patient, the Device-Patient Association Reporter originates a message conveying this information to the Device-Patient Association Manager.
-It should be noted that even though this may be a less salient event at the point-of-care, completeness and accuracy of disassociation is as important to an accurate record and proper association of observations with patients.
+It should be noted that even though this may be a less salient event at the point of care, completeness and accuracy of disassociation is as important to an accurate record and proper association of observations with patients.
 This is a key issue in risk analysis and in system design.</p>
 </div>
 </div>
@@ -1161,62 +1171,56 @@ It may be appropriate to note this event on a user interface and get confirmatio
 It also could be appropriate to ask whether other devices on record as being connected to the same patient are still connected or not.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_7_4_2_2_3_pre_conditions">7.4.2.2.3 Pre-conditions:</h5>
-<div class="paragraph">
-<p>Patient is to be disassociated with a device.
-Patient has been assigned unique identifier at registration which has been collected and verified at the point-of-care.
-Device identity has been registered for use.
-The identities of patient and device(s) have been collected and verified by an authorized person.
-The patient has already been associated with a device.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_7_4_2_2_4_main_flow">7.4.2.2.4 Main Flow:</h5>
-<div class="paragraph">
-<p>Device-Patient Association Reporter originates a message with the specific information on the disassociation and its time of ending.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_7_4_2_2_5_post_conditions">7.4.2.2.5 Post-conditions:</h5>
-<div class="paragraph">
-<p>After completion of this use case, a record identifying the patient and the associated device and giving the end time of the association correlated with the starting time is persisted by the Device-Patient Association Manager.</p>
-</div>
-</div>
 </div>
 <div class="sect3">
-<h4 id="_7_4_2_3_use_case_3_filter_devices_for_a_patient">7.4.2.3 Use Case #3 Filter Devices for a Patient</h4>
+<h4 id="_7_4_2_3_use_case_3_query_for_the_devices_for_a_patient">7.4.2.3 Use Case #3 Query for the Devices for a Patient</h4>
 <div class="sect4">
 <h5 id="_7_4_2_3_1_description">7.4.2.3.1 Description</h5>
 <div class="paragraph">
-<p>A Device-Patient Association Manager may filter association messages to a Device-Patient Association Consumer for current and ongoing device patient associations. Retrospective queries are currently out of scope.</p>
+<p>A Device-Patient Association Consumer may query a Device-Patient Association Manager for a list of devices associated with a particular patient at present, or at a designated time in the past, or more generally for a snapshot of the Device-Patient Association map.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_7_4_2_3_2_process_flow">7.4.2.3.2 Process Flow</h5>
 <div class="paragraph">
-<p>For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the current association records for each patient it is configured to receive.</p>
+<p>For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager can respond to a targeted query by sending a query response message.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_7_4_2_4_use_case_4_query_the_associated_patient_for_a_device">7.4.2.4 Use Case #4 Query the Associated Patient for a Device</h4>
+<div class="sect4">
+<h5 id="_7_4_2_4_1_description">7.4.2.4.1 Description</h5>
+<div class="paragraph">
+<p>A device (or another system) may require the identity of the patient it is connected to, for display or other purposes, but not have this information available to it, so the profile provides for a Device-Patient Association Consumer to query the Device-Patient Association Manager for this information.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_7_4_2_3_3_pre_conditions">7.4.2.3.3 Pre-conditions:</h5>
+<h5 id="_7_4_2_4_2_process_flow">7.4.2.4.2 Process Flow</h5>
 <div class="paragraph">
-<p>Patient has been assigned unique identifier at registration which has been collected and verified at the point-of-care.
-Device identity has been registered for use.
-The identities of patient and device(s) are known to the system or person performing the filtering.</p>
+<p>The identity of the patient associated with a device (or the lack of an associated patient identity) may be queried for.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_7_4_2_5_use_case_5_device_registrant_registers_a_device_with_the_device_patient_association_manager">7.4.2.5 Use Case #5 Device Registrant Registers a Device with the Device-Patient Association Manager</h4>
+<div class="sect4">
+<h5 id="_7_4_2_5_1_description">7.4.2.5.1 Description</h5>
+<div class="paragraph">
+<p>Identification and supporting information about a device may be registered with the Manager.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_7_4_2_3_4_main_flow">7.4.2.3.4 Main Flow:</h5>
+<h5 id="_7_4_2_5_2_process_flow">7.4.2.5.2 Process Flow</h5>
 <div class="paragraph">
-<p>A Device-Patient Association Consumer originates a message to the Device-Patient Association Manager with the specific filter information for the devices to receive filtered association reports for.</p>
+<p>Before a device can participate in a Device-Patient Association, its identity and basic attributes such a device type, manufacturer and model, and additional identity information such as its regulatory Unique Device Identifier are provided by the Device Registrant to the Device-Patient Association Manager to be persisted and used in the other transactions in this use case.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_7_4_2_3_5_post_conditions">7.4.2.3.5 Post-conditions:</h5>
+</div>
+<div class="sect3">
+<h4 id="_7_4_2_6_use_case_6_query_the_device_registrant_for_a_list_of_candidate_devices_for_an_association">7.4.2.6 Use Case #6 Query the Device Registrant for a list of candidate devices for an association</h4>
 <div class="paragraph">
-<p>After completion of this use case, if the manager supports the filtering option, a subscription filter for the requested devices and the requesting consumer is persisted and any matching association reports are sent by the Device-Patient Association Manager to the Device-Patient Association Consumer. If the manager does not support the filtering option, an appropriate error code is sent to the consumer when the filter request message is received.</p>
-</div>
+<p>A Device Registrant in the present might be used by Device-Patient Association Reporter to allow presentation of a pick list of candidate devices to be paired with a patient</p>
 </div>
 </div>
 </div>
@@ -1257,14 +1261,6 @@ As patient demographics and ADT information (e.g., patient location) are often i
 <div class="paragraph">
 <p>A Patient Demographic Consumer in IT Infrastructure might be used by a Device-Patient Association Reporter to allow presentation of a pick list of candidate patients to associate with one or more devices at the point-of-care.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_7_7_out_of_scope_items">7.7 Out of Scope Items</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>An actor that supports retrospective queries was considered. For the use cases outlined, it was noted that they require accurate up-to-date patient identification for transferring patient information with observations and alarms. Retrospective queries, although useful, were considered functionality deemed secondary and for further consideration in the future.</p>
-</div>
 <div class="paragraph">
 <p>Appendices</p>
 </div>
@@ -1274,20 +1270,29 @@ As patient demographics and ADT information (e.g., patient location) are often i
 <div class="paragraph">
 <p>[.anchor]##</p>
 </div>
-</div>
-</div>
-<h1 id="_volume_2transactions" class="sect0">Volume 2&#8201;&#8212;&#8201;Transactions</h1>
-<div class="sect1">
-<h2 id="_communicate_association_state_dev_51">Communicate Association State [DEV-51]</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.51</p>
+<p>Volume 2&#8201;&#8212;&#8201;Transactions</p>
 </div>
-<div class="sect2">
-<h3 id="_scope">Scope</h3>
 <div class="paragraph">
-<p>This transaction is used by a Device-Patient Association Reporter to assert that an association has been established or broken between a device and a patient, or to update information reported previously by that reporter.</p>
+<p>Insert in Section 3 as new Section 3.17</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p></p>
+<div class="paragraph">
+<p>== Assert Device-Patient Association [PCD-17]
+ .. </p>
+</div>
+<div class="paragraph">
+<p>+
+=== Scope</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This transaction is used to by a Device-Patient Association Reporter to assert that an association has been established between a device and a patient, or to update information reported previously by that reporter.</p>
 </div>
 <div class="sect2">
 <h3 id="_actor_roles">Actor Roles</h3>
@@ -1295,7 +1300,7 @@ As patient demographics and ADT information (e.g., patient location) are often i
 <p>The roles in this transaction are defined in the following table and may be played by the actors listed:</p>
 </div>
 <div class="paragraph">
-<p>Table 3.51.2-1: Actor Roles</p>
+<p>Table 3.17.2-1: Actor Roles</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1304,18 +1309,23 @@ As patient demographics and ADT information (e.g., patient location) are often i
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Actor</th>
-<th class="tableblock halign-left valign-top">Role</th>
+<th class="tableblock halign-left valign-top"><strong>Actor:</strong></th>
+<th class="tableblock halign-left valign-top">Device-Patient Association Reporter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The source of the assertion. Identifies the device, the patient, the responsible observer or automated system that is triggering the assertion for the association or disassociation, and the effective time. If the responsible observer verifies at the reporter, the manager does not need to verify. The reporter must record the responsible observer when verification occurs. The reporter must include in the observation the status field that indicates whether the assertion requires validation or is final (already verified).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Role:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reporter&#8201;&#8212;&#8201;the source of the assertion.
+Identifies the device, the patient, the authority for the association, and the effective time.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Actor:</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Establishes or updates the persistent record of the association. The manager must provide a HMI to verify association and disassociation assertions. The manager is also responsible for conflict resolution with the HMI and sending corresponding HL7 ACK error codes at commit or application levels. Note that the HMI need not be constrained to running on the same device as the manager. For example, the HMI may be in the form of a mobile app.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Role:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manager&#8201;&#8212;&#8201;establishes a persistent record of the association.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1328,27 +1338,23 @@ As patient demographics and ADT information (e.g., patient location) are often i
 </div>
 <div class="sect2">
 <h3 id="_interaction_diagram">Interaction Diagram</h3>
-<div class="imageblock">
-<div class="content">
-<img src="images/asciidoc-plant-uml-reporter-manager-interaction-diagram.svg" alt="asciidoc plant uml reporter manager interaction diagram" width="553" height="186">
-</div>
-</div>
 <div class="sect3">
-<h4 id="_3_51_4_1_communicate_association_state">3.51.4.1 Communicate Association State</h4>
+<h4 id="_3_17_4_1_device_patient_association_report">3.17.4.1 Device-Patient Association Report</h4>
 <div class="paragraph">
-<p>This is an HL7 Version 2 message giving details of the association being asserted. The message asserts an association between one device and one patient.</p>
+<p>This is an HL7 Version 2 message giving details of the association being asserted.
+The message may assert association between more than one device and one patient.</p>
 </div>
 <div class="paragraph">
 <p>The manager may receive this message from multiple Reporter instances.</p>
 </div>
 <div class="sect4">
-<h5 id="_3_51_4_1_1_trigger_events">3.51.4.1.1 Trigger Events</h5>
+<h5 id="_3_17_4_1_1_trigger_events">3.17.4.1.1 Trigger Events</h5>
 <div class="paragraph">
-<p>This message is triggered when a logical connection between a device and a particular patient is established or removed, or when an attribute associated with an existing device-patient association has changed. If the event has been verified by a user, the message represents a final, updated or corrected association or disassociation.</p>
+<p>This message is triggered at the beginning of an interval when the logical connection between a device and the data it originates and a particular patient is established, after that connection has been verified by a human user able to check its validity at the point of care.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_3_51_4_1_2_message_semantics">3.51.4.1.2 Message Semantics</h5>
+<h5 id="_3_17_4_1_2_message_semantics">3.17.4.1.2 Message Semantics</h5>
 <div class="paragraph">
 <p>The significant content of the message is the following:</p>
 </div>
@@ -1384,7 +1390,7 @@ See Appendix 0 for details of HL7 V2 messages.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>originating reporter system and human user are included</p>
+<p>originating Reporter system and human user are authorized for their roles</p>
 </li>
 <li>
 <p>the device is a member of the set of registered device instances and has no current conflicting association recorded (e.g., a single-patient device has an active association with a different patient)</p>
@@ -1395,54 +1401,37 @@ See Appendix 0 for details of HL7 V2 messages.</p>
 </ol>
 </div>
 <div class="paragraph">
-<p>After these checks, the Manager logs the result and returns an appropriate positive or negative commit-level acknowledgement to the Reporter. If a positive commit-level acknowledgement is sent, an application-level acknowledgment may be sent to the Reporter after the association or disassociation is processed by the Manager (Additional detail on  application acknowledgement semantics is forthcoming). The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken. In this case, a technical alert should be raised using the ACM profile, the details of this are out of scope for this document.</p>
+<p>After these checks, the Manager logs the result and returns an appropriate positive or negative acknowledgement to the Reporter.
+The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken.</p>
 </div>
 <div class="paragraph">
-<p>Examples of application level errors that can occur during device patient association processing include the following:</p>
+<p>If the checks are passed, the Manager establishes a record of the existence of the association and its effective time.</p>
 </div>
-<div class="ulist text-left">
-<ul>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Device specified by the Reporter is unknown to the Manager.</p>
-</li>
-<li>
-<p>An association request is received by the Manager, but the specified device is associated with another patient.</p>
-</li>
-<li>
-<p>Specified patient is unknown.</p>
-</li>
-<li>
-<p>An internal error prevents the Manager from fulfilling the request.</p>
-</li>
-</ul>
+<p></p>
+<div class="paragraph">
+<p>== Assert Device-Patient Disassociation [PCD-18]
+ .. </p>
 </div>
 <div class="paragraph">
-<p>If the checks are passed, the Manager establishes a record of the beginning or ending of the association and the effective time.</p>
+<p>+
+=== Scope</p>
 </div>
+</li>
+</ol>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_report_association_state_dev_52">Report Association State [DEV-52]</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.52</p>
+<p>This transaction breaks the association between a device and a patient, and causes an ending time to be inserted in the record of the former association.</p>
 </div>
-<div class="sect2">
-<h3 id="_scope_2">Scope</h3>
-<div class="paragraph">
-<p>This transaction is used by a Device-Patient Association Manager to report to Device-Patient Association Consumers that an association has been established or broken between a device and a patient, or to update information reported previously.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_actor_roles_2">Actor Roles</h3>
 <div class="paragraph">
-<p>The roles in this transaction are defined in the following table and may be played by the actors listed:</p>
-</div>
-<div class="paragraph">
-<p>Table 3.52.2-1: Actor Roles</p>
+<p>Table 3.18.2-1: Actor Roles</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1451,18 +1440,130 @@ See Appendix 0 for details of HL7 V2 messages.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Actor</th>
-<th class="tableblock halign-left valign-top">Role</th>
+<th class="tableblock halign-left valign-top"><strong>Actor:</strong></th>
+<th class="tableblock halign-left valign-top">Device-Patient Association Reporter</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reports confirmed association events to consumers. The manager must provide a HMI to verify association and disassociation assertions from a reporter if required, and once verified it persists the record and reports it to any consumers configured to receive the events in real-time. The manager should support filtering of messages, and may support dynamic filtering requested by the consumer. The manager must send current associations for all devices that the consumer is configured to receive reports for immediately after a connection is established.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Role:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reporter&#8201;&#8212;&#8201;the source of the assertion.
+Identifies the device, the patient, the authority for the association, and the effective time.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The receiver of the verified and final association report. The Consumer may optionally initiate a subscription by sending a message with filtering criteria, if any, to the Manager in the form of a HL7 query. The subscription and filter may also be pre-configured in the Manager. The Consumer initially receives current association status followed by updates in real-time on a connection established by the Manager.  When an association report is successfully received, a commit-level accept acknowledgement must be returned to the Manager.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Actor:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Role:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manager&#8201;&#8212;&#8201;establishes a persistent record of the association.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_3_18_3_referenced_standards">3.18.3 Referenced Standards</h3>
+<div class="paragraph">
+<p>HL7 2.6 Chapters 2, 3, 5 and 7</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_3_18_4_interaction_diagram">3.18.4 Interaction Diagram</h3>
+<div class="sect3">
+<h4 id="_3_18_4_1_device_patient_disassociation_report">3.18.4.1 Device-Patient Disassociation Report</h4>
+<div class="paragraph">
+<p>Reports that an association previously reported between a device and a patient no longer exists.
+This is the inverse of the Device-Patient Association Report.
+The two are similar in form and could have been defined as two variants of the same message, but have been given different names and discussed separately to emphasize differences in effects.</p>
+</div>
+<div class="sect4">
+<h5 id="_3_18_4_1_1_trigger_events">3.18.4.1.1 Trigger Events</h5>
+<div class="paragraph">
+<p>This message can be triggered manually.
+The user interface could display information about the existing association, and an authorized person could select the association and give a command to end it.</p>
+</div>
+<div class="paragraph">
+<p>If the equipment used has a means available to detect the termination of recording of data from a particular patient, this method could be used to give an operator warning that the association may have been ended, and offer the opportunity to confirm this and check whether other associations indicated as current for that patient are still valid.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_3_18_4_1_2_message_semantics">3.18.4.1.2 Message Semantics</h5>
+<div class="paragraph">
+<p>The significant content of this message are the identities of the device and the patient that are no longer to be associated, and the identity of the authorized person originating the message.
+See Appendix 0for details.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_3_18_4_1_3_expected_actions">3.18.4.1.3 Expected Actions</h5>
+<div class="paragraph">
+<p>The Device-Patient Association Manager records the ending time of the association, persists the record of the time interval of the association, and sends a notification to information system with a subscription covering the event.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_3_18_4_2_device_patient_disassociation_acknowledgement">3.18.4.2 Device-Patient Disassociation Acknowledgement</h4>
+<div class="paragraph">
+<p>The reply to the Device-Patient Disassociation Report is an ordinary HL7 Acknowledgement.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_security_considerations">Security Considerations</h3>
+<div class="paragraph">
+<p>No special security or security audit considerations beyond the general ones already discussed apply to this transaction</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p></p>
+<div class="paragraph">
+<p>== Query Device-Patient Associations [PCD-19]
+ .. </p>
+</div>
+<div class="paragraph">
+<p>+
+=== Scope</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This transaction is used by a Device Patient Association Consumer to access device-patient association information held by a Device Patient Association Manager.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_actor_roles_3">Actor Roles</h3>
+<div class="paragraph">
+<p>Figure 3.19.2-1: Use Case Diagram</p>
+</div>
+<div class="paragraph">
+<p>Table 3.19.2-1: Actor Roles</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Actor:</strong></th>
+<th class="tableblock halign-left valign-top">Device-Patient Association Consumer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Role:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requests information on Device-Patient Associations.
+This may be filtered for device, for patient, or for time interval.
+It may request a current &#8220;snapshot&#8221; of active associations, or optionally for an ongoing feed of device-patient association information.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Actor:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Role:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fulfills a request from a Device-Patient Association Consumer for device-patient association information in the manner specified by the Consumer</p></td>
 </tr>
 </tbody>
 </table>
@@ -1475,197 +1576,85 @@ See Appendix 0 for details of HL7 V2 messages.</p>
 </div>
 <div class="sect2">
 <h3 id="_interaction_diagram_2">Interaction Diagram</h3>
-<div class="imageblock">
-<div class="content">
-<img src="images/asciidoc-plant-uml-manager-consumer-report-interaction-diagram.svg" alt="asciidoc plant uml manager consumer report interaction diagram" width="564" height="129">
-</div>
-</div>
 <div class="sect3">
-<h4 id="_3_52_4_1_report_association_state">3.52.4.1 Report Association State</h4>
+<h4 id="_3_19_4_1_device_patient_association_query">3.19.4.1 Device-Patient Association Query</h4>
 <div class="paragraph">
-<p>This is an HL7 Version 2 message giving details of the association being reported. The message reports an association between one device and one patient.</p>
+<p>This message from a Device-Patient Association Consumer requests a response from a Device-Patient Association Manager containing device-patient association data.
+A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each.
+Whether these communications ports are preconfigured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.</p>
 </div>
 <div class="paragraph">
-<p>The manager must send this message to all configured Consumer instances with matching filter criteria.</p>
-</div>
-<div class="sect4">
-<h5 id="_3_52_4_1_1_trigger_events">3.52.4.1.1 Trigger Events</h5>
-<div class="paragraph">
-<p>This message is triggered when a validated association or disassociation is received.</p>
-</div>
-<div class="paragraph">
-<p>The significant content of the message is the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Confirmed unique identity of patient, preferably derived from an AIDC (Automatic Identification and Data Capture) such as scanning the patient wristband or reading an RFID tag.
-Code used to identify the patient must be chosen so as to be unique at least over the scope of the set of patients seen over all information systems in the institution, such as a Medical Record Number issued by the institution for the patient, or, if available, a national id number.
-The type and issuing entity shall be recorded with the code.
-Additional identity codes may be provided at the discretion of the institution.
-Note that any code identifiable with an individual patient must by secured from misuse in accordance with applicable legal and policy procedures.</p>
-</li>
-<li>
-<p>Unique identity of Device.
-This again is determined by site considerations.
-It is preferable to use a universally unique identification of the individual instance of the device, such as an IEEE EUI-64 or a Unique Device Identifier such as one produced in accordance with the US FDA (or other regulatory agency) UDI standards.
-If this is not possible, then another universal identification scheme such as EUI-64 or a local identification scheme allowing all device instances in the institution to be uniquely distinguished and tracked may be used.
-Additional identification codes may be included.
-Whatever code is used should be possible to record automatically, as manual data entry has a high error rate, and correct identification is a patient safety concern.</p>
-</li>
-<li>
-<p>Identity of the reporter system that originated the association or disassociation.</p>
-</li>
-<li>
-<p>Identity of the authorized person responsible for obtaining and visually confirming the identity information for the patient and the device.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The form of the message is similar to an unsolicited observation report, with supplementary PRT segments identifying the device, reporter system and human operator validating the association.</p>
-</div>
-<div class="paragraph">
-<p>See Appendix 0 for details of HL7 V2 messages.</p>
-</div>
-<div class="paragraph">
-<p>On receipt of the message, the consumer system checks for valid syntax and that the:</p>
+<p>There are multiple use cases:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>originating reporter system and human user are included</p>
+<p>A request for a &#8216;current snapshot&#8217; of associations filtered as specified by the query parameters.</p>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A request for an ongoing real-time feed of changes in associations.</p>
 </li>
 <li>
-<p>the device is a member of the set of registered device instances and has no current conflicting association recorded (e.g., a single-patient device has an active association with a different patient)</p>
-</li>
-<li>
-<p>the patient identity provided corresponds to a known person in an appropriate status (e.g., admitted)</p>
+<p>Possibly less important would be request for a &#8216;replay&#8217; of data from a specified time period in the past.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>After these checks, the consumer returns an appropriate positive or negative commit-level acknowledgement to the Manager.</p>
-</div>
-<div class="paragraph">
-<p>If the checks are passed, the Consumer utilizes the record of the beginning or ending of the association and the effective time for the specified patient and device.
-If a commit-level acknowledgement is received by the Manager, it logs the message as delivered successfully to the Consumer.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_3_19_filter_associations_dev_19">3.19 Filter Associations [DEV-19]</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Insert in Section 3 of IHE PCD TF Vol 2 as new Section 3.19</p>
-</div>
-<div class="sect2">
-<h3 id="_scope_3">Scope</h3>
-<div class="paragraph">
-<p>This transaction is used by a Device Patient Association Consumer to access filtered device-patient association information held by a Device Patient Association Manager.</p>
-</div>
-<div class="paragraph">
-<p>As stated previously, the DEV-19 transaction is optional. If the message is accepted by the Device-Patient Association Manager, the accept acknowledgment shall contain the value CA in MSA-1.</p>
-</div>
-<div class="paragraph">
-<p>If this message is not supported, MSA-1 shall contain the value CR, ERR-3 (HL7 Error Code) shall contain the value 200 (Unsupported Message Type), and ERR-4 (Severity) shall contain the value E. If the transaction is not supported, and the network connection between the Device-Patient Association Manager and Device-Patient Association Consumer is lost, the Device-Patient Association Manager shall send DEV-52 messages for all current Device-Patient associations to the Device-Patient Association Consumer when network connectivity is restored. This ensures the Device-Patient Association Consumer has the current association state.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_actor_roles_3">Actor Roles</h3>
-<div class="paragraph">
-<p>Figure 3.19.2-1: Use Case Diagram</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>TBD</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Table 3.19.2-1: Actor Roles</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Actor</th>
-<th class="tableblock halign-left valign-top">Role</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Consumer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Establishes a real-time message reporting subscription filter for Device-Patient Associations. This may be filtered for device or location. It establishes an ongoing feed of device-patient association information.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fulfills a request from a Device-Patient Association Consumer for device-patient association information filtered as specified by the Consumer</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_referenced_standards_3">Referenced Standards</h3>
-<div class="paragraph">
-<p>HL7 2.6 Chapters 2, 3, 5 and 7</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_interaction_diagram_3">Interaction Diagram</h3>
-<div class="imageblock">
-<div class="content">
-<img src="images/asciidoc-plant-uml-manager-consumer-filter-interaction-diagram.svg" alt="asciidoc plant uml manager consumer filter interaction diagram" width="564" height="129">
-</div>
-</div>
-<div class="sect3">
-<h4 id="_3_19_4_1_filter_associations">3.19.4.1 Filter Associations</h4>
-<div class="paragraph">
-<p>This message from a Device-Patient Association Consumer requests a filtered real-time event stream from a Device-Patient Association Manager containing device-patient association data. A Device-Patient Association Manager is expected to be able to service multiple Device-Patient Association Consumer systems and manage different query and response streams and communications connections with each. Whether these communications ports are pre-configured, or dynamic with appropriate node identification and authorization for each connection request, is a matter of implementation design.
-This profile chooses the QSB publish-subscribe paradigm, where the request is for an ongoing real-time feed of changes in associations using special semantics of query parameters described below.</p>
+<p>Trying to fit these cases with the array of patterns present in Chapter 5 (Queries) of the HL7 Specification presents some puzzles.
+This profile chooses the QSB publish-subscribe paradigm, matching option 1, as the general case and treats 2 and 3 as special cases of it using some special semantics of query parameters described below.</p>
 </div>
 <div class="sect4">
 <h5 id="_3_19_4_1_1_trigger_events">3.19.4.1.1 Trigger Events</h5>
 <div class="paragraph">
-<p>This message is triggered by the Device-Patient Association Consumer when it requires information about current associations for devices or patients in the form of a continuing feed of data.</p>
+<p>This message is triggered by the Device-Patient Association Consumer when it requires information about a device or devices associated with a patient currently or in the past (within the period available from the Device-Patient Association Manager).
+It may also be used to request a continuing feed of data concerning changes in device-patient associations within the scope of the Device-Patient Association Manager.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_3_19_4_1_2_message_semantics">3.19.4.1.2 Message Semantics</h5>
 <div class="paragraph">
-<p>This message is a query specification. It gives the scope of the information wanted by the
-Device-Patient Association Consumer in response to the query: what patients, units, devices are pertinent. See Appendix 0 for details of HL7 segment contents and semantics.</p>
+<p>This message is a query specification.
+It gives the scope of the information wanted by the Device-Patient Association Consumer in response to the query: what patients, units, devices and time periods are pertinent.
+See Appendix 0 for details of HL7 segment contents and semantics.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_3_19_4_1_3_expected_actions">3.19.4.1.3 Expected Actions</h5>
 <div class="paragraph">
-<p>The Device-Patient Association Manager is responsible for collecting, formatting and sending the requested information back to the Device-Patient Association Consumer according to the filtering specified in the query.</p>
+<p>The Device-Patient Association Manager is responsible for collecting, formatting and sending the requested information back to the querying Device-Patient Association Consumer according to the filtering specified in the query.</p>
+</div>
+<div class="paragraph">
+<p>The management of the query and response connection between the Device-Patient Association Consumer and the Device-Patient Association Manager in the case of an ongoing subscription is an implementation detail, but one practical method is for the Device-Patient Association Manager to maintain an open TCP listen port to accepts connections from one or more Device-Patient Association Consumer clients and then to open an individual TCP connection with each requester that persists as long as the client is connected and the query is valid (within its time limits, if any).
+For a non-subscription, &#8220;snapshot&#8221;-type query, the Device-Patient Association Manager could just respond on the static connection that the query comes in on.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_3_19_4_2_filter_associations_response">3.19.4.2 Filter Associations Response</h4>
+<h4 id="_3_19_4_2_device_patient_association_query_response">3.19.4.2 Device-Patient Association Query Response</h4>
 <div class="paragraph">
-<p>The response is a commit-level acknowledgement. If the request is ill-formed (incorrect syntax or impossible query specification), an indication of the nature of the error should be returned.</p>
+<p>The response carries the requested data if the Device-Patient Association Manager has any matching the specification.
+If there is none available, the response is in effect an empty frame with zero data records in the position that data would be expected.
+If the request is ill-formed (incorrect syntax or impossible query specification), an indication of the nature of the error should be returned.</p>
 </div>
 <div class="sect4">
 <h5 id="_3_19_4_2_1_trigger_events">3.19.4.2.1 Trigger Events</h5>
 <div class="paragraph">
-<p>This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query filter request from the Device-Patient Association Consumer. This trigger initially requests the setting up of a sequence of messages reporting all device-patient associations matching the filter criteria. Once the initial device-patient associations have been sent, subsequent changes in the device-patient association state will trigger additional messages to be sent to the Device-Patient Association Consumer as long as the current subscription is in effect. A subscription remains in effect until it is cancelled or modified by the Device-Patient Association Consumer.</p>
+<p>This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query request from the Device-Patient Association Consumer.
+This trigger may request a snapshot of current state (Snapshot Option), or request the setting up of a sequence of messages triggered by a state change in the device-patient associations (Subscription Option).</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_3_19_4_2_2_message_semantics">3.19.4.2.2 Message Semantics</h5>
 <div class="paragraph">
-<p>The message is made up of a frame identifying the message, a read-back of the query filter parameters of the request, and a commit level acknowledgement.</p>
+<p>The message is made up of a frame identifying the message, a read-back of the query parameters of the request, and the requested data represented as a set of observations portraying the pertinent device-patient association states.</p>
 </div>
 <div class="paragraph">
-<p>For detailed semantics and the construction of the HL7 message structure and segment contents, see Appendix A.2.3.</p>
+<p>This response may be part of a sequence of messages sent when device-patient association state transitions happen within the scope of the request from the Device-Patient Association Consumer that initiated.
+For detailed semantics and the construction of the HL7 message structure and segment contents, see Appendix A.2.3.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1678,9 +1667,181 @@ An example would be for a device without its own selection and validation mechan
 </div>
 </div>
 <div class="sect2">
-<h3 id="_security_considerations">Security Considerations</h3>
+<h3 id="_security_considerations_2">Security Considerations</h3>
 <div class="paragraph">
 <p>No special security or security audit considerations beyond the general ones already discussed apply to this transaction.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p></p>
+<div class="paragraph">
+<p>== Register Device [PCD-20]
+ .. </p>
+</div>
+<div class="paragraph">
+<p>+
+=== Scope</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This transaction is used to report the introduction of a new device or the removal of a device to subscribing actors, including the Device Patient Association Manager.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_actor_roles_4">Actor Roles</h3>
+<div class="paragraph">
+<p>Figure 3.20.2-1: Use Case Diagram</p>
+</div>
+<div class="paragraph">
+<p>Table 3.20.2-1: Actor Roles</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Actor:</strong></th>
+<th class="tableblock halign-left valign-top">Device Registrant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Role:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maintains master file of medical devices that can be associated with a patient</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Actor:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Manager</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Role:</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maintains list of associations between devices and patients</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The roles in this transaction are defined in the following table and may be played by the actors shown here:</p>
+</div>
+<div class="paragraph">
+<p>Table 3.20.2-2: Actor Roles<table><colgroup><col style="width: 18%"></col>
+<col style="width: 81%"></col></colgroup>
+<thead><tr class="header"><th><strong>Role:</strong></th>
+<th><em>Notifier</em></th></tr></thead>
+<tbody><tr class="odd"><td><strong>Actor(s):</strong></td>
+<td><p>The following actors may play the role of Notifier:</p>
+<blockquote><p>Device Registrant: Notify subscribers of updates to the Device
+Master</p></blockquote></td></tr>
+<tr class="even"><td><strong>Role:</strong></td>
+<td><em>Subscriber</em></td></tr>
+<tr class="odd"><td><strong>Actor(s):</strong></td>
+<td><p>The following actors may play the role of Subscriber:</p>
+<blockquote><p>Device-Patient Association Manager: Update local list of devices
+available for association with a patient</p></blockquote></td></tr></tbody></table></p>
+</div>
+<div class="paragraph">
+<p>Transaction text specifies behavior for each role.
+The behavior of specific actors may also be specified when it goes beyond that of the general role.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_referenced_standards_3">Referenced Standards</h3>
+<div class="paragraph">
+<p>HL7 2.6 Chapters 2 and 8.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interaction_diagram_3">Interaction Diagram</h3>
+<div class="sect3">
+<h4 id="_3_20_4_1_mfn_master_file_notification_general">3.20.4.1 MFN - Master File Notification - General</h4>
+<div class="paragraph">
+<p>This message is sent by the device registrant to notify the Device-Patient Association Manager that a device has been added, removed, deactivated or reactivated from the inventory of bedside medical devices.</p>
+</div>
+<div class="sect4">
+<h5 id="_3_20_4_1_1_trigger_events">3.20.4.1.1 Trigger Events</h5>
+<div class="paragraph">
+<p>M13 - Master File Notification&#8201;&#8212;&#8201;General</p>
+</div>
+<div class="paragraph">
+<p>Any change to the list of bedside medical devices available for association to a patient:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Device added to the list</p>
+</li>
+<li>
+<p>Device removed from the list</p>
+</li>
+<li>
+<p>Device deactivated, and temporarily unavailable for association</p>
+</li>
+<li>
+<p>Device reactivated</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_3_20_4_1_2_message_semantics">3.20.4.1.2 Message Semantics</h5>
+<div class="paragraph">
+<p>This message is an HL7 V2 Master File Notification.
+With this message, the Device Registrant notifies subscribers, such as the Device-Patient Association Manager, of additions, deletions, deactivations and reactivations of bedside medical devices.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_3_20_4_1_3_expected_actions">3.20.4.1.3 Expected Actions</h5>
+<div class="paragraph">
+<p>Because of receiving this message, recipients should update their local device lists as appropriate.</p>
+</div>
+<div class="paragraph">
+<p>As an example: if the recipient is a Device-Patient Association Manager, and the sender indicated the device was added to the master, then the Device-Patient Association Manager may offer this device to be a subject of the association with a patient.</p>
+</div>
+<div class="paragraph">
+<p>Senders of this message are not expected to take any specific action, beyond preparing to receive an acknowledgement.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_3_20_4_2_ack_general_acknowledgement">3.20.4.2 ACK - General Acknowledgement</h4>
+<div class="paragraph">
+<p>This message is returned to acknowledge receipt of the MFN message.</p>
+</div>
+<div class="sect4">
+<h5 id="_3_20_4_2_1_trigger_events">3.20.4.2.1 Trigger Events</h5>
+<div class="paragraph">
+<p>Upon receipt of a message that requires acknowledgement.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_3_20_4_2_2_message_semantics">3.20.4.2.2 Message Semantics</h5>
+<div class="paragraph">
+<p>This message is the HL7 V2 ACK message.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_3_20_4_2_3_expected_actions">3.20.4.2.3 Expected Actions</h5>
+<div class="paragraph">
+<p>With this message, recipients are cleared to initiate the next transaction.
+As an example, if this message is sent to a Device Registrant, upon receipt the Device Registrant is clear to send the next Master File Notification message.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_security_considerations_3">Security Considerations</h3>
+<div class="paragraph">
+<p>No security considerations beyond the general ones already given are dictated.</p>
+</div>
+<div class="sect3">
+<h4 id="_3_20_5_1_security_audit_considerations">3.20.5.1 Security Audit Considerations</h4>
+<div class="paragraph">
+<p>No security audit considerations are dictated.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1707,56 +1868,49 @@ An example would be for a device without its own selection and validation mechan
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.1.51.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Point-of-Care Identity Management - Communicate Device-Patient Association [DEV-51]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.1.17.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Point-of-Care Identity Management - Report Device-Patient Association [PCD-17]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.1.18.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Point-of-Care Identity Management - Report Device-Patient Disassociation [PCD-18]</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.1.19.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Point-of-Care Identity Management - Filter Associations [DEV-19]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Point-of-Care Identity Management - Query Device-Patient Associations [PCD-19]</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.1.52.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Point-of-Care Identity Management - Communicate Device-Patient Association [DEV-52]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.3.6.1.4.1.19376.1.6.1.20.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Point-of-Care Identity Management - Register Device [PCD-20]</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<h1 id="_appendices" class="sect0">Appendices</h1>
-<div class="sect1">
-<h2 id="_appendix_aproposed_messages">Appendix A&#8201;&#8212;&#8201;Proposed Messages</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>The descriptions of these messages do not repeat all information in the related sections of the PCD TF-2 or the base HL7 specifications, which should be consulted for additional details.
+<p>[.anchor]##Appendices</p>
+</div>
+</div>
+</div>
+<h1 id="_appendix_aproposed_messages" class="sect0">Appendix A&#8201;&#8212;&#8201;Proposed Messages</h1>
+<div class="openblock partintro">
+<div class="content">
+The descriptions of these messages do not repeat all information in the related sections of the PCD TF-2 or the base HL7 specifications, which should be consulted for additional details.
 The base version of HL7 used in IHE PCD Profiles is version 2.6;
-however, this profile uses the semantics of the PRT segment which was not introduced until version 2.7 and not extended with full details of the Unique Device Identifier until version 2.8.2.</p>
-</div>
+however, this profile uses the semantics of the PRT segment which was not introduced until version 2.7 and not extended with full details of the Unique Device Identifier until version 2.8.2.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_a_1_communicate_and_report_association_state">A.1 Communicate and Report Association State</h2>
+<h2 id="_a_1_report_device_patient_association_and_disassociation">A.1 Report Device-Patient Association and Disassociation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As all of the use cases identified in this profile can be considered observations (it was observed
-that device d1 was connected to patient p1 starting at t1 and ending at t2), the ORU message structure is used throughout this profile to manage associations. This description is also applicable to an Communicate Device-Patient Disassociation scenario – the only difference between the Association and Disassociation messages is the content of OBX-5. The Message Structure and attendant notes also serve to specify the segment pattern to be expected in Report Association State [DEV-52] messages. The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with – it consists of useful background information and contains details on some fields that are not covered in this profile.</p>
-</div>
-<div class="paragraph">
-<p>Communicate and Report Association messages for DEV-51 and DEV-52 transactions, respectively, use the same structure, with the following differences that pertain to DEV-52:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>A report must always have a OBX-11 status that is not "R" (requires validation)</p>
-</li>
-<li>
-<p>A report may contain an additional participant segment of the responsible observer (human) that validated the association using the Manager HMI</p>
-</li>
-</ol>
+<p>As all of the use cases identified in this profile can be considered observations (it was observed that device <em>d1</em> was connected to patient p1 starting at <em>t1</em> and ending at <em>t2</em>), the ORU message structure is used throughout this profile to manage associations.
+This description also serves for a Report Device-Patient Disassociation&#8201;&#8212;&#8201;the only difference between the Association and Disassociation messages is the content of OBX-5.
+The Message Structure and attendant notes also serve to specify the segment pattern to be expected in responses to Query for Device-Patient Associations [PCD-19] messages.
+The prototype for the IHE Patient Care Device observations in this profile is the [PCD-01] in the Device Enterprise Communication Profile (PCD TF-2: 3.1), which implementers should familiarize themselves with&#8201;&#8212;&#8201;it serves as useful background information and contains details on some fields that are not covered in this profile.</p>
 </div>
 <div class="sect2">
 <h3 id="_a_1_1_message_structure">A.1.1 Message Structure</h3>
 <div class="paragraph">
-<p>Table A.1.1-1: Communicate Device-Patient Association</p>
+<p>Table A.1.1-1: Report Device Patient Association</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1796,7 +1950,7 @@ that device d1 was connected to patient p1 starting at t1 and ending at t2), the
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>One group for the device being associated with patient identified in the PID</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>One group for each device being associated with patient identified in the PID</em></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OBX</p></td>
@@ -1813,7 +1967,12 @@ that device d1 was connected to patient p1 starting at t1 and ending at t2), the
 </tbody>
 </table>
 <div class="paragraph">
-<p>MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Report Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device.</p>
+<p>MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued &#8220;IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.1.17.1^ISO&#8221; to identify it as a Report Device-Patient Association.</p>
+</div>
+<div class="paragraph">
+<p>sage.
+In the context of this use case, the message is constrained to reporting association(s) for a single patient.
+This could be single device, single patient, or multiple devices associated to a single patient.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1821,47 +1980,8 @@ that device d1 was connected to patient p1 starting at t1 and ending at t2), the
 <div class="sect3">
 <h4 id="_a_1_2_1_mshmessage_header">A.1.2.1 MSH&#8201;&#8212;&#8201;Message Header</h4>
 <div class="paragraph">
-<p>Since this message is effectively an unsolicited observation report, the contents of the MSH segment follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except for the following changes:</p>
+<p>Since this message is effectively an unsolicited observation report, the contents of the MSH segment follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued &#8220;IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO&#8221; to identify it as a message representing a device-patient association.</p>
 </div>
-<div class="paragraph">
-<p>Table A.1.2.1-1: MSH Fields</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>SEQ</strong></th>
-<th class="tableblock halign-left valign-top"><strong>DT</strong></th>
-<th class="tableblock halign-left valign-top"><strong>OPT</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ID</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Accept Acknowledgement Type - This must be set to "AL" and is returned on the same connection as the initiating message.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ID</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Application Acknowledgement Type – Set to AL, NE or ER. See IHE PCD TF Vol 2 Table 3.3.4.4.1-1 for description of possible values and their meaning.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">21</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EI</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Message Profile Identifier - Value set to "IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO"</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect3">
 <h4 id="_a_1_2_2_pidpatient_identification">A.1.2.2 PID&#8201;&#8212;&#8201;Patient Identification</h4>
@@ -1935,7 +2055,8 @@ There may be multiple identifiers in the list, and implementers may choose to al
 <h4 id="_a_1_2_3_pv1_patient_visit_information">A.1.2.3 PV1 Patient Visit Information</h4>
 <div class="paragraph">
 <p>See transaction [PCD-01] for basic information (PCD TF-2 Appendix B.6).
-In this profile, the PV1 segment is used to convey patient location information in PV1-3 Assigned Patient Location.</p>
+In this profile, the PV1 segment is used to convey patient location information in PV1-3 Assigned Patient Location.
+This is also usable as a query filter to limit responses from the Device-Patient Association Query to matching locations.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1946,70 +2067,13 @@ It gives the association message a unique identifier in the Filler Order Number 
 This is a required field: it acts as an association object instance identifier for tracking is used for tracking messages from all sources in the overall configuration of systems, so it must be constrained by some method of generation that assures that duplicate identifiers between sources are not possible.
 It gives the timestamp of the beginning of the association (OBR-7), and when it is known, the end of the association (OBR-8).</p>
 </div>
-<div class="paragraph">
-<p>Table A.1.2.4-1: OBR Fields</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>SEQ</strong></th>
-<th class="tableblock halign-left valign-top"><strong>DT</strong></th>
-<th class="tableblock halign-left valign-top"><strong>OPT</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SI</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Set ID - OBR</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EI</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Unique instance identifier for the association event. Must be constrained during generation to ensure duplicate identifiers between sources are not possible.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Universal Service Identifier – set to 69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Earliest participant involvement</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Latest participant involvement</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report.
-Each report consists of two Participant Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.</p>
-</div>
 </div>
 <div class="sect3">
-<h4 id="_a_1_2_5_obxobservation">A.1.2.5 OBX&#8201;&#8212;&#8201;Observation</h4>
+<h4 id="_a_1_2_5_obxobservation_for_patient_id">A.1.2.5 OBX&#8201;&#8212;&#8201;Observation (for Patient ID)</h4>
 <div class="paragraph">
-<p>This segment conveys the &#8220;observation&#8221; that the patient has been associated or dissassociated to a device.
-It includes the time stamp of the association event and whether the event is a association or disassociation.</p>
-</div>
-<div class="paragraph">
-<p>A set of PRT segments accompanies it to convey the device, and the responsible observer. The PID segment conveys the patient identfication.</p>
+<p>This segment conveys the &#8220;observation&#8221; that the patient has been associated to a device.
+It includes the time stamp of the association event and the device ID.
+A set of PRT segments accompanies it to convey the identity of the patient, the device, and the responsible observer.</p>
 </div>
 <div class="paragraph">
 <p>Table A.1.2.5-1: OBX Fields</p>
@@ -2051,7 +2115,7 @@ It includes the time stamp of the association event and whether the event is a a
 <td class="tableblock halign-left valign-top"><p class="tableblock">CWE</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Observation Identifier&#8201;&#8212;&#8201;set to 68487^MDC_ATTR_EVT_COND^MDC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observation Identifier&#8201;&#8212;&#8201;set to 68487^MDCX_ATTR_EVT_COND^MDC</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
@@ -2095,15 +2159,20 @@ See Table A.1.2.5-3: OBX-11 Values on page <a href="#_Ref388452675">28</a>.</p><
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0^MDCX_DEV_ASSOCIATE^MDC</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device has been associated to a patient.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">198334^MDC_EVT_DISASSOCIATION_PATIENT_DEVICE^MDC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0^MDCX_DEV_DISASSOCIATE^MDC</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Device has been disassociated from a patient.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>A device association can be reported as a point-in-time event, in which case a separate disassociate message is not required to delineate the end of the association.
+Alternatively, the association event message can convey a duration during which the association was in effect.
+The latter is equivalent to an associate/disassociate message pair, and may be preferable for short duration associations (e.g., spot vitals collection).</p>
+</div>
 <div class="paragraph">
 <p>[.anchor]##Table A.1.2.5-3: OBX-11 Values</p>
 </div>
@@ -2154,8 +2223,8 @@ Can only be changed with a corrected association record.</p></td>
 <div class="sect3">
 <h4 id="_a_1_2_6_prtparticipation_observation_participation">A.1.2.6 PRT&#8201;&#8212;&#8201;Participation (Observation Participation)</h4>
 <div class="paragraph">
-<p>This segment conveys information about persons and/or devices and systems that participated in the association, ancillary to the patient and device that are its subjects.
-There will be PRT segments identifying the device, responsible observer, and/or reporting system of a device-patient association as described in Section 0.
+<p>This segment conveys information about persons and/or devices that participated in the association, ancillary to the patient and device that are its subjects.
+There will be PRT messages identifying the patient, the device, and the responsible observer of a device-patient association following an OBX message as described in Section 0.
 For example:</p>
 </div>
 <div class="ulist">
@@ -2165,9 +2234,6 @@ For example:</p>
 </li>
 <li>
 <p>A device gateway</p>
-</li>
-<li>
-<p>A reporter system sending a non-validated assertion</p>
 </li>
 <li>
 <p>The device itself, if the patient ID is entered directly onto the device</p>
@@ -2319,7 +2385,7 @@ known.</td></tr></tbody></table></p>
 <div class="paragraph">
 <p>PRT-10 should contain some form of identifier sufficient to uniquely identify the device within the scope of the overall system.
 This is a repeating field, so more than one identifier can be given.
-If available, it should have as one of its values the &#8220;human readable form&#8221; of the Unique Device Identifier defined by the US FDA. See details in the UDI Final Rule (U.S.
+If available, it should have as one of its values the &#8220;human readable form&#8221; of the Unique Device Identifier defined by the US FDA, where applicable, but in any case must contain See details in the UDI Final Rule (U.S.
 Food and Drug Administration 2013).</p>
 </div>
 <div class="paragraph">
@@ -2532,129 +2598,16 @@ For example, for DIs the root shall be:</p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_a_1_3_application_acknowledgement_message">A.1.3 Application Acknowledgement Message</h3>
-<div class="paragraph">
-<p>Table A.1.3-1: Communicate Device-Patient Association - Application Acknowledgement Message</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top"><strong>Segments</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
-<th class="tableblock halign-left valign-top"><strong>Usage</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MSH</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Message Header - Defined in Appendix B.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MSA</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Message Acknowledgement - Defined in Appendix B.2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[{ ERR }]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Error - Defined in Appendix B.3.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[{ SFT }]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Software</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">[{ NTE }]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Notes and Comments</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">X</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>The list of error codes that can occur during the processing of DEV-51 messages are listed below. The application acknowledgment sent by the Device-Patient Association Manager should contain the Code and Text in ERR-5.1 and ERR-5.2 respectively. ERR-5.9 can also be used to contain additional text related to the error.</p>
-</div>
-<div class="paragraph text-left">
-<p><em>Note that the definition of the range of error codes available for use by this profile is TBD. It is assumed that error codes will start at the lower limit of the range and be incremented by one as new error codes are added.</em></p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 22.2222%;">
-<col style="width: 33.3333%;">
-<col style="width: 44.4445%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Code</th>
-<th class="tableblock halign-left valign-top">Text</th>
-<th class="tableblock halign-left valign-top">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 1</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Other error</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Used when other errors are not applicable.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 2</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Unknown device</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specified device is unknown.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 3</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Unknown patient</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specified patient is unknown.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 4</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device is associated with another patient</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A device-patient association or disassociation request was received, but the device specified in the request is associated with a different patient.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 5</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device is not associated with a patient</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A device-patient disassociation request was received, but the device specified in the request is not associated with a patient.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 6</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Unknown location</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specified location is unknown.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 7</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient association rejected.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Device-Patient Association Reporter sent an unvalidated Device-Patient association request (OBX-11 is not equal to \‘F\’). Association request was rejected by the participating user.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 8</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User is unauthorized.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Participating user is unauthorized to perform request.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Lower limit + 9</em></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Unknown user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Participating user is not known by the Device-Patient Association Manager.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_a_2_filter_associations_message">A.2 Filter Associations Message</h2>
+<h2 id="_a_2_device_patient_association_query_message">A.2 Device-Patient Association Query Message</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_a_2_1_scope">A.2.1 Scope</h3>
 <div class="paragraph">
-<p>This optional message allows a system to dynamically configure a filtered subscription for a list of the device-patient associations meeting specified conditions.</p>
+<p>This query allows a system to request a list of the device-patient associations meeting specified conditions.
+Note that &#8220;snapshot&#8221; and &#8220;subscription&#8221; request modes are supported.</p>
 </div>
 </div>
 <div class="sect2">
@@ -2662,9 +2615,12 @@ For example, for DIs the root shall be:</p>
 
 </div>
 <div class="sect2">
-<h3 id="_a_2_3_details_of_device_patient_association_query_message_dev_19">A.2.3 Details of Device-Patient Association Query Message [DEV-19]</h3>
+<h3 id="_a_2_3_details_of_device_patient_association_query_message_pcd_19">A.2.3 Details of Device-Patient Association Query Message [PCD-19]</h3>
 <div class="paragraph">
-<p>This message is used by a Device-Patient Association Consumer to request current device-patient association information from a Device-Patient Association Manager followed by a on-going subscription to ongoing real-time device-patient association information, specifying filtering by message receiver, location or device identification.  The query takes the form of a QSB publish and subscribe query as described in HL7 Chapter 5, Section 5.7.3.1. It is almost identical to the profile for the QSB^Z83^QSB_Q16 trigger with ORU^R01^ORU_R01 response trigger described in Section 5.7.3.1 of the HL7 specification except that the query parameters are different to accommodate the semantics of filtering for device-patient associations, and the observation reports sent in real-time and constrained by the filtering, while conforming to the ORU_R01 message structure, have the specific semantics of transaction Device-Patient Association Reports [DEV-52].</p>
+<p>This message is used by a Device-Patient Association Consumer to request device-patient association information from a Device-Patient Association Manager, specifying filtering by patient identification, by location or by device identification.
+It may also be limited to a particular time (often the time the message is originated), a time interval, or it may specify an open-ended time interval, signifying that the Device-Patient Association Consumer is requesting an ongoing real-time subscription to device-patient association information (possibly filtered as just described) that is received from Device-Patient Association Reporters.
+The query takes the form of a QSB publish and subscribe query as described in HL7 Chapter 5, Section 5.7.3.1.
+It is almost identical to the profile for the QSB^Z83^QSB_Q16 trigger with ORU^R01^ORU_R01 response trigger described in Section 5.7.3.1 of the HL7 specification except that the query parameters are different to accommodate the semantics of filtering for device-patient associations, and the observation reports given as the response to the query, while conforming to the ORU_R01 message structure, have the specific semantics of transaction Device-Patient Association Reports [PCD-17].</p>
 </div>
 <div class="paragraph">
 <p>For identification, the arbitrary &#8220;local&#8221; (i.e., not issued by the HL7 organization) trigger event Z66 is used for the query/subscription message.
@@ -2711,15 +2667,19 @@ This applies for initial testing but is subject to change before this profile is
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Query Characteristics</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Triggers a realtime subscription with filtering. No results are returned directly.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Returns device-patient associations as constrained in the input parameters</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Purpose</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Requests filtering of device-patient association records, as defined in input parameters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sends device-patient association records, filtered as defined in input parameters</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Response Characteristics</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The response contains a commit-level ACK.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The response contains [PCD-17] device-patient association reports known to the Device-Patient Association Manager, filtered by the query parameters.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Based on Segment Pattern</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R01 as constrained by transaction [PCD-01] (see details in PCD TF-2 3.10 and with the semantics of transaction [PCD-17] as in this profile.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2768,15 +2728,75 @@ This applies for initial testing but is subject to change before this profile is
 </tbody>
 </table>
 <div class="paragraph">
-<p>A simple commit-level ACK is expected as response to this query, see section B.2 in IHE PCD TF VOL 2.</p>
+<p>For the segment pattern to be expected in the response to this query, see the definition of the ORU^R01 Message Structure in PCD TF-2, which is a specialization of the ORU^R01 Message Structure in HL7 Chapter 7, Section 7.3.1, ORU&#8201;&#8212;&#8201;Unsolicited Observation Message (Event R01), as follows:</p>
 </div>
 <div class="paragraph">
-<p>The results of a successful query results in the manager sending all [DEV-52] messages reporting current device-patient association events followed by ongoing real-time updates to device-patient association events, all filtered according to optional query parameters. If the connection is lost, the manager must continue to try and establish a new connection to the consumer, always sending the current device-patient association events matching the filter once the connection is re-established.</p>
+<p>Table A.2.3-3: Query Response Message Structure</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Segments</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message Header</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[{ SFT }]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Software Segment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[UAC]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User Authentication Credential</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Patient Identification</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[PV1]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Patient Visit Information (for room bed)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OBR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observation Request</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>One group for each device being associated with patient identified in the PID</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OBX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observation Result</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{ PRT }</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation&#8201;&#8212;&#8201;<em>One PRT segment for device, one for responsible person</em></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">}</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Note that this segment pattern, unlike some segment patterns, is not introduced by any &#8220;header&#8221; type extra segments, but instead is a straight sequenced of repeats of [PCD-17] messages reporting device-patient association events, filtered according to the query parameters.
+This implies that it should be the same connection as the query was sent from the Device-Patient Association Consumer to the Device-Patient Association Manager, so there can be no confusion with other messages not from this profile.
+Since there is no end indication in the message sequence, either, in the case of a bolus query getting current state information (see the discussion under the RCP segment, RCP-3), the Device-Patient Association Manager will close the connection initiated by the Device-Patient Association Consumer when all the data have been sent.
+A new connection must then be connected if and when another query is sent.</p>
 </div>
 <div class="sect3">
-<h4 id="_a_2_3_1_msh_segment_for_realtime_dev_52_messages">A.2.3.1 MSH Segment for realtime DEV-52 messages</h4>
+<h4 id="_a_2_3_1_msh_segment">A.2.3.1 MSH Segment</h4>
 <div class="paragraph">
-<p>As for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued as IHE_DEV_052^IHE PCD^1.3.6.1.4.1.19376.1.6.4.52.1^ISO.</p>
+<p>As for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued as IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.19^ISO.</p>
 </div>
 </div>
 <div class="sect3">
@@ -2915,16 +2935,12 @@ Name</th></tr></thead>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ELEMENT NAME</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MSH.5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Receiving Application</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MSH.6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Receiving Facility</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PID.3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Patient Identifier List&#8201;&#8212;&#8201;ID number</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PV1.3.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Assigned Patient Location&#8201;&#8212;&#8201;Point-of-Care</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assignes Patient Location&#8201;&#8212;&#8201;Point of Care</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PV1.3.2</p></td>
@@ -2938,25 +2954,33 @@ Name</th></tr></thead>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PRT.10</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OBR.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observation Date/Time (start)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OBR.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observation End Date/Time</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
 <p>The QueryTag (QPD.2) is used to identify a query instance and therefore must be unique for each query.</p>
 </div>
 <div class="paragraph">
-<p>The User Parameters field (QPD.3) is used to specify &#8220;filtering&#8221; values, so that the query response can be limited to, for example, the records matching a particular Assigned Location (by including a PV1.3.1 specification), a particular device (by adding a Participation Device PRT specification) and so on.
-If multiple specifications are given, the responding system "`AND`"s the specifications together, so that for example, a patient location and a device identifier specification result in the response only gives associations involving that patient location and device.</p>
+<p>The User Parameters field (QPD.3) is used to specify &#8220;filtering&#8221; values, so that the query response can be limited to, for example, the records matching a particular Patient Identifier (by including a PID.3 specification), a particular device (by adding a Participation Device PRT specification) and so on.
+If multiple specifications are given, the responding system "`AND`"s the specifications together, so that for example, a patient identifier and a device identifier specification result in the response only gives associations involving that patient and device.</p>
 </div>
 <div class="paragraph">
-<p>The form of the User Parameters specifications in QPD.3 field uses one or more repetition of the QSC data type (separated by the HL7 repetition separator, by default the tilde character ~), one for each query parameter to be specified, with each repetition using the QSC data type.
+<p>The form of the User Parameters specifications in QPD.3 field uses one or more repetition of the CSC data type (separated by the HL7 repetition separator, by default the tilde character ~), one for each query parameter to be specified, with each repetition using the QSC data type.
 This data type takes the form of a component specifying the field, component, or subcomponent to filter on as @&lt;seg&gt;.&lt;field number&gt;.&lt;component number&gt;.&lt;subcomponent number&gt;, followed by a logical operator component (normally EQ for &#8220;equals&#8221;), and a component giving the value sought for that field.
 An example would be:</p>
 </div>
 <div class="paragraph">
-<p>@PV1.3.1^EQ^MICU~@PRT.10^EQ^PUMP1</p>
+<p>@PID.3.1.1^EQ^MR123~@PRT.10^EQ^PUMP1</p>
 </div>
 <div class="paragraph">
-<p>This means limit the messages given in response to ones involving patient location at point-of-care MICU and device identifier PUMP1.</p>
+<p>This means limit the messages given in response to ones involving patient identifier MR123 and device identifier PUMP1.</p>
 </div>
 <div class="paragraph">
 <p>The Device-Patient Association Manager is responsible for executing the search in accordance with the filters.
@@ -3016,7 +3040,7 @@ The different query parameter filters are ANDed together, that is, only associat
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Response Modality</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">CNE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -3127,11 +3151,23 @@ Name</th>
 <p>Quantity limited requests are not supported, so RCP-2 Quantity Limited Request value is not used.</p>
 </div>
 <div class="paragraph">
-<p>The supported values of RCP-3 Response Modality is R (Real Time).
-The Device-Patient Association Consumer must support receiving a continuous real-time feed of association events and will receive all existing associations when the connection is first established that meet the desired filter specification to get the starting state. After that initial state is received, association records are sent as they arrive at the Device-Patient Association Manager. The Device-Patient Association Consumer can optionally configure (or reconfigure) filter criteria and even cancel the continuing real-time query dynamically.</p>
+<p>The supported values of RCP-3 Response Modality are R (Real Time) or T (Bolus).</p>
 </div>
 <div class="paragraph">
-<p>RCP-4 Execution and Delivery Time is required when RCP-1 contains the value of D (Deferred).
+<p>In bolus mode all the available associations are sent at once.
+A Device-Patient Association Manager supporting the Snapshot Option must support this mode.
+The Device-Patient Association Consumer wanting a continuous real-time feed of association events may need to make a bolus query first to get all existing associations meeting the desired filter specification to get the starting state.</p>
+</div>
+<div class="paragraph">
+<p>In real-time mode, association records are sent as they arrive at the Device-Patient Association Manager.
+A Device-Patient Association Manager supporting the Snapshot Option must support this mode of operation, and a Device-Patient Association Consumer supporting the Snapshot option must be able to process the segment pattern.</p>
+</div>
+<div class="paragraph">
+<p>Because the segment pattern for real-time mode has no start or end indication, the Device-Patient Association Manager will signal the completion of a bolus query by closing the connection to the Device-Patient Association Consumer.
+The Device-Patient Association Consumer will then make a new connection for the real-time continuing query.</p>
+</div>
+<div class="paragraph">
+<p>RCP-4 Execution and Delivery Time is required when RCP-1 contains the value of RCP-1 D (Deferred).
 It specifies when the response is to be returned.</p>
 </div>
 <div class="paragraph">
@@ -3149,18 +3185,263 @@ See Appendix Section A.4 Example Messages, example 4.</p>
 </div>
 </div>
 <div class="sect1">
+<h2 id="_a_3_register_device">A.3 Register Device</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These messages are used to report the introduction of a new device or the removal of a device to subscribing actors, including the Device Patient Association Manager.</p>
+</div>
+<div class="paragraph">
+<p>As the list of devices available within the facility is best thought of as a master file, the HL7 Master File Notification paradigm is used.
+For lack of a better alternative, the PRT segment is used to convey device details.
+While most commonly used to indicate a device&#8217;s participation in an observation, it contains the necessary fields for device inventory and is used elsewhere in this profile.</p>
+</div>
+<div class="sect2">
+<h3 id="_a_3_1_message_structure">A.3.1 Message Structure</h3>
+<div class="paragraph">
+<p>Table A.3.1-1: Report Device Patient Association</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Segments</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message Header</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[{ SFT }]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Software Segment</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[UAC]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User Authentication Credential</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MFI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Master File Identification</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MFE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Master File Entry</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">}</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>MSH, SFT, and UAC Segments: Same as DEC Profile.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_3_2_segments">A.3.2 Segments</h3>
+<div class="sect3">
+<h4 id="_a_3_2_1_mshmessage_header">A.3.2.1 MSH&#8201;&#8212;&#8201;Message Header</h4>
+<div class="paragraph">
+<p>MSH-9 is valued to MFN^M14^MFN_PRT</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_a_3_2_2_mfimaster_file_identification_segment">A.3.2.2 MFI&#8201;&#8212;&#8201;Master File Identification Segment</h4>
+<div class="paragraph">
+<p>This segment identifies the master file as the Device Master.</p>
+</div>
+<div class="paragraph">
+<p>Table A.3.2.2-1: MFI Fields</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>SEQ</strong></th>
+<th class="tableblock halign-left valign-top"><strong>DT</strong></th>
+<th class="tableblock halign-left valign-top"><strong>OPT</strong></th>
+<th class="tableblock halign-left valign-top"><strong>RP</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CWE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Master File Identifier&#8201;&#8212;&#8201;Value to INV (Inventory)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Master File Application Identifier&#8201;&#8212;&#8201;Value to &#8220;Device Registrant&#8221;</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File-Level Event Code&#8201;&#8212;&#8201;Value to UPD (Update)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Response Level Code&#8201;&#8212;&#8201;Value to NE (No application level response needed)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_a_3_2_3_mfemaster_file_entry">A.3.2.3 MFE&#8201;&#8212;&#8201;Master File Entry</h4>
+<div class="paragraph">
+<p>This segment communicates the event corresponding to the device record.</p>
+</div>
+<div class="paragraph">
+<p>Table A.3.2.3-1: MFE Fields</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>SEQ</strong></th>
+<th class="tableblock halign-left valign-top"><strong>DT</strong></th>
+<th class="tableblock halign-left valign-top"><strong>OPT</strong></th>
+<th class="tableblock halign-left valign-top"><strong>RP</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Record-Level Event Code (see table below)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Primary Key Value (Hospital designated device identifier)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Y</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Primary Key Value Type (Value to CWE)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DTM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Entered Date/Time</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DTM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Effective Date/Time</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Table A.3.2.3-2: Record Level Event Codes</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device added to inventory list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MDL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device deleted from inventory list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MUP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device information updated</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MDC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Device deactivated, but remains on inventory list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MAC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deactivated device reactivated</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_a_3_2_4_prtparticipation_information_segment">A.3.2.4. PRT&#8201;&#8212;&#8201;Participation Information Segment</h4>
+<div class="paragraph">
+<p>The Participation Information Segment contains device information details.
+Use the PRT segment details as in Appendix Section 0.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_a_4_example_messages">A.4 Example Messages</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological monitor with ID MON5588. At 12:30, she records the association on the Critical Care application. As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association. This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager. Note that since Nurse Diesel recorded the association 30 minutes after the association occurred, the timestamps for OBR-7 and OBR-8 capture that range of time in the OBR wrapper segment. Additionally, each PRT segment provides specific time for each participant. For the device equipment, when that association occurred and for the responsible observer Nurse Diesel, when it was recorded.</p>
+<p>Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological monitor with ID MON5588.
+At 12:30, she records the association on the Critical Care application.
+As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association.
+This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|CritCare||AssocMgr||20160726123002||ORU^R01^ORU_R01|12d15a9|P|2.7|||AL||AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO^ISO
+<pre>MSH|^~\&amp;|CritCare||AssocMgr||20160726123002||ORU^R01^ORU_R01|12d15a9|P|2.7|||AL|AL||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
 PID|||AB60001^^^A^PI||Spaniel^C^R^^^^L
 PV1||E|3 WEST ICU^3001^1
-OBR|||15404652|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726120000|20160726123000
-OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
+OBR|||15404652
+OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||0^MDCX_DEV_ASSOCIATE^MDC||||||F
 PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726120000
 PRT|2|UC||RO|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000</pre>
 </div>
@@ -3179,7 +3460,7 @@ MSA|CA|12d15a9</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|AssocMgr||CritCare||20160726123003||ACK^R01^ACK|AM52E123|P|2.7|||AL|NE||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO^ISO
+<pre>MSH|^~\&amp;|AssocMgr||CritCare||20160726123003||ACK^R01^ACK|AM52E123|P|2.7|||AL|NE||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
 MSA|AA|12d15a9</pre>
 </div>
 </div>
@@ -3198,11 +3479,11 @@ She enters his patient ID on the monitor and presses a button causing the associ
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.7|||AL|AL||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
 PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
-OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC||20160726160000|20160726160000
-OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
+OBR|||15404697
+OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||0^MDCX_DEV_ASSOCIATE^MDC||||||R
 PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
 PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000</pre>
 </div>
@@ -3211,7 +3492,7 @@ PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|2016072616
 <p>(Acknowledgment messages not shown)</p>
 </div>
 <div class="paragraph">
-<p>Since the assertion requires validation, the Association Manager presents an HMI showing the relevant details and a confirmation button to the responsible observer, Nurse Ratched in this case, and she then presses a confirmation button to validate the association. The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.</p>
+<p>The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.</p>
 </div>
 <div class="paragraph">
 <p>At 16:45, she confirms the association on the Critical Care application (or the Association Manager, depending on how the systems are integrated).
@@ -3219,18 +3500,30 @@ This message would be sent from the Critical Care system in the role of Associat
 </div>
 <div class="paragraph">
 <p>Example 3.
-A device controller needs an ongoing feed of all devices connected to a patient in a specific room. The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data in room 10 of the MICU:</p>
+A new monitor with hospital assigned key MON5588 is registered.
+It is located at 3 West ICU, Room 3001, Bed 1.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>MSH|^~\&amp;|DeviceMaster||AssocMgr||20160726160000||MFN^M14^MFN_PRT|12d1574|P|2.7|||AL|AL||8859/1|||IHE_PCD_020^IHE PCD^1.3.6.1.4.1.19376.1.6.4.20^ISO
+MFI|INV|Device Registrant|UPD|||NE
+MFE|MAD|||MON5588|CWE
+PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example 4.
+A device controller needs an ongoing feed of all devices connected to patient with identifier . The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data:</p>
 </div>
 <div class="literalblock">
 <div class="content">
 <pre>MSH|^~\&amp;|||MonitoringGateway||AssocMgr||QSB^Q66^QSB_Q16||P|2.8|
-QPD|Q66^Device-Patient Subscription|Q0044|@PV1.3.1^EQ^MICU@PV1.3.2^EQ^10|
+QPD|Q66^Device-Patient Subscription|Q0044|@PID.3.1^AB60001|
 RCP|I||R|||N|</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The Device-Patient Association Manager responds by starting a continuous stream of Report Association [DEV-52] messages, starting with message(s) giving the current device
-associations of the patient (which will require the Device-Patient Association Manager to access that information and format it in [DEV-52] form).</p>
+<p>The Device-Patient Association Manager responds by starting a continuous stream of Device-Patient Association [PCD-17] messages, starting with message(s) giving the current device associations of the patient (which will require the Device-Patient Association Manager to access that information and format it in [PCD-17] form).</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3243,22 +3536,10 @@ OBX|...</pre>
 <div class="paragraph">
 <p>To cancel the subscription, the Device-Patient Association Consumer can send the following cancel message:</p>
 </div>
-<div class="paragraph">
-<p>MSH|
-QID|Q0044|Q66^Device-Patient Subscription^HL7005|</p>
-</div>
-<div class="paragraph">
-<p>Example 4. At 23:00, Nurse Ratched disconnected patient McMurphy from the physiological monitor previously connected in Example 2. She presses a button and then confirms causing the disassociation to be asserted.</p>
-</div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726230000||ORU^R01^ORU_R01|12d1586|P|2.7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51^ISO
-PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
-PV1||E|3 WEST ICU^3001^1
-OBR|||15404712|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726230000|20160726230000
-OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198334^MDC_EVT_DISASSOCIATION_PATIENT_DEVICE^MDC||||||R
-PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64||20160726230000
-PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI- 64||20160726230000</pre>
+<pre>MSH|
+QID|Q0044|Q66^Device-Patient Subscription^HL7005|</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3291,7 +3572,7 @@ None
 <div id="footer">
 <div id="footer-text">
 Version Revision 1.2 - Trial Implementation<br>
-Last updated 2023-09-21 10:23:37 -0700
+Last updated 2023-07-20 19:53:09 -0700
 </div>
 </div>
 </body>
