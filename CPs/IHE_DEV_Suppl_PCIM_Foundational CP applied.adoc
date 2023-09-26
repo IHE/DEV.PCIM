@@ -1481,9 +1481,9 @@ A simple commit-level ACK is expected as response to this query, see section B.2
 The results of a successful query results in the manager sending all [DEV-52] messages reporting current device-patient association events followed by ongoing real-time updates to device-patient association events, all filtered according to optional query parameters. If the connection is lost, the manager must continue to try and establish a new connection to the consumer, always sending the current device-patient association events matching the filter once the connection is re-established.
 
 
-==== A.2.3.1 MSH Segment for realtime DEV-52 messages
+==== A.2.3.1 MSH Segment
 
-As for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-21 is valued as IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.52.1^ISO.
+Same as for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-9 is valued as QSB^Q66^QSB_Q16 and MSH-21 is valued as IHE_DEV_019^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.19.1^ISO.
 
 ==== A.2.3.2 QPD Segment
 

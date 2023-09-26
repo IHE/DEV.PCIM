@@ -1724,6 +1724,14 @@ Table A.2.3-1: Query Profile
 
 |===
 
+|*Insert new section A.2.3.1*, _A.2.3.1 MSH Segment to describe MSH 9 and 21 values_
+
+==== A.2.3.1 MSH Segment
+
+Same as for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-9 is valued as QSB^Q66^QSB_Q16 and MSH-21 is valued as IHE_DEV_019^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.19.1^ISO.
+
+|===
+
 Table A.2.3-2: QBP{caret}Z66{caret}QBP{caret}QBP_Z66 Query Grammar - QBP Message Segments
 
 |===
