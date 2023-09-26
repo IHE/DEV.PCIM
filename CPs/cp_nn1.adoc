@@ -1302,8 +1302,7 @@ Communicate and Report Association messages for DEV-51 and DEV-52 transactions, 
 | OBR
 | Observation Request
 
-| {
-| _One group for the device being associated with patient identified in the PID_
+| --ASSOCIATION begin
 
 | OBX
 | Observation Result
@@ -1311,7 +1310,7 @@ Communicate and Report Association messages for DEV-51 and DEV-52 transactions, 
 | { PRT }
 | Participation -- _One PRT segment for device, one for responsible person_
 
-| }
+| --ASSOCIATION end
 |
 |===
 

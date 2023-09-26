@@ -824,8 +824,7 @@ Table A.1.1-1: Communicate Device-Patient Association
 | OBR
 | Observation Request
 
-| {
-| _One group for the device being associated with patient identified in the PID_
+| —- ASSOCIATION begin
 
 | OBX
 | Observation Result
@@ -833,7 +832,7 @@ Table A.1.1-1: Communicate Device-Patient Association
 | { PRT }
 | Participation -- _One PRT segment for device, one for responsible person_
 
-| }
+| —- ASSOCIATION end
 |
 |===
 
