@@ -1392,7 +1392,7 @@ In this profile, the PV1 segment is used to convey patient location information 
 
 |===
 
-|*A.1.2.4 OBR-4 Order Request*, _modify the paragraph on line 743 on page 36-37, by modifying text and including a table of field definitions with data types and optionality_:
+|*A.1.2.4 OBR-4 Order Request*, _change title to 'Observation Request' and modify the paragraph on line 743 on page 36-37, by modifying text and including a table of field definitions with data types and optionality_:
 
 |=== 
 

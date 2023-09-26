@@ -916,7 +916,7 @@ Table A.1.2.2-1: PID Fields
 See transaction [PCD-01] for basic information (PCD TF-2 Appendix B.6).
 In this profile, the PV1 segment is used to convey patient location information in PV1-3 Assigned Patient Location.
 
-==== A.1.2.4 OBR -- Order Request
+==== A.1.2.4 OBR -- Observation Request
 
 This segment serves as a wrapper for an association observation.
 It gives the association message a unique identifier in the Filler Order Number OBR-3.
