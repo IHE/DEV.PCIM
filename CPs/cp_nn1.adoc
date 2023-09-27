@@ -1842,7 +1842,87 @@ The results of a successful query results in the manager sending all [DEV-52] me
 
 |===
 
-|*A.2.3.2-3 Identifiers for field, component, or subcomponent in QPD.3 User Parameters*, _update table to add query capability by FLD MSH.5 and MSH.6_:
+|*A.2.3.2-3 Identifiers for field, component, or subcomponent in QPD.3 User Parameters*, _update table to add query capability by FLD PRT9[1-3]. and PRT10[1-4], also indicating that PRT9 location will be most up-to-date if provided, and remove Patient ID and date/time filtering params_:
+
+|===
+
+[.text-left]
+[underline]#Existing Table:#
+[.text-left]
+
+Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User Parameters
+
+|===
+|  |
+
+| FLD
+| ELEMENT NAME
+
+| PID.3.1
+| Patient Identifier List -- ID Number
+
+| PV1.3.1
+| Assigned Patient Location -- Point-Of-Care (least accurate location)
+
+| PV1.3.2
+| Assigned Patient Location -- Room (least accurate location)
+
+| PV1.3.3
+| Assigned Patient Location -- Bed (least accurate location)
+
+| PRT.10
+| Participation Device 
+
+| OBR.7
+| Observation Date/Time (start)
+
+| OBR.8
+| Observation End Date/Time
+
+|===
+
+
+[.text-left]
+[underline]#Proposed Table:#
+[.text-left]
+
+Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User Parameters
+
+|===
+|  |
+
+| FLD
+| ELEMENT NAME
+
+| PV1.3.1
+| Assigned Patient Location -- Point-Of-Care (least accurate location)
+
+| PV1.3.2
+| Assigned Patient Location -- Room (least accurate location)
+
+| PV1.3.3
+| Assigned Patient Location -- Bed (least accurate location)
+
+| PRT.9.1
+| Participation Device Location -- Point-Of-Care (most accurate location, if present)
+
+| PRT.9.2
+| Participation Device Location -- Room (most accurate location, if present)
+
+| PRT.9.3
+| Participation Device Location -- Bed (most accurate location, if present)
+
+| PRT.10.1
+| Participation Device -- Entity Identifier
+
+| PRT.10.2
+| Participation Device -- Namespace Id
+
+| PRT.10.3
+| Participation Device -- Universal Id
+
+| PRT.10.4
+| Participation Device -- Universal Id Type
 
 |===
 

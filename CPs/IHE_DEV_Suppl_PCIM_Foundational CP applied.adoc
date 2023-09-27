@@ -1583,23 +1583,35 @@ Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User
 | FLD
 | ELEMENT NAME
 
-| MSH.5
-| Receiving Application
-
-| MSH.6
-| Receiving Facility
-
 | PV1.3.1
-| Assigned Patient Location -- Point-of-Care
+| Assigned Patient Location -- Point-Of-Care (least accurate location)
 
 | PV1.3.2
-| Assigned Patient Location -- Room
+| Assigned Patient Location -- Room (least accurate location)
 
 | PV1.3.3
-| Assigned Patient Location -- Bed
+| Assigned Patient Location -- Bed (least accurate location)
 
-| PRT.10
-| Participation Device
+| PRT.9.1
+| Participation Device Location -- Point-Of-Care (most accurate location, if present)
+
+| PRT.9.2
+| Participation Device Location -- Room (most accurate location, if present)
+
+| PRT.9.3
+| Participation Device Location -- Bed (most accurate location, if present)
+
+| PRT.10.1
+| Participation Device -- Entity Identifier
+
+| PRT.10.2
+| Participation Device -- Namespace Id
+
+| PRT.10.3
+| Participation Device -- Universal Id
+
+| PRT.10.4
+| Participation Device -- Universal Id Type
 
 |===
 
