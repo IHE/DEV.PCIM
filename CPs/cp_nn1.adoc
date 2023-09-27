@@ -758,12 +758,13 @@ This is an HL7 Version 2 message giving details of the association being asserte
 [plantuml, asciidoc-plant-uml-reporter-manager-interaction-diagram, svg]
 ....
 @startuml
-
+hide footbox
 participant "Device-Patient Association Reporter" as reporter  
 participant "Device-Patient Association Manager"  as manager
 reporter -> manager : Communicate Association State
 manager -> reporter : Commit Level Acknowledgement
 manager --> reporter : Application Level Acknowledgement
+reporter --> manager : Commit Level Acknowledgement
 @enduml
 ....
 
@@ -1145,7 +1146,7 @@ This message and the activity of preparing it, is triggered in the Device-Patien
 
 |===
 
-|*3.19.4.2.2 Message Semantics*, _update paragraph on line 610, to reflect that no response will be returned_:
+|*3.19.4.2.2 Message Semantics*, _remove section that described response semantics and adjust section numbers_:
 
 |=== 
 
