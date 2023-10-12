@@ -828,12 +828,13 @@ Table A.1.1-1: Communicate Device-Patient Association
 | Observation Request
 
 | —- ASSOCIATION begin
+|
 
 | OBX
 | Observation Result
 
 | { PRT }
-| Participation -- _One PRT segment for device, one for responsible person_
+| Participation -- _One PRT segment for device, one or more for responsible persons_
 
 | —- ASSOCIATION end
 |

@@ -4,7 +4,7 @@ plugins {
 }
 
 apply plugin: 'java'
-version = 'Revision 1.2 - Trial Implementation'
+version = 'PCIM - Revision 1.2 - Trial Implementation'
 
 repositories {
     mavenCentral()
