@@ -467,7 +467,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date of last update:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2023-08-15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2023-10-12</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Person Assigned:</p></td>
@@ -1144,8 +1144,6 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 </tr>
 </tbody>
 </table>
-<div class="sect4">
-<h5 id="_7_4_2_1_1_process_flow">7.4.2.1.1 Process Flow</h5>
 <div class="paragraph text-left">
 <p><span class="underline">Existing Text:</span></p>
 </div>
@@ -1250,9 +1248,8 @@ increase data reliability to the maximum feasible extent.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="sect4 text-left">
-<h5 id="_7_4_2_2_3_pre_conditions">7.4.2.2.3 Pre-conditions:</h5>
+<div class="sect2 text-left">
+<h3 id="_7_4_2_2_3_pre_conditions">7.4.2.2.3 Pre-conditions:</h3>
 <div class="paragraph">
 <p>Patient is to be disassociated with a device.
 Patient has been assigned unique identifier at registration which has been collected and verified at the point-of-care.
@@ -1261,14 +1258,14 @@ The identities of patient and device(s) have been collected and verified by an a
 The patient has already been associated with a device.</p>
 </div>
 </div>
-<div class="sect4 text-left">
-<h5 id="_7_4_2_2_4_main_flow">7.4.2.2.4 Main Flow:</h5>
+<div class="sect2 text-left">
+<h3 id="_7_4_2_2_4_main_flow">7.4.2.2.4 Main Flow:</h3>
 <div class="paragraph">
 <p>Device-Patient Association Reporter originates a message with the specific information on the disassociation and its time of ending.</p>
 </div>
 </div>
-<div class="sect4 text-left">
-<h5 id="_7_4_2_2_5_post_conditions">7.4.2.2.5 Post-conditions:</h5>
+<div class="sect2 text-left">
+<h3 id="_7_4_2_2_5_post_conditions">7.4.2.2.5 Post-conditions:</h3>
 <div class="paragraph">
 <p>After completion of this use case, a record identifying the patient and the associated device and giving the end time of the association correlated with the starting time is persisted by the Device-Patient Association Manager.</p>
 </div>
@@ -1283,22 +1280,22 @@ The patient has already been associated with a device.</p>
 </tbody>
 </table>
 </div>
-<div class="sect4 text-left">
-<h5 id="_7_4_2_3_3_pre_conditions">7.4.2.3.3 Pre-conditions:</h5>
+<div class="sect2 text-left">
+<h3 id="_7_4_2_3_3_pre_conditions">7.4.2.3.3 Pre-conditions:</h3>
 <div class="paragraph">
 <p>Patient has been assigned unique identifier at registration which has been collected and verified at the point-of-care.
 Device identity has been registered for use.
 The identities of patient and device(s) are known to the system or person performing the filtering.</p>
 </div>
 </div>
-<div class="sect4 text-left">
-<h5 id="_7_4_2_3_4_main_flow">7.4.2.3.4 Main Flow:</h5>
+<div class="sect2 text-left">
+<h3 id="_7_4_2_3_4_main_flow">7.4.2.3.4 Main Flow:</h3>
 <div class="paragraph">
 <p>A Device-Patient Association Consumer originates a message to the Device-Patient Association Manager with the specific filter information for the devices to receive filtered association reports for.</p>
 </div>
 </div>
-<div class="sect4 text-left">
-<h5 id="_7_4_2_3_5_post_conditions">7.4.2.3.5 Post-conditions:</h5>
+<div class="sect2 text-left">
+<h3 id="_7_4_2_3_5_post_conditions">7.4.2.3.5 Post-conditions:</h3>
 <div class="paragraph">
 <p>After completion of this use case, if the manager supports the filtering option, a subscription filter for the requested devices and the requesting consumer is persisted and any matching association reports are sent by the Device-Patient Association Manager to the Device-Patient Association Consumer. If the manager does not support the filtering option, an appropriate error code is sent to the consumer when the filter request message is received.</p>
 </div>
@@ -1483,7 +1480,7 @@ The identities of patient and device(s) are known to the system or person perfor
 <h3 id="_interaction_diagram_2">Interaction Diagram</h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/asciidoc-plant-uml-reporter-manager-interaction-diagram.svg" alt="asciidoc plant uml reporter manager interaction diagram" width="553" height="186">
+<img src="images/asciidoc-plant-uml-reporter-manager-interaction-diagram.svg" alt="asciidoc plant uml reporter manager interaction diagram" width="553" height="187">
 </div>
 </div>
 <div class="sect3">
@@ -1862,7 +1859,7 @@ If a commit-level acknowledgement is received by the Manager, it logs the messag
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Insert DEV-19 interaction diagram</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Insert DEV-19 interaction diagram</strong></p></td>
 </tr>
 </tbody>
 </table>
@@ -2032,7 +2029,7 @@ Device-Patient Association Consumer in response to the query: what devices are p
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.19.4.2.2 Message Semantics</strong>, <em>update paragraph on line 610, to reflect that no response will be returned</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>3.19.4.2.2 Message Semantics</strong>, <em>remove section that described response semantics and adjust section numbers</em>:</p></td>
 </tr>
 </tbody>
 </table>
@@ -2278,20 +2275,16 @@ that device d1 was connected to patient p1 starting at t1 and ending at t2), the
 <td class="tableblock halign-left valign-top"><p class="tableblock">Observation Request</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>One group for the device being associated with patient identified in the PID</em></p></td>
-</tr>
-<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--ASSOCIATION begin</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OBX</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Observation Result</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">{ PRT }</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Participation&#8201;&#8212;&#8201;<em>One PRT segment for device, one for responsible person</em></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">}</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation&#8201;&#8212;&#8201;<em>One PRT segment for device, one for responsible person</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">--ASSOCIATION end</p></td>
 </tr>
 </tbody>
 </table>
@@ -2409,7 +2402,7 @@ In this profile, the PV1 segment is used to convey patient location information 
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.1.2.4 OBR-4 Order Request</strong>, <em>modify the paragraph on line 743 on page 36-37, by modifying text and including a table of field definitions with data types and optionality</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.1.2.4 OBR-4 Order Request</strong>, <em>change title to 'Observation Request' and modify the paragraph on line 743 on page 36-37, by modifying text and including a table of field definitions with data types and optionality</em>:</p></td>
 </tr>
 </tbody>
 </table>
@@ -2908,6 +2901,21 @@ This applies for initial testing but is subject to change before this profile is
 </tr>
 </tbody>
 </table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Insert new section A.2.3.1</strong>, <em>A.2.3.1 MSH Segment to describe MSH 9 and 21 values</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3 text-left">
+<h4 id="_a_2_3_1_msh_segment">A.2.3.1 MSH Segment</h4>
+<div class="paragraph">
+<p>Same as for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-9 is valued as QSB<sup>Q66</sup>QSB_Q16 and MSH-21 is valued as IHE_DEV_019^IHE PCD^1.3.6.1.4.1.19376.1.6.4.19.1^ISO.</p>
+</div>
 <div class="paragraph">
 <p>Table A.2.3-2: QBP^Z66^QBP^QBP_Z66 Query Grammar - QBP Message Segments</p>
 </div>
@@ -3087,7 +3095,123 @@ This applies for initial testing but is subject to change before this profile is
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.2.3.2-3 Identifiers for field, component, or subcomponent in QPD.3 User Parameters</strong>, <em>update table to add query capability by FLD MSH.5 and MSH.6</em>:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.2.3.2-3 Identifiers for field, component, or subcomponent in QPD.3 User Parameters</strong>, <em>update table to add query capability by FLD PRT9[1-3]. and PRT10[1-4], also indicating that PRT9 location will be most up-to-date if provided, and remove Patient ID and date/time filtering params</em>:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Table:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User Parameters</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ELEMENT NAME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PID.3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Patient Identifier List&#8201;&#8212;&#8201;ID Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PV1.3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assigned Patient Location&#8201;&#8212;&#8201;Point-Of-Care (least accurate location)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PV1.3.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assigned Patient Location&#8201;&#8212;&#8201;Room (least accurate location)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PV1.3.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assigned Patient Location&#8201;&#8212;&#8201;Bed (least accurate location)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRT.10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OBR.7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observation Date/Time (start)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OBR.8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observation End Date/Time</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Table:</span></p>
+</div>
+<div class="paragraph text-left">
+<p>Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User Parameters</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FLD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ELEMENT NAME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PV1.3.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assigned Patient Location&#8201;&#8212;&#8201;Point-Of-Care (least accurate location)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PV1.3.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assigned Patient Location&#8201;&#8212;&#8201;Room (least accurate location)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PV1.3.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Assigned Patient Location&#8201;&#8212;&#8201;Bed (least accurate location)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRT.9.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device Location&#8201;&#8212;&#8201;Point-Of-Care (most accurate location, if present)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRT.9.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device Location&#8201;&#8212;&#8201;Room (most accurate location, if present)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRT.9.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device Location&#8201;&#8212;&#8201;Bed (most accurate location, if present)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRT.10.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device&#8201;&#8212;&#8201;Entity Identifier</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRT.10.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device&#8201;&#8212;&#8201;Namespace Id</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRT.10.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device&#8201;&#8212;&#8201;Universal Id</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PRT.10.4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device&#8201;&#8212;&#8201;Universal Id Type</p></td>
 </tr>
 </tbody>
 </table>
@@ -3518,10 +3642,11 @@ PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI- 64||20160726
 </div>
 </div>
 </div>
+</div>
 <div id="footer">
 <div id="footer-text">
 Version Revision 1.2 - Trial Implementation<br>
-Last updated 2023-09-21 10:38:07 -0700
+Last updated 2023-10-12 13:02:46 -0700
 </div>
 </div>
 </body>
