@@ -758,12 +758,13 @@ This is an HL7 Version 2 message giving details of the association being asserte
 [plantuml, asciidoc-plant-uml-reporter-manager-interaction-diagram, svg]
 ....
 @startuml
-
+hide footbox
 participant "Device-Patient Association Reporter" as reporter  
 participant "Device-Patient Association Manager"  as manager
 reporter -> manager : Communicate Association State
 manager -> reporter : Commit Level Acknowledgement
 manager --> reporter : Application Level Acknowledgement
+reporter --> manager : Commit Level Acknowledgement
 @enduml
 ....
 
@@ -1145,7 +1146,7 @@ This message and the activity of preparing it, is triggered in the Device-Patien
 
 |===
 
-|*3.19.4.2.2 Message Semantics*, _update paragraph on line 610, to reflect that no response will be returned_:
+|*3.19.4.2.2 Message Semantics*, _remove section that described response semantics and adjust section numbers_:
 
 |=== 
 
@@ -1302,8 +1303,7 @@ Communicate and Report Association messages for DEV-51 and DEV-52 transactions, 
 | OBR
 | Observation Request
 
-| {
-| _One group for the device being associated with patient identified in the PID_
+| --ASSOCIATION begin
 
 | OBX
 | Observation Result
@@ -1311,7 +1311,7 @@ Communicate and Report Association messages for DEV-51 and DEV-52 transactions, 
 | { PRT }
 | Participation -- _One PRT segment for device, one for responsible person_
 
-| }
+| --ASSOCIATION end
 |
 |===
 
@@ -1392,7 +1392,7 @@ In this profile, the PV1 segment is used to convey patient location information 
 
 |===
 
-|*A.1.2.4 OBR-4 Order Request*, _modify the paragraph on line 743 on page 36-37, by modifying text and including a table of field definitions with data types and optionality_:
+|*A.1.2.4 OBR-4 Order Request*, _change title to 'Observation Request' and modify the paragraph on line 743 on page 36-37, by modifying text and including a table of field definitions with data types and optionality_:
 
 |=== 
 
@@ -1725,6 +1725,14 @@ Table A.2.3-1: Query Profile
 
 |===
 
+|*Insert new section A.2.3.1*, _A.2.3.1 MSH Segment to describe MSH 9 and 21 values_
+
+==== A.2.3.1 MSH Segment
+
+Same as for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-9 is valued as QSB^Q66^QSB_Q16 and MSH-21 is valued as IHE_DEV_019^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.19.1^ISO.
+
+|===
+
 Table A.2.3-2: QBP{caret}Z66{caret}QBP{caret}QBP_Z66 Query Grammar - QBP Message Segments
 
 |===
@@ -1835,7 +1843,87 @@ The results of a successful query results in the manager sending all [DEV-52] me
 
 |===
 
-|*A.2.3.2-3 Identifiers for field, component, or subcomponent in QPD.3 User Parameters*, _update table to add query capability by FLD MSH.5 and MSH.6_:
+|*A.2.3.2-3 Identifiers for field, component, or subcomponent in QPD.3 User Parameters*, _update table to add query capability by FLD PRT9[1-3]. and PRT10[1-4], also indicating that PRT9 location will be most up-to-date if provided, and remove Patient ID and date/time filtering params_:
+
+|===
+
+[.text-left]
+[underline]#Existing Table:#
+[.text-left]
+
+Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User Parameters
+
+|===
+|  |
+
+| FLD
+| ELEMENT NAME
+
+| PID.3.1
+| Patient Identifier List -- ID Number
+
+| PV1.3.1
+| Assigned Patient Location -- Point-Of-Care (least accurate location)
+
+| PV1.3.2
+| Assigned Patient Location -- Room (least accurate location)
+
+| PV1.3.3
+| Assigned Patient Location -- Bed (least accurate location)
+
+| PRT.10
+| Participation Device 
+
+| OBR.7
+| Observation Date/Time (start)
+
+| OBR.8
+| Observation End Date/Time
+
+|===
+
+
+[.text-left]
+[underline]#Proposed Table:#
+[.text-left]
+
+Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User Parameters
+
+|===
+|  |
+
+| FLD
+| ELEMENT NAME
+
+| PV1.3.1
+| Assigned Patient Location -- Point-Of-Care (least accurate location)
+
+| PV1.3.2
+| Assigned Patient Location -- Room (least accurate location)
+
+| PV1.3.3
+| Assigned Patient Location -- Bed (least accurate location)
+
+| PRT.9.1
+| Participation Device Location -- Point-Of-Care (most accurate location, if present)
+
+| PRT.9.2
+| Participation Device Location -- Room (most accurate location, if present)
+
+| PRT.9.3
+| Participation Device Location -- Bed (most accurate location, if present)
+
+| PRT.10.1
+| Participation Device -- Entity Identifier
+
+| PRT.10.2
+| Participation Device -- Namespace Id
+
+| PRT.10.3
+| Participation Device -- Universal Id
+
+| PRT.10.4
+| Participation Device -- Universal Id Type
 
 |===
 
