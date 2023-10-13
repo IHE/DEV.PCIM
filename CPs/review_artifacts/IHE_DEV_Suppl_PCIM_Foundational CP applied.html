@@ -3162,12 +3162,12 @@ See Appendix Section A.4 Example Messages, example 4.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|CritCare||AssocMgr||20160726123002||ORU^R01^ORU_R01|12d15a9|P|2.7|||AL|AL|||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO^ISO
+<pre>MSH|^~\&amp;|CritCare||AssocMgr||20160726123002||ORU^R01^ORU_R01|12d15a9|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
 PID|||AB60001^^^A^PI||Spaniel^C^R^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404652|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726120000|20160726123000
-OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
-PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726120000
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
+PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726120000
 PRT|2|UC||RO|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000</pre>
 </div>
 </div>
@@ -3176,7 +3176,7 @@ PRT|2|UC||RO|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|AssocMgr||CritCare||20160726123002||ACK^R01^ACK|12d15a9|P|2.7
+<pre>MSH|^~\&amp;|AssocMgr||CritCare||20160726123002||ACK^R01^ACK|12d1510|P|2.6|||NE|NE
 MSA|CA|12d15a9</pre>
 </div>
 </div>
@@ -3185,7 +3185,7 @@ MSA|CA|12d15a9</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|AssocMgr||CritCare||20160726123003||ACK^R01^ACK|AM52E123|P|2.7|||AL|NE||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO^ISO
+<pre>MSH|^~\&amp;|AssocMgr||CritCare||20160726123003||ACK^R01^ACK|AM52E123|P|2.6|||AL|NE||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
 MSA|AA|12d15a9</pre>
 </div>
 </div>
@@ -3194,7 +3194,7 @@ MSA|AA|12d15a9</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|CritCare||AssocMgr||20160726123003||ACK^R01^ACK||P|2.7
+<pre>MSH|^~\&amp;|CritCare||AssocMgr||20160726123003||ACK^R01^ACK|AM52E125|P|2.6|||NE|NE
 MSA|CA|AM52E123</pre>
 </div>
 </div>
@@ -3204,11 +3204,11 @@ She enters his patient ID on the monitor and presses a button causing the associ
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
 PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
-OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC||20160726160000|20160726160000
-OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
+OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
 PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
 PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre>
 </div>
@@ -3229,8 +3229,8 @@ A device controller needs an ongoing feed of all devices connected to a patient 
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726160000||QSB^Q66^QSB_Q16|12d1579|P|2.7|||AL|AL||8859/1|||IHE_DEV_019^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.19.1^ISO
-QPD|Q66^Device-Patient Subscription^HL7005|Q0044|@PV1.3.1^EQ^MICU@PV1.3.2^EQ^10|
+<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726160000||QSB^Z66^QSB_Q16|12d1579|P|2.6|||AL|AL||8859/1|||IHE_DEV_019^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.19.1^ISO
+QPD|Q66^Device-Patient Subscription^HL7005|Q0044|@PV1.3.1^EQ^MICU@PV1.3.2^EQ^10
 RCP|I||R||N</pre>
 </div>
 </div>
@@ -3240,10 +3240,13 @@ associations of the patient (which will require the Device-Patient Association M
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|MonitoringGateway|||COMWEST||||ORU^R01^ORU_R01|4409|P|2.8|
-PID|||4567^^^MPI^MR|....
-OBR|....
-OBX|...</pre>
+<pre>MSH|^~\&amp;|AssocMgr||AssocConsumer||20160726160000||ORU^R01^ORU_R01|12d1599|P|2.6|||AL|AL|USA||||IHE_DEV_052^IHE PCD^1.3.6.1.4.1.19376.1.6.1.52.1^ISO
+PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
+PV1||E|3 WEST ICU^3001^1
+OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
+PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
+PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3251,7 +3254,7 @@ OBX|...</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|QID|Q0044|Q66^Device-Patient Subscription^HL7005|</pre>
+<pre>MSH|QID|Q0044|Q66^Device-Patient Subscription^HL7005</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3259,12 +3262,12 @@ OBX|...</pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726230000||ORU^R01^ORU_R01|12d1586|P|2.7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51^ISO
+<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726230000||ORU^R01^ORU_R01|12d1586|P|2.6|||AL|AL|USA||||IHE_DEV_51^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
 PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404712|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726230000|20160726230000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198334^MDC_EVT_DISASSOCIATION_PATIENT_DEVICE^MDC||||||R
-PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64||20160726230000
+PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64||20160726230000
 PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
 </div>
 </div>
@@ -3300,7 +3303,7 @@ PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
 <div id="footer">
 <div id="footer-text">
 Version PCIM - Revision 1.2 - Trial Implementation<br>
-Last updated 2023-10-12 13:20:50 -0700
+Last updated 2023-10-13 06:37:46 -0700
 </div>
 </div>
 </body>

@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2023-10-12
+|2023-10-13
 
 |Person Assigned:
 |Eldon Metz
@@ -2031,141 +2031,115 @@ It specifies when the response is to be returned.
 
 |===
 
-|*A.4 Example Messages*, _insert a sentence that adds clarity on timestamp range to the description on line 981, on page 49_:
+|*A.4 Example Messages*, _insert a sentence that adds clarity on timestamp range to the description on line 981, on page 49 and update all examples messages to use new numbering and to correct syntax issues_:
 
 |=== 
 
 [.text-left]
 [underline]#Existing Text:#
 [.text-left]
-Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological monitor with ID MON5588.
-At 12:30, she records the association on the Critical Care application.
-As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association.
-This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager.
+Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological
+monitor with ID MON5588. At 12:30, she records the association on the Critical Care
+980 application. As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association. This message would be sent from the Critical
+Care system in the role of Association Reporter to the Association Manager.
 
+....
+MSH|^~\&|CritCare||AssocMgr||20160726123002||ORU^R01^ORU_R01|12d15a9|P|2.7|||AL 985 |AL||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
+PID|||AB60001^^^A^PI||Spaniel^C^R^^^^L
+PV1||E|3 WEST ICU^3001^1
+OBR|||15404652
+OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||0^MDCX_DEV_ASSOCIATE^MDC||||||F
+PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI- 64|20160726120000
+PRT|2|UC||RO|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000
+....
+
+The Association Manager first responds with the following commit level acknowledgment.
+
+....
+MSH|^~\&|AssocMgr||CritCare||20160726123002||ACK^R01^ACK||P|2.7
+MSA|CA|12d15a9
+....
+
+Once the association is fully processed, the Association Manager responds by initiating the following application level acknowledgment
+
+....
+MSH|^~\&|AssocMgr||CritCare||20160726123003||ACK^R01^ACK|AM52E123|P|2.7|||AL|NE||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
+MSA|AA|12d15a9
+....
+
+To which the Association Reporter responds with a commit level acknowledgement, completing the exchange.
+
+....
+MSH|^~\&|CritCare||AssocMgr||20160726123003||ACK^R01^ACK||P|2.7
+MSA|CA|AM52E123
+....
 
 [.text-left]
 [underline]#Proposed Text:#
 [.text-left]
 Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological monitor with ID MON5588. At 12:30, she records the association on the Critical Care application. As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association. This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager. Note that since Nurse Diesel recorded the association 30 minutes after the association occurred, the timestamps for OBR-7 and OBR-8 capture that range of time in the OBR wrapper segment. Additionally, each PRT segment provides specific time for each participant. For the device equipment, when that association occurred and for the responsible observer Nurse Diesel, when it was recorded.
 
-|===
-
-|*A.4 Example Messages*, _update reporter message for Example 1 on line 985 to use the new transaction numbering_:
-
-|=== 
-
-[.text-left]
-[underline]#Existing Text:#
-[.text-left]
 ....
-|AL||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
-....
-
-
-[.text-left]
-[underline]#Proposed Text:#
-[.text-left]
-....
-|AL||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
-....
-
-|===
-
-|*A.4 Example Messages*, _modify the OBR segment on line 988 on page 50_:
-
-|=== 
-
-[.text-left]
-[underline]#Existing OBR segment:#
-[.text-left]
-....
-OBR|||15404652
-....
-
-
-[.text-left]
-[underline]#Proposed OBR segment:#
-[.text-left]
-....
+MSH|^~\&|CritCare||AssocMgr||20160726123002||ORU^R01^ORU_R01|12d15a9|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+PID|||AB60001^^^A^PI||Spaniel^C^R^^^^L
+PV1||E|3 WEST ICU^3001^1
 OBR|||15404652|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726120000|20160726123000
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
+PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726120000
+PRT|2|UC||RO|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000
+....
+
+The Association Manager first responds with the following commit level acknowledgment.
+
+....
+MSH|^~\&|AssocMgr||CritCare||20160726123002||ACK^R01^ACK|12d1510|P|2.6|||NE|NE
+MSA|CA|12d15a9
+....
+
+Once the association is fully processed, the Association Manager responds by initiating the following application level acknowledgment
+
+....
+MSH|^~\&|AssocMgr||CritCare||20160726123003||ACK^R01^ACK|AM52E123|P|2.6|||AL|NE||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
+MSA|AA|12d15a9
+....
+
+To which the Association Reporter responds with a commit level acknowledgement, completing the exchange.
+
+....
+MSH|^~\&|CritCare||AssocMgr||20160726123003||ACK^R01^ACK|AM52E125|P|2.6|||NE|NE
+MSA|CA|AM52E123
 ....
 
 |===
 
-|*A.4 Example Messages*, _update manager application level acknowledgement for Example 1 on line 1005 to use the new transaction numbering_:
+|*A.4 Example Messages*, _update example 2 sample message_:
 
 |=== 
 
 [.text-left]
-[underline]#Existing Text:#
+[underline]#Existing Example:#
 [.text-left]
 ....
-||8859/1|||IHE_PCD_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
-....
-
-[.text-left]
-[underline]#Proposed Text:#
-[.text-left]
-....
-||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
-....
-
-|===
-
-|*A.4 Example Messages*, _update description that shows how the Manager presents the HMI to validate the asserted association in  Example 2 _:
-
-|=== 
-
-[.text-left]
-[underline]#Existing Text:#
-[.text-left]
-
-The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.
-
-[.text-left]
-[underline]#Proposed Text:#
-[.text-left]
-Since the assertion requires validation, the Association Manager presents an HMI showing the relevant details and a confirmation button to the responsible observer, Nurse Ratched in this case, and she then presses a confirmation button to validate the association. The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.
-
-|===
-
-|*A.4 Example Messages*, _update manager application level acknowledgement for Example 2 on line 1019 to use the new transaction numbering_:
-
-|=== 
-
-[.text-left]
-[underline]#Existing Text:#
-[.text-left]
-....
-7|||AL|AL||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO
-....
-
-[.text-left]
-[underline]#Proposed Text:#
-[.text-left]
-....
-7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
-....
-
-|===
-
-|*A.4 Example Messages*, _modify the OBR segment on line 1022 on page 51_:
-
-|=== 
-
-[.text-left]
-[underline]#Existing OBR segment:#
-[.text-left]
-....
+MSH|^~\&|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.7|||AL|AL||8859/1|||IHE_PCD_017^IHE PCD^1.3.6.1.4.1.19376.1.6.4.17^ISO 
+PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
+PV1||E|3 WEST ICU^3001^1
 OBR|||15404697
+OBX|1|CWE|68487^MDCX_ATTR_EVT_COND^MDC||0^MDCX_DEV_ASSOCIATE^MDC||||||R
+PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
+PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
 ....
 
 [.text-left]
-[underline]#Proposed OBR segment:#
+[underline]#Proposed Example:#
 [.text-left]
 ....
-OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC||20160726160000|20160726160000
+MSH|^~\&|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
+PV1||E|3 WEST ICU^3001^1
+OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
+PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
+PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
 ....
 
 
@@ -2177,7 +2151,7 @@ OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC||20160726160000|2016
 
 |===
 
-|*A.4 Example Messages*, _update Example 4 (now Example 3) to filter by patient location instead of patient id_:
+|*A.4 Example Messages*, _update Example 4 (now Example 3) text and sample messages to reference new numbering and message syntax corrections:
 
 |=== 
 
@@ -2185,7 +2159,7 @@ OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC||20160726160000|2016
 [underline]#Existing Text:#
 [.text-left]
 Example 3.
-A device controller needs an ongoing feed of all devices connected to patient with identifier . The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data:
+A device controller needs an ongoing feed of all devices connected to patient with identifier. The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data:
 
 ....
 MSH|^~\&|||MonitoringGateway||AssocMgr||QSB^Q66^QSB_Q16||P|2.8|
@@ -2199,9 +2173,27 @@ Example 3.
 A device controller needs an ongoing feed of all devices connected to a patient in a specific room. The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data in room 10 of the MICU:
 
 ....
-MSH|^~\&|||MonitoringGateway||AssocMgr||QSB^Q66^QSB_Q16||P|2.8|
-QPD|Q66^Device-Patient Subscription|Q0044|@PV1.3.1^EQ^MICU@PV1.3.2^EQ^10|
-RCP|I||R|||N|
+MSH|^~\&|MonitorGateway||AssocMgr||20160726160000||QSB^Z66^QSB_Q16|12d1579|P|2.6|||AL|AL||8859/1|||IHE_DEV_019^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.19.1^ISO
+QPD|Q66^Device-Patient Subscription^HL7005|Q0044|@PV1.3.1^EQ^MICU@PV1.3.2^EQ^10
+RCP|I||R||N
+....
+
+The Device-Patient Association Manager responds by starting a continuous stream of Report Association [DEV-52] messages, starting with message(s) giving the current device
+associations of the patient (which will require the Device-Patient Association Manager to access that information and format it in [DEV-52] form).
+....
+MSH|^~\&|AssocMgr||AssocConsumer||20160726160000||ORU^R01^ORU_R01|12d1599|P|2.6|||AL|AL|USA||||IHE_DEV_052^IHE PCD^1.3.6.1.4.1.19376.1.6.1.52.1^ISO
+PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
+PV1||E|3 WEST ICU^3001^1
+OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
+PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726160000
+PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
+....
+
+To cancel the subscription, the Device-Patient Association Consumer can send the following cancel message:
+
+....
+MSH|QID|Q0044|Q66^Device-Patient Subscription^HL7005
 ....
 
 |===
@@ -2234,13 +2226,13 @@ associations of the patient (which will require the Device-Patient Association M
 Example 4. At 23:00, Nurse Ratched disconnected patient McMurphy from the physiological monitor previously connected in Example 2. She presses a button and then confirms causing the disassociation to be asserted.
 
 ....
-MSH|^~\&|MonitorGateway||AssocMgr||20160726230000||ORU^R01^ORU_R01|12d1586|P|2.7|||AL|AL||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51^ISO
-PID|||AB60001^^^A\^PI||McMurphy^R^P^^^^L
+MSH|^~\&|MonitorGateway||AssocMgr||20160726230000||ORU^R01^ORU_R01|12d1586|P|2.6|||AL|AL|USA||||IHE_DEV_51^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404712|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726230000|20160726230000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198334^MDC_EVT_DISASSOCIATION_PATIENT_DEVICE^MDC||||||R
-PRT|1|UC||EQUIP||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64||20160726230000
-PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI- 64||20160726230000
+PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64||20160726230000
+PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000
 ....
 
 |===
