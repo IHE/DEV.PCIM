@@ -1497,7 +1497,7 @@ Table A.2.3.2-1: QPD - Query Parameter Definition
 | Mnemonic | Description | Type | Optionality | Length | Table | Repetition
 
 | QPD.1
-| Message Query Name
+| Message Query Name - Set to 'Q66^Device-Patient Subscription^HL7005'
 | CE
 | Required
 | 250

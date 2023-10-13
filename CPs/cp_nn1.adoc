@@ -1836,11 +1836,34 @@ Table A.2.3-2: QBP{caret}Z66{caret}QBP{caret}QBP_Z66 Query Grammar - QBP Message
 A simple commit-level ACK is expected as response to this query, see section B.2 in IHE PCD TF VOL 2.
 
 The results of a successful query results in the manager sending all [DEV-52] messages reporting current device-patient association events followed by ongoing real-time updates to device-patient association events, all filtered according to optional query parameters. If the connection is lost, the manager must continue to try and establish a new connection to the consumer, always sending the current device-patient association events matching the filter once the connection is re-established.
+
+
+|===
+
+|*Table A.2.3.2-1: QPD - Query Parameter Definition*, _update QPD.1 description to specify what the field is set to.
+
+|===
+
+
+
+
 |===
 
 |*A.2.3.2-3 Identifiers for field, component, or subcomponent in QPD.3 User Parameters*, _update table to remove retrospective query capability by removing row for FLD PID 3.1 and last two rows for FLD OBR.7 and OBR.8_:
 
 |===
+
+[.text-left]
+[underline]#Existing Description:#
+[.text-left]
+
+Message Query Name
+
+[].text-left]
+[underline]#Existing Description:#
+[.text-left]
+
+Message Query Name - Set to 'Q66^Device-Patient Subscription^HL7005'
 
 |===
 
