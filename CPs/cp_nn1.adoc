@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2023-08-15
+|2023-10-12
 
 |Person Assigned:
 |Eldon Metz
@@ -520,8 +520,6 @@ A Device-Patient Association Consumer that supports this option shall formulate 
 |===
 
 
-===== 7.4.2.1.1 Process Flow
-
 [.text-left]
 [underline]#Existing Text:#
 [.text-left]
@@ -597,7 +595,7 @@ For status display or for error-checking and diagnostic purposes, the Device-Pat
 
 |===
 [.text-left]
-===== 7.4.2.2.3 Pre-conditions:
+=== 7.4.2.2.3 Pre-conditions:
 
 Patient is to be disassociated with a device.
 Patient has been assigned unique identifier at registration which has been collected and verified at the point-of-care.
@@ -605,11 +603,11 @@ Device identity has been registered for use.
 The identities of patient and device(s) have been collected and verified by an authorized person.
 The patient has already been associated with a device.
 [.text-left]
-===== 7.4.2.2.4 Main Flow:
+=== 7.4.2.2.4 Main Flow:
 
 Device-Patient Association Reporter originates a message with the specific information on the disassociation and its time of ending.
 [.text-left]
-===== 7.4.2.2.5 Post-conditions:
+=== 7.4.2.2.5 Post-conditions:
 
 After completion of this use case, a record identifying the patient and the associated device and giving the end time of the association correlated with the starting time is persisted by the Device-Patient Association Manager.
 
@@ -619,17 +617,17 @@ After completion of this use case, a record identifying the patient and the asso
 |===
 
 [.text-left]
-===== 7.4.2.3.3 Pre-conditions:
+=== 7.4.2.3.3 Pre-conditions:
 
 Patient has been assigned unique identifier at registration which has been collected and verified at the point-of-care.
 Device identity has been registered for use.
 The identities of patient and device(s) are known to the system or person performing the filtering.
 [.text-left]
-===== 7.4.2.3.4 Main Flow:
+=== 7.4.2.3.4 Main Flow:
 
 A Device-Patient Association Consumer originates a message to the Device-Patient Association Manager with the specific filter information for the devices to receive filtered association reports for.
 [.text-left]
-===== 7.4.2.3.5 Post-conditions:
+=== 7.4.2.3.5 Post-conditions:
 
 After completion of this use case, if the manager supports the filtering option, a subscription filter for the requested devices and the requesting consumer is persisted and any matching association reports are sent by the Device-Patient Association Manager to the Device-Patient Association Consumer. If the manager does not support the filtering option, an appropriate error code is sent to the consumer when the filter request message is received.
 
@@ -1015,7 +1013,7 @@ If this message is not supported, MSA-1 shall contain the value CR, ERR-3 (HL7 E
 
 |=== 
 
-Insert DEV-19 interaction diagram
+|*Insert DEV-19 interaction diagram*
 
 |===
 
@@ -1725,13 +1723,16 @@ Table A.2.3-1: Query Profile
 
 |===
 
+|===
+
 |*Insert new section A.2.3.1*, _A.2.3.1 MSH Segment to describe MSH 9 and 21 values_
 
+|===
+
+[.text-left]
 ==== A.2.3.1 MSH Segment
 
 Same as for transaction [PCD-01] in PCD TF-2 Appendix B.1, except that MSH-9 is valued as QSB^Q66^QSB_Q16 and MSH-21 is valued as IHE_DEV_019^IHE PCD\^1.3.6.1.4.1.19376.1.6.4.19.1^ISO.
-
-|===
 
 Table A.2.3-2: QBP{caret}Z66{caret}QBP{caret}QBP_Z66 Query Grammar - QBP Message Segments
 

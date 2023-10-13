@@ -4,9 +4,7 @@ plugins {
 }
 
 apply plugin: 'java'
-
-version = 'Revision 1.2 - Trial Implementation'
-
+version = 'PCIM - Revision 1.2 - Trial Implementation'
 
 repositories {
     mavenCentral()
@@ -15,7 +13,9 @@ repositories {
 asciidoctor {
   sourceDir file('CPs')
   sources {
-    include '*.adoc'
+    include 'IHE_DEV_Suppl_PCIM_Foundational CP applied.adoc'
+    include 'cp_nn1.adoc'
+    include 'index.adoc'
   }
   resources {
     from(sourceDir) {
@@ -26,7 +26,8 @@ asciidoctor {
   }
   outputDir file('CPs/output')
   outputOptions {
-    backends = ['html', 'pdf']
+//    backends = ['html', 'pdf']
+      backends = ['html']
   }
   asciidoctorj {
     modules {
