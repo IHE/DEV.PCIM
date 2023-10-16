@@ -1371,6 +1371,91 @@ Table A.1.2.1-1: MSH Fields
 
 |===
 
+|*A.1.2.2 PID Patient Identification*, _fix DOB and Gender field assignments and use CWE for Administrative Sex (7 and 8 were flipped)
+
+|===
+
+[.text-left]
+[underline]#Existing Table:#
+[.text-left]
+Table A.1.2.2-1: PID Fields
+
+|===
+| *SEQ* | *DT* | *OPT* | *RP* | *Description*
+
+| 1
+| SI
+| O
+|
+| Set ID - PID
+
+| 3
+| CX
+| R
+| Y
+| Patient Identifier List
+
+| 5
+| XPN
+| O
+| Y
+| Patient Name
+
+| 7
+| DTM
+| RE
+|
+| Gender
+
+| 8
+| IS
+| RE
+|
+| DOB
+|===
+
+[.text-left]
+[underline]#Proposed Table:#
+[.text-left]
+
+Table A.1.2.2-1: PID Fields
+
+|===
+| *SEQ* | *DT* | *OPT* | *RP* | *Description*
+
+| 1
+| SI
+| O
+|
+| Set ID - PID
+
+| 3
+| CX
+| R
+| Y
+| Patient Identifier List
+
+| 5
+| XPN
+| O
+| Y
+| Patient Name
+
+| 7
+| DTM
+| RE
+|
+| DOB
+
+| 8
+| CWE
+| RE
+|
+| Gender
+|===
+
+|===
+
 |*A.1.2.3 PV1 Patient Visit Information*, _remove sentence describing patient filter option_:
 
 |=== 
@@ -1863,7 +1948,7 @@ Message Query Name
 [underline]#Existing Description:#
 [.text-left]
 
-Message Query Name - Set to 'Q66^Device-Patient Subscription^HL7005'
+Message Query Name - Set to 
 
 |===
 
