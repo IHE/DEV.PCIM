@@ -1448,7 +1448,7 @@ Table A.1.2.2-1: PID Fields
 | DOB
 
 | 8
-| CWE
+| IS
 | RE
 |
 | Gender
