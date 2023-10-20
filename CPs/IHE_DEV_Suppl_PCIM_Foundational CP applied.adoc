@@ -827,17 +827,12 @@ Table A.1.1-1: Communicate Device-Patient Association
 | OBR
 | Observation Request
 
-| —- ASSOCIATION begin
-|
-
 | OBX
 | Observation Result
 
 | { PRT }
 | Participation -- _One PRT segment for device, one or more for responsible persons_
 
-| —- ASSOCIATION end
-|
 |===
 
 MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Report Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device. 

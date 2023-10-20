@@ -1301,16 +1301,12 @@ Communicate and Report Association messages for DEV-51 and DEV-52 transactions, 
 | OBR
 | Observation Request
 
-| --ASSOCIATION begin
-
 | OBX
 | Observation Result
 
 | { PRT }
 | Participation -- _One PRT segment for device, one for responsible person_
 
-| --ASSOCIATION end
-|
 |===
 
 |===
