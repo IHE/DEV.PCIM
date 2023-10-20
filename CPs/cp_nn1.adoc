@@ -921,8 +921,8 @@ See Appendix 0 for details of HL7 V2 messages.
 On receipt of the message, the consumer system checks for valid syntax and that the:
 
 . originating reporter system and human user are included
-. the device is a member of the set of registered device instances and has no current conflicting association recorded (e.g., a single-patient device has an active association with a different patient)
-. the patient identity provided corresponds to a known person in an appropriate status (e.g., admitted)
+. the device is a member of the set of registered device instances
+. the patient identity provided corresponds to a known person
 
 After these checks, the consumer returns an appropriate positive or negative commit-level acknowledgement to the Manager.
 
