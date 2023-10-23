@@ -959,7 +959,7 @@ Table A.1.2.4-1: OBR Fields
 |===
 
 The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. 
-Each report consists of two Participant Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
+Each report consists of two Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
 
 ==== A.1.2.5 OBX -- Observation 
 
@@ -1094,7 +1094,7 @@ association message, his or her ID and name appear here.+++</td>++++++</tr>+++
 +++<td>+++PL+++</td>+++
 +++<td>++++++</td>+++
 +++<td>+++Y+++</td>+++
-+++<td>+++Participation Location. Location where association was asserted or
++++<td>+++Participant Location. Location where association was asserted or
 observed.+++</td>++++++</tr>+++
 +++<tr class="odd">++++++<td>+++10+++</td>+++
 +++<td>+++EI+++</td>+++
@@ -1141,31 +1141,31 @@ association (PRT-4 = EQUIP), its ID appears here. Note -- Prior to HL7
 +++<td>+++EI+++</td>+++
 +++<td>+++O+++</td>+++
 +++<td>++++++</td>+++
-+++<td>+++Participation Device Identifier. From UDI, should be present if
++++<td>+++Participant Device Identifier. From UDI, should be present if
 known. See discussion below.+++</td>++++++</tr>+++
 +++<tr class="even">++++++<td>+++17+++</td>+++
 +++<td>+++DTM+++</td>+++
 +++<td>++++++</td>+++
 +++<td>++++++</td>+++
-+++<td>+++Participation Device Manufacture Date. From UDI, should be present
++++<td>+++Participant Device Manufacture Date. From UDI, should be present
 if known.+++</td>++++++</tr>+++
 +++<tr class="odd">++++++<td>+++18+++</td>+++
 +++<td>+++DTM+++</td>+++
 +++<td>+++O+++</td>+++
 +++<td>++++++</td>+++
-+++<td>+++Participation Device Expiry Date. Not normally applicable in this
++++<td>+++Participant Device Expiry Date. Not normally applicable in this
 profile.+++</td>++++++</tr>+++
 +++<tr class="even">++++++<td>+++19+++</td>+++
 +++<td>+++ST+++</td>+++
 +++<td>+++O+++</td>+++
 +++<td>++++++</td>+++
-+++<td>+++Participation Device Lot Number. Not normally applicable in this
++++<td>+++Participant Device Lot Number. Not normally applicable in this
 profile.+++</td>++++++</tr>+++
 +++<tr class="odd">++++++<td>+++20+++</td>+++
 +++<td>+++ST+++</td>+++
 +++<td>+++C+++</td>+++
 +++<td>++++++</td>+++
-+++<td>+++Participation Device Serial Number. From UDI, should be present if
++++<td>+++Participant Device Serial Number. From UDI, should be present if
 known.+++</td>++++++</tr>++++++</tbody>++++++</table>+++
 
 Table A.1.2.6-2: PRT-4 Values
