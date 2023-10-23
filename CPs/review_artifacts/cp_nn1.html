@@ -2606,7 +2606,7 @@ It gives the timestamp of the beginning of the association (OBR-7), and when it 
 </table>
 <div class="paragraph">
 <p>The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report.
-Each report consists of two Participant Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.</p>
+Each report consists of two Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2773,6 +2773,34 @@ For example:</p>
 </li>
 </ul>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.1.2.6-1: PRT Fields</strong>, <em>Use Participant instead of Participation for location and device specific fields as defined in HL7 2.8.2 and to be consistent with Appendix B.10 in IHE TF Vol 2. Change the following names in this table</em>:</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Location &#8594; Participant Location</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device Identifier &#8594; Participant Device Identifier</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device Manufacture Date &#8594; Participant Device Manufacture Date</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device Expiry Date &#8594; Participant Device Expiry Date</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device Lot Number &#8594; Participant Device Lot Number</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation Device Serial Number &#8594; Participant Device Serial Number</p></td>
+</tr>
+</tbody>
+</table>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 100%;">
@@ -3786,7 +3814,7 @@ PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
 <div id="footer">
 <div id="footer-text">
 Version PCIM - Revision 1.2 - Trial Implementation<br>
-Last updated 2023-10-20 07:25:22 -0700
+Last updated 2023-10-23 11:04:53 -0700
 </div>
 </div>
 </body>

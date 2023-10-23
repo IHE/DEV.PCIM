@@ -1526,7 +1526,7 @@ Table A.1.2.5-1: OBR Fields
 |===
 
 The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. 
-Each report consists of two Participant Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
+Each report consists of two Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
 
 |===
 
@@ -1629,6 +1629,20 @@ For example:
 * A device gateway
 * A reporter system sending a non-validated assertion
 * The device itself, if the patient ID is entered directly onto the device
+
+|===
+
+|*A.1.2.6-1: PRT Fields*, _Use Participant instead of Participation for location and device specific fields as defined in HL7 2.8.2 and to be consistent with Appendix B.10 in IHE TF Vol 2. Change the following names in this table_:
+
+| Participation Location -> Participant Location
+| Participation Device Identifier -> Participant Device Identifier
+| Participation Device Manufacture Date -> Participant Device Manufacture Date
+| Participation Device Expiry Date -> Participant Device Expiry Date
+| Participation Device Lot Number -> Participant Device Lot Number
+| Participation Device Serial Number -> Participant Device Serial Number
+
+|===
+
 
 |===
 
