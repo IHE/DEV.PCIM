@@ -666,16 +666,7 @@ The form of the message is similar to an unsolicited observation report, with su
 
 See Appendix 0 for details of HL7 V2 messages.
 
-On receipt of the message, the consumer system checks for valid syntax and that the:
-
-. originating reporter system and human user are included
-. the device is a member of the set of registered device instances and has no current conflicting association recorded (e.g., a single-patient device has an active association with a different patient)
-. the patient identity provided corresponds to a known person in an appropriate status (e.g., admitted)
-
-After these checks, the consumer returns an appropriate positive or negative commit-level acknowledgement to the Manager.
-
-If the checks are passed, the Consumer utilizes the record of the beginning or ending of the association and the effective time for the specified patient and device.
-If a commit-level acknowledgement is received by the Manager, it logs the message as delivered successfully to the Consumer.
+On receipt of the message, the Consumer parses and extracts the association details before returning an appropriate commit-level acknowledgement to the Manager. If the message is semantically and syntactically valid, the Consumer returns a positive acknowledgement and utilizes the record of the beginning or ending of the association and the effective time for the specified patient and device. If the message is invalid, the Consumer returns a negative acknowledgement. Once the commit-level acknowledgement is received by the Manager, it records that the message was delivered to the Consumer along with the corresponding acknowledgement code.
 
 == 3.19 Filter Associations [DEV-19]
 
@@ -805,42 +796,93 @@ Communicate and Report Association messages for DEV-51 and DEV-52 transactions, 
 === A.1.1 Message Structure
 
 Table A.1.1-1: Communicate Device-Patient Association
-
+[%autowidth]
 |===
-| *Segments* | *Description*
+| *Segments* | *Meaning* | *Usage* | *Cardinality* 
 
 | MSH
 | Message Header
+| R
+| [1..1]
 
 | [{ SFT }]
 | Software Segment
+| X
+| [0..0]
 
 | [UAC]
 | User Authentication Credential
+| O
+| [0..1]
 
-| PID
+l|[
+| -- PATIENT_RESULT begin
+| 
+|[1..1]
+
+l| [
+| --- PATIENT begin
+| R
+| [1..1]
+
+l| PID
 | Patient Identification
+| R
+| [1..1]
 
-| [PV1]
+l|  [
+| -- VISIT begin
+| R
+| [1..1]
+
+l|   [PV1]
 | Patient Visit Information (for room bed)
+| R
+| [1..1]
 
-| OBR
+l|  ]
+| --- VISIT end
+|
+|
+
+l| ]
+| --- PATIENT end
+|
+|
+
+l| [
+| --- ORDER_OBSERVATION_BEGIN
+| R
+| [1..1]
+
+l|   OBR
 | Observation Request
+| R
+| [1..1]
 
-| —- ASSOCIATION begin
-|
-
-| OBX
+l|   OBX
 | Observation Result
+| R
+| [1..1]
 
-| { PRT }
-| Participation -- _One PRT segment for device, one or more for responsible persons_
+l|   PRT
+| Participation -- _One PRT segment for device, one for responsible person or system, optional third for additional person doing validation_
+| R
+| [2..3]
 
-| —- ASSOCIATION end
+l| ]
+| --- ORDER_OBSERVATION_END
 |
+|
+
+l|]
+| --- PATIENT_RESULT_END
+| 
+|
+
 |===
 
-MSH, SFT, and UAC Segments: follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Report Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device. 
+MSH, SFT, and UAC Segments follow the specifications for [PCD-01] in PCD TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Report Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device. 
 
 === A.1.2 Segments
 
