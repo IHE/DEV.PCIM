@@ -852,7 +852,7 @@ l| }
 |
 
 l| {
-| --- ORDER_OBSERVATION_BEGIN
+| --- ORDER_OBSERVATION begin
 | R
 | [1..1]
 
@@ -872,12 +872,12 @@ l| {PRT}
 | [2..3]
 
 l| }
-| --- ORDER_OBSERVATION_END
+| --- ORDER_OBSERVATION end
 |
 |
 
 l|}
-| --- PATIENT_RESULT_END
+| --- PATIENT_RESULT end
 | 
 |
 
