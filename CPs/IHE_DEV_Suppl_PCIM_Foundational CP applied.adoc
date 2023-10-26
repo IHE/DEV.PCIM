@@ -10,9 +10,9 @@
 *Point-of-Care Identity Management*
 *(PCIM)*
 
-*Revision 1.x -- Trial Implementation*
+*Revision 1.2 -- Trial Implementation*
 
-Date: xxx,xx,2023
+Date: October 26,2023
 Author: IHE Devices Technical Committee
 Email: dev@ihe.net
 
