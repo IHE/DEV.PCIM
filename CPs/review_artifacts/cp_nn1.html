@@ -2852,6 +2852,84 @@ For example:</p>
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Table A.1.2.6-2: PRT-4 Values</strong>, <em>Update table to be more descriptive about RO vs AUT</em>:</th>
+</tr>
+</thead>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Table:</span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch text-left">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Participation</strong></th>
+<th class="tableblock halign-left valign-top"><strong>HL7 Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Adaptation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AUT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AUT Author/Event Initiator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The participant (nurse, device, etc.), initially asserts the association.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EQUIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equipment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The participant is the device that is a subject of the device-patient association.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsible Observer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The participant (nurse, etc.) observes an already asserted association as a prelude to adjusting, validating, or marking in error.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Table:</span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch text-left">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Participation</strong></th>
+<th class="tableblock halign-left valign-top"><strong>HL7 Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Adaptation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AUT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AUT Author/Event Initiator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The participant (nurse, device, etc.), initially asserts the association.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EQUIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equipment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The participant is the device that is a subject of the device-patient association.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsible Observer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The participant (nurse, etc.) observes an already asserted association as a prelude to adjusting, validating, or marking in error. A RO PRT segment shall be included in a DEV-52 if the DEV-51 is not validated at the Reporter (OBX-11 is not set to 'F'). Association or Disassociation assertion messages with OBX-11 values of 'C', 'D' and 'W' shall always be validated by a RO using the Manager HMI and thus the RO PRT segment must be included in the resulting DEV-52.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>A.1.3 Application Acknowledgement Message</strong>, <em>add new section to define the application ack</em>:</p></td>
@@ -3643,7 +3721,7 @@ MSA|CA|AM52E123</pre>
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological monitor with ID MON5588. At 12:30, she records the association on the Critical Care application. As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association. This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager. Note that since Nurse Diesel recorded the association 30 minutes after the association occurred, the timestamps for OBR-7 and OBR-8 capture that range of time in the OBR wrapper segment. Additionally, each PRT segment provides specific time for each participant. For the device equipment, when that association occurred and for the responsible observer Nurse Diesel, when it was recorded.</p>
+<p>Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological monitor with ID MON5588. At 12:30, she records the association on the Critical Care application. As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association. This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager. Note that since Nurse Diesel recorded the association 30 minutes after the association occurred, the timestamps for OBR-7 and OBR-8 capture that range of time in the OBR wrapper segment. Additionally, each PRT segment provides specific time for each participant. For the device equipment, when that association occurred and for the initiator Nurse Diesel who validated the association when it was recorded.</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -3653,7 +3731,7 @@ PV1||E|3 WEST ICU^3001^1
 OBR|||15404652|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726120000|20160726123000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
 PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726120000
-PRT|2|UC||RO|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000</pre>
+PRT|2|UC||AUT|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3712,13 +3790,13 @@ PRT|1|UC||AUT||||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|2016072616
 </div>
 <div class="literalblock text-left">
 <div class="content">
-<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
 PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
 PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
-PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre>
+PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -3775,13 +3853,13 @@ associations of the patient (which will require the Device-Patient Association M
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>MSH|^~\&amp;|AssocMgr||AssocConsumer||20160726160000||ORU^R01^ORU_R01|12d1599|P|2.6|||AL|AL|USA||||IHE_DEV_052^IHE PCD^1.3.6.1.4.1.19376.1.6.1.52.1^ISO
+<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
 PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
 PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
-PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre>
+PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3808,7 +3886,14 @@ QID|Q0044|Q66^Device-Patient Subscription^HL7005</pre>
 </div>
 <div class="paragraph text-left">
 <p>The Device-Patient Association Manager responds by starting a continuous stream of Device- Patient Association [PCD-17] messages, starting with message(s) giving the current device
-associations of the patient (which will require the Device-Patient Association Manager to access that information and format it in [PCD-17] form).</p>
+associations of the patient (which will require the Device-Patient Association Manager to access that information and format it in [PCD-17] form).
+MSH|<sup>~\&amp;|AssocMgr||AssocConsumer||20160726160000||ORU</sup>R01<sup>ORU_R01|12d1599|P|2.6|||AL|AL|USA||||IHE_DEV_052</sup>IHE PCD<sup>1.3.6.1.4.1.19376.1.6.1.52.1</sup>ISO
+PID|||AB60001<sup>^</sup>A<sup>PI||McMurphy</sup>R<sup>P</sup><sup>^</sup>L
+PV1||E|3 WEST ICU<sup>3001</sup>1
+OBR|||15404697|69136<sup>MDC_OBS_ASSOCIATION_PATIENT_DEVICE</sup>MDC|||20160726160000|20160726160000
+OBX|1|CWE|68487<sup>MDC_ATTR_EVT_COND</sup>MDC||198332<sup>MDC_EVT_ASSOCIATION_PATIENT_DEVICE</sup>MDC||||||R
+PRT|1|UC||EQUIP|||||3 WEST ICU<sup>3001</sup>1|MON5596<sup>^231A8456B1CB2366</sup>EUI-64|20160726160000
+PRT|2|UC||RO|58796<sup>Ratched</sup>N||||3 WEST ICU<sup>3001</sup>1||20160726160000</p>
 </div>
 <div class="paragraph text-left">
 <p><span class="underline">Proposed Text:</span></p>
@@ -3816,6 +3901,18 @@ associations of the patient (which will require the Device-Patient Association M
 <div class="paragraph text-left">
 <p>The Device-Patient Association Manager responds by starting a continuous stream of Report Association [DEV-52] messages, starting with message(s) giving the current device
 associations of the patient (which will require the Device-Patient Association Manager to access that information and format it in [DEV-52] form).</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>MSH|^~\&amp;|AssocMgr||AssocConsumer||20160726160000||ORU^R01^ORU_R01|12d1599|P|2.6|||AL|AL|USA||||IHE_DEV_052^IHE PCD^1.3.6.1.4.1.19376.1.6.1.52.1^ISO
+PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
+PV1||E|3 WEST ICU^3001^1
+OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
+PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
+PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
+PRT|3|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500</pre>
+</div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -3841,7 +3938,7 @@ PV1||E|3 WEST ICU^3001^1
 OBR|||15404712|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726230000|20160726230000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198334^MDC_EVT_DISASSOCIATION_PATIENT_DEVICE^MDC||||||R
 PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64||20160726230000
-PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
+PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -3862,7 +3959,7 @@ PRT|2|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
 <div id="footer">
 <div id="footer-text">
 Version PCIM - Revision 1.2 - Trial Implementation<br>
-Last updated 2023-10-24 10:10:18 -0700
+Last updated 2023-10-26 14:37:45 -0700
 </div>
 </div>
 </body>
