@@ -1341,7 +1341,7 @@ l| OBX
 | [1..1]
 
 l| {PRT}
-| Participation -- _One PRT segment for device, one for responsible person or system, optional third for additional person doing validation_
+| Participation -- _One PRT segment for device, one for person or system making assertion and conditionally one for person doing additional validation_
 | R
 | [2..3]
 
@@ -2436,7 +2436,7 @@ MSH|^~\&|AssocMgr||AssocConsumer||20160726160000||ORU^R01^ORU_R01|12d1599|P|2.6|
 PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
-OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
 PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
 PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
 PRT|3|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500
