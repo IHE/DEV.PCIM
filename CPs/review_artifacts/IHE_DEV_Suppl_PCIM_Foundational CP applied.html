@@ -549,7 +549,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Revision 1.2&#8201;&#8212;&#8201;Trial Implementation</strong></p>
 </div>
 <div class="paragraph">
-<p>Date: October 26,2023
+<p>Date: October 27,2023
 Author: IHE Devices Technical Committee
 Email: <a href="mailto:dev@ihe.net">dev@ihe.net</a></p>
 </div>
@@ -566,7 +566,7 @@ Email: <a href="mailto:dev@ihe.net">dev@ihe.net</a></p>
 Each supplement undergoes a process of public comment and trial implementation before being incorporated into the volumes of the Technical Frameworks.</p>
 </div>
 <div class="paragraph">
-<p>This supplement is published on xx,xx 7, 2023 for trial implementation and may be available for testing at subsequent IHE Connectathons.
+<p>This supplement is published on October 27, 2023 for trial implementation and may be available for testing at subsequent IHE Connectathons.
 The supplement may be amended based on the results of testing.
 Following successful testing it will be incorporated into the Patient Care Device Technical Framework.
 Comments are invited and can be submitted at <a href="http://www.ihe.net/PCD_Public_Comments/" class="bare">http://www.ihe.net/PCD_Public_Comments/</a>.</p>
@@ -1824,7 +1824,7 @@ that device d1 was connected to patient p1 starting at t1 and ending at t2), the
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="literal"><pre> {PRT}</pre></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Participation&#8201;&#8212;&#8201;<em>One PRT segment for device, one for responsible person or system, optional third for additional person doing validation</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participation&#8201;&#8212;&#8201;<em>One PRT segment for device, one for person or system making assertion and conditionally one for person doing additional validation</em></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">[2..3]</p></td>
 </tr>
@@ -2256,13 +2256,13 @@ association (PRT-4 = EQUIP), its ID appears here. Note&#8201;&#8212;&#8201;Prior
 <td>C</td>
 <td></td>
 <td><p>Participation Begin Date/Time (arrival time).</p>
-<p>Refer to <a href="#Table_A_1_2_6_4">Table A.1.2.6-4.</a></p></td></tr>
+<p>Refer to Table_A_1_2_6_3.</a></p></td></tr>
 <tr class="odd"><td>12</td>
 <td>DTM</td>
 <td>C</td>
 <td></td>
 <td><p>Participation End Date/Time (departure time).</p>
-<p>Refer to Table A.1.2.6-3.</p></td></tr>
+<p>Refer to Table A.1.2.6-4.</p></td></tr>
 <tr class="even"><td>13</td>
 <td>CWE</td>
 <td>O</td>
@@ -2329,7 +2329,7 @@ known.</td></tr></tbody></table></p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AUT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">AUT Author/Event Initiator</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The participant (nurse, device, etc.), initially asserts the association.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The participant (nurse, device, etc.), initially asserts the association. An RO participant is not included if the association is validated at the time it was asserted.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">EQUIP</p></td>
@@ -3284,7 +3284,7 @@ associations of the patient (which will require the Device-Patient Association M
 PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
-OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
 PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
 PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
 PRT|3|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500</pre>
@@ -3345,7 +3345,7 @@ PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
 <div id="footer">
 <div id="footer-text">
 Version PCIM - Revision 1.2 - Trial Implementation<br>
-Last updated 2023-10-26 14:39:49 -0700
+Last updated 2023-10-27 09:24:25 -0700
 </div>
 </div>
 </body>

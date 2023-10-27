@@ -12,7 +12,7 @@
 
 *Revision 1.2 -- Trial Implementation*
 
-Date: October 26,2023
+Date: October 27,2023
 Author: IHE Devices Technical Committee
 Email: dev@ihe.net
 
@@ -24,7 +24,7 @@ Email: dev@ihe.net
 This is a supplement to the IHE Devices Domain Technical Framework.
 Each supplement undergoes a process of public comment and trial implementation before being incorporated into the volumes of the Technical Frameworks.
 
-This supplement is published on xx,xx 7, 2023 for trial implementation and may be available for testing at subsequent IHE Connectathons.
+This supplement is published on October 27, 2023 for trial implementation and may be available for testing at subsequent IHE Connectathons.
 The supplement may be amended based on the results of testing.
 Following successful testing it will be incorporated into the Patient Care Device Technical Framework.
 Comments are invited and can be submitted at http://www.ihe.net/PCD_Public_Comments/.
@@ -867,7 +867,7 @@ l| OBX
 | [1..1]
 
 l| {PRT}
-| Participation -- _One PRT segment for device, one for responsible person or system, optional third for additional person doing validation_
+| Participation -- _One PRT segment for device, one for person or system making assertion and conditionally one for person doing additional validation_
 | R
 | [2..3]
 
@@ -1158,13 +1158,13 @@ association (PRT-4 = EQUIP), its ID appears here. Note -- Prior to HL7
 +++<td>+++C+++</td>+++
 +++<td>++++++</td>+++
 +++<td>++++++<p>+++Participation Begin Date/Time (arrival time).+++</p>+++
-+++<p>+++Refer to +++<a href="#Table_A_1_2_6_4">+++Table A.1.2.6-4.+++</a>++++++</p>++++++</td>++++++</tr>+++
++++<p>+++Refer to Table_A_1_2_6_3.+++</a>++++++</p>++++++</td>++++++</tr>+++
 +++<tr class="odd">++++++<td>+++12+++</td>+++
 +++<td>+++DTM+++</td>+++
 +++<td>+++C+++</td>+++
 +++<td>++++++</td>+++
 +++<td>++++++<p>+++Participation End Date/Time (departure time).+++</p>+++
-+++<p>+++Refer to Table A.1.2.6-3.+++</p>++++++</td>++++++</tr>+++
++++<p>+++Refer to Table A.1.2.6-4.+++</p>++++++</td>++++++</tr>+++
 +++<tr class="even">++++++<td>+++13+++</td>+++
 +++<td>+++CWE+++</td>+++
 +++<td>+++O+++</td>+++
@@ -1218,7 +1218,7 @@ Table A.1.2.6-2: PRT-4 Values
 
 | AUT
 | AUT Author/Event Initiator
-| The participant (nurse, device, etc.), initially asserts the association.
+| The participant (nurse, device, etc.), initially asserts the association. An RO participant is not included if the association is validated at the time it was asserted.
 
 | EQUIP
 | Equipment
@@ -1879,7 +1879,7 @@ MSH|^~\&|AssocMgr||AssocConsumer||20160726160000||ORU^R01^ORU_R01|12d1599|P|2.6|
 PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
-OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
 PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
 PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
 PRT|3|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500
