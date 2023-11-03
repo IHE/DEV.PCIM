@@ -8,7 +8,14 @@ The Point-of-Care Identity Management (PCIM) Profile defines transactions for re
 
 ## Status
 
-We are currently working on CPs to take the [Point-of-Care Identity Management (PCIM) Revsion 1.1 - Trial implementation](https://www.ihe.net/uploadedFiles/Documents/PCD/IHE_PCD_Suppl_PCIM.pdf) to the next stage.
+We are currently working on change proposals (CP) to refine the [Point-of-Care Identity Management (PCIM) Revsion 1.1 - Trial implementation specification](https://www.ihe.net/uploadedFiles/Documents/PCD/IHE_PCD_Suppl_PCIM.pdf).
+
+Version 1.2 has been submitted for approval along with the corresponding Foundational CP. The links below take you directly to the HTML version of these documents. 
+
+* [Foundational CP](https://htmlpreview.github.io/?https://github.com/IHE/DEV.PCIM/blob/master/CPs/for_approval/cp_nn1.html)
+* [PCIM Trial Spec with Foundational Changes Applied – Version 1.2](https://htmlpreview.github.io/?https://github.com/IHE/DEV.PCIM/blob/master/CPs/for_approval/IHE_DEV_Suppl_PCIM_Foundational%20CP%20applied.html)
+
+A work list is in place for review of potential upcoming CPs.
 
 [CP Work List](https://github.com/IHE/DEV.PCIM/blob/master/CPs/index.adoc)
 
