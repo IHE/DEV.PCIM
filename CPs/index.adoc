@@ -37,11 +37,4 @@ DEV-52
 |Assigned
 |Chris Matthes (cmatthes@epic.com)
 
-|DEV-51 semantics and structure 
-|xref:cp_nn8.adoc[NN8]
-|DEV-51
-|Assigned
-|Ali Nakoulima (ali.nakoulima@oracle.com)
-
-
 |===
