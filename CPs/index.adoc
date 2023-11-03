@@ -13,14 +13,14 @@ PCIM CP List and Status
 |DEV-51 +
 DEV-52 +
 DEV-19
-|Draft
+|Submitted for Approval
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |PCIM Device-Patient Association Manager Error Responses
 |xref:cp_nn4.adoc[NN4]
 |DEV-51 +
 DEV-52
-|Actively merging this CP with CP #1
+|Merged into Foundational CP
 |Bill Haralson (William.Haralson@icumed.com)
 
 |Adding an Optional Order ID to PCIM Transactions
