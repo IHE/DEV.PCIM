@@ -24,7 +24,7 @@ DEV-52
 |Bill Haralson (William.Haralson@icumed.com)
 
 |Adding an Optional Order ID to PCIM Transactions
-|NN5
+|xref:cp_nn5.adoc[NN5]
 |DEV-51 +
 DEV-52
 |Draft

@@ -1,0 +1,204 @@
+[.text-center]
+= IHE Change Proposal
+
+[.text-center]
+== Tracking Information
+[cols="1,1"]
+|===
+
+|IHE Domain/Program
+|DEV Domain / Patient Care Device (PCD) Program
+
+|Change Proposal ID:
+|CP-PCD-NN5
+
+|Change Proposal Status:
+|Draft
+
+|Date of last update:
+|2023-11-30
+
+|Person Assigned:
+|Tom Kowalczyk
+
+|===
+
+[.text-center]
+== Change Proposal Summary Information
+
+[cols="1,1"]
+|===
+
+2+^|*PCIM Device-Patient Association Manager Error Responses*
+
+|Submitter’s Name(s) and e-mail address(es):
+|Tom KOWALCZYK Tom.Kowalczyk@BBraunUSA.com
+
+
+|Submission Date:
+|TBD
+
+|Integration Profile(s) affected:
+|Point-of-Care Identity Management (PCIM)
+
+|Actor(s) affected:
+|Device-Patient Association Reporter (DPAR) +
+Device-Patient Association Manager (DPAM) +
+Device-Patient Association Consumer (DPAC)
+
+
+|IHE Technical Framework or Supplement modified:
+|PCIM Profile TI revision 1.1, dated 2018-12-07
+
+|Volume(s) and Section(s) affected:
+|Trial Implementation, Multiple Sections
+
+2+|Rationale for Change:
+
+It is expected that EMR systems will likely be common implementors the PCIM Device-Patient Association Reporter and Device-Patient Association Manager actors. Many EMR systems already have a barcode scanner setup that allows the clinician to scan the identities of the Device and Patient at the bedside. In the case where the Device is an infusion pump, the EMR may also already have an assigned infusion order that is planned to be used by that infusion pump and patient. In that case, the infusion pump (gateway?) will likely implement the PCIM Device-Patient Association Consumer actor. When the infusion pump receives an association for a patient, a device (the pump), and an an optional order ID, all three of these parameters (Patient ID, Device ID, and Order Number) can later be included in the infusion based documentation transactions (PCD-01 and PCD-10) as well as alert transactions (PCD-04) to the Alert Manager. So, when the EMR receives these infusion documentation transactions with the order ID included, the EMR is better able to place it in the appropriate eMAR location in its database to make referencing and signing easier for the responsible clinician. From the EMR’s perspective, the infusion documentation transactions can be filed much like it is today with fully auto-programmed infusions even though the infusions were manually programmed and never received a PCD-03 transaction. Finally, in the case of alerts and alarms, having the patient ID in PCD-04 transactions enables the receiving Alert Manager to determine which clinician or other personnel to send downstream PCD-06 messages for handling the alerting situation.
+
+|===
+
+|===
+
+| __Appendix A - Proposed Messages_ _On page 35 of the IHE Patient Care Device Technical Framework Supplement – Point-of-Care Identity Management (PCIM), Rev 1.1 – Trial Implementation, section A.1.1 Message Structure, replace Table A.1.1-1 as follows::_
+
+|===
+
+[.text-left]
+[.underline]#Existing Table:#
+Table A.1.1-1 Report Device Patient Association
+
+[cols="1,1"]
+|===
+|Segments
+|Description
+
+|MSH	
+|Message Header
+
+|[{ SFT }]	
+|Software Segment
+
+|[UAC]	
+|User Authentication Credential
+
+|PID	Patient Identification
+
+|[PV1]	Patient Visit Information (for room bed)
+
+|OBR	
+|Observation Request
+
+|{	
+|
+ 
+|OBX	
+|Observation Result
+
+|{ PRT }	
+|Participation
+
+|}
+|	
+
+
+|===
+
+[.text-left]
+[.underline]#Proposed Table:#
+Table A.1.1-1 Report Device Patient Association
+
+[cols="1,1"]
+|===
+|Segments
+|Description
+
+|MSH	
+|Message Header
+
+|[{ SFT }]	
+|Software Segment
+
+|[UAC]	
+|User Authentication Credential
+
+|PID	Patient Identification
+
+|[PV1]	Patient Visit Information (for room bed)
+
+|[ORC]
+|Common Order
+
+|OBR	
+|Observation Request
+
+|{	
+|
+ 
+|OBX	
+|Observation Result
+
+|{ PRT }	
+|Participation
+
+|}
+|	
+
+|===
+
+|===
+
+| __Appendix A - ORC Common Order_ _add a new section “A.1.2.4 ORC Common Order”:_
+
+|===
+
+
+[.text-left]
+A.1.2.4  ORC  Common Order
+The Common Order segment is provided to enter the Order ID for this Device-Patient association, if it is know at the time of the associate/disassociate transaction.  The table below identifies the fields in the ORC segment that are processed by the Device-Patient Association Manager actor and the Device-Patient Association Consumer.  These are the requirements to pass message validation (same a that for the PIV actor):
+
+Appendix Table A.1.2.4-1: ORC Fields
+[cols="1,1,1"]
+|===
+|Field Number	
+|Field Name	
+|Requirement to Pass Validation
+
+|1	
+|Order Control	
+|RE or XO
+
+|2	
+|Placer Order Number	
+|ORC-2.1 must be populated
+
+|9	
+|Date/Time of Transaction	
+|Must be in valid date/time format
+
+|19	
+|Action By	
+|ORC-19.1 must be populated
+
+|===
+
+[.text-left]
+Also, rename the subsequent section and table numberings on pages 36-41 to their next sequential numbers
+
+[.text-left]
+   Section A.1.2.4 -> A.1.2.5 OBR Order Request
+[.text-left]
+   Section A.1.2.5 -> A.1.2.6 OBX Observation (for Patient ID)
+      Table A.1.2.5-1 -> A.1.2.6-1: OBX Fields
+      Table A.1.2.5-2 -> A.1.2.6-2: OBX-5 Values
+      Table A.1.2.5-3 -> A.1.2.6-3: OBX-11 Values
+[.text-left]
+   Section A.1.2.6 -> A.1.2.7 PRT Participation (Observation Participation)
+      Table A.1.2.6-1 -> A.1.2.7-1: PRT Fields
+      Table A.1.2.6-2 -> A.1.2.7-2: PRT-4 Values
+      Table A.1.2.6-3 -> A.1.2.7-3: PRT-11 Interpretation
+      Table A.1.2.6-4 -> A.1.2.7-4: PRT-12 Interpretation
+
+
+

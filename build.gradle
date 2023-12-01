@@ -15,6 +15,7 @@ asciidoctor {
   sources {
     include 'IHE_DEV_Suppl_PCIM_Foundational CP applied.adoc'
     include 'cp_nn1.adoc'
+    include 'cp_nn5.adoc'
     include 'index.adoc'
   }
   resources {
