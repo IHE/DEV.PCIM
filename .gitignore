@@ -17,3 +17,6 @@ CPs/html
 # Ignore Gradle build output directory
 build
 CPs/output
+
+# Ignore Mac metadata file
+.DS_Store
