@@ -1,1 +1,2 @@
-gradlew asciidoc
+cd .ci/asciidoc-converter
+./gradlew asciidoc

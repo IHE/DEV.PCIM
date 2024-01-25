@@ -1,0 +1,39 @@
+plugins {
+    id 'org.asciidoctor.jvm.convert' version '3.3.2'
+    id 'org.asciidoctor.jvm.pdf' version '3.3.2'
+}
+
+apply plugin: 'java'
+version = 'PCIM - Revision 1.2 - Trial Implementation'
+
+repositories {
+    mavenCentral()
+}
+
+asciidoctor {
+  sourceDir file('../../asciidoc')
+  sources {
+    include 'IHE_DEV_Suppl_PCIM_Foundational CP applied.adoc'
+    include 'cp_nn1.adoc'
+    include 'cp_nn5.adoc'
+    include 'index.adoc'
+  }
+  resources {
+    from(sourceDir) {
+        include '*.png'
+        include 'images/**'
+        include 'resources/**'
+    }
+  }
+  outputDir file('../../output')
+  outputOptions {
+//    backends = ['html', 'pdf']
+      backends = ['html']
+  }
+  asciidoctorj {
+    modules {
+       diagram.use() 
+       diagram.version '1.5.16' 
+    }
+}
+}
