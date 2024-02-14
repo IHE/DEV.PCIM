@@ -47,7 +47,7 @@ This is a supplement to the IHE Devices Domain Technical Framework.
 Each supplement undergoes a process of public comment and trial implementation before being incorporated into the volumes of the Technical Frameworks.
 
 This supplement is published on February xx, 2024 for public comment. Comments are invited and can be submitted at https://www.ihe.net/DEV_Public_Comments/. In order to be considered in
-development of the trial omplementation version of the supplement, comments must be received by March xx, 2024.
+development of the trial implementation version of the supplement, comments must be received by March xx, 2024.
 
 This supplement describes changes to the existing technical framework documents.
 
@@ -67,42 +67,39 @@ Information about the organization of IHE Technical Frameworks and Supplements a
 
 The current version of the IHE Devices Domain Technical Framework can be found at https://profiles.ihe.net/DEV/index.html.
 
-[preface]
+[chapter]
 = Introduction to this Supplement
 
-This supplement to the IHE Devices Technical Framework adds the rationale and implementation details of the Point-of-Care Identity Management Profile to the Framework, providing a means for standards-based exchange between systems of information collected and confirmed at the point-of-care tracking the set of medical devices originating observations about each patient.
+This supplement to the IHE Devices Technical Framework adds rationale and implementation details of the Point-of-Care Identity Management Profile to the Framework, providing a means for standards-based exchange between systems of information collected and confirmed at the point-of-care tracking the set of medical devices originating observations about each patient.
 
-[preface]
 == Open Issues and Questions
 
 The work group solicits feedback on workflow effects and problems found in analyzing the profile and in trial implementation.
 
-[preface]
 == Closed Issues
 
 Discuss differences from previous approaches based on ADT messages: will be faster, closer to the actual events than ADT feeds, which have a different purpose and are often not well synchronized with actual events at the point-of-care.
 Will enable devices, device controllers and a variety of other hospital systems to flexibly exchange information, publish or subscribe to change notifications.
 
-[preface]
+[chapter]
 = IHE Technical Frameworks General Introduction
 
 The https://profiles.ihe.net/GeneralIntro/[IHE Technical Framework General Introduction] is shared by all of the IHE domain technical frameworks.
 Each technical framework volume contains links to this document where appropriate.
 
-[preface]
+[chapter]
 = 9 Copyright Licenses
 
 IHE technical documents refer to, and make use of, a number of standards developed and published by several standards development organizations. Please refer to the IHE Technical Frameworks General Introduction, Section 9 - https://profiles.ihe.net/GeneralIntro/ch-9.html[Copyright Licenses] for copyright license information for frequently referenced base standards.
 
-[preface]
+[chapter]
 = 10 Trademark
 
 IHE® and the IHE logo are trademarks of the Healthcare Information Management Systems Society in the United States and trademarks of IHE Europe in the European Community. Please refer to the IHE Technical Frameworks General Introduction, Section 10 - https://profiles.ihe.net/GeneralIntro/ch-10.html[Trademark] for information on their use.
 
-[preface]
 = IHE Technical Frameworks General Introduction Appendices
 
-The https://profiles.ihe.net/GeneralIntro/#3[IHE Technical Framework General Introduction Appendices] are somponents shared by all of the IHE domain technical frameworks.
+The https://profiles.ihe.net/GeneralIntro/#3[IHE Technical Framework General Introduction Appendices] are components shared by all of the IHE domain technical frameworks.
 Each technical framework volume contains links to these where appropriate.
 
 |===
@@ -110,7 +107,6 @@ Update the following appendices to the General Introduction as indicated below. 
 rather, they are appendices to the IHE Technical Frameworks General Introduction located https://profiles.ihe.net/GeneralIntro/index.html[here].
 |===
 
-[preface]
 = Appendix A -- Actors
 
 |===
@@ -134,11 +130,10 @@ rather, they are appendices to the IHE Technical Frameworks General Introduction
 
 |===
 
-[preface]
 = Appendix B -- Transactions
 
 |===
-Add the following *new* transactions to the IHE Technical Frameworks General Introduction Appendix B:
+Add the following *new* transactions to the IHE Technical Frameworks General Introduction https://profiles.ihe.net/GeneralIntro/ch-B.html[Appendix B]:
 |===
 
 |===
@@ -160,11 +155,12 @@ Add the following *new* transactions to the IHE Technical Frameworks General Int
 |1.3.6.1.4.1.19376.1.6.1.52.1
 |===
 
-[preface]
 
 = Appendix D -- Glossary
 
-Add the following *new* glossary terms to the IHE Technical Frameworks General Introduction Appendix D.
+|===
+Add the following *new* glossary terms to the IHE Technical Frameworks General Introduction https://profiles.ihe.net/GeneralIntro/ch-D.html[Appendix D].
+|===
 
 |===
 | Glossary Term | Definition
@@ -228,23 +224,20 @@ More generally, any identifier which allows a particular device to be uniquely i
 for example, name, sex, date of birth.
 |===
 
-[chapter]
+
 = Volume 1 -- Profiles
-
-== Copyright Licenses
-
-None
 
 == Domain-specific additions
 
 None
+
 |===
 Editor: Add new Section 7 to DEV TF-1
 |===
 
 = 7 Point-of-Care Identity Management (PCIM) Profile
 
-The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7^®^footnote:1[HL7 is the registered trademark of Health Level Seven International.] v2 standard messaging for devices and IT systems at a point-of-care to exchange and synchronize information about the identity of specific devices collecting clinical information about a specific patient, to:
+The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7 v2 standard messaging for devices and IT systems at a point-of-care to exchange and synchronize information about the identity of specific devices collecting clinical information about a specific patient, to:
 
 - Assist in the reliable association of the collected data to the proper patient record, based on first-hand observation and data entry by a person at the point-of-care, specifically designed to avoid wrong attribution of data from before or after the period of actual measurement on the patient.
 - Assist in maintaining a correct "`census`" of devices that frequently move between patients such as infusion pumps, and mechanical ventilators.
@@ -555,11 +548,11 @@ Editor: Insert in Section 3 of IHE DEV TF Vol 2 as new Section 3.51
 == 3.51 Communicate Association State [DEV-51]
 
 
-=== Scope
+=== 3.51.1 Scope
 
 This transaction is used by a Device-Patient Association Reporter to assert that an association has been established or broken between a device and a patient, or to update information reported previously by that reporter.
 
-=== Actor Roles
+=== 3.51.2 Actor Roles
 
 The roles in this transaction are defined in the following table and may be played by the actors listed:
 
@@ -575,11 +568,11 @@ The roles in this transaction are defined in the following table and may be play
 |Establishes or updates the persistent record of the association. The manager must provide a HMI to verify association and disassociation assertions. The manager is also responsible for conflict resolution with the HMI and sending corresponding HL7 ACK error codes at commit or application levels. Note that the HMI need not be constrained to running on the same device as the manager. For example, the HMI may be in the form of a mobile app.
 |===
 
-=== Referenced Standards
+=== 3.51.3 Referenced Standards
 
 HL7 2.6 Chapters 2, 3, 5 and 7
 
-=== Messages
+=== 3.51.4 Messages
 
 [plantuml, asciidoc-plant-uml-reporter-manager-interaction-diagram, svg]
 ....
@@ -651,11 +644,11 @@ Editor: Insert in Section 3 of IHE DEV TF Vol 2 as new Section 3.52
 
 == 3.52 Report Association State [DEV-52]
 
-=== Scope
+=== 3.52.1 Scope
 
 This transaction is used by a Device-Patient Association Manager to report to Device-Patient Association Consumers that an association has been established or broken between a device and a patient, or to update information reported previously.
 
-=== Actor Roles
+=== 3.52.2 Actor Roles
 
 The roles in this transaction are defined in the following table and may be played by the actors listed:
 
@@ -672,11 +665,11 @@ The roles in this transaction are defined in the following table and may be play
 
 |===
 
-=== Referenced Standards
+=== 3.52.3 Referenced Standards
 
 HL7 2.6 Chapters 2, 3, 5 and 7
 
-=== Messages
+=== 3.52.4 Messages
 
 [plantuml, asciidoc-plant-uml-manager-consumer-report-interaction-diagram, svg]
 ....
@@ -728,7 +721,7 @@ Editor: Insert in Section 3 of IHE DEV TF Vol 2 as new Section 3.19
 
 == 3.19 Filter Associations [DEV-19]
 
-=== Scope
+=== 3.19.1 Scope
 
 This transaction is used by a Device Patient Association Consumer to access filtered device-patient association information held by a Device Patient Association Manager.
 
@@ -736,7 +729,7 @@ As stated previously, the DEV-19 transaction is optional. If the message is acce
 
 If this message is not supported, MSA-1 shall contain the value CR, ERR-3 (HL7 Error Code) shall contain the value 200 (Unsupported Message Type), and ERR-4 (Severity) shall contain the value E. If the transaction is not supported, and the network connection between the Device-Patient Association Manager and Device-Patient Association Consumer is lost, the Device-Patient Association Manager shall send DEV-52 messages for all current Device-Patient associations to the Device-Patient Association Consumer when network connectivity is restored. This ensures the Device-Patient Association Consumer has the current association state.
 
-=== Actor Roles
+=== 3.19.2 Actor Roles
 
  TBD
 
@@ -757,11 +750,11 @@ If this message is not supported, MSA-1 shall contain the value CR, ERR-3 (HL7 E
 
 |===
 
-=== Referenced Standards
+=== 3.19.3 Referenced Standards
 
 HL7 2.6 Chapters 2, 3, 5 and 7
 
-=== Messages
+=== 3.19.4 Messages
 
 [plantuml, asciidoc-plant-uml-manager-consumer-filter-interaction-diagram, svg]
 ....
@@ -801,15 +794,14 @@ The response is a commit-level acknowledgement. If the request is ill-formed (in
 
 ===== 3.19.4.2.1 Trigger Events
 
-This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query filter request from the Device-Patient Association Consumer. This trigger initially requests the setting up of a sequence of messages reporting all device-patient associations matching the filter criteria. Once the initial device-patient associations have been sent, subsequent changes in the device-patient association state will trigger additional messages to be sent to the Device-Patient Association Consumer as long as the current subscription is in effect. A subscription remains in effect until it is cancelled or modified by the Device-Patient Association Consumer.  
-
+This message and the activity of preparing it, is triggered in the Device-Patient Association Manager by the query filter request from the Device-Patient Association Consumer. This trigger initially requests the setting up of a sequence of messages reporting all device-patient associations matching the filter criteria. Once the initial device-patient associations have been sent, subsequent changes in the device-patient association state will trigger additional messages to be sent to the Device-Patient Association Consumer as long as the current subscription is in effect. A subscription remains in effect until it is canceled or modified by the Device-Patient Association Consumer.  
 
 ===== 3.19.4.2.2 Expected Actions
 
 The Device-Patient Association Consumer is expected to take actions depending on the reason it made the query request and its own business logic.
 An example would be for a device without its own selection and validation mechanism for identifying the patient it is interacting with to receive and use the information from the Device-Patient Association Manager to send that patient identity information with its observations or display the patient identity on its user interface.
 
-=== Security Considerations
+=== 3.19.5 Security Considerations
 
 No special security or security audit considerations beyond the general ones already discussed apply to this transaction.
 
@@ -837,7 +829,7 @@ Additions to the PCD OID Registry are:
 [chapter]
 = Appendices to Volume 2
 
-== Appendix A -- Proposed Messages
+= Appendix A -- Proposed Messages
 
 The descriptions of these messages do not repeat all information in the related sections of the PCD TF-2 or the base HL7 specifications, which should be consulted for additional details.
 The base version of HL7 used in IHE PCD Profiles is version 2.6;
@@ -1066,10 +1058,10 @@ Each report consists of two Participation Information Segments (PRT) and each ma
 
 ==== A.1.2.5 OBX -- Observation 
 
-This segment conveys the "`observation`" that the patient has been associated or dissassociated to a device.
+This segment conveys the "`observation`" that the patient has been associated or disassociated to a device.
 It includes the time stamp of the association event and whether the event is a association or disassociation.
 
-A set of PRT segments accompanies it to convey the device, and the responsible observer. The PID segment conveys the patient identfication.
+A set of PRT segments accompanies it to convey the device, and the responsible observer. The PID segment conveys the patient identification.
 
 **Table A.1.2.5-1: OBX Fields**
 
@@ -1964,11 +1956,11 @@ PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000
 ....
 
 [chapter]
-Volume 3 -- Content Modules
+= Volume 3 -- Content Modules
 
 No content modules
 
 [chapter]
-Volume 4 -- National Extensions
+= Volume 4 -- National Extensions
 
-No national exrensions
+No national extensions
