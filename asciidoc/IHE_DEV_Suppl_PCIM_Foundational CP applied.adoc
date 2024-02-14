@@ -1859,9 +1859,9 @@ QPD-4 Action Code can signify the deletion of a subscription with a value of D.
 === A.2.5 Cancelling a Subscription
 
 A subscription may be explicitly cancelled by the Device-Patient Association Consumer by sending a QSX{caret}J66{caret}QSX_J01 message, which is simply an MSH segment containing that string as MSH-9, followed by a QID segment identifying the subscription being cancelled with QID Query Identification Segment containing in field QID-1 the Query Tag (from QPD-2 of the original query establishing the subscription) and in QID-2 the Message Query Name (from QPD-1 of the original query).
-See Appendix Section A.4 Example Messages, example 4.
+See Appendix Section A.3 Example Messages, Example 4.
 
-== A.4 Example Messages
+== A.3 Example Messages
 
 Example 1: At 12:00, Nurse Diesel connected patient Spaniel to a continuous physiological monitor with ID MON5588. At 12:30, she records the association on the Critical Care application. As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association. This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager. Note that since Nurse Diesel recorded the association 30 minutes after the association occurred, the timestamps for OBR-7 and OBR-8 capture that range of time in the OBR wrapper segment. Additionally, each PRT segment provides specific time for each participant. For the device equipment, when that association occurred and for the initiator Nurse Diesel who validated the association when it was recorded.
 
@@ -1915,7 +1915,7 @@ Since the assertion requires validation, the Association Manager presents an HMI
 At 16:45, she confirms the association on the Critical Care application (or the Association Manager, depending on how the systems are integrated).
 This message would be sent from the Critical Care system in the role of Association Reporter to the Association Manager.
 
-Example 3.
+Example 3:
 A device controller needs an ongoing feed of all devices connected to a patient in a specific room. The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data in room 10 of the MICU:
 
 ....
@@ -1944,7 +1944,9 @@ MSH|^~\&|MonitorGateway||AssocMgr||20160726168000||QSX^J66^QSX_J01|12d1879|P|2.6
 QID|Q0044|Q66^Device-Patient Subscription^HL7005
 ....
 
-Example 4. At 23:00, Nurse Ratched disconnected patient McMurphy from the physiological monitor previously connected in Example 2. She presses a button and then confirms causing the disassociation to be asserted.
+Example 4:
+
+ At 23:00, Nurse Ratched disconnected patient McMurphy from the physiological monitor previously connected in Example 2. She presses a button and then confirms causing the disassociation to be asserted.
 ....
 MSH|^~\&|MonitorGateway||AssocMgr||20160726230000||ORU^R01^ORU_R01|12d1586|P|2.6|||AL|AL|USA||||IHE_DEV_51^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
 PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
