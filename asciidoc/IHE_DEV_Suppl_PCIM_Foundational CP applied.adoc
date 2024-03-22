@@ -28,7 +28,7 @@
 
 *IHE Devices Technical Framework Supplement*
 
-*Point-of-Care Identity Management PCIM)*
+*Point-of-Care Identity Management PCIM*
 
 *Revision 2.0 -- Draft for Public Comment*
 
