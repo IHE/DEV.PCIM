@@ -1677,10 +1677,7 @@ Name+++</th>++++++</tr>++++++</thead>+++
 **Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User Parameters**
 
 |===
-|  |
-
-| FLD
-| ELEMENT NAME
+|FLD|ELEMENT NAME
 
 | PV1.3.1
 | Assigned Patient Location -- Point-Of-Care (least accurate location)
@@ -1830,11 +1827,7 @@ Name+++</th>+++
 The possible values for RCP-1, Query Priority, are:
 
 |===
-|  |  |
-
-| Value
-| Description
-| Comment
+| Value | Description | Comment
 
 | D
 | Deferred
