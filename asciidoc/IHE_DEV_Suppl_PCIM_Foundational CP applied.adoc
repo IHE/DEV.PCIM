@@ -1,8 +1,7 @@
 = Integrating the Healthcare Enterprise
 :doctype: book
-//:title-page-background-image: image::./media/image1.jpeg[IHE_LOGO_for_tf-docs,2]
-:toc:
 :imagesdir: images 
+:toc:
 :xrefstyle: short
 :stylesdir: css
 //:!webfonts:
@@ -17,20 +16,21 @@
 :source-highlighter: highlight.js
 :highlightjsdir: js/highlight
 
-// :sdpi_milestone_publication: SDPi 1.2 Publication
-// :sdpi_milestone_review: SDPi 1.2 Review
+[subs=attributes]
+++++
+<div>
+    <div>
+        <img src="images/IHE_LOGO_for_tf-docs.jpg" style="display: block; margin-left: auto; margin-right: auto; width: 30%"/>
+    </div>
+</div>
+<p style="font-size: 2.75em; text-align: center"><strong>IHE Devices</strong></p>
 
-// :ihe_supplement_sdpi_revision: 1.2.0
-// :ihe_supplement_sdpi_revision_date: {localdatetime}
-// :ihe_supplement_sdpi_revision_label: Standard for Trial Use / Implementation
-// :ihe_supplement_sdpi_publication_month: December 8, 2023
-// :ihe_supplement_sdpi_public_comment_submission_deadline: N/A
+<p style="font-size: 2.75em; text-align: center"><strong>Technical Framework Supplement</strong></p>
 
-*IHE Devices Technical Framework Supplement*
+<p style="font-size: 2.75em; text-align: center"><strong>Point-of-Care Identity Management PCIM</strong></p>
 
-*Point-of-Care Identity Management PCIM*
-
-*Revision 2.0 -- Draft for Public Comment*
+<p style="text-align: center">Revision 2.0 &mdash; Draft for Public Comment</p>
+++++
 
 Date: February xx, 2024
 
