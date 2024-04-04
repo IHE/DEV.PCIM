@@ -5,8 +5,8 @@
 :imagesdir: images 
 :xrefstyle: short
 :stylesdir: css
-:!webfonts:
-:!iconfont-remote:
+//:!webfonts:
+//:!iconfont-remote:
 :toc-title: Contents
 :toc: left
 :toclevels: 3
