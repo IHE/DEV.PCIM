@@ -1453,7 +1453,7 @@ Example: |00643169001763{caret}{caret}2.51.1.1{caret}ISO|
 The list of error codes that can occur during the processing of DEV-51 messages are listed below. The application acknowledgment sent by the Device-Patient Association Manager should contain the Code and Text in ERR-5.1 and ERR-5.2 respectively. ERR-5.9 can also be used to contain additional text related to the error.
 
 [.text-left]
-_Note that the definition of the range of error codes available for use by this profile is TBD. It is assumed that error codes will start at the lower limit of the range and be incremented by one as new error codes are added._ 
+NOTE: The definition of the range of error codes available for use by this profile is TBD. It is assumed that error codes will start at the lower limit of the range and be incremented by one as new error codes are added. 
 
 [cols="2,3,4",options=header]
 |===
@@ -1462,39 +1462,39 @@ _Note that the definition of the range of error codes available for use by this 
 |Text
 |Example
 
-|_Lower limit_
+|Lower limit
 |Other error
 |Used when other errors are not applicable.
 
-|_Lower limit + 1_
+|Lower limit + 1
 |Unknown device
 |Specified device is unknown.
 
-|_Lower limit + 2_
+|Lower limit + 2
 |Unknown patient
 |Specified patient is unknown.
 
-|_Lower limit + 3_
+|Lower limit + 3
 |Device is associated with another patient
 |A device-patient association or disassociation request was received, but the device specified in the request is associated with a different patient.
 
-|_Lower limit + 4_
+|Lower limit + 4
 |Device is not associated with a patient
 |A device-patient disassociation request was received, but the device specified in the request is not associated with a patient.
 
-|_Lower limit + 5_
+|Lower limit + 5
 |Unknown location
 |Specified location is unknown.
 
-|_Lower limit + 6_
+|Lower limit + 6
 |Device-Patient association rejected.
 |Device-Patient Association Reporter sent an unvalidated Device-Patient association request (OBX-11 is not equal to \‘F\’). Association request was rejected by the participating user.
 
-|_Lower limit + 7_
+|Lower limit + 7
 |User is unauthorized.
 |Participating user is unauthorized to perform request.
 
-|_Lower limit + 8_
+|Lower limit + 8
 |Unknown user
 |Participating user is not known by the Device-Patient Association Manager.
 
