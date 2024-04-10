@@ -32,7 +32,7 @@
 <p style="text-align: center">Revision 2.0 &mdash; Draft for Public Comment</p>
 ++++
 
-Date: February xx, 2024
+Date: April 11, 2024
 
 Author: IHE Devices Technical Committee
 
@@ -46,8 +46,8 @@ Email: dev@ihe.net
 This is a supplement to the IHE Devices Domain Technical Framework.
 Each supplement undergoes a process of public comment and trial implementation before being incorporated into the volumes of the Technical Frameworks.
 
-This supplement is published on February xx, 2024 for public comment. Comments are invited and can be submitted at https://www.ihe.net/DEV_Public_Comments/. In order to be considered in
-development of the trial implementation version of the supplement, comments must be received by March xx, 2024.
+This supplement is published on April 11, 2024 for public comment. Comments are invited and can be submitted at https://www.ihe.net/DEV_Public_Comments/. In order to be considered in
+development of the trial implementation version of the supplement, comments must be received by May 11, 2024.
 
 This supplement describes changes to the existing technical framework documents.
 
@@ -681,7 +681,7 @@ manager -> consumer : Report Association State
 consumer -> manager : Commit Level Acknowledgement
 @enduml
 ....
-**Figure 3.52.4-1: Interaction Diagram
+**Figure 3.52.4-1: Interaction Diagram**
 
 ==== 3.52.4.1 Report Association State
 
@@ -829,6 +829,7 @@ Additions to the PCD OID Registry are:
 [chapter]
 = Appendices to Volume 2
 
+[chapter]
 = Appendix A -- Proposed Messages
 
 The descriptions of these messages do not repeat all information in the related sections of the PCD TF-2 or the base HL7 specifications, which should be consulted for additional details.
