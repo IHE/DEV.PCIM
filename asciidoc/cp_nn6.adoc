@@ -1,0 +1,166 @@
+:imagesdir: images 
+[.text-center]
+= IHE Change Proposal
+
+[.text-center]
+== Tracking Information
+[cols="1,1"]
+|===
+
+|IHE Domain/Program
+|DEV Domain / Patient Care Device (PCD) Program
+
+|Change Proposal ID:
+|CP-PCD-NN6
+
+|Change Proposal Status:
+|Draft
+
+|Date of last update:
+|2024-05-09
+
+|Person Assigned:
+|Eldon Metz
+
+|===
+
+[.text-center]
+== Change Proposal Summary Information
+
+[cols="1,1"]
+|===
+
+2+^|*Association Instance Unique Identifier*
+
+|Submitter’s Name(s) and e-mail address(es):
+|Eldon Metz, emetz@innovisionmedical.com
+
+|Submission Date:
+|TBD
+
+|Integration Profile(s) affected:
+|Point-of-Care Identity Management (PCIM)
+
+|Actor(s) affected:
+|Device-Patient Association Consumer +
+Device-Patient Association Manager +
+Device-Patient Association Reporter
+
+|IHE Technical Framework or Supplement modified:
+|PCIM Profile TI revision 2.0, dated 2024-04-11
+
+|Volume(s) and Section(s) affected:
+|Trial Implementation, Multiple Sections
+
+2+|Rationale for Change:
+
+After PCIM connectathon testing in 2024, it was noted that it would simplify update logic for consumers if to the Device-Patient Association Manager (DPAM) assigned a unique identifier at the start of an association instance and referenced it for updates. This would also be consistent with ACM profile PCD-04, PCD-06 and PCD-07 transactions.
+
+This Change Proposal (CP) proposes changes to implement profile clarifications and positions for the above issue.
+
+|===
+
+|===
+
+| _Section B.7 OBR - Observation Reqeust Segment_  *OBR-3 Filler Order Number* , add the following definition after the last paragraph ending on line 2482:
+
+|===
+[.text-left]
+[underline]#Proposed Text:#
+
+[.text-left]
+In the DEV-51 and DEV-52 transactions of the PCIM Profile, this field serves as the unique identifier for the initial association instance and each subsequent update to that association. This value is assigned by the Device-Patient Association Reporter and Device-Patient Association Manager. For the initial association message, OBR-29 Parent is required to be empty.  For all subsequent updates to the same association, OBR-3 Filler Order Number identifies the unique update and OBR-29 Parent contains the value from OBR-3 Filler Order Number of the initial association instance. Device-Patient Association Reporters that are sending an update for an association instance they did not create are not required to fill in OBR-29, but Device-Patient Association Managers must always fill in OBR-29 for all updates. This allows the Device-Patient Association Consumer to correlate all subsequent updates with the original association.
+
+|===
+
+| _Section B.7 OBR - Observation Request Segment_  *OBR-29 Parent (EIP) 00261* , add the following definition after the last paragraph ending on line 2590:
+
+|===
+[.text-left]
+[underline]#Proposed Text:#
+
+[.text-left]
+This field serves as the unique association instance identifier in DEV-51 and DEV-52 transactions of the PCIM profile. It is assigned by a Device-Patient Association Reporter and Device-Patient Association Manager, and is used by Device-Patient Association Manager and Consumers to associate all updates to a particular association instance throughout the history of the association. The Device-Patient Association Reporter may fill in OBR-29 if it also reported the initial association instance. This is optional, as there may be multiple reporters associating and disassociating devices. The Device-Patient Association Manager shall fill in OBR-29 and the same value will be sent to Device-Patient Association Consumers in all updates to an association instance. See OBR-3 Filler order Number for additional information.
+
+|===
+
+| _Section A.1.2.4 - OBR - Observation Request_  *Table A.1.2.4-1 OBR Fields*, update the table to address OBR-3 and OBR-29 usage details:
+
+|===
+[.text-left]
+[underline]#Existing Table:#
+
+**Table A.1.2.4-1: OBR Fields**
+
+|===
+| *SEQ* | *DT* | *OPT*  | *Description*
+
+| 1
+| SI
+| O
+| Set ID - OBR
+
+| 3
+| EI
+| R
+| Unique instance identifier for the association event. Must be constrained during generation to ensure duplicate identifiers between sources are not possible.
+
+| 4
+| CE
+| R
+| Universal Service Identifier – set to 69136\^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC
+
+| 7
+| TS
+| C
+| Earliest participant involvement
+
+| 8
+| TS
+| C
+| Latest participant involvement
+
+|===
+
+
+
+[.text-left]
+[underline]#Proposed Table:#
+
+**Table A.1.2.4-1: OBR Fields**
+
+|===
+| *SEQ* | *DT* | *OPT*  | *Description*
+
+| 1
+| SI
+| O
+| Set ID - OBR
+
+| 3
+| EI
+| R
+| Unique instance identifier for the association event. Must be constrained during generation to ensure duplicate identifiers between sources are not possible. See Appendix B.7 OBR - Observation Request Segment OBR-3 Filler Order Number for additional details.
+
+| 4
+| CE
+| R
+| Universal Service Identifier – set to 69136\^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC
+
+| 7
+| TS
+| C
+| Earliest participant involvement
+
+| 8
+| TS
+| C
+| Latest participant involvement
+
+| 29
+| EIP
+| C
+| Unique instance identifier for the originating association event that all updates apply to. See Appendix B.7 OBR - Observation Request Segment OBR-29 Parent (EIP) 00261for additional details.
+
+|===
+
