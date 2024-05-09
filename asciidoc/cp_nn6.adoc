@@ -54,7 +54,7 @@ Device-Patient Association Reporter
 
 2+|Rationale for Change:
 
-After PCIM connectathon testing in 2024, it was noted that it would simplify update logic for consumers if to the Device-Patient Association Manager (DPAM) assigned a unique identifier at the start of an association instance and referenced it for updates. This would also be consistent with ACM profile PCD-04, PCD-06 and PCD-07 transactions.
+After PCIM connectathon testing in 2024, it was noted that it would simplify update logic for consumers if the Device-Patient Association Manager (DPAM) assigned a unique identifier at the start of an association instance and referenced it for updates. This would also be consistent with ACM profile PCD-04, PCD-06 and PCD-07 transactions.
 
 This Change Proposal (CP) proposes changes to implement profile clarifications and positions for the above issue.
 
@@ -160,7 +160,7 @@ This field serves as the unique association instance identifier in DEV-51 and DE
 | 29
 | EIP
 | C
-| Unique instance identifier for the originating association event that all updates apply to. See Appendix B.7 OBR - Observation Request Segment OBR-29 Parent (EIP) 00261for additional details.
+| Unique instance identifier for the originating association event that all updates apply to. See Appendix B.7 OBR - Observation Request Segment OBR-29 Parent (EIP) 00261 for additional details.
 
 |===
 
