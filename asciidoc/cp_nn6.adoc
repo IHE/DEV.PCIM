@@ -62,15 +62,16 @@ This Change Proposal (CP) proposes changes to implement profile clarifications a
 
 |===
 
-| _Section B.7 OBR - Observation Reqeust Segment_  *OBR-3 Filler Order Number* , add the following definition after the last paragraph ending on line 2482:
+| _Section B.7 OBR - Observation Request Segment_  *OBR-3 Filler Order Number* , add the following definition after the last paragraph ending on line 2482:
 
 |===
 [.text-left]
 [underline]#Proposed Text:#
 
 [.text-left]
-In the DEV-51 and DEV-52 transactions of the PCIM Profile, this field serves as the unique identifier for the initial association instance and each subsequent update to that association. This value is assigned by the Device-Patient Association Reporter and Device-Patient Association Manager. For the initial association message, OBR-29 Parent is required to be empty.  For all subsequent updates to the same association, OBR-3 Filler Order Number identifies the unique update and OBR-29 Parent contains the value from OBR-3 Filler Order Number of the initial association instance. Device-Patient Association Reporters that are sending an update for an association instance they did not create are not required to fill in OBR-29, but Device-Patient Association Managers must always fill in OBR-29 for all updates. This allows the Device-Patient Association Consumer to correlate all subsequent updates with the original association.
+In the DEV-51 and DEV-52 transactions of the PCIM Profile, this field serves as the unique identifier for the initial association instance and each subsequent update to that association. This value is assigned by the Device-Patient Association Reporter and Device-Patient Association Manager. For the initial association message, OBR-29 Parent is required to be empty.  For all subsequent updates to the same association, OBR-3 Filler Order Number identifies the unique update and OBR-29.2 Parent contains the value from OBR-3 Filler Order Number of the initial association instance. Device-Patient Association Reporters that are sending an update for an association instance they did not create are not required to fill in OBR-29.2, but Device-Patient Association Managers must fill in OBR-29.2 for updates. This allows the Device-Patient Association Consumer to correlate all subsequent updates with the original association. 
 
+When transcribing the the components of the OBR-3 field value to the OBR-29.2, all subscomponents shall be transcribed and the component delimiters (^) replaced with subcomponent delimiters (&).
 |===
 
 | _Section B.7 OBR - Observation Request Segment_  *OBR-29 Parent (EIP) 00261* , add the following definition after the last paragraph ending on line 2590:
@@ -80,8 +81,9 @@ In the DEV-51 and DEV-52 transactions of the PCIM Profile, this field serves as 
 [underline]#Proposed Text:#
 
 [.text-left]
-This field serves as the unique association instance identifier in DEV-51 and DEV-52 transactions of the PCIM profile. It is assigned by a Device-Patient Association Reporter and Device-Patient Association Manager, and is used by Device-Patient Association Manager and Consumers to associate all updates to a particular association instance throughout the history of the association. The Device-Patient Association Reporter may fill in OBR-29 if it also reported the initial association instance. This is optional, as there may be multiple reporters associating and disassociating devices. The Device-Patient Association Manager shall fill in OBR-29 and the same value will be sent to Device-Patient Association Consumers in all updates to an association instance. See OBR-3 Filler order Number for additional information.
+The EI data type value in the OBR-29.2 Parent Result Observation Identifier field serves as the unique association instance identifier in DEV-51 and DEV-52 transactions of the PCIM profile. It is assigned by a Device-Patient Association Reporter and Device-Patient Association Manager, and is used by Device-Patient Association Manager and Device-Patient Consumer to associate all updates to a particular association instance throughout the history of the association. The Device-Patient Association Reporter shall fill in OBR-29.2 for all updates to association instances that it initially originated. The Device-Patient Association Manager shall fill in OBR-29.2 with the originating OBR.3 Filler Order Number in all DEV-52 messages conveying updates to an association instance. See OBR-3 Filler order Number for additional information.
 
+When transcribing the components of the OBR-3 field value to the OBR-29.2 all subcomponents shall be transcribed and the component delimiters (^) replaced with subcomponent delimiters (&).
 |===
 
 | _Section A.1.2.4 - OBR - Observation Request_  *Table A.1.2.4-1 OBR Fields*, update the table to address OBR-3 and OBR-29 usage details:
