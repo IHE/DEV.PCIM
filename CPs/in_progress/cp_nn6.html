@@ -464,7 +464,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date of last update:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2024-05-09</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2024-05-10</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Person Assigned:</p></td>
@@ -535,7 +535,7 @@ Device-Patient Association Reporter</p></td>
 <div class="paragraph text-left">
 <p>In the DEV-51 and DEV-52 transactions of the PCIM Profile, this field serves as the unique identifier for the initial association instance and each subsequent update to that association. This value is assigned by the Device-Patient Association Reporter and Device-Patient Association Manager. For the initial association message, OBR-29 Parent is required to be empty.  For all subsequent updates to the same association, OBR-3 Filler Order Number identifies the unique update and OBR-29.2 Parent contains the value from OBR-3 Filler Order Number of the initial association instance. Device-Patient Association Reporters that are sending an update for an association instance they did not create are not required to fill in OBR-29.2, but Device-Patient Association Managers must fill in OBR-29.2 for updates. This allows the Device-Patient Association Consumer to correlate all subsequent updates with the original association.</p>
 </div>
-<div class="paragraph">
+<div class="paragraph text-left">
 <p>When transcribing the the components of the OBR-3 field value to the OBR-29.2, all subscomponents shall be transcribed and the component delimiters (^) replaced with subcomponent delimiters (&amp;).</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -554,7 +554,7 @@ Device-Patient Association Reporter</p></td>
 <div class="paragraph text-left">
 <p>The EI data type value in the OBR-29.2 Parent Result Observation Identifier field serves as the unique association instance identifier in DEV-51 and DEV-52 transactions of the PCIM profile. It is assigned by a Device-Patient Association Reporter and Device-Patient Association Manager, and is used by Device-Patient Association Manager and Device-Patient Consumer to associate all updates to a particular association instance throughout the history of the association. The Device-Patient Association Reporter shall fill in OBR-29.2 for all updates to association instances that it initially originated. The Device-Patient Association Manager shall fill in OBR-29.2 with the originating OBR.3 Filler Order Number in all DEV-52 messages conveying updates to an association instance. See OBR-3 Filler order Number for additional information.</p>
 </div>
-<div class="paragraph">
+<div class="paragraph text-left">
 <p>When transcribing the components of the OBR-3 field value to the OBR-29.2 all subcomponents shall be transcribed and the component delimiters (^) replaced with subcomponent delimiters (&amp;).</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -686,7 +686,7 @@ Device-Patient Association Reporter</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-05-10 07:37:59 -0700
+Last updated 2024-05-10 07:45:42 -0700
 </div>
 </div>
 </body>
