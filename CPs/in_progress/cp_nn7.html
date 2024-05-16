@@ -484,7 +484,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Require PRT-4.3 Name of Coding System Field to be populated</strong></p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Require PRT-4.2 Text and PRT-4.3 Name of Coding System Fields to be populated</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Submitter’s Name(s) and e-mail address(es):</p></td>
@@ -514,7 +514,7 @@ Device-Patient Association Consumer (DPAC)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rationale for Change:</p>
-<p class="tableblock">During implementation of actor systems for testing at NA Connectathon 2024, it was noted by multiple vendors that the NIST HL7 v2 Test Tool for PCD would display an error if PRT 4.3 was not populated. It was decided by the WG that the spec should require PRT 4.3 to be populated with the name of the coding system.</p></td>
+<p class="tableblock">During implementation of actor systems for testing at NA Connectathon 2024, it was noted by multiple vendors that the NIST HL7 v2 Test Tool for PCD would display an error if PRT 4.3 was not populated. It was decided by the WG that the spec shall require PRT 4.3 to be populated with the name of the coding system. Additionally, IHE TF Vol 2 Appendix C.2 CWE Data Type - code with exception Table C.2-1 requires that the Text component also be populated.</p></td>
 </tr>
 </tbody>
 </table>
@@ -538,7 +538,7 @@ Device-Patient Association Consumer (DPAC)</p></td>
 <p><span class="underline">Proposed Description:</span></p>
 </div>
 <div class="paragraph text-left">
-<p>Participation. Includes Participation Code and Name of Coding System. See table A.1.2.6-2 for details for code in PRT 4.1. PRT 4.3 must be set to <em>HL70912</em>.</p>
+<p>Participation. Includes Participation Code, Text and Name of Coding System. See table A.1.2.6-2 for details for code in PRT 4.1. PRT 4.2 shall be set to the same value as PRT 4.1. PRT 4.3 must be set to <em>HL70912</em>.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -546,7 +546,7 @@ Device-Patient Association Consumer (DPAC)</p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>A.3 Examples Messages - Example 1</em> : <em>Update to include name of coding system for PRT segments:</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>A.3 Examples Messages - Example 1</em> : <em>Update to include text and name of coding system for PRT segments:</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -574,8 +574,8 @@ PID|||AB60001^^^A^PI||Spaniel^C^R^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404652|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726120000|20160726123000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
-PRT|1|UC||EQUIP^^HL70912|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726120000
-PRT|2|UC||AUT^^HL70912|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000</pre>
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726120000
+PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000</pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -584,7 +584,7 @@ PRT|2|UC||AUT^^HL70912|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000</pre>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>A.3 Examples Messages - Example 2</em> : <em>Update to include name of coding system for PRT segments:</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>A.3 Examples Messages - Example 2</em> : <em>Update to include text and name of coding system for PRT segments:</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -612,8 +612,8 @@ PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
-PRT|1|UC||EQUIP^^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
-PRT|2|UC||AUT^^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre>
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
+PRT|2|UC||AUT^AUT^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -622,7 +622,7 @@ PRT|2|UC||AUT^^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>A.3 Examples Messages - Example 3</em> : <em>Update to include name of coding system for PRT segments:</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>A.3 Examples Messages - Example 3</em> : <em>Update to include text and name of coding system for PRT segments:</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -651,9 +651,9 @@ PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
-PRT|1|UC||EQUIP^^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
-PRT|2|UC||AUT^^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
-PRT|3|UC||RO^^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500</pre>
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
+PRT|2|UC||AUT^AUT^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
+PRT|3|UC||RO^RO^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500</pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -662,7 +662,7 @@ PRT|3|UC||RO^^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500</pre>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>A.3 Examples Messages - Example 4</em> : <em>Update to include name of coding system for PRT segments:</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>A.3 Examples Messages - Example 4</em> : <em>Update to include text and name of coding system for PRT segments:</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -690,8 +690,8 @@ PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404712|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726230000|20160726230000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198334^MDC_EVT_DISASSOCIATION_PATIENT_DEVICE^MDC||||||R
-PRT|1|UC||EQUIP^^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64||20160726230000
-PRT|2|UC||AUT^^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64||20160726230000
+PRT|2|UC||AUT^AUT^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
 </div>
 </div>
 </div>
@@ -699,7 +699,7 @@ PRT|2|UC||AUT^^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-05-15 12:03:50 -0700
+Last updated 2024-05-16 11:47:02 -0700
 </div>
 </div>
 </body>

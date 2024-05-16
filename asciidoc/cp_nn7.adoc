@@ -29,7 +29,7 @@
 [cols="1,1"]
 |===
 
-2+^|*Require PRT-4.3 Name of Coding System Field to be populated*
+2+^|*Require PRT-4.2 Text and PRT-4.3 Name of Coding System Fields to be populated*
 
 |Submitter’s Name(s) and e-mail address(es):
 |Eldon Metz emetz@innovisionmedical.com
@@ -55,7 +55,7 @@ Device-Patient Association Consumer (DPAC)
 
 2+|Rationale for Change:
 
-During implementation of actor systems for testing at NA Connectathon 2024, it was noted by multiple vendors that the NIST HL7 v2 Test Tool for PCD would display an error if PRT 4.3 was not populated. It was decided by the WG that the spec should require PRT 4.3 to be populated with the name of the coding system.
+During implementation of actor systems for testing at NA Connectathon 2024, it was noted by multiple vendors that the NIST HL7 v2 Test Tool for PCD would display an error if PRT 4.3 was not populated. It was decided by the WG that the spec shall require PRT 4.3 to be populated with the name of the coding system. Additionally, IHE TF Vol 2 Appendix C.2 CWE Data Type - code with exception Table C.2-1 requires that the Text component also be populated.
 
 |===
 
@@ -73,11 +73,11 @@ Participation .
 [.text-left]
 [.underline]#Proposed Description:#
 [.text-left]
-Participation. Includes Participation Code and Name of Coding System. See table A.1.2.6-2 for details for code in PRT 4.1. PRT 4.3 must be set to _HL70912_.
+Participation. Includes Participation Code, Text and Name of Coding System. See table A.1.2.6-2 for details for code in PRT 4.1. PRT 4.2 shall be set to the same value as PRT 4.1. PRT 4.3 must be set to _HL70912_.
 
 |===
 
-| _A.3 Examples Messages - Example 1_ : _Update to include name of coding system for PRT segments:_
+| _A.3 Examples Messages - Example 1_ : _Update to include text and name of coding system for PRT segments:_
 
 |===
 
@@ -104,13 +104,13 @@ PID|||AB60001^^^A^PI||Spaniel^C^R^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404652|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726120000|20160726123000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
-PRT|1|UC||EQUIP^^HL70912|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726120000
-PRT|2|UC||AUT^^HL70912|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EUI-64|20160726120000
+PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000
 ....
 
 |===
 
-| _A.3 Examples Messages - Example 2_ : _Update to include name of coding system for PRT segments:_
+| _A.3 Examples Messages - Example 2_ : _Update to include text and name of coding system for PRT segments:_
 
 |===
 
@@ -137,13 +137,13 @@ PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
-PRT|1|UC||EQUIP^^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
-PRT|2|UC||AUT^^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
+PRT|2|UC||AUT^AUT^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
 ....
 
 |===
 
-| _A.3 Examples Messages - Example 3_ : _Update to include name of coding system for PRT segments:_
+| _A.3 Examples Messages - Example 3_ : _Update to include text and name of coding system for PRT segments:_
 
 |===
 
@@ -171,14 +171,14 @@ PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
-PRT|1|UC||EQUIP^^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
-PRT|2|UC||AUT^^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
-PRT|3|UC||RO^^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
+PRT|2|UC||AUT^AUT^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
+PRT|3|UC||RO^RO^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500
 ....
 
 |===
 
-| _A.3 Examples Messages - Example 4_ : _Update to include name of coding system for PRT segments:_
+| _A.3 Examples Messages - Example 4_ : _Update to include text and name of coding system for PRT segments:_
 
 |===
 
@@ -205,8 +205,8 @@ PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404712|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726230000|20160726230000
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198334^MDC_EVT_DISASSOCIATION_PATIENT_DEVICE^MDC||||||R
-PRT|1|UC||EQUIP^^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64||20160726230000
-PRT|2|UC||AUT^^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64||20160726230000
+PRT|2|UC||AUT^AUT^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000
 ....
 
 
