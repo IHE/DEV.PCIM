@@ -202,8 +202,6 @@ PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
 
 |===
 
-|===
-
 | _Section A.3 - Example Messages_  *Example 3, DEV 52 associate message*, update the example to assign unique identifier by manager to OBR.3 for association, making it different from DEV-51 sent by reporter earlier in Example 2 and also using EUI-64 encoding:
 
 |===
