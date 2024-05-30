@@ -464,7 +464,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date of last update:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2024-05-15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2024-05-30</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Person Assigned:</p></td>
@@ -687,7 +687,7 @@ Device-Patient Association Reporter</p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.3 - Example Messages</em>  <strong>Example 3, DEV 52 associate message</strong>, update the example to assign unique identifier by manager to OBR.3 for association, making it different from DEV-51 sent by reporter earlier in Example 2:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.3 - Example Messages</em>  <strong>Example 2, DEV 51 associate message</strong>, update the example to assign unique identifier by reporter to OBR.3 for association using additional field in EI.</p></td>
 </tr>
 </tbody>
 </table>
@@ -696,14 +696,13 @@ Device-Patient Association Reporter</p></td>
 </div>
 <div class="literalblock text-left">
 <div class="content">
-<pre>MSH|^~\&amp;|AssocMgr||AssocConsumer||20160726160000||ORU^R01^ORU_R01|12d1599|P|2.6|||AL|AL|USA||||IHE_DEV_052^IHE PCD^1.3.6.1.4.1.19376.1.6.1.52.1^ISO
+<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
 PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
 OBR|||15404697|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
-OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
 PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
-PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
-PRT|3|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500</pre>
+PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre>
 </div>
 </div>
 <div class="paragraph text-left">
@@ -711,60 +710,739 @@ PRT|3|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500</pre>
 </div>
 <div class="literalblock text-left">
 <div class="content">
-<pre>MSH|^~\&amp;|AssocMgr||AssocConsumer||20160726160000||ORU^R01^ORU_R01|12d1599|P|2.6|||AL|AL|USA||||IHE_DEV_052^IHE PCD^1.3.6.1.4.1.19376.1.6.1.52.1^ISO
+<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726160000||ORU^R01^ORU_R01|12d1574|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
 PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
 PV1||E|3 WEST ICU^3001^1
-OBR|||2543241|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
-OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
+OBR|||15404697^^132233FFFE445566^EUI-64|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726160000|20160726160000
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||R
 PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64|20160726160000
-PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
-PRT|3|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500</pre>
+PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre>
 </div>
 </div>
 <table class="tableblock frame-all grid-all stretch">
+</table>
+<div class="paragraph">
+<p>| <em>Section A.3 - Example Messages</em>  <strong>Example 3, DEV 52 associate message</strong>, update the example to assign unique identifier by manager to OBR.3 for association, making it different from DEV-51 sent by reporter earlier in Example 2 and also using EUI-64 encoding:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 100%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.6211%;">
+<col style="width: 0.624%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.3 - Example Messages</em>  <strong>Example 4, DEV 51 disassociate message</strong>, update the example to fill in OBR.29-2 to reference original association from same reporter:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[.text-left]
+<span class="underline">Existing Text:</span>
+[.text-left]
+&#8230;&#8203;.
+MSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^~\&amp;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AssocMgr</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AssocConsumer</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726160000</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ORU<sup>R01</sup>ORU_R01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12d1599</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USA</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IHE_DEV_052^IHE PCD<sup>1.3.6.1.4.1.19376.1.6.1.52.1</sup>ISO
+PID</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AB60001<sup>^</sup>A^PI</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">McMurphy<sup>R</sup>P<sup>^</sup>^L
+PV1</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1
+OBR</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15404697^^</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">69136<sup>MDC_OBS_ASSOCIATION_PATIENT_DEVICE</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726160000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726160000
+OBX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CWE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">68487<sup>MDC_ATTR_EVT_COND</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">198332<sup>MDC_EVT_ASSOCIATION_PATIENT_DEVICE</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F
+PRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EQUIP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MON5596<sup>^231A8456B1CB2366</sup>EUI-64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726160000
+PRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AUT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">58796<sup>Ratched</sup>N</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726160000
+PRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">58796<sup>Ratched</sup>N</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726164500
+&#8230;&#8203;.</p>
+<p class="tableblock">[.text-left]
+<span class="underline">Proposed Text:</span>
+[.text-left]
+&#8230;&#8203;.
+MSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^~\&amp;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AssocMgr</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AssocConsumer</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726160000</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ORU<sup>R01</sup>ORU_R01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12d1599</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USA</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IHE_DEV_052^IHE PCD<sup>1.3.6.1.4.1.19376.1.6.1.52.1</sup>ISO
+PID</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AB60001<sup>^</sup>A^PI</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">McMurphy<sup>R</sup>P<sup>^</sup>^L
+PV1</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1
+OBR</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2543241<sup>^020000FFFE000000</sup>EUI-64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">69136<sup>MDC_OBS_ASSOCIATION_PATIENT_DEVICE</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726160000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726160000
+OBX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CWE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">68487<sup>MDC_ATTR_EVT_COND</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">198332<sup>MDC_EVT_ASSOCIATION_PATIENT_DEVICE</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F
+PRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EQUIP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MON5596<sup>^231A8456B1CB2366</sup>EUI-64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726160000
+PRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AUT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">58796<sup>Ratched</sup>N</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726160000
+PRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">58796<sup>Ratched</sup>N</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726164500
+&#8230;&#8203;.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph text-left">
-<p><span class="underline">Existing Text:</span></p>
+<div class="paragraph">
+<p>| <em>Section A.3 - Example Messages</em>  <strong>Example 4, DEV 51 disassociate message</strong>, update the example to fill in OBR.29-2 to reference original association from same reporter:</p>
 </div>
-<div class="literalblock text-left">
-<div class="content">
-<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726230000||ORU^R01^ORU_R01|12d1586|P|2.6|||AL|AL|USA||||IHE_DEV_51^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
-PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
-PV1||E|3 WEST ICU^3001^1
-OBR|||15404712|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726230000|20160726230000
-OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198334^MDC_EVT_DISASSOCIATION_PATIENT_DEVICE^MDC||||||R
-PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64||20160726230000
-PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
-</div>
-</div>
-<div class="paragraph text-left">
-<p><span class="underline">Proposed Text:</span></p>
-</div>
-<div class="literalblock text-left">
-<div class="content">
-<pre>MSH|^~\&amp;|MonitorGateway||AssocMgr||20160726230000||ORU^R01^ORU_R01|12d1586|P|2.6|||AL|AL|USA||||IHE_DEV_51^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
-PID|||AB60001^^^A^PI||McMurphy^R^P^^^^L
-PV1||E|3 WEST ICU^3001^1
-OBR|||15404712|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726230000|20160726230000|||||||||||||||||||||^15404697
-OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198334^MDC_EVT_DISASSOCIATION_PATIENT_DEVICE^MDC||||||R
-PRT|1|UC||EQUIP|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64||20160726230000
-PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6172%;">
+<col style="width: 0.6308%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[.text-left]
+<span class="underline">Existing Text:</span>
+[.text-left]
+&#8230;&#8203;.
+MSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^~\&amp;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MonitorGateway</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AssocMgr</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726230000</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ORU<sup>R01</sup>ORU_R01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12d1586</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USA</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IHE_DEV_51^IHE PCD<sup>1.3.6.1.4.1.19376.1.6.1.51.1</sup>ISO
+PID</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AB60001<sup>^</sup>A^PI</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">McMurphy<sup>R</sup>P<sup>^</sup>^L
+PV1</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1
+OBR</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15404712</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">69136<sup>MDC_OBS_ASSOCIATION_PATIENT_DEVICE</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726230000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726230000
+OBX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CWE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">68487<sup>MDC_ATTR_EVT_COND</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">198334<sup>MDC_EVT_DISASSOCIATION_PATIENT_DEVICE</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R
+PRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EQUIP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MON5596<sup>^231A8456B1CB2366</sup>EUI-64</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726230000
+PRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AUT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">58796<sup>Ratched</sup>N</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726230000
+&#8230;&#8203;.</p>
+<p class="tableblock">[.text-left]
+<span class="underline">Proposed Text:</span>
+[.text-left]
+&#8230;&#8203;.
+MSH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^~\&amp;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MonitorGateway</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AssocMgr</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726230000</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ORU<sup>R01</sup>ORU_R01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12d1586</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">P</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USA</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IHE_DEV_51^IHE PCD<sup>1.3.6.1.4.1.19376.1.6.1.51.1</sup>ISO
+PID</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AB60001<sup>^</sup>A^PI</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">McMurphy<sup>R</sup>P<sup>^</sup>^L
+PV1</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">E</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1
+OBR</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15404712<sup>^132233FFFE445566</sup>EUI-64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">69136<sup>MDC_OBS_ASSOCIATION_PATIENT_DEVICE</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726230000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726230000</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">^15404697&amp;&amp;132233FFFE445566&amp;EUI-64
+OBX</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CWE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">68487<sup>MDC_ATTR_EVT_COND</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">198334<sup>MDC_EVT_DISASSOCIATION_PATIENT_DEVICE</sup>MDC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R
+PRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EQUIP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MON5596<sup>^231A8456B1CB2366</sup>EUI-64</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726230000
+PRT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">UC</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AUT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">58796<sup>Ratched</sup>N</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 WEST ICU<sup>3001</sup>1</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20160726230000
+&#8230;&#8203;.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-05-17 08:58:22 -0700
+Last updated 2024-05-30 08:35:06 -0700
 </div>
 </div>
 </body>
