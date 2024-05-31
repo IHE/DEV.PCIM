@@ -30,7 +30,7 @@ DEV-52
 |Draft
 |Tom Kowalczyk (Tom.Kowalczyk@BBraunUSA.com)
 
-|ARequire PRT 4.2 Text and PRT 4.3 Name of Coding System Fields
+|Require PRT 4.2 Text and PRT 4.3 Name of Coding System Fields
 |xref:cp_nn6.adoc[NN6]
 |DEV-51 +
 DEV-52
