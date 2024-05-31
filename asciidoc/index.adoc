@@ -13,7 +13,7 @@ PCIM CP List and Status
 |DEV-51 +
 DEV-52 +
 DEV-19
-|Submitted for Approval
+|Approved and undergoing Final Edits
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |PCIM Device-Patient Association Manager Error Responses
@@ -30,8 +30,22 @@ DEV-52
 |Draft
 |Tom Kowalczyk (Tom.Kowalczyk@BBraunUSA.com)
 
-|DEV-51/52 and OBX-11 semantics (association error resolution scenarios with commit level and application Acknowledgements) 
+|ARequire PRT 4.2 Text and PRT 4.3 Name of Coding System Fields
+|xref:cp_nn6.adoc[NN6]
+|DEV-51 +
+DEV-52
+|Draft
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|Association Instance Unique Identifier
 |xref:cp_nn7.adoc[NN7]
+|DEV-51 +
+DEV-52
+|Draft
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|DEV-51/52 and OBX-11 semantics (association error resolution scenarios with commit level and application Acknowledgements) 
+|xref:cp_nn8.adoc[NN8]
 |DEV-51 +
 DEV-52
 |Assigned
