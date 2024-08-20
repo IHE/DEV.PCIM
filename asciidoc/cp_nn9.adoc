@@ -1,0 +1,103 @@
+:imagesdir: images 
+[.text-center]
+= IHE Change Proposal
+
+[.text-center]
+== Tracking Information
+[cols="1,1"]
+|===
+
+|IHE Domain/Program
+|DEV Domain / Patient Care Device (PCD) Program
+
+|Change Proposal ID:
+|CP-PCD-NN9
+
+|Change Proposal Status:
+|Draft
+
+|Date of last update:
+|2024-07-19
+
+|Person Assigned:
+|Eldon Metz
+
+|===
+
+[.text-center]
+== Change Proposal Summary Information
+
+[cols="1,1"]
+|===
+
+2+^|*Device-Patient Association Query Capabilities*
+
+|Submitter’s Name(s) and e-mail address(es):
+|Eldon Metz, emetz@innovisionmedical.com
+
+|Submission Date:
+|TBD
+
+|Integration Profile(s) affected:
+|Point-of-Care Identity Management (PCIM)
+
+|Actor(s) affected:
+|Device-Patient Association Consumer +
+Device-Patient Association Manager 
+
+|IHE Technical Framework or Supplement modified:
+|PCIM Profile TI revision 2.1, dated 2024-07-01
+
+|Volume(s) and Section(s) affected:
+|Trial Implementation, Multiple Sections
+
+2+|Rationale for Change:
+
+Earlier versions of the PCIM trial implementation specification included use-cases that provided the ability to perform current and retrospective queries of device patient associations. The approach was based on HL7v2 query messaging. During WG sessions it was decided that the query capabilities are better matched to FHIR.
+
+This Change Proposal (CP) proposes changes to the specification to include FHIR query support for querying Device-Patient associations.
+
+|===
+
+|===
+
+| _Section 7.4.2.3_ *Use Case #3: Query for the Devices for a Patient*, _add new use case (based on previous) section for querying for devices for a patient_:
+
+|===
+[.text-left]
+[underline]#New Text:#
+[.text-left]
+7.4.2.3 Use Case #3 Query for the Devices for a Patient
+[.text-left]
+7.4.2.3.1  Description
+[.text-left]
+A Device-Patient Association Consumer may query a Device-Patient Association Manager for a
+list of devices associated with a particular patient at present or some specified time range.
+[.text-left]
+7.4.2.3.2
+[.text-left]
+Applications and other systems may wish to show current or historical displays of device patient associations for a particular patient. The Device-Patient Association Manager responds to a targeted query by sending matching results based on the patient.
+
+|===
+
+| _Section 7.4.2.4_ *Use Case #4: Query Patients for a Device*, _add new use case (based on previous) section for querying associated patients for a device_:
+
+|===
+[.text-left]
+[underline]#New Text:#
+
+[.text-left]
+7.4.2.4 Use Case #4 Query for the Patients that have been associated to a Device
+[.text-left]
+7.4.2.4.1  Description
+[.text-left]
+A Device-Patient Association Consumer may query a Device-Patient Association Manager for a
+list of patients associated with a particular device, at present or at a designated time in the past,
+or more generally for a snapshot of the Device-Patient Association database.
+[.text-left]
+7.4.2.4.2
+[.text-left]
+Applications and other systems may wish to show current or historical displays of device patient associations for a particular device. The Device-Patient Association Manager responds to a targeted query by sending matching results based on the device id.
+
+
+

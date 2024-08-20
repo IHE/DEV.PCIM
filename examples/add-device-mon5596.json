@@ -1,0 +1,13 @@
+{
+    "resourceType" : "Device",
+    "identifier" : [{
+      "system" : "http://ihe.org/devices/id",
+      "value" : "MON5596"
+    }],
+    "udiCarrier": [{
+      "deviceIdentifier": "231A8456B1CB2366",
+      "deviceIdentifierSystem": "http://www.ihe.org/id/system/eui64"
+    }],
+    "serialNumber": "MON5596",
+    "availabilityStatus": "available"
+  }
