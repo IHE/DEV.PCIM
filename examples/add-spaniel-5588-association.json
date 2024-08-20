@@ -1,0 +1,21 @@
+{
+    "resourceType" : "DeviceAssociation",
+    "device": { 
+        "resourceType" : "Device",
+        "identifier" : [{
+            "system" : "http://ihe.org/devices/id",
+            "value" : "MON5588"
+        }]
+    },
+    "subject": { 
+        "resourceType": "Patient",
+        "identifier" : [{
+          "system" : "urn:oid:1.2.36.146.595.217.0.1",
+          "value" : "AB60001"
+        }]
+    },
+    "status": "attached",
+    "period": { 
+        "start" : "2024-08-14" 
+    }
+  }

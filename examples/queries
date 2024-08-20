@@ -1,0 +1,9 @@
+
+Active
+
+http://localhost:6080/fhir/DeviceAssociation?_period:end:missing=true
+
+
+Historical
+
+http://localhost:6080/fhir/DeviceAssociation?_period:end:missing=false
