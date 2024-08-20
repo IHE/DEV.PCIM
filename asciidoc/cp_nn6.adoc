@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2024-05-30
+|2024-08-20
 
 |Person Assigned:
 |Eldon Metz
@@ -36,7 +36,7 @@
 |Eldon Metz, emetz@innovisionmedical.com
 
 |Submission Date:
-|TBD
+|2024-08-20
 
 |Integration Profile(s) affected:
 |Point-of-Care Identity Management (PCIM)
@@ -47,7 +47,7 @@ Device-Patient Association Manager +
 Device-Patient Association Reporter
 
 |IHE Technical Framework or Supplement modified:
-|PCIM Profile TI revision 2.0, dated 2024-04-11
+|PCIM Profile TI revision 2.1, dated 2024-07-01
 
 |Volume(s) and Section(s) affected:
 |Trial Implementation, Multiple Sections
