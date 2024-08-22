@@ -464,7 +464,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date of last update:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2024-08-20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2024-08-22</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Person Assigned:</p></td>
@@ -492,7 +492,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Submission Date:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2024-08-20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2024-08-22</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Integration Profile(s) affected:</p></td>
@@ -506,16 +506,18 @@ Device-Patient Association Reporter</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IHE Technical Framework or Supplement modified:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PCIM Profile TI revision 2.1, dated 2024-07-01</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCIM Profile TI (PCIM TI) revision 2.1, dated 2024-07-01<br>
+Volume 2 (PCD TF-2): Transactions revision 9.0, dated 2019-12-12</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Volume(s) and Section(s) affected:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Trial Implementation, Multiple Sections</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCIM TI, Sections A.1.2.4 and A.3<br>
+PCD TF-2, Section B.7</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rationale for Change:</p>
 <p class="tableblock">After PCIM connectathon testing in 2024, it was noted that it would simplify update logic for consumers if the Device-Patient Association Manager (DPAM) assigned a unique identifier at the start of an association instance and referenced it for updates. This would also be consistent with ACM profile PCD-04, PCD-06 and PCD-07 transactions.</p>
-<p class="tableblock">This Change Proposal (CP) proposes changes to implement profile clarifications and positions for the above issue.</p></td>
+<p class="tableblock">This Change Proposal (CP) proposes changes to PCIM TI and PCD TF-2 to implement the profile clarifications and positions for the above issue.</p></td>
 </tr>
 </tbody>
 </table>
@@ -525,7 +527,7 @@ Device-Patient Association Reporter</p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section B.7 OBR - Observation Request Segment</em>  <strong>OBR-3 Filler Order Number</strong>, add the following definition after the last paragraph ending on line 2482:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section B.7 OBR in PCD TF-2 - Observation Request Segment</em>  <strong>OBR-3 Filler Order Number</strong>, add the following definition after the last paragraph ending on line 2482:</p></td>
 </tr>
 </tbody>
 </table>
@@ -544,7 +546,7 @@ Device-Patient Association Reporter</p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section B.7 OBR - Observation Request Segment</em>  <strong>OBR-29 Parent (EIP) 00261</strong>, add the following definition after the last paragraph ending on line 2590:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section B.7 OBR in PCD TF-2 - Observation Request Segment</em>  <strong>OBR-29 Parent (EIP) 00261</strong>, add the following definition after the last paragraph ending on line 2590:</p></td>
 </tr>
 </tbody>
 </table>
@@ -563,7 +565,7 @@ Device-Patient Association Reporter</p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.1.2.4 - OBR - Observation Request</em>  <strong>Table A.1.2.4-1 OBR Fields</strong>, update the table to address OBR-3 and OBR-29 usage details:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.1.2.4 in PCIM TI - OBR - Observation Request</em>  <strong>Table A.1.2.4-1 OBR Fields</strong>, update the table to address OBR-3 and OBR-29 usage details:</p></td>
 </tr>
 </tbody>
 </table>
@@ -687,7 +689,7 @@ Device-Patient Association Reporter</p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.3 - Example Messages</em>  <strong>Example 2, DEV 51 associate message</strong>, update the example to assign unique identifier by reporter to OBR.3 for association using additional field in EI.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.3 in PCIM TI - Example Messages</em>  <strong>Example 2, DEV 51 associate message</strong>, update the example to assign unique identifier by reporter to OBR.3 for association using additional field in EI.</p></td>
 </tr>
 </tbody>
 </table>
@@ -725,7 +727,7 @@ PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000</pre>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.3 - Example Messages</em>  <strong>Example 3, DEV 52 associate message</strong>, update the example to assign unique identifier by manager to OBR.3 for association, making it different from DEV-51 sent by reporter earlier in Example 2 and also using EUI-64 encoding:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.3 in PCIM TI- Example Messages</em>  <strong>Example 3, DEV 52 associate message</strong>, update the example to assign unique identifier by manager to OBR.3 for association, making it different from DEV-51 sent by reporter earlier in Example 2 and also using EUI-64 encoding:</p></td>
 </tr>
 </tbody>
 </table>
@@ -765,7 +767,7 @@ PRT|3|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500</pre>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.3 - Example Messages</em>  <strong>Example 4, DEV 51 disassociate message</strong>, update the example to fill in OBR.29-2 to reference original association from same reporter:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.3 in PCIM TI- Example Messages</em>  <strong>Example 4, DEV 51 disassociate message</strong>, update the example to fill in OBR.29-2 to reference original association from same reporter:</p></td>
 </tr>
 </tbody>
 </table>
@@ -802,7 +804,7 @@ PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-08-20 09:17:28 -0700
+Last updated 2024-08-22 15:30:07 -0700
 </div>
 </div>
 </body>

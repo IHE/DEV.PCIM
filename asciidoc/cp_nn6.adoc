@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2024-08-20
+|2024-08-22
 
 |Person Assigned:
 |Eldon Metz
@@ -36,7 +36,7 @@
 |Eldon Metz, emetz@innovisionmedical.com
 
 |Submission Date:
-|2024-08-20
+|2024-08-22
 
 |Integration Profile(s) affected:
 |Point-of-Care Identity Management (PCIM)
@@ -47,22 +47,24 @@ Device-Patient Association Manager +
 Device-Patient Association Reporter
 
 |IHE Technical Framework or Supplement modified:
-|PCIM Profile TI revision 2.1, dated 2024-07-01
+|PCIM Profile TI (PCIM TI) revision 2.1, dated 2024-07-01 +
+Volume 2 (PCD TF-2): Transactions revision 9.0, dated 2019-12-12
 
 |Volume(s) and Section(s) affected:
-|Trial Implementation, Multiple Sections
+|PCIM TI, Sections A.1.2.4 and A.3 +
+PCD TF-2, Section B.7
 
 2+|Rationale for Change:
 
 After PCIM connectathon testing in 2024, it was noted that it would simplify update logic for consumers if the Device-Patient Association Manager (DPAM) assigned a unique identifier at the start of an association instance and referenced it for updates. This would also be consistent with ACM profile PCD-04, PCD-06 and PCD-07 transactions.
 
-This Change Proposal (CP) proposes changes to implement profile clarifications and positions for the above issue.
+This Change Proposal (CP) proposes changes to PCIM TI and PCD TF-2 to implement the profile clarifications and positions for the above issue.
 
 |===
 
 |===
 
-| _Section B.7 OBR - Observation Request Segment_  *OBR-3 Filler Order Number*, add the following definition after the last paragraph ending on line 2482:
+| _Section B.7 OBR in PCD TF-2 - Observation Request Segment_  *OBR-3 Filler Order Number*, add the following definition after the last paragraph ending on line 2482:
 
 |===
 [.text-left]
@@ -75,7 +77,7 @@ In the DEV-51 and DEV-52 transactions of the PCIM Profile, this field serves as 
 When transcribing the components of the OBR-3 field value to OBR-29.2, all subcomponents shall be transcribed and the component delimiters (^) replaced with subcomponent delimiters (&).
 |===
 
-| _Section B.7 OBR - Observation Request Segment_  *OBR-29 Parent (EIP) 00261*, add the following definition after the last paragraph ending on line 2590:
+| _Section B.7 OBR in PCD TF-2 - Observation Request Segment_  *OBR-29 Parent (EIP) 00261*, add the following definition after the last paragraph ending on line 2590:
 
 |===
 [.text-left]
@@ -88,7 +90,7 @@ The EI data type value in the OBR-29.2 Parent Filler-Assigned Identifier field s
 When transcribing the components of the OBR-3 field value to OBR-29.2, all subcomponents shall be transcribed and the component delimiters (^) replaced with subcomponent delimiters (&).
 |===
 
-| _Section A.1.2.4 - OBR - Observation Request_  *Table A.1.2.4-1 OBR Fields*, update the table to address OBR-3 and OBR-29 usage details:
+| _Section A.1.2.4 in PCIM TI - OBR - Observation Request_  *Table A.1.2.4-1 OBR Fields*, update the table to address OBR-3 and OBR-29 usage details:
 
 |===
 [.text-left]
@@ -170,7 +172,7 @@ When transcribing the components of the OBR-3 field value to OBR-29.2, all subco
 
 |===
 
-| _Section A.3 - Example Messages_  *Example 2, DEV 51 associate message*, update the example to assign unique identifier by reporter to OBR.3 for association using additional field in EI.
+| _Section A.3 in PCIM TI - Example Messages_  *Example 2, DEV 51 associate message*, update the example to assign unique identifier by reporter to OBR.3 for association using additional field in EI.
 
 |===
 [.text-left]
@@ -202,7 +204,7 @@ PRT|2|UC||AUT|58796^Ratched^N||||3 WEST ICU^3001^1||20160726160000
 
 |===
 
-| _Section A.3 - Example Messages_  *Example 3, DEV 52 associate message*, update the example to assign unique identifier by manager to OBR.3 for association, making it different from DEV-51 sent by reporter earlier in Example 2 and also using EUI-64 encoding:
+| _Section A.3 in PCIM TI- Example Messages_  *Example 3, DEV 52 associate message*, update the example to assign unique identifier by manager to OBR.3 for association, making it different from DEV-51 sent by reporter earlier in Example 2 and also using EUI-64 encoding:
 
 |===
 [.text-left]
@@ -236,7 +238,7 @@ PRT|3|UC||RO|58796^Ratched^N||||3 WEST ICU^3001^1||20160726164500
 
 |===
 
-| _Section A.3 - Example Messages_  *Example 4, DEV 51 disassociate message*, update the example to fill in OBR.29-2 to reference original association from same reporter:
+| _Section A.3 in PCIM TI- Example Messages_  *Example 4, DEV 51 disassociate message*, update the example to fill in OBR.29-2 to reference original association from same reporter:
 
 |===
 [.text-left]
