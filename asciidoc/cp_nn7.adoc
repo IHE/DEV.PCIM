@@ -10,13 +10,13 @@
 |DEV Domain / Patient Care Device (PCD) Program
 
 |Change Proposal ID:
-|CP-PCD-NN7
+|CP-DEV-013
 
 |Change Proposal Status:
 |Draft
 
 |Date of last update:
-|2024-08-20
+|2024-09-03
 
 |Person Assigned:
 |Eldon Metz
@@ -36,7 +36,7 @@
 
 
 |Submission Date:
-|2024-08-20
+|2024-09-03
 
 |Integration Profile(s) affected:
 |Point-of-Care Identity Management (PCIM)
