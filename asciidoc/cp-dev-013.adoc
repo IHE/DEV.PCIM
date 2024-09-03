@@ -13,7 +13,7 @@
 |CP-DEV-013
 
 |Change Proposal Status:
-|Draft
+|Submitted
 
 |Date of last update:
 |2024-09-03
