@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2024-07-19
+|2024-08-30
 
 |Person Assigned:
 |Eldon Metz
@@ -30,7 +30,7 @@
 [cols="1,1"]
 |===
 
-2+^|*Device-Patient Association Query Capabilities*
+2+^|*Device-Patient Association Search*
 
 |Submitter’s Name(s) and e-mail address(es):
 |Eldon Metz, emetz@innovisionmedical.com
@@ -53,51 +53,131 @@ Device-Patient Association Manager
 
 2+|Rationale for Change:
 
-Earlier versions of the PCIM trial implementation specification included use-cases that provided the ability to perform current and retrospective queries of device patient associations. The approach was based on HL7v2 query messaging. During WG sessions it was decided that the query capabilities are better matched to FHIR.
+Earlier versions of the PCIM trial implementation specification included use-cases that provided the ability to perform analysis of current and retrospective device patient associations. The approach was based on HL7v2 query messaging. During WG sessions it was decided that search capabilities are better matched to FHIR.
 
-This Change Proposal (CP) proposes changes to the specification to include FHIR query support for querying Device-Patient associations.
-
-|===
+This Change Proposal (CP) proposes changes to the specification to include FHIR search support for Device-Patient associations.
 
 |===
 
-| _Section 7.4.2.3_ *Use Case #3: Query for the Devices for a Patient*, _add new use case (based on previous) section for querying for devices for a patient_:
+|===
+
+| _Section 7.4.2.3_ *Use Case #3: Search for Devices Associated with a Patient*, _add new use case (based on previous)_:
 
 |===
 [.text-left]
 [underline]#New Text:#
 [.text-left]
-7.4.2.3 Use Case #3 Query for the Devices for a Patient
+7.4.2.3 Use Case #3 Search for Devices Associated with a Patient
 [.text-left]
 7.4.2.3.1  Description
 [.text-left]
-A Device-Patient Association Consumer may query a Device-Patient Association Manager for a
+A Device-Patient Association Search Consumer may search a Device-Patient Association Manager for a
 list of devices associated with a particular patient at present or some specified time range.
 [.text-left]
 7.4.2.3.2
 [.text-left]
-Applications and other systems may wish to show current or historical displays of device patient associations for a particular patient. The Device-Patient Association Manager responds to a targeted query by sending matching results based on the patient.
+Applications and other systems may wish to show current or historical displays of device patient associations for a particular patient. The Device-Patient Association Manager responds to a search request by returning matching results based on the patient search criteria.
 
 |===
 
-| _Section 7.4.2.4_ *Use Case #4: Query Patients for a Device*, _add new use case (based on previous) section for querying associated patients for a device_:
+| _Section 7.4.2.4_ *Use Case #4: Search for Patients Associated with a Device*, _add new use case (based on previous)_:
 
 |===
 [.text-left]
 [underline]#New Text:#
 
 [.text-left]
-7.4.2.4 Use Case #4 Query for the Patients that have been associated to a Device
+7.4.2.4 Use Case #4 Search for Patients Associated with a Device
 [.text-left]
 7.4.2.4.1  Description
 [.text-left]
-A Device-Patient Association Consumer may query a Device-Patient Association Manager for a
-list of patients associated with a particular device, at present or at a designated time in the past,
-or more generally for a snapshot of the Device-Patient Association database.
+A Device-Patient Association Search Consumer may query a Device-Patient Association Manager for a
+list of patients associated with a particular device, aat present or some specified time range.
 [.text-left]
 7.4.2.4.2
 [.text-left]
-Applications and other systems may wish to show current or historical displays of device patient associations for a particular device. The Device-Patient Association Manager responds to a targeted query by sending matching results based on the device id.
+Applications and other systems may wish to show current or historical displays of device patient associations for a particular device. The Device-Patient Association Manager responds to a search requeset by returning matching results based on the device search criteria.
 
+|===
 
+| _Section 7.1_ *Figure 7.1-1: PCIM Actor Diagram*, Update to include Device-Patient Association Search Consumer actor and DEV-5X transaction _:
+
+|===
+[.text-left]
+[underline]#Original Diagram:#
+
+[ditaa]
+----
+          +------------------+
+          |      DPAR        |
+          |  Device-Patient  | 
+          |  Association     | 
+          |   Reporter       |           
+          +------------------+           
+                    |                  
+         DEV-51     |   
+      Communicate   |
+      Association   |
+         State      |
+                    |
+                    v                  
+          +------------------+
+          |       DPAM       |
+          |  Device-Patient  |            /------------------------------------\
+          |    Association   |            | (Optional) DPAM also participates  | 
+          |      Manager     |            | in the MEMDMC profile as a MEM     |
+          +------------------+            | DMIC actor to obtain configuration |
+                 |     ^                  | information.                       |
+      DEV-52     |     |     DEV-19       \------------------------------------/
+      Report     |     |     Filter
+    Association  |     |  Associations
+      State      |     |
+                 |     |
+                 v     :
+          +------------------+
+          |       DPAC       |
+          |  Device-Patient  | 
+          |    Association   | 
+          |     Consumer     |           
+          +------------------+      
+----
+
+[.text-left]
+[underline]#Proposed Diagram:#
+
+[ditaa]
+----
+                        +------------------+
+                        |        DPAR      |
+                        |   Device-Patient | 
+                        |    Association   | 
+                        |     Reporter     |           
+                        +------------------+ 
+                                   |                                                          
+                        DEV-51     |   
+                     Communicate   |
+                     Association   |
+                        State      |
+                                   |
+                                   v                  
+          +------------------------------------------------+
+          |                      DPAM                      |
+          |                 Device-Patient                 |            /------------------------------------\
+          |                   Association                  |            | (Optional) DPAM also participates  | 
+          |                     Manager                    |            | in the MEMDMC profile as a MEM     |
+          +------------------------------------------------+            | DMIC actor to obtain configuration |
+                 |     ^                       ^                        | information.                       |
+      DEV-52     |     |     DEV-19            |    DEV-5X              \------------------------------------/
+      Report     |     |     Filter            |    Search
+    Association  |     |  Associations         |  Associations
+      State      |     |                       |    
+                 |     |                       |
+                 v     :                       |
+          +------------------+        +-----------------+
+          |       DPAC       |        |      DPASC      |
+          |  Device-Patient  |        |Device-Patient   |
+          |    Association   |        |   Association   |
+          |     Consumer     |        | Search Consumer |
+          +------------------+        +-----------------+
+----
 

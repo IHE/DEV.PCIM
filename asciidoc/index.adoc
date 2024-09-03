@@ -51,7 +51,7 @@ DEV-52
 |Assigned
 |Chris Matthes (cmatthes@epic.com)
 
-|Device-Patient Association Query Capabilities
+|Device-Patient Association Search
 |xref:cp_nn9.adoc[NN9]
 |TBD
 |Assigned
