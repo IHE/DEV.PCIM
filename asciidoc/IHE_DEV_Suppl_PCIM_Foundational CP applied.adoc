@@ -29,10 +29,10 @@
 
 <p style="font-size: 2.75em; text-align: center"><strong>Point-of-Care Identity Management (PCIM)</strong></p>
 
-<p style="text-align: center">Revision 2.0 &mdash; Draft for Public Comment</p>
+<p style="text-align: center">Revision 2.1 &mdash; Trial Implementation</p>
 ++++
 
-Date: April 11, 2024
+Date: July 1, 2024
 
 Author: IHE Devices Technical Committee
 
@@ -46,8 +46,8 @@ Email: dev@ihe.net
 This is a supplement to the IHE Devices Domain Technical Framework.
 Each supplement undergoes a process of public comment and trial implementation before being incorporated into the volumes of the Technical Frameworks.
 
-This supplement is published on April 11, 2024 for public comment. Comments are invited and can be submitted at https://www.ihe.net/DEV_Public_Comments/. In order to be considered in
-development of the trial implementation version of the supplement, comments must be received by May 11, 2024.
+This supplement is published on July 1, 2024 for trial implementation and may be available for testing at subsequent IHE Connectathons. The supplement may be amended based on the results
+of testing. Following successful testing it will be incorporated into the Devices Technical Framework. Comments are invited and can be submitted at https://www.ihe.net/DEV_Public_Comments/.
 
 This supplement describes changes to the existing technical framework documents.
 
