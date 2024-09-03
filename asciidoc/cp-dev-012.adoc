@@ -14,7 +14,7 @@
 |CP-DEV-012
 
 |Change Proposal Status:
-|Draft
+|Submitted
 
 |Date of last update:
 |2024-09-03
