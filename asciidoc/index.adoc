@@ -31,14 +31,14 @@ DEV-52
 |Tom Kowalczyk (Tom.Kowalczyk@BBraunUSA.com)
 
 |Require PRT 4.2 Text and PRT 4.3 Name of Coding System Fields
-|xref:cp_nn6.adoc[NN6]
+|xref:cp-dev-012.adoc[NN6]
 |DEV-51 +
 DEV-52
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |Association Instance Unique Identifier
-|xref:cp_nn7.adoc[NN7]
+|xref:cp-dev-013.adoc[NN7]
 |DEV-51 +
 DEV-52
 |Draft
