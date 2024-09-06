@@ -11,10 +11,10 @@
 |DEV Domain / Patient Care Device (PCD) Program
 
 |Change Proposal ID:
-|CP-PCD-NN1
+|CP-PCD-162
 
 |Change Proposal Status:
-|Draft
+|Submitted
 
 |Date of last update:
 |2023-10-24

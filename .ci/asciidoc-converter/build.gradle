@@ -14,7 +14,7 @@ asciidoctor {
   sourceDir file('../../asciidoc')
   sources {
     include 'IHE_DEV_Suppl_PCIM_Foundational CP applied.adoc'
-    include 'cp_nn1.adoc'
+    include 'cp-pcd-162.adoc'
     include 'cp_nn5.adoc'
     include 'cp-dev-013.adoc'
     include 'cp-dev-012.adoc'
