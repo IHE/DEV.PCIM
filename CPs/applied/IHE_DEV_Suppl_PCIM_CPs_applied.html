@@ -573,6 +573,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#_a_3_example_messages">A.3 Example Messages</a></li>
+<li><a href="#_b_7_obr_observation_request_segment">B.7 OBR - Observation Request Segment</a>
+<ul class="sectlevel2">
+<li><a href="#_obr_3_filler_order_number">OBR-3 Filler Order Number</a></li>
+<li><a href="#_obr_29_parent_eip_00261">OBR-29 Parent (EIP) 00261</a></li>
+</ul>
+</li>
 <li><a href="#_volume_3content_modules">Volume 3&#8201;&#8212;&#8201;Content Modules</a></li>
 <li><a href="#_volume_4national_extensions">Volume 4&#8201;&#8212;&#8201;National Extensions</a></li>
 </ul>
@@ -594,7 +600,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 
 <p style="text-align: center">Revision 2.2 &mdash; Trial Implementation</p>
 <div class="paragraph">
-<p>Date: October 25, 2024</p>
+<p>Date: November 8, 2024</p>
 </div>
 <div class="paragraph">
 <p>Author: IHE Devices Technical Committee</p>
@@ -3452,6 +3458,35 @@ PRT|2|UC||AUT^AUT^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</
 </div>
 </div>
 <div class="sect1">
+<h2 id="_b_7_obr_observation_request_segment">B.7 OBR - Observation Request Segment</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_obr_3_filler_order_number">OBR-3 Filler Order Number</h3>
+<div class="paragraph">
+<p>Aadd the following definition after the last paragraph ending on line 2436:</p>
+</div>
+<div class="paragraph">
+<p>In the DEV-51 and DEV-52 transactions of the PCIM Profile, this field serves as the unique identifier for the initial association instance and each subsequent update to that association. This value is assigned by the Device-Patient Association Reporter (DEV-51) and Device-Patient Association Manager (DEV-52). For the initial association message, OBR-29 Parent is required to be empty.  For all subsequent updates to the same association, OBR-3 Filler Order Number identifies the unique update and OBR-29.2 Parent Filler-Assigned Identifier contains the value from OBR-3 Filler Order Number of the initial association instance. Device-Patient Association Reporters that are sending an update for an association instance they did not create are not required to fill in OBR-29.2, but Device-Patient Association Managers shall fill in OBR-29.2 for updates. This allows the Device-Patient Association Consumer to correlate all subsequent updates with the original association.</p>
+</div>
+<div class="paragraph">
+<p>When transcribing the components of the OBR-3 field value to OBR-29.2, all subcomponents shall be transcribed and the component delimiters (^) replaced with subcomponent delimiters (&amp;).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_obr_29_parent_eip_00261">OBR-29 Parent (EIP) 00261</h3>
+<div class="paragraph">
+<p>Add the following definition after the last paragraph ending on line 2554:</p>
+</div>
+<div class="paragraph">
+<p>The EI data type value in the OBR-29.2 Parent Filler-Assigned Identifier field serves as the unique association instance identifier in DEV-51 and DEV-52 transactions of the PCIM profile. It is assigned by a Device-Patient Association Reporter (DEV-51) and Device-Patient Association Manager (DEV-52), and is used by Device-Patient Association Manager and Device-Patient Consumer to associate all updates to a particular association instance throughout the history of the association. The Device-Patient Association Reporter shall fill in OBR-29.2 with the originating OBR.3 Filler Order Number for all updates to association instances that it initially originated. The Device-Patient Association Manager shall fill in OBR-29.2 with the originating OBR.3 Filler Order Number in all DEV-52 messages conveying updates to an association instance. See OBR-3 Filler order Number for additional information.</p>
+</div>
+<div class="paragraph">
+<p>When transcribing the components of the OBR-3 field value to OBR-29.2, all subcomponents shall be transcribed and the component delimiters (^) replaced with subcomponent delimiters (&amp;).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_volume_3content_modules">Volume 3&#8201;&#8212;&#8201;Content Modules</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -3470,7 +3505,7 @@ PRT|2|UC||AUT^AUT^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000</
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-10-25 07:11:49 -0700
+Last updated 2024-11-08 07:21:49 -0800
 </div>
 </div>
 <link rel="stylesheet" href="js/highlight/styles/github.min.css">
