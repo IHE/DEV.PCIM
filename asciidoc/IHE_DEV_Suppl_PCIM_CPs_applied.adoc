@@ -32,7 +32,7 @@
 <p style="text-align: center">Revision 2.2 &mdash; Trial Implementation</p>
 ++++
 
-Date: November 21, 2024
+Date: December 5, 2024
 
 Author: IHE Devices Technical Committee
 
@@ -46,8 +46,8 @@ Email: dev@ihe.net
 This is a supplement to the IHE Devices Domain Technical Framework.
 Each supplement undergoes a process of public comment and trial implementation before being incorporated into the volumes of the Technical Frameworks.
 
-This supplement is published on July 1, 2024 for trial implementation and may be available for testing at subsequent IHE Connectathons. The supplement may be amended based on the results
-of testing. Following successful testing it will be incorporated into the Devices Technical Framework. Comments are invited and can be submitted at https://www.ihe.net/DEV_Public_Comments/.
+This supplement is published on December 5, 2024 for trial implementation and may be available for testing at subsequent IHE Connectathons. The supplement may be amended based on the results
+of testing. Following successful testing, it will be incorporated into the Devices Technical Framework. Comments are invited and can be submitted at https://www.ihe.net/DEV_Public_Comments/.
 
 This supplement describes changes to the existing technical framework documents.
 
@@ -59,16 +59,16 @@ Where the amendment adds text, make the added text *+++<u>+++bold underline+++</
 Where the amendment removes text, make the removed text *[.line-through]#bold strikethrough#*.
 When entire new sections are added, introduce with editor's instructions to "`add new text`" or similar, which for readability are not bolded or underlined.
 
-General information about IHE can be found at http://www.ihe.net/[www.ihe.net].
+General information about IHE can be found at https://www.ihe.net.
 
-Information about the IHE Devices domain can be found at http://ihe.net/IHE_Domains/[ihe.net/IHE_Domains].
+Information about the IHE Devices domain can be found at https://www.ihe.net/IHE_Domains/.
 
-Information about the organization of IHE Technical Frameworks and Supplements and the process used to create them can be found at http://ihe.net/Profiles/ and http://ihe.net/IHE_Process/.
+Information about the organization of IHE Technical Frameworks and Supplements and the process used to create them can be found at https://www.ihe.net/resources/profiles/ and https://www.ihe.net/about_ihe/ihe_process/.
 
 The current version of the IHE Devices Domain Technical Framework can be found at https://profiles.ihe.net/DEV/index.html.
 
 [chapter]
-= Introduction to this Supplement
+= Introduction to This Supplement
 
 This supplement to the IHE Devices Technical Framework adds rationale and implementation details of the Point-of-Care Identity Management Profile to the Framework, providing a means for standards-based exchange between systems of information collected and confirmed at the point-of-care tracking the set of medical devices originating observations about each patient.
 
@@ -98,7 +98,7 @@ The IHE Technical Framework versions referenced in this document are listed belo
 [chapter]
 = 9 Copyright Licenses
 
-IHE technical documents refer to, and make use of, a number of standards developed and published by several standards development organizations. Please refer to the IHE Technical Frameworks General Introduction, Section 9 - https://profiles.ihe.net/GeneralIntro/ch-9.html[Copyright Licenses] for copyright license information for frequently referenced base standards.
+IHE technical documents refer to, and make use of, a number of standards developed and published by several standards development organizations. Please refer to the IHE Technical Frameworks General Introduction, Section 9 - https://profiles.ihe.net/GeneralIntro/ch-9.html[Copyright Licenses] for copyright license information for frequently referenced base standards. Information pertaining to the use of IHE International copyrighted materials is also available there.
 
 [chapter]
 = 10 Trademark
@@ -257,7 +257,7 @@ The messaging defined provides for capable devices to originate messages asserti
 This section defines the actors, transactions, and/or content modules in this profile.
 General definitions of actors are given in the Technical Frameworks General Introduction Appendix A.
 IHE Transactions can be found in the Technical Frameworks General Introduction Appendix B.
-Both appendices are located at http://ihe.net/Technical_Frameworks/#GenIntro
+Both appendices are located at https://profiles.ihe.net/GeneralIntro/
 
 Figure 7.1-1 shows the actors directly involved in the PCIM Profile and the relevant transactions between them.
 If needed for context, other actors that may be indirectly involved due to their participation in other related profiles are shown in dotted lines.
@@ -633,7 +633,7 @@ On receipt of the message, the manager system checks for valid syntax and that t
 - the device is a member of the set of registered device instances and has no current conflicting association recorded (e.g., a single-patient device has an active association with a different patient)
 - the patient identity provided corresponds to a known person in an appropriate status (e.g., admitted)
 
-After these checks, the Manager records the result and returns an appropriate positive or negative commit-level acknowledgement to the Reporter. If a positive commit-level acknowledgement is sent, an application-level acknowledgment may be sent to the Reporter after the association or disassociation is processed by the Manager (Additional detail on  application acknowledgement semantics is forthcoming). The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken. In this case, a technical alert should be raised using the ACM profile, the details of this are out of scope for this document. 
+After these checks, the Manager records the result and returns an appropriate positive or negative commit-level acknowledgement to the Reporter. If a positive commit-level acknowledgement is sent, an application-level acknowledgement may be sent to the Reporter after the association or disassociation is processed by the Manager (Additional detail on  application acknowledgement semantics is forthcoming). The system design must assure that errors are indicated to the appropriate human user(s) in an effective and timely manner so that action can be taken. In this case, a technical alert should be raised using the ACM profile, the details of this are out of scope for this document. 
 
 Examples of application level errors that can occur during device patient association processing include the following:
 
@@ -733,7 +733,7 @@ Editor: Insert in Section 3 of DEV TF-2 as new Section 3.19
 
 This transaction is used by a Device Patient Association Consumer to access filtered device-patient association information held by a Device Patient Association Manager.
 
-As stated previously, the DEV-19 transaction is optional. If the message is accepted by the Device-Patient Association Manager, the accept acknowledgment shall contain the value CA in MSA-1. 
+As stated previously, the DEV-19 transaction is optional. If the message is accepted by the Device-Patient Association Manager, the accept acknowledgement shall contain the value CA in MSA-1. 
 
 If this message is not supported, MSA-1 shall contain the value CR, ERR-3 (HL7 Error Code) shall contain the value 200 (Unsupported Message Type), and ERR-4 (Severity) shall contain the value E. If the transaction is not supported, and the network connection between the Device-Patient Association Manager and Device-Patient Association Consumer is lost, the Device-Patient Association Manager shall send DEV-52 messages for all current Device-Patient associations to the Device-Patient Association Consumer when network connectivity is restored. This ensures the Device-Patient Association Consumer has the current association state.
 
@@ -1464,7 +1464,7 @@ Example: |00643169001763{caret}{caret}2.51.1.1{caret}ISO|
 
 |===
 
-The list of error codes that can occur during the processing of DEV-51 messages are listed below. The application acknowledgment sent by the Device-Patient Association Manager should contain the Code and Text in ERR-5.1 and ERR-5.2 respectively. ERR-5.9 can also be used to contain additional text related to the error.
+The list of error codes that can occur during the processing of DEV-51 messages are listed below. The application acknowledgement sent by the Device-Patient Association Manager should contain the Code and Text in ERR-5.1 and ERR-5.2 respectively. ERR-5.9 can also be used to contain additional text related to the error.
 
 [.text-left]
 NOTE: The definition of the range of error codes available for use by this profile is TBD. It is assumed that error codes will start at the lower limit of the range and be incremented by one as new error codes are added. 
@@ -1882,14 +1882,14 @@ PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EU
 PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000
 ....
 
-The Association Manager first responds with the following commit level acknowledgment.
+The Association Manager first responds with the following commit level acknowledgement.
 
 ....
 MSH|^~\&|AssocMgr||CritCare||20160726123002||ACK^R01^ACK|12d1510|P|2.6|||NE|NE
 MSA|CA|12d15a9
 ....
 
-Once the association is fully processed, the Association Manager responds by initiating the following application level acknowledgment
+Once the association is fully processed, the Association Manager responds by initiating the following application level acknowledgement
 
 ....
 MSH|^~\&|AssocMgr||CritCare||20160726123003||ACK^R01^ACK|AM52E123|P|2.6|||AL|NE||8859/1|||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.4.51.1^ISO
@@ -1915,7 +1915,7 @@ PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 WEST ICU^3001^1|MON5588^^231A8456B1CB2366^EU
 PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3001^1||20160726123000
 ....
 
-(Acknowledgment messages not shown)
+(Acknowledgement messages not shown)
 
 Since the assertion requires validation, the Association Manager presents an HMI showing the relevant details and a confirmation button to the responsible observer, Nurse Ratched in this case, and she then presses a confirmation button to validate the association. The Association Manager may then broadcast this information to subscribers (such as Critical Care), or its clients (such as Critical Care) may query for this information, depending on how the systems are integrated.
 
