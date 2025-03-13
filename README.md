@@ -8,7 +8,8 @@ The Point-of-Care Identity Management (PCIM) Profile defines transactions for re
 
 ## Status
 
-A foundational change proposal (CP), Revision 2.0, that refines the [Point-of-Care Identity Management (PCIM) Revsion 1.1 - Trial implementation specification](https://www.ihe.net/uploadedFiles/Documents/PCD/IHE_PCD_Suppl_PCIM.pdf), has been balloted, approved and posted for [public review](https://profiles.ihe.net/DEV/PCIM/index.html). 
+A handful of change proposals have been incorporated into the Trial Implementation based on feedback identified from the working group meetings, IHE Connectathon testing and HIMSS interoperability showcase demonstrations over the past few years.
+The latest [PCIM specification](https://profiles.ihe.net/DEV/PCIM/index.html) is published and available online.
 
 A work list is in place for review of additional CPs.
 
@@ -32,4 +33,4 @@ Double click gen-html.bat or run ```gen-html.bat``` in the command prompt or in 
 
 Please contact [Eldon Metz](mailto:emetz@innovisionmedical.com)  or [Tom Kowalczyk](mailto:Tom.Kowalczyk@BBraunUSA.com) if you wish to contribute to this profile.
 
-Working Group meetings are held weekly on Friday's at 10am Central Time.
+Working Group meetings are held weekly on Thursday's at 11am Central Time.
