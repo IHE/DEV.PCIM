@@ -8,12 +8,9 @@ The Point-of-Care Identity Management (PCIM) Profile defines transactions for re
 
 ## Status
 
-We are currently working on change proposals (CP) to refine the [Point-of-Care Identity Management (PCIM) Revsion 1.1 - Trial implementation specification](https://www.ihe.net/uploadedFiles/Documents/PCD/IHE_PCD_Suppl_PCIM.pdf).
+ A handful of change proposals have been incorporated into the Trial Implementation based on feedback identified from the working group meetings, IHE Connectathon testing and HIMSS interoperability showcase demonstrations over the past few years.
 
-Version 1.2 has been submitted for approval along with the corresponding Foundational CP. The links below take you directly to the HTML version of these documents. 
-
-* [Foundational CP](https://htmlpreview.github.io/?https://github.com/IHE/DEV.PCIM/blob/master/CPs/for_approval/cp_nn1.html)
-* [PCIM Trial Spec with Foundational Changes Applied – Version 1.2](https://htmlpreview.github.io/?https://github.com/IHE/DEV.PCIM/blob/master/CPs/for_approval/IHE_DEV_Suppl_PCIM_Foundational%20CP%20applied.html)
+ The latest [PCIM specification](https://profiles.ihe.net/DEV/PCIM/index.html) is published and available online.
 
 A work list is in place for review of potential upcoming CPs.
 
@@ -31,4 +28,4 @@ To generate the HTML format for the docs, use the gradle wrapper with the asciid
 
 Please contact [Eldon Metz](mailto:emetz@innovisionmedical.com)  or [Tom Kowalczyk](mailto:Tom.Kowalczyk@BBraunUSA.com) if you wish to contribute to this profile.
 
-Working Group meetings are held weekly on Friday's at 10am Central Time.
+Working Group meetings are held weekly on Thursday's at 9am Central Time.
