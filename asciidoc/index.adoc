@@ -1,0 +1,54 @@
+[.text-center]
+# CP Worklist
+
+[.text-center]
+PCIM CP List and Status
+
+[cols="2,1,1,1,1"]
+|===
+|Description|CP #|Transactions|Status|Author
+
+|PCIM Foundational
+|xref:cp-pcd-162.adoc[PCD-162]
+|DEV-51 +
+DEV-52 +
+DEV-19
+|Approved
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|PCIM Device-Patient Association Manager Error Responses
+|xref:cp_nn4.adoc[NN4]
+|DEV-51 +
+DEV-52
+|Merged into Foundational CP - Completed
+|Bill Haralson (William.Haralson@icumed.com)
+
+|Adding an Optional Order ID to PCIM Transactions
+|xref:cp_nn5.adoc[NN5]
+|DEV-51 +
+DEV-52
+|Draft
+|Tom Kowalczyk (Tom.Kowalczyk@BBraunUSA.com)
+
+|Require PRT 4.2 Text and PRT 4.3 Name of Coding System Fields
+|xref:cp-dev-012.adoc[DEV-013]
+|DEV-51 +
+DEV-52
+|Draft
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|Association Instance Unique Identifier
+|xref:cp-dev-013.adoc[DEV-012]
+|DEV-51 +
+DEV-52
+|Draft
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|DEV-51/52 and OBX-11 semantics (association error resolution scenarios with commit level and application Acknowledgements) 
+|xref:cp_nn8.adoc[NN8]
+|DEV-51 +
+DEV-52
+|Assigned
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|===
