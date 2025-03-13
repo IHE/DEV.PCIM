@@ -33,4 +33,4 @@ Double click gen-html.bat or run ```gen-html.bat``` in the command prompt or in 
 
 Please contact [Eldon Metz](mailto:emetz@innovisionmedical.com)  or [Tom Kowalczyk](mailto:Tom.Kowalczyk@BBraunUSA.com) if you wish to contribute to this profile.
 
-Working Group meetings are held weekly on Thursday's at 9am Central Time.
+Working Group meetings are held weekly on Thursday's at 11am Central Time.
