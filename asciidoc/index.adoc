@@ -51,7 +51,7 @@ DEV-52
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
-|OBR-7/8 semantics for DEV-51 and DEV-52 for corrected, deleted and wrong
+|OBR-7/8 and PRT-11/12 semantics for DEV-51 and DEV-52 for corrected, deleted and wrong
 |xref:cp-dev-018.adoc[DEV-018]
 |DEV-51 +
 DEV-52
