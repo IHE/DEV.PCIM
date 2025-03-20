@@ -30,7 +30,7 @@
 [cols="1,1"]
 |===
 
-2+^|*OBX Consistency with TF in DEV-51 and DEV-52*
+2+^|*Filter associations transaction cleanup*
 
 |Submitter’s Name(s) and e-mail address(es):
 |Eldon Metz, emetz@innovisionmedical.com
@@ -50,11 +50,11 @@ Device-Patient Association Reporter
 |PCIM Profile TI (PCIM TI) revision 2.2, dated 2024-12-05
 
 |Volume(s) and Section(s) affected:
-|PCIM TI, Sections A.1.2.5
+|PCIM TI, Sections A.2
 
 2+|Rationale for Change:
 
-After PCIM connectathon testing in 2025, it was noted that OBX-1 for DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions was set to be optional. This was inconsistent with PCD TF-2. It was agreed on in the PCIM WG to change the optionality to required.
+While preparing for connectathon testing in 2025, it was noted during updates to the NIST HL7v2 Test Tool that QPD in DEV-19 (Filter Associations) needed to be better defined. It was also noted during that review that Table A.2.3.2-2 was unnecessary.
 
 This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issue.
 
@@ -62,56 +62,49 @@ This Change Proposal (CP) proposes changes to PCIM TI to implement the profile c
 
 |===
 
-| _Section A.1.2.5 in PCIM TI - OBR - Observation_  *Table A.1.2.5-1 OBX Fields*, update the table to set OBX-1 optionality to required:
+| _Section A.2.3.2 in PCIM TI - QPD - QPD Segment_  *Table A.2.3.2-1 QPD - Query Parameter Definition*, update the table to TBD:
 
 |===
 
 [.text-left]
 [underline]#Existing Table:#
 
-**Table A.1.2.5-1: OBX Fields**
+**Table A.2.3.2-1: QPD - Query Parameter Definition**
 
 |===
-| *SEQ* | *DT* | *OPT* | *RP* | *Description*
+| Mnemonic | Description | Type | Optionality | Length | Table | Repetition
 
-| 1
-| SI
-| O
-|
-| Set ID - OBX
+| QPD.1
+| Message Query Name - Set to 'Q66^Device-Patient Subscription^HL7005'
+| CE
+| Required
+| 250
+| 471
+| No
 
-| 2
-| ID
-| R
-|
-| Value Type -- set to CWE
-
-| 3
-| CWE
-| R
-|
-| Observation Identifier -- set to 68487{caret}MDC_ATTR_EVT_COND{caret}MDC
-
-| 4
+| QPD.2
+| Query Tag
 | ST
-| O
+| Optional
+| 32
 |
-| Observation Sub-ID.
-Use to convey a specific channel that's been associated, as <MDS>.<VMD>.<CHANNEL>.<facet>
+| No
 
-| 5
-| CWE
-| R
+| QPD.3
+| User Parameters
+| VARIES
+| Optional
+| 256
 |
-| Observation Value.
-See Table A.1.2.5-2: OBX-5 Values.
+| No
 
-| 11
+| QPD.4
+| Action Code
 | ID
-| R
 |
-| Observation Result Status.
-See Table A.1.2.5-3: OBX-11 Values.
+|
+| 323
+|
 |===
 
 |===
@@ -120,48 +113,100 @@ See Table A.1.2.5-3: OBX-11 Values.
 [.text-left]
 [underline]#Proposed Table:#
 
-**Table A.1.2.5-1: OBX Fields**
+**Table A.2.3.2-1: QPD - Query Parameter Definition**
 
 |===
-| *SEQ* | *DT* | *OPT* | *RP* | *Description*
+| Mnemonic | Description | Type | Optionality | Length | Table | Repetition
 
-| 1
-| SI
-| R
-|
-| Set ID - OBX
+| QPD.1
+| Message Query Name - Set to 'Q66^Device-Patient Subscription^HL7005'
+| CE
+| Required
+| 250
+| 471
+| No
 
-| 2
-| ID
-| R
-|
-| Value Type -- set to CWE
-
-| 3
-| CWE
-| R
-|
-| Observation Identifier -- set to 68487{caret}MDC_ATTR_EVT_COND{caret}MDC
-
-| 4
+| QPD.2
+| Query Tag
 | ST
-| O
+| Optional
+| 32
 |
-| Observation Sub-ID.
-Use to convey a specific channel that's been associated, as <MDS>.<VMD>.<CHANNEL>.<facet>
+| No
 
-| 5
-| CWE
-| R
+| QPD.3
+| User Parameters
+| VARIES
+| Optional
+| 256
 |
-| Observation Value.
-See Table A.1.2.5-2: OBX-5 Values.
+| No
 
-| 11
+| QPD.4
+| Action Code
 | ID
-| R
 |
-| Observation Result Status.
-See Table A.1.2.5-3: OBX-11 Values.
+|
+| 323
+|
 |===
+
+|===
+
+| _Section A.2.3.2 in PCIM TI - QPD - QPD Segment_  *Table A.2.3.2-2 QPD Input Parameter Specificationn*, delete this unnecessary table:
+
+|===
+
+[.text-left]
+[underline]#Deleted Table:#
+
+**Table A.2.3.2-2: QPD Input Parameter Specification**+++<table style="width:100%;">++++++<colgroup>++++++<col style="width: 11%">++++++</col>+++
++++<col style="width: 19%">++++++</col>+++
++++<col style="width: 7%">++++++</col>+++
++++<col style="width: 7%">++++++</col>+++
++++<col style="width: 7%">++++++</col>+++
++++<col style="width: 6%">++++++</col>+++
++++<col style="width: 7%">++++++</col>+++
++++<col style="width: 12%">++++++</col>+++
++++<col style="width: 19%">++++++</col>++++++</colgroup>+++
++++<thead>++++++<tr class="header">++++++<th>+++Field+++<br>++++++</br>+++
+Seq+++<br>++++++</br>+++
+(Query ID=Z99)+++</th>+++
++++<th>+++Name+++</th>+++
++++<th>+++LEN+++</th>+++
++++<th>+++DT+++</th>+++
++++<th>+++OPT+++</th>+++
++++<th>+++R/#+++</th>+++
++++<th>+++TBL+++</th>+++
++++<th>+++Segment+++<br>++++++</br>+++
+Field Name+++</th>+++
++++<th>+++Element+++<br>++++++</br>+++
+Name+++</th>++++++</tr>++++++</thead>+++
++++<tbody>++++++<tr class="odd">++++++<td>+++1+++</td>+++
++++<td>+++MessageQueryName+++</td>+++
++++<td>+++60+++</td>+++
++++<td>+++CWE+++</td>+++
++++<td>+++R+++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>+++
++++<td>+++MessageQueryName+++</td>++++++</tr>+++
++++<tr class="even">++++++<td>+++2+++</td>+++
++++<td>+++QueryTag+++</td>+++
++++<td>+++32+++</td>+++
++++<td>+++ST+++</td>+++
++++<td>+++R+++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>+++
++++<td>+++QueryTag+++</td>++++++</tr>+++
++++<tr class="odd">++++++<td>+++3+++</td>+++
++++<td>+++User Parameters+++</td>+++
++++<td>++++++</td>+++
++++<td>+++ID+++</td>+++
++++<td>+++0+++</td>+++
++++<td>++++++</td>+++
++++<td>+++033+++</td>+++
++++<td>++++++</td>+++
++++<td>+++ActionCode+++</td>++++++</tr>++++++</tbody>++++++</table>+++
 
