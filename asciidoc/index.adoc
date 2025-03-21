@@ -37,7 +37,7 @@ DEV-52
 |Approved
 |Eldon Metz (emetz@innovisionmedical.com)
 
-|OBX Consistency with TF in DEV-51 and DEV-52
+|OBX-1 Consistency with TF in DEV-51 and DEV-52
 |xref:cp-dev-016.adoc[DEV-016]
 |DEV-51 +
 DEV-52
