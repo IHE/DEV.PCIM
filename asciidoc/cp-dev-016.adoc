@@ -1,0 +1,167 @@
+:imagesdir: images 
+[.text-center]
+= IHE Change Proposal
+
+[.text-center]
+== Tracking Information
+[cols="1,1"]
+|===
+
+|IHE Domain/Program
+|DEV Domain / Patient Care Device (PCD) Program
+
+|Change Proposal ID:
+|CP-DEV-016
+
+|Change Proposal Status:
+|Draft
+
+|Date of last update:
+|2025-04-03
+
+|Person Assigned:
+|Eldon Metz
+
+|===
+
+[.text-center]
+== Change Proposal Summary Information
+
+[cols="1,1"]
+|===
+
+2+^|*OBX-1 Consistency with TF in DEV-51 and DEV-52*
+
+|Submitter’s Name(s) and e-mail address(es):
+|Eldon Metz, emetz@innovisionmedical.com
+
+|Submission Date:
+| TBD
+
+|Integration Profile(s) affected:
+|Point-of-Care Identity Management (PCIM)
+
+|Actor(s) affected:
+|Device-Patient Association Consumer +
+Device-Patient Association Manager +
+Device-Patient Association Reporter
+
+|IHE Technical Framework or Supplement modified:
+|PCIM Profile TI (PCIM TI) revision 2.2, dated 2024-12-05
+
+|Volume(s) and Section(s) affected:
+|PCIM TI, Sections A.1.2.5
+
+2+|Rationale for Change:
+
+After PCIM connectathon testing in 2025, it was noted that OBX-1 for DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions was set to be optional. This was inconsistent with PCD TF-2. It was agreed on in the PCIM WG to change the optionality to required.
+
+This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issue.
+
+|===
+
+|===
+
+| _Section A.1.2.5 in PCIM TI - OBR - Observation_  *Table A.1.2.5-1 OBX Fields*, update the table to set OBX-1 optionality to required:
+
+|===
+
+[.text-left]
+[underline]#Existing Table:#
+
+**Table A.1.2.5-1: OBX Fields**
+
+|===
+| *SEQ* | *DT* | *OPT* | *RP* | *Description*
+
+| 1
+| SI
+| O
+|
+| Set ID - OBX
+
+| 2
+| ID
+| R
+|
+| Value Type -- set to CWE
+
+| 3
+| CWE
+| R
+|
+| Observation Identifier -- set to 68487{caret}MDC_ATTR_EVT_COND{caret}MDC
+
+| 4
+| ST
+| O
+|
+| Observation Sub-ID.
+Use to convey a specific channel that's been associated, as <MDS>.<VMD>.<CHANNEL>.<facet>
+
+| 5
+| CWE
+| R
+|
+| Observation Value.
+See Table A.1.2.5-2: OBX-5 Values.
+
+| 11
+| ID
+| R
+|
+| Observation Result Status.
+See Table A.1.2.5-3: OBX-11 Values.
+|===
+
+|===
+
+|===
+[.text-left]
+[underline]#Proposed Table:#
+
+**Table A.1.2.5-1: OBX Fields**
+
+|===
+| *SEQ* | *DT* | *OPT* | *RP* | *Description*
+
+| 1
+| SI
+| R
+|
+| Set ID - OBX
+
+| 2
+| ID
+| R
+|
+| Value Type -- set to CWE
+
+| 3
+| CWE
+| R
+|
+| Observation Identifier -- set to 68487{caret}MDC_ATTR_EVT_COND{caret}MDC
+
+| 4
+| ST
+| O
+|
+| Observation Sub-ID.
+Use to convey a specific channel that's been associated, as <MDS>.<VMD>.<CHANNEL>.<facet>
+
+| 5
+| CWE
+| R
+|
+| Observation Value.
+See Table A.1.2.5-2: OBX-5 Values.
+
+| 11
+| ID
+| R
+|
+| Observation Result Status.
+See Table A.1.2.5-3: OBX-11 Values.
+|===
+

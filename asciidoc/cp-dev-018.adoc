@@ -1,0 +1,251 @@
+:imagesdir: images 
+[.text-center]
+= IHE Change Proposal
+
+[.text-center]
+== Tracking Information
+[cols="1,1"]
+|===
+
+|IHE Domain/Program
+|DEV Domain / Patient Care Device (PCD) Program
+
+|Change Proposal ID:
+|CP-DEV-018
+
+|Change Proposal Status:
+|Draft
+
+|Date of last update:
+|2025-03-20
+
+|Person Assigned:
+|Eldon Metz
+
+|===
+
+[.text-center]
+== Change Proposal Summary Information
+
+[cols="1,1"]
+|===
+
+2+^|*OBR-7/8 and PRT-11/12 semantics for DEV-51 and DEV-52 for corrected, deleted and wrong*
+
+|Submitter’s Name(s) and e-mail address(es):
+|Eldon Metz, emetz@innovisionmedical.com
+
+|Submission Date:
+| TBD
+
+|Integration Profile(s) affected:
+|Point-of-Care Identity Management (PCIM)
+
+|Actor(s) affected:
+|Device-Patient Association Consumer +
+Device-Patient Association Manager +
+Device-Patient Association Reporter
+
+|IHE Technical Framework or Supplement modified:
+|PCIM Profile TI (PCIM TI) revision 2.2, dated 2024-12-05
+
+|Volume(s) and Section(s) affected:
+|PCIM TI, Sections A.1.2.4 and A.1.2.6
+
+2+|Rationale for Change:
+
+While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations wwere also identified to be clarified and/or updated. It was agreed on in the PCIM WG to clarify the requirements around interpretation of these fields in a CP.
+
+This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issue.
+
+|===
+
+|===
+
+| _Section A.1.2.4 in PCIM TI - OBR - Observation Request_, update the text to clarify population of OBR-7/8 on deleted, corrected and wrong scenarios:
+
+|===
+
+[.text-left]
+[underline]#Existing Text:#
+
+[.text-left]
+The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. Each report consists of two Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
+
+|===
+
+|===
+[.text-left]
+[underline]#Proposed Text:#
+
+[.text-left]
+The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. Each report consists of two Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
+
+|===
+
+| _Section A.1.2.6 in PCIM TI - OBR - Observation Request_, *Table A.1.2.6-3* update to clarify interpretation of PRT-11 on deleted, corrected and wrong scenarios:
+
+|===
+
+[.text-left]
+[underline]#Existing Table:#
+
+**Table A.1.2.6-3: PRT-11 Interpretation**
+
+|===
+| *Participation Status* | *AUT* | *EQUIP* | *RO*
+
+| R-Asserted
+| Time that the person/device asserted the association between the patient and device.
+| Time that the device-patient association is asserted to have been established.
+| Unusual.
+Time that the person in this role observed the person/device in the AUT role asserting the association.
+
+| C-Corrected
+| n/a
+| Corrected time that the device-patient association is asserted to have been established.
+| Time that the person in this role issued the correction.
+
+| D-Deleted
+| n/a
+| n/a
+| Time that the person in this role issued the deletion order.
+
+| F-Validated
+| n/a
+| Time that the device-patient association is confirmed to have been established.
+If null, most recently asserted/corrected time has been confirmed.
+| Time that the person in this role validated the association.
+
+| W-Wrong
+| n/a
+| n/a
+| Time that the person in this role declared the association to be erroneous.
+|===
+
+|===
+
+|===
+[.text-left]
+[underline]#Proposed Table:#
+
+**Table A.1.2.6-3: PRT-11 Interpretation**
+
+|===
+| *Participation Status* | *AUT* | *EQUIP* | *RO*
+
+| R-Asserted
+| Time that the person/device asserted the association between the patient and device.
+| Time that the device-patient association is asserted to have been established.
+| Unusual.
+Time that the person in this role observed the person/device in the AUT role asserting the association.
+
+| C-Corrected
+| n/a
+| Corrected time that the device-patient association is asserted to have been established.
+| Time that the person in this role issued the correction.
+
+| D-Deleted
+| n/a
+| n/a
+| Time that the person in this role issued the deletion order.
+
+| F-Validated
+| n/a
+| Time that the device-patient association is confirmed to have been established.
+If null, most recently asserted/corrected time has been confirmed.
+| Time that the person in this role validated the association.
+
+| W-Wrong
+| n/a
+| n/a
+| Time that the person in this role declared the association to be erroneous.
+|===
+
+|===
+
+| _Section A.1.2.6 in PCIM TI - OBR - Observation Request_, *Table A.1.2.6-4* update to clarify interpretation of PRT-12 on deleted, corrected and wrong scenarios:
+
+|===
+
+[.text-left]
+[underline]#Existing Table:#
+
+**Table A.1.2.6-4: PRT-12 Interpretation**+++<table style="width:100%;">++++++<colgroup>++++++<col style="width: 20%">++++++</col>+++
++++<col style="width: 26%">++++++</col>+++
++++<col style="width: 26%">++++++</col>+++
++++<col style="width: 26%">++++++</col>++++++</colgroup>+++
++++<thead>++++++<tr class="header">++++++<th>++++++<p>++++++<strong>+++Participation →+++</strong>++++++</p>+++
++++<p>++++++<strong>+++↓Status+++</strong>++++++</p>++++++</th>+++
++++<th>++++++<strong>+++AUT+++</strong>++++++</th>+++
++++<th>++++++<strong>+++EQUIP+++</strong>++++++</th>+++
++++<th>++++++<strong>+++RO+++</strong>++++++</th>++++++</tr>++++++</thead>+++
++++<tbody>++++++<tr class="odd">++++++<td>+++R-Asserted+++</td>+++
++++<td>+++Time that the person/device asserted the disassociation between the
+patient and device.+++</td>+++
++++<td>+++Time that the device-patient disassociation is asserted to have
+taken place.+++</td>+++
++++<td>+++Unusual. Time that the person in this role observed the
+person/device in the AUT role asserting the disassociation.+++</td>++++++</tr>+++
++++<tr class="even">++++++<td>+++C-Corrected+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++Corrected time that the device-patient association is asserted to
+have ended.+++</td>+++
++++<td>+++Time that the person in this role issued the correction.+++</td>++++++</tr>+++
++++<tr class="odd">++++++<td>+++D-Deleted+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++n/a+++</td>++++++</tr>+++
++++<tr class="even">++++++<td>+++F-Validated+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++Time that the device-patient association is confirmed to have ended.
+If null, most recently asserted/corrected time has been confirmed.+++</td>+++
++++<td>+++Time that the person in this role validated the disassociation.+++</td>++++++</tr>+++
++++<tr class="odd">++++++<td>+++W-Wrong+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++n/a+++</td>++++++</tr>++++++</tbody>++++++</table>+++
+
+|===
+
+|===
+[.text-left]
+[underline]#Proposed Table:#
+
+**Table A.1.2.6-4: PRT-12 Interpretation**+++<table style="width:100%;">++++++<colgroup>++++++<col style="width: 20%">++++++</col>+++
++++<col style="width: 26%">++++++</col>+++
++++<col style="width: 26%">++++++</col>+++
++++<col style="width: 26%">++++++</col>++++++</colgroup>+++
++++<thead>++++++<tr class="header">++++++<th>++++++<p>++++++<strong>+++Participation →+++</strong>++++++</p>+++
++++<p>++++++<strong>+++↓Status+++</strong>++++++</p>++++++</th>+++
++++<th>++++++<strong>+++AUT+++</strong>++++++</th>+++
++++<th>++++++<strong>+++EQUIP+++</strong>++++++</th>+++
++++<th>++++++<strong>+++RO+++</strong>++++++</th>++++++</tr>++++++</thead>+++
++++<tbody>++++++<tr class="odd">++++++<td>+++R-Asserted+++</td>+++
++++<td>+++Time that the person/device asserted the disassociation between the
+patient and device.+++</td>+++
++++<td>+++Time that the device-patient disassociation is asserted to have
+taken place.+++</td>+++
++++<td>+++Unusual. Time that the person in this role observed the
+person/device in the AUT role asserting the disassociation.+++</td>++++++</tr>+++
++++<tr class="even">++++++<td>+++C-Corrected+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++Corrected time that the device-patient association is asserted to
+have ended.+++</td>+++
++++<td>+++Time that the person in this role issued the correction.+++</td>++++++</tr>+++
++++<tr class="odd">++++++<td>+++D-Deleted+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++n/a+++</td>++++++</tr>+++
++++<tr class="even">++++++<td>+++F-Validated+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++Time that the device-patient association is confirmed to have ended.
+If null, most recently asserted/corrected time has been confirmed.+++</td>+++
++++<td>+++Time that the person in this role validated the disassociation.+++</td>++++++</tr>+++
++++<tr class="odd">++++++<td>+++W-Wrong+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++n/a+++</td>+++
++++<td>+++n/a+++</td>++++++</tr>++++++</tbody>++++++</table>+++
+
+
+
