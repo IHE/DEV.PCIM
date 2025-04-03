@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2025-03-20
+|2025-04-03
 
 |Person Assigned:
 |Eldon Metz
@@ -30,7 +30,7 @@
 [cols="1,1"]
 |===
 
-2+^|*OBX Consistency with TF in DEV-51 and DEV-52*
+2+^|*OBX-1 Consistency with TF in DEV-51 and DEV-52*
 
 |Submitter’s Name(s) and e-mail address(es):
 |Eldon Metz, emetz@innovisionmedical.com
