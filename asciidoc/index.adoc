@@ -23,32 +23,60 @@ DEV-52
 |Merged into Foundational CP - Completed
 |Bill Haralson (William.Haralson@icumed.com)
 
-|Adding an Optional Order ID to PCIM Transactions
-|xref:cp_nn5.adoc[NN5]
+|Association Instance Unique Identifier
+|xref:cp-dev-013.adoc[DEV-012]
 |DEV-51 +
 DEV-52
-|Draft
-|Tom Kowalczyk (Tom.Kowalczyk@BBraunUSA.com)
+|Approved
+|Eldon Metz (emetz@innovisionmedical.com)
 
 |Require PRT 4.2 Text and PRT 4.3 Name of Coding System Fields
 |xref:cp-dev-012.adoc[DEV-013]
 |DEV-51 +
 DEV-52
+|Approved
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|OBX-1 Consistency with TF in DEV-51 and DEV-52
+|xref:cp-dev-016.adoc[DEV-016]
+|DEV-51 +
+DEV-52
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
-|Association Instance Unique Identifier
-|xref:cp-dev-013.adoc[DEV-012]
+|Filter associations transaction cleanup
+|xref:cp-dev-017.adoc[DEV-017]
+|DEV-51 +
+DEV-52
+|Draft
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|OBR-7/8 and PRT-11/12 semantics for DEV-51 and DEV-52 for corrected, deleted and wrong
+|xref:cp-dev-018.adoc[DEV-018]
+|DEV-51 +
+DEV-52
+|Draft
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|FHIR retrospective query support
+|xref:cp-dev-019.adoc[DEV-019]
 |DEV-51 +
 DEV-52
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |DEV-51/52 and OBX-11 semantics (association error resolution scenarios with commit level and application Acknowledgements) 
-|xref:cp_nn8.adoc[NN8]
+|
 |DEV-51 +
 DEV-52
 |Assigned
 |Eldon Metz (emetz@innovisionmedical.com)
+
+|Adding an Optional Order ID to PCIM Transactions
+|
+|DEV-51 +
+DEV-52
+|Draft
+|Tom Kowalczyk (Tom.Kowalczyk@BBraunUSA.com)
 
 |===
