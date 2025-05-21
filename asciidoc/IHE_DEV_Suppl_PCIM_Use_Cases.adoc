@@ -581,7 +581,7 @@ The message is originated by the Device-Patient Association Reporter with the fo
 |System identifier that authored and validated the association
 |Required
 
-|Time the association was validated
+|Time the association was authored
 |Required
 
 |Indicator that the association is final and does not require further validation
