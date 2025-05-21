@@ -423,7 +423,7 @@ For example, selection of the patient and the devices could be accomplished on a
 
 ===== 7.4.2.1.1 Description
 
-A Device-Patient Association Reporter asserts a identifiable person authored and validated device-patient association to a Device-Patient Association Manager.
+A Device-Patient Association Reporter asserts an identifiable person authored and validated a device-patient association to a Device-Patient Association Manager.
 
 An authorized person at the point-of-care who can see the patient and devices has gathered and checked the unique identifying information for a patient and a device that is designated to originate observations on that patient.
 Before being sent, the information is displayed to the person for validation.
@@ -486,11 +486,11 @@ TBD: Explain/reference how the manager delivers the association to the consumer.
 
 TBD: Explain/reference how the consumer receives the association.
 
-==== 7.4.2.1 Use Case #2: Identifiable person reporting an association requiring validation
+==== 7.4.2.2 Use Case #2: Identifiable person reporting an association requiring validation
 
-===== 7.4.2.1.1 Description
+===== 7.4.2.2.1 Description
 
-A Device-Patient Association Reporter asserts a identifiable person authored a device-patient association requiring validation to a Device-Patient Association Manager.
+A Device-Patient Association Reporter asserts an identifiable person authored a device-patient association requiring validation to a Device-Patient Association Manager.
 
 An authorized person at the point-of-care who can see the patient and devices has gathered and checked the unique identifying information for a patient and a device that is designated to originate observations on that patient.
 The message is originated by the Device-Patient Association Reporter with the following information:
@@ -510,7 +510,7 @@ The message is originated by the Device-Patient Association Reporter with the fo
 |Person identifier who authored the association
 |Required
 
-|Time the association was validated
+|Time the association was authored
 |Required
 
 |Indicator that the association requires further validation
@@ -519,7 +519,7 @@ The message is originated by the Device-Patient Association Reporter with the fo
 
 Examples of reporters that this use case applies to are electronic medical records systems, specialized medical applications and medical devices or controllers with appropriate user interfaces and the ability to capture the person doing the association but with a policy that requires an additional person using the Device-Patient Association Manager to validate the association.
 
-===== 7.4.2.1.2 Process Flow
+===== 7.4.2.2.2 Process Flow
 
 This use case can be driven by an authorized person responsible for scanning, selecting or entering the
 beginning of an association between a device and a particular patient. This should be
@@ -531,7 +531,7 @@ The key difference from Use Case #1 is that the intial association is not valida
 
 These means of identification are specific to the clinical environment in question, and standard procedures of risk analysis at the institution should be applied to assure that patient safety is adequately protected.
 
-===== 7.4.2.1.3 Pre-conditions:
+===== 7.4.2.2.3 Pre-conditions:
 
 Patient is to be associated with a device for clinical observations.
 Patient has been assigned unique identifier at registration which has been collected and verified at the point-of-care.
@@ -539,12 +539,12 @@ Device identity has been registered for use.
 The identities of patient and device(s) have been collected and entered by an authorized person.
 The authorized person's identity has been collected and verified by the system.
 
-===== 7.4.2.1.4 Main Flow:
+===== 7.4.2.2.4 Main Flow:
 
 Device-Patient Association Reporter originates a message with the specific information on the association and its time of beginning by the authorized person.
-When such an association message is received, the manager system is responsible fordetermining if any conflicting information is in the system and generating an appropriate error message to assist the responsible personnel in resolving the conflict. The manager system is also responsible for notifying the appropriate person to validate the association.
+When such an association message is received, the manager system is responsible for determining if any conflicting information is in the system and generating an appropriate error message to assist the responsible personnel in resolving the conflict. The manager system is also responsible for notifying the appropriate person to validate the association.
 
-===== 7.4.2.1.5 Post-conditions:
+===== 7.4.2.2.5 Post-conditions:
 
 After completion of this use case, an association record identifying the patient and the associated device and giving the start time of the association is received by and persisted by the Device-Patient Association Manager and the interaction requiring further validation is complete. 
 
@@ -556,13 +556,13 @@ TBD: Explain/reference how the manager delivers the association to the consumer.
 
 TBD: Explain/reference how the consumer receives the association.
 
-==== 7.4.2.1 Use Case #3: System, possibly with anonymous person input, asserting a validated association
+==== 7.4.2.3 Use Case #3: System, possibly with anonymous person input, asserting a validated association
 
-===== 7.4.2.1.1 Description
+===== 7.4.2.3.1 Description
 
 A Device-Patient Association Reporter asserts a system authored a validated device-patient association to a Device-Patient Association Manager.
 
-A system at the point-of-care that has access to the patient and devices has the ability to assert that a patient and device are associated without error. The system has access to the unique identifying information for a patient and a device that is designated to originate observations on that patient. Note, this system may be operated by a anonymous person or a system that does not have the ability to capture the identity of the person authorized to perform the association and validation.
+A system at the point-of-care that has access to the patient and devices has the ability to assert that a patient and device are associated without error. The system has access to the unique identifying information for a patient and a device that is designated to originate observations on that patient. Note, this system may be operated by an anonymous person or a system that does not have the ability to capture the identity of the person authorized to perform the association and validation.
 
 The message is originated by the Device-Patient Association Reporter with the following information:
 
@@ -590,13 +590,13 @@ The message is originated by the Device-Patient Association Reporter with the fo
 
 Examples of reporters that this use case applies to are patient monitors, infusion pumps or other medical devices that have a picklist option but no means of user athentication with the device. Other examples are systems that have a means of identifying the patient and device automatically such as device aggregators or aother system that can detect the association without human intervention.
 
-===== 7.4.2.1.2 Process Flow
+===== 7.4.2.3.2 Process Flow
 
 This use case can be driven by system that is capable of detecting an association between a device and a particular patient without any chance of error.
 
 These means of identification are specific to the technology and systems within the clinical environment in question, and standard procedures of risk analysis at the institution should be applied to assure that patient safety is adequately protected.
 
-===== 7.4.2.1.3 Pre-conditions:
+===== 7.4.2.3.3 Pre-conditions:
 
 Patient is to be associated with a device for clinical observations.
 Patient has been assigned unique identifier at registration which has been collected, detected and verified at the point-of-care.
@@ -604,12 +604,12 @@ Device is registered for use.
 The identities of patient and device have been detected and verified by the system.
 The system has been assigned a unique identifier.
 
-===== 7.4.2.1.4 Main Flow:
+===== 7.4.2.3.4 Main Flow:
 
 Device-Patient Association Reporter originates a message with the specific information on the association and its time of beginning and validation by the system.
 When such an association message is received, the manager system is responsible for determining if any conflicting information is in the system and generating an appropriate error message to assist the responsible personnel in resolving the conflict.
 
-===== 7.4.2.1.5 Post-conditions:
+===== 7.4.2.3.5 Post-conditions:
 
 After completion of this use case, an association record identifying the patient and the associated device and giving the start time of the association is received by and persisted by the Device-Patient Association Manager. 
 
@@ -619,13 +619,13 @@ TBD: Explain/reference how the manager delivers the association to the consumer.
 
 TBD: Explain/reference how the consumer receives the association.
 
-==== 7.4.2.1 Use Case #4: System, possibly with anonymous person input, reporting an association requiring validation
+==== 7.4.2.4 Use Case #4: System, possibly with anonymous person input, reporting an association requiring validation
 
-===== 7.4.2.1.1 Description
+===== 7.4.2.4.1 Description
 
 A Device-Patient Association Reporter asserts a system, possibly directed by a anonymous person, authored a device-patient association requiring validation to a Device-Patient Association Manager.
 
-A system at the point-of-care that has access to the patient and devices has the ability to assert that a patient and device are associated, although validation by a person is required. The system has access to the unique identifying information for a patient and a device that is designated to originate observations on that patient. Note, this system may be operated by a anonymous person or a system that does not have the ability to capture the identity of the person authorized to perform the association.
+A system at the point-of-care that has access to the patient and devices has the ability to assert that a patient and device are associated, although validation by a person is required. The system has access to the unique identifying information for a patient and a device that is designated to originate observations on that patient. Note, this system may be operated by an anonymous person or a system that does not have the ability to capture the identity of the person authorized to perform the association.
 
  A message is originated by the Device-Patient Association Reporter with the following information:
 
@@ -644,7 +644,7 @@ A system at the point-of-care that has access to the patient and devices has the
 |System identifier who authored and validated the association
 |Required
 
-|Time the association was validated
+|Time the association was authored
 |Required
 
 |Indicator that the association is final and does not require further validation
@@ -653,25 +653,25 @@ A system at the point-of-care that has access to the patient and devices has the
 
 Examples of reporters that this use case applies to are location based device aggregators that are installed at the bedside and sense devices and patients using proximity sensors, RTLS systems using RFID and other systems that can detect the association without human intervention. 
 
-===== 7.4.2.1.2 Process Flow
+===== 7.4.2.4.2 Process Flow
 
 This use case can be driven by a system responsible for deteting a medical device association with a patient at the point-of-care.
 
-===== 7.4.2.1.3 Pre-conditions:
+===== 7.4.2.4.3 Pre-conditions:
 
 Patient is to be associated with a device for clinical observations.
 Patient has been assigned unique identifier at registration which has been collected and verified at the point-of-care.
 Device is registered for use.
 System is configured to detect the patient and device association.
 
-===== 7.4.2.1.4 Main Flow:
+===== 7.4.2.4.4 Main Flow:
 
 Device-Patient Association Reporter originates a message with the specific information on the association and its time of beginning.
 When such an association message is received, the manager system is responsible for determining if any conflicting information is in the system and generating an appropriate error message to assist the responsible personnel in resolving the conflict.
 The manager system is also responsible for notifying the appropriate person to validate the association.
-===== 7.4.2.1.5 Post-conditions:
+===== 7.4.2.4.5 Post-conditions:
 
-After completion of this use case, an association record identifying the patient and the associated device and giving the start time of the association is received by and persisted by the Device-Patient Association Manager. 
+After completion of this use case, an association record identifying the patient and the associated device and giving the start time of the association is received by and persisted by the Device-Patient Association Manager and the interaction requiring further validation is complete. 
 
 TBD: Explain/reference how the manager resolves conflicts and what happens if it cannot resolve them. 
 
@@ -679,23 +679,23 @@ TBD: Explain/reference how the manager delivers the association to the consumer.
 
 TBD: Explain/reference how the consumer receives the association.
 
-==== 7.4.2.2 Use Case #5: Disassociating Device From Patient
+==== 7.4.2.5 Use Case #5: Disassociating Device From Patient
 
-===== 7.4.2.2.1 Description
+===== 7.4.2.5.1 Description
 
 At the time the device is no longer set up to make observations on the patient, the Device-Patient Association Reporter originates a message conveying this information to the Device-Patient Association Manager.
-It should be noted that even though this may be a less salient event at the point-of-care, completeness and accuracy of disassociation is as important to an accurate record and proper association of observations with patients.
+It should be noted that even though this may be a less salient event at the point-of-care, completeness and accuracy of disassociation is important to ensure an accurate record and proper association of observations with patients.
 This is a key issue in risk analysis and in system design.
 
-===== 7.4.2.2.2 Process Flow
+===== 7.4.2.5.2 Process Flow
 
 The Device-Patient Association Manager receives the information that the association between a particular patient and one or more devices no longer exists.
 An authorized operator may originate this message through a user interface.
-In some cases, the device itself is capable of determining that the association has been broken and can communicate this information directly to the Device-Patient Association Manager, or indirectly through the Device-Patient Association Reporter.
+In some cases, the device itself is capable of determining that the association has been broken and can communicate this information to the Device-Patient Association Manager if it has implemented the Device-Patient Association Reporter role.
 It may be appropriate to note this event on a user interface and get confirmation that it is correct.
 It also could be appropriate to ask whether other devices on record as being connected to the same patient are still connected or not.
 
-===== 7.4.2.2.3 Pre-conditions:
+===== 7.4.2.5.3 Pre-conditions:
 
 Patient is to be disassociated with a device.
 Patient has been assigned unique identifier at registration which has been collected and verified at the point-of-care.
@@ -703,35 +703,35 @@ Device identity has been registered for use.
 The identities of patient and device(s) have been collected and verified by an authorized person.
 The patient has already been associated with a device.
 
-===== 7.4.2.2.4 Main Flow:
+===== 7.4.2.5.4 Main Flow:
 
 Device-Patient Association Reporter originates a message with the specific information on the disassociation and its time of ending.
 
-===== 7.4.2.2.5 Post-conditions:
+===== 7.4.2.5.5 Post-conditions:
 
 After completion of this use case, a record identifying the patient and the associated device and giving the end time of the association correlated with the starting time is persisted by the Device-Patient Association Manager.
 
-==== 7.4.2.3 Use Case #6 Filter Devices for a Patient
+==== 7.4.2.6 Use Case #6 Filter Devices for a Patient
 
-===== 7.4.2.3.1 Description
+===== 7.4.2.6.1 Description
 
 A Device-Patient Association Manager may filter association messages to a Device-Patient Association Consumer for current and ongoing device patient associations. Retrospective queries are currently out of scope. 
 
-===== 7.4.2.3.2 Process Flow
+===== 7.4.2.6.2 Process Flow
 
 For status display or for error-checking and diagnostic purposes, the Device-Patient Association Manager sends the Device-Patient Association Consumer the current association records for each patient it is configured to receive.
 
-===== 7.4.2.3.3 Pre-conditions:
+===== 7.4.2.6.3 Pre-conditions:
 
 Patient has been assigned unique identifier at registration which has been collected and verified at the point-of-care.
 Device identity has been registered for use.
 The identities of patient and device(s) are known to the system or person performing the filtering.
 
-===== 7.4.2.3.4 Main Flow:
+===== 7.4.2.6.4 Main Flow:
 
 A Device-Patient Association Consumer originates a message to the Device-Patient Association Manager with the specific filter information for the devices to receive filtered association reports for.
 
-===== 7.4.2.3.5 Post-conditions:
+===== 7.4.2.6.5 Post-conditions:
 
 After completion of this use case, if the manager supports the filtering option, a subscription filter for the requested devices and the requesting consumer is persisted and any matching association reports are sent by the Device-Patient Association Manager to the Device-Patient Association Consumer. If the manager does not support the filtering option, an appropriate error code is sent to the consumer when the filter request message is received.
 
