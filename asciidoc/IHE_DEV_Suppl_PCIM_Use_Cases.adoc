@@ -684,6 +684,31 @@ TBD: Explain/reference how the consumer receives the association.
 ===== 7.4.2.5.1 Description
 
 At the time the device is no longer set up to make observations on the patient, the Device-Patient Association Reporter originates a message conveying this information to the Device-Patient Association Manager.
+
+A message is originated by the Device-Patient Association Reporter with the following information:
+
+|===
+|Association Data|Optionality
+
+|Patient identifier
+|Required
+
+|Device identifier and the end time for the association
+|Required
+
+|Location identifier
+|Optional
+
+|System or Person identifier that authored the disassociation message
+|Required
+
+|Time the disassociation message was authored
+|Required
+
+|Indicator that the disassociation is final and does not require further validation
+|Required
+|===
+
 It should be noted that even though this may be a less salient event at the point-of-care, completeness and accuracy of disassociation is important to ensure an accurate record and proper association of observations with patients.
 This is a key issue in risk analysis and in system design.
 
