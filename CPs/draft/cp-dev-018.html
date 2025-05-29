@@ -464,7 +464,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date of last update:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2025-03-20</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2025-05-29</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Person Assigned:</p></td>
@@ -484,7 +484,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>OBR-7/8 and PRT-11/12 semantics for DEV-51 and DEV-52 for corrected, deleted and wrong</strong></p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Clarifying requirements and semantics for DEV-51 and DEV-52 for corrected, deleted and wrong message indicator</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Submitter’s Name(s) and e-mail address(es):</p></td>
@@ -510,11 +510,11 @@ Device-Patient Association Reporter</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Volume(s) and Section(s) affected:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PCIM TI, Sections A.1.2.4 and A.1.2.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCIM TI, Sections A.1.2.4, A.1.2.5 and A.1.2.6</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rationale for Change:</p>
-<p class="tableblock">While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations wwere also identified to be clarified and/or updated. It was agreed on in the PCIM WG to clarify the requirements around interpretation of these fields in a CP.</p>
+<p class="tableblock">While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations were also identified to be clarified and/or updated. It was also noted that it was necessary to support corrections for patient identity changes for merges, unmerges, id changes and contact moves. It was agreed on in the PCIM WG to clarify the requirements around interpretation of these fields in a CP.</p>
 <p class="tableblock">This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issue.</p></td>
 </tr>
 </tbody>
@@ -525,39 +525,12 @@ Device-Patient Association Reporter</p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.1.2.4 in PCIM TI - OBR - Observation Request</em>, update the text to clarify population of OBR-7/8 on deleted, corrected and wrong scenarios:</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph text-left">
-<p><span class="underline">Existing Text:</span></p>
-</div>
-<div class="paragraph text-left">
-<p>The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. Each report consists of two Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-</table>
-<div class="paragraph text-left">
-<p><span class="underline">Proposed Text:</span></p>
-</div>
-<div class="paragraph text-left">
-<p>The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. Each report consists of two Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.1.2.6 in PCIM TI - OBR - Observation Request</em>, <strong>Table A.1.2.6-3</strong> update to clarify interpretation of PRT-11 on deleted, corrected and wrong scenarios:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Table A.1.2.6.3 in PCIM TI - PRT-11 Interpretation</em>, update the table to to remove the participation status of deleted and to allow patient :</p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph text-left">
 <p><span class="underline">Existing Table:</span></p>
-</div>
-<div class="paragraph">
-<p><strong>Table A.1.2.6-3: PRT-11 Interpretation</strong></p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -614,9 +587,6 @@ If null, most recently asserted/corrected time has been confirmed.</p></td>
 <div class="paragraph text-left">
 <p><span class="underline">Proposed Table:</span></p>
 </div>
-<div class="paragraph">
-<p><strong>Table A.1.2.6-3: PRT-11 Interpretation</strong></p>
-</div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
@@ -643,14 +613,8 @@ Time that the person in this role observed the person/device in the AUT role ass
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">C-Corrected</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">n/a</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Corrected time that the device-patient association is asserted to have been established.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Corrected time that the device-patient association is asserted to have been established, if the correction is for a association time change, otherwise the original time.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Time that the person in this role issued the correction.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">D-Deleted</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">n/a</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">n/a</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time that the person in this role issued the deletion order.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">F-Validated</p></td>
@@ -673,7 +637,96 @@ If null, most recently asserted/corrected time has been confirmed.</p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.1.2.6 in PCIM TI - OBR - Observation Request</em>, <strong>Table A.1.2.6-4</strong> update to clarify interpretation of PRT-12 on deleted, corrected and wrong scenarios:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.1.2.5 in PCIM TI - OBX - Observation</em>, <strong>Table A.1.2.5-3</strong> update to clarify correction reasons:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Existing Table:</span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Status</strong></th>
+<th class="tableblock halign-left valign-top"><strong>HL7 Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Adaptation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Record coming over is a correction and thus replaces a final result.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Record coming over is a correction and thus replaces a validated association.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">D</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the OBX record</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deletes the association record.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Final results;
+can only be changed with a corrected result.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validated association.
+Can only be changed with a corrected association record.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Results entered&#8201;&#8212;&#8201;not verified</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An association has been asserted, but not validated.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Post original as wrong, e.g., transmitted for wrong patient.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Post original as wrong, e.g., transmitted for wrong patient.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Table:</span></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><strong>Status</strong></th>
+<th class="tableblock halign-left valign-top"><strong>HL7 Description</strong></th>
+<th class="tableblock halign-left valign-top"><strong>Adaptation</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Record coming over is a correction and thus replaces a final result.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Record coming over is a correction and thus replaces a validated association. Corrections of start/end times and patient identity are allowed.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">F</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Final results;
+can only be changed with a corrected result.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validated association.
+Can only be changed with a corrected association record.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Results entered&#8201;&#8212;&#8201;not verified</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An association has been asserted, but not validated.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">W</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Post original as wrong, e.g., transmitted for wrong patient.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Post original as wrong, e.g., transmitted for wrong patient.</p></td>
 </tr>
 </tbody>
 </table>
@@ -743,10 +796,6 @@ person/device in the AUT role asserting the disassociation.</td></tr>
 <td>Corrected time that the device-patient association is asserted to
 have ended.</td>
 <td>Time that the person in this role issued the correction.</td></tr>
-<tr class="odd"><td>D-Deleted</td>
-<td>n/a</td>
-<td>n/a</td>
-<td>n/a</td></tr>
 <tr class="even"><td>F-Validated</td>
 <td>n/a</td>
 <td>Time that the device-patient association is confirmed to have ended.
@@ -762,7 +811,7 @@ If null, most recently asserted/corrected time has been confirmed.</td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-03 05:29:57 -0700
+Last updated 2025-05-29 10:29:40 -0700
 </div>
 </div>
 </body>
