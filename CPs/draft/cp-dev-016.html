@@ -464,7 +464,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date of last update:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2025-04-03</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2025-05-29</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Person Assigned:</p></td>
@@ -484,7 +484,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>OBX-1 Consistency with TF in DEV-51 and DEV-52</strong></p></td>
+<td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>OBX-1 and OBX-4 Consistency with TF in DEV-51 and DEV-52</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Submitter’s Name(s) and e-mail address(es):</p></td>
@@ -514,7 +514,7 @@ Device-Patient Association Reporter</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rationale for Change:</p>
-<p class="tableblock">After PCIM connectathon testing in 2025, it was noted that OBX-1 for DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions was set to be optional. This was inconsistent with PCD TF-2. It was agreed on in the PCIM WG to change the optionality to required.</p>
+<p class="tableblock">After PCIM connectathon testing in 2025, it was noted that OBX-1 for DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions was set to be optional. This was inconsistent with PCD TF-2. During review, it was also noted that the description for OBX-4 needed to be clarified and made more consistent with expectations of containment with the TF. It was agreed on in the PCIM WG to change the optionality to required and to fix the value for OBX-4 to 0.0.0.0.</p>
 <p class="tableblock">This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issue.</p></td>
 </tr>
 </tbody>
@@ -525,7 +525,7 @@ Device-Patient Association Reporter</p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.1.2.5 in PCIM TI - OBR - Observation</em>  <strong>Table A.1.2.5-1 OBX Fields</strong>, update the table to set OBX-1 optionality to required:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Section A.1.2.5 in PCIM TI - OBR - Observation</em>  <strong>Table A.1.2.5-1 OBX Fields</strong>, update the table to set OBX-1 and OBX-4 optionality to required and that OBX-4 be set to 0.0.0.0:</p></td>
 </tr>
 </tbody>
 </table>
@@ -650,10 +650,9 @@ See Table A.1.2.5-3: OBX-11 Values.</p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">O</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
 <td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Observation Sub-ID.
-Use to convey a specific channel that&#8217;s been associated, as &lt;MDS&gt;.&lt;VMD&gt;.&lt;CHANNEL&gt;.&lt;facet&gt;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Observation Sub-ID&#8201;&#8212;&#8201;set to 0.0.0.0 to indicate no containment for this single OBX segment.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
@@ -678,7 +677,7 @@ See Table A.1.2.5-3: OBX-11 Values.</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-04-03 05:38:31 -0700
+Last updated 2025-05-29 10:34:54 -0700
 </div>
 </div>
 </body>
