@@ -13,13 +13,13 @@ repositories {
 asciidoctor {
   sourceDir file('../../asciidoc')
   sources {
-    include 'IHE_DEV_Suppl_PCIM.adoc'
-    include 'IHE_DEV_Suppl_PCIM_Use_Cases.adoc'
+    include 'index.adoc'
     include 'cp-dev-016.adoc'
     include 'cp-dev-017.adoc'
+    include 'cp-dev-018.adoc'
     include 'cp-dev-019.adoc'
-
-    include 'index.adoc'
+    include 'IHE_DEV_Suppl_PCIM.adoc'
+    include 'IHE_DEV_Suppl_PCIM_Use_Cases.adoc'
   }
   resources {
     from(sourceDir) {
