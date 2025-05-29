@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2025-04-03
+|2025-05-29
 
 |Person Assigned:
 |Eldon Metz
@@ -30,7 +30,7 @@
 [cols="1,1"]
 |===
 
-2+^|*OBX-1 Consistency with TF in DEV-51 and DEV-52*
+2+^|*OBX-1 and OBX-4 Consistency with TF in DEV-51 and DEV-52*
 
 |Submitter’s Name(s) and e-mail address(es):
 |Eldon Metz, emetz@innovisionmedical.com
@@ -54,7 +54,7 @@ Device-Patient Association Reporter
 
 2+|Rationale for Change:
 
-After PCIM connectathon testing in 2025, it was noted that OBX-1 for DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions was set to be optional. This was inconsistent with PCD TF-2. It was agreed on in the PCIM WG to change the optionality to required.
+After PCIM connectathon testing in 2025, it was noted that OBX-1 for DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions was set to be optional. This was inconsistent with PCD TF-2. During review, it was also noted that the description for OBX-4 needed to be clarified and made more consistent with expectations of containment with the TF. It was agreed on in the PCIM WG to change the optionality to required and to fix the value for OBX-4 to 0.0.0.0.
 
 This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issue.
 
@@ -62,7 +62,7 @@ This Change Proposal (CP) proposes changes to PCIM TI to implement the profile c
 
 |===
 
-| _Section A.1.2.5 in PCIM TI - OBR - Observation_  *Table A.1.2.5-1 OBX Fields*, update the table to set OBX-1 optionality to required:
+| _Section A.1.2.5 in PCIM TI - OBR - Observation_  *Table A.1.2.5-1 OBX Fields*, update the table to set OBX-1 and OBX-4 optionality to required and that OBX-4 be set to 0.0.0.0:
 
 |===
 
@@ -145,11 +145,9 @@ See Table A.1.2.5-3: OBX-11 Values.
 
 | 4
 | ST
-| O
+| R
 |
-| Observation Sub-ID.
-Use to convey a specific channel that's been associated, as <MDS>.<VMD>.<CHANNEL>.<facet>
-
+| Observation Sub-ID -- set to 0.0.0.0 to indicate no containment for this single OBX segment.
 | 5
 | CWE
 | R
