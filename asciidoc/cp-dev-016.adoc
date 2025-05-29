@@ -14,7 +14,7 @@
 |CP-DEV-016
 
 |Change Proposal Status:
-|Draft
+|Submitted
 
 |Date of last update:
 |2025-05-29
@@ -36,7 +36,7 @@
 |Eldon Metz, emetz@innovisionmedical.com
 
 |Submission Date:
-| TBD
+|2025-05-29
 
 |Integration Profile(s) affected:
 |Point-of-Care Identity Management (PCIM)
