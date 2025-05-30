@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2025-03-20
+|2025-05-29
 
 |Person Assigned:
 |Eldon Metz
@@ -30,7 +30,7 @@
 [cols="1,1"]
 |===
 
-2+^|*OBR-7/8 and PRT-11/12 semantics for DEV-51 and DEV-52 for corrected, deleted and wrong*
+2+^|*Clarifying requirements and semantics for DEV-51 and DEV-52 for corrected, deleted and wrong message indicator*
 
 |Submitter’s Name(s) and e-mail address(es):
 |Eldon Metz, emetz@innovisionmedical.com
@@ -50,11 +50,11 @@ Device-Patient Association Reporter
 |PCIM Profile TI (PCIM TI) revision 2.2, dated 2024-12-05
 
 |Volume(s) and Section(s) affected:
-|PCIM TI, Sections A.1.2.4 and A.1.2.6
+|PCIM TI, Sections A.1.2.4, A.1.2.5 and A.1.2.6
 
 2+|Rationale for Change:
 
-While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations wwere also identified to be clarified and/or updated. It was agreed on in the PCIM WG to clarify the requirements around interpretation of these fields in a CP.
+While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations were also identified to be clarified and/or updated. It was also noted that it was necessary to support corrections for patient identity changes for merges, unmerges, id changes and contact moves. It was agreed on in the PCIM WG to clarify the requirements around interpretation of these fields in a CP.
 
 This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issue.
 
@@ -62,35 +62,12 @@ This Change Proposal (CP) proposes changes to PCIM TI to implement the profile c
 
 |===
 
-| _Section A.1.2.4 in PCIM TI - OBR - Observation Request_, update the text to clarify population of OBR-7/8 on deleted, corrected and wrong scenarios:
-
-|===
-
-[.text-left]
-[underline]#Existing Text:#
-
-[.text-left]
-The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. Each report consists of two Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
-
-|===
-
-|===
-[.text-left]
-[underline]#Proposed Text:#
-
-[.text-left]
-The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. Each report consists of two Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
-
-|===
-
-| _Section A.1.2.6 in PCIM TI - OBR - Observation Request_, *Table A.1.2.6-3* update to clarify interpretation of PRT-11 on deleted, corrected and wrong scenarios:
+| _Table A.1.2.6.3 in PCIM TI - PRT-11 Interpretation_, update the table to to remove the participation status of deleted and to allow patient :
 
 |===
 
 [.text-left]
 [underline]#Existing Table:#
-
-**Table A.1.2.6-3: PRT-11 Interpretation**
 
 |===
 | *Participation Status* | *AUT* | *EQUIP* | *RO*
@@ -98,7 +75,7 @@ The OBR shall also include the timestamp of the earliest participant involvement
 | R-Asserted
 | Time that the person/device asserted the association between the patient and device.
 | Time that the device-patient association is asserted to have been established.
-| Unusual.
+| Unusual. 
 Time that the person in this role observed the person/device in the AUT role asserting the association.
 
 | C-Corrected
@@ -128,9 +105,6 @@ If null, most recently asserted/corrected time has been confirmed.
 |===
 [.text-left]
 [underline]#Proposed Table:#
-
-**Table A.1.2.6-3: PRT-11 Interpretation**
-
 |===
 | *Participation Status* | *AUT* | *EQUIP* | *RO*
 
@@ -142,13 +116,9 @@ Time that the person in this role observed the person/device in the AUT role ass
 
 | C-Corrected
 | n/a
-| Corrected time that the device-patient association is asserted to have been established.
+| Corrected time that the device-patient association is asserted to have been established, if the correction is for a association time change, otherwise the original time.
 | Time that the person in this role issued the correction.
 
-| D-Deleted
-| n/a
-| n/a
-| Time that the person in this role issued the deletion order.
 
 | F-Validated
 | n/a
@@ -161,10 +131,67 @@ If null, most recently asserted/corrected time has been confirmed.
 | n/a
 | Time that the person in this role declared the association to be erroneous.
 |===
+|===
+
+| _Section A.1.2.5 in PCIM TI - OBX - Observation_, *Table A.1.2.5-3* update to clarify correction reasons:
 
 |===
 
-| _Section A.1.2.6 in PCIM TI - OBR - Observation Request_, *Table A.1.2.6-4* update to clarify interpretation of PRT-12 on deleted, corrected and wrong scenarios:
+[.text-left]
+[underline]#Existing Table:#
+
+|===
+| *Status* | *HL7 Description* | *Adaptation*
+
+| C
+| Record coming over is a correction and thus replaces a final result.
+| Record coming over is a correction and thus replaces a validated association.
+
+| D
+| Deletes the OBX record
+| Deletes the association record.
+
+| F
+| Final results;
+can only be changed with a corrected result.
+| Validated association.
+Can only be changed with a corrected association record.
+
+| R
+| Results entered -- not verified
+| An association has been asserted, but not validated.
+
+| W
+| Post original as wrong, e.g., transmitted for wrong patient.
+| Post original as wrong, e.g., transmitted for wrong patient.
+|===
+
+|===
+
+|===
+[.text-left]
+[underline]#Proposed Table:#
+
+|===
+| *Status* | *HL7 Description* | *Adaptation*
+
+| C
+| Record coming over is a correction and thus replaces a final result.
+| Record coming over is a correction and thus replaces a validated association. Corrections of start/end times and patient identity are allowed.
+
+| F
+| Final results;
+can only be changed with a corrected result.
+| Validated association.
+Can only be changed with a corrected association record.
+
+| R
+| Results entered -- not verified
+| An association has been asserted, but not validated.
+
+| W
+| Post original as wrong, e.g., transmitted for wrong patient.
+| Post original as wrong, e.g., transmitted for wrong patient.
 
 |===
 
@@ -233,10 +260,6 @@ person/device in the AUT role asserting the disassociation.+++</td>++++++</tr>++
 +++<td>+++Corrected time that the device-patient association is asserted to
 have ended.+++</td>+++
 +++<td>+++Time that the person in this role issued the correction.+++</td>++++++</tr>+++
-+++<tr class="odd">++++++<td>+++D-Deleted+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++n/a+++</td>++++++</tr>+++
 +++<tr class="even">++++++<td>+++F-Validated+++</td>+++
 +++<td>+++n/a+++</td>+++
 +++<td>+++Time that the device-patient association is confirmed to have ended.
