@@ -41,7 +41,7 @@ DEV-52
 |xref:cp-dev-016.adoc[DEV-016]
 |DEV-51 +
 DEV-52
-|Draft
+|Submitted
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |Filter associations transaction cleanup
