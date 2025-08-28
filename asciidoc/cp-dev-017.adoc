@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2025-08-21
+|2025-08-28
 
 |Person Assigned:
 |Eldon Metz
@@ -50,11 +50,11 @@ Device-Patient Association Reporter
 |PCIM Profile TI (PCIM TI) revision 2.2, dated 2024-12-05
 
 |Volume(s) and Section(s) affected:
-|PCIM TI, Sections A.2
+|PCIM TI, Sections A.2 and A.3
 
 2+|Rationale for Change:
 
-While preparing for connectathon testing in 2025, it was noted during updates to the NIST HL7v2 Test Tool that QPD in DEV-19 (Filter Associations) needed to be better defined in Table A.2.3.2-1. It was also noted during that review that Table A.2.3.2-2 was unnecessary. It was also noted that the QPD.3 field was specified to be VARIES, and that the QSC (Query Subscription Code) data type was not defined in the PCIM TI. The QPD.4 Action Code field was also specified, but it is not used in DEV-19, so it should be removed. Additional claenup to the RCP segment was also needed, as it was not clear that the only supported modality is real-time, and that deferred execution is not supported. The RCP-4 Execution and Delivery Time and RCP-5 Modify Indicator fields were also not required in DEV-19, so they should be removed. Finally, the examples were updated to reflect the changes to QPD.3 and RCP-1.
+While preparing for connectathon testing in 2025, it was noted during updates to the NIST HL7v2 Test Tool that QPD in DEV-19 (Filter Associations) needed to be better defined in Table A.2.3.2-1. It was also noted during that review that Table A.2.3.2-2 was unnecessary. It was also noted that the QPD.3 field was specified to be VARIES, and that the QSC (Query Subscription Code) data type was not defined in the PCIM TI. The QPD.4 Action Code field was also specified, but it is not used in DEV-19, so it should be removed. Additional cleanup to the RCP segment was also needed, as it was not clear that the only supported modality is real-time, and that deferred execution is not supported. The RCP-4 Execution and Delivery Time and RCP-5 Modify Indicator fields were also not required in DEV-19, so they should be removed. Finally, the examples were updated to reflect the changes to QPD.3 and RCP-1.
 
 This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issues.
 
