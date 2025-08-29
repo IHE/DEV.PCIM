@@ -41,14 +41,14 @@ DEV-52
 |xref:cp-dev-016.adoc[DEV-016]
 |DEV-51 +
 DEV-52
-|Draft
+|Submitted
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |Filter associations transaction cleanup
 |xref:cp-dev-017.adoc[DEV-017]
 |DEV-51 +
 DEV-52
-|Draft
+|Submitted
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |OBR-7/8 and PRT-11/12 semantics for DEV-51 and DEV-52 for corrected, deleted and wrong
