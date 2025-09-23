@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2025-05-29
+|2025-09-23
 
 |Person Assigned:
 |Eldon Metz
@@ -59,6 +59,79 @@ While anticipating production deployment and during analsysis of edge cases, it 
 This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issue.
 
 |===
+
+|===
+
+| _7.4.2 PCIM TI - Use Cases_, add use case #4 to help explain how correcting a patient identify for a merge can be handled:
+
+|===
+
+[.text-left]
+[underline]#Proposed Use Case:#
+
+[.text-left]
+==== 7.4.2.4 Use Case #4 Correcting Verified Associations
+
+===== 7.4.2.4.1 Description
+
+A Device-Patient Association Reporter asserts a correction to a verified device-patient association to a Device-Patient Association Manager.
+
+An action is taken in the Device-Patient Association Reporter's system that corrects one of the key parameters of an existing verified device-patient association. The following key parameters SHALL trigger a correction if changed during the course of an active device association:
+* Effective begin time of the association
+* Effective end time of the association
+
+Other parameters of the verified device-patient association MAY trigger correction based on the requirements of the specific implementation. For example, if chart correction actions can be taken in the Device-Patient Association Reporter system that change the patient's unique identifier while the patient has an active device-patient association, AND that change is not being communicated to the Device-Patient Association Manager using other means, such as an HL7 ADT message, a correction message will communicate the correction to the patient's identifying information.
+
+===== 7.4.2.4.2 Process Flow
+This use case is driven by an authorized user taking an action that alters one of the key parameters of an existing verified device-patient association. This should be based on first-person awareness of the situation at the point-of-care. For example, if a device-patient association is created and verified for a patient retroactively and the effective begin time of the association isn't back-dated appropriately, an authorized user may manually alter the begin time of the association, which should trigger a correction. This can also be a result of other system actions. For example, if a device-patient association was initiated for a device with a fixed location upon transferring the patient into the associated bed, and the effective time of the transfer is changed, a correction should be sent to update the effective begin time of the association.
+
+===== 7.4.2.4.3 Pre-conditions
+An existing verified device-patient association is to be corrected. The patient has been assigned a unique identifier at registration which has been collected and verified at the point-of-care. Device identity has been registered for use. The identities of the patient and device(s) have been collected and verified by an authorized person. The patient has already been associated with a device.
+
+===== 7.4.2.4.4 Main Flow
+The Device-Patient Association Reporter originates a message with the specific information on the association, including the parameters that were corrected.
+
+===== 7.4.2.4.5 Post-conditions
+Upon completion of this use case, the association record identifying the patient and the associated device and giving the up-to-date start time of the association is updated in the Device-Patient Association Manager.
+
+|===
+
+| _A.3 PCIM TI - Example Messages_, add example #5 to futher illustrate how correcting a patient identify for a merge can be handled:
+
+|===
+
+[.text-left]
+[underline]#Proposed Example:#
+
+Example 5:
+
+Patient record Trauma, Unknown represents a patient of unknown identity who is admitted to the ICU after a vehicle accident. At 06:30, Nurse Diesel connected the patient to a continuous physiological monitor with ID MON6789. At 06:45, she records the association on the Critical Care application. As she is an RN and has witnessed and entered the association in the Critical Care system, this is considered a validated association.
+
+....
+MSH|^~&|CritCare||AssocMgr||20160726064502||ORU^R01^ORU_R01|94e03d4|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+PID|||AB60005^^^A^PI||TRAUMA^UNKNOWN^^^^^L
+PV1||E|3 WEST ICU^3004^1
+OBR|||15404649|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726063000|20160726064500
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 West ICU^3004^1|MON6789^^231A8456B1CB2484^EUI-64|20160726063000
+PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3004^1||20160726064500
+....
+
+(Acknowledgement messages not shown)
+
+At 08:00, the patient's identity has been ascertained to be patient Benjamin Davis, who has an existing record in the Critical Care system. Working with Health Information Management, it is determined to be safe to merge the temporary trauma record with the patient's existing permanent patient record. The merge is performed in the Critical Care system, and a correction for the verified association is sent to the device manager containing the updated patient information in PID. A unique identifier for the correction event is sent in OBR-3, and the association identifier that was sent in OBR-3 for the original association message is sent in OBR-29.2. Additionally, the observation status in OBX-11 is sent as "C" to indicate the event is a correction to a verified association.
+
+....
+MSH|^~&|CritCare||AssocMgr||20160726082502||ORU^R01^ORU_R01|94e05d9|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+PID|||AB40001^^^A^PI||DAVIS^BENJAMIN^C^^^^L
+PV1||E|3 WEST ICU^3004^1
+OBR|||15404649-0001|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726063000|20160726064500|||||||||||||||||||||^15404649
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||C
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 West ICU^3004^1|MON6789^^231A8456B1CB2484^EUI-64|20160726063000
+PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3004^1||20160726064500
+
+(Acknowledgement messages not shown)
+....
 
 |===
 
