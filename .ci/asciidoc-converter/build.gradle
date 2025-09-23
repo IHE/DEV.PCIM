@@ -15,6 +15,7 @@ asciidoctor {
   sources {
     include 'IHE_DEV_Suppl_PCIM.adoc'
     include 'IHE_DEV_Suppl_PCIM_Use_Cases.adoc'
+    include 'reporter-use-cases.adoc'
     include 'cp-dev-016.adoc'
     include 'cp-dev-017.adoc'
     include 'cp-dev-019.adoc'
@@ -31,7 +32,7 @@ asciidoctor {
   outputDir file('../../output')
   outputOptions {
 //    backends = ['html', 'pdf']
-      backends = ['html']
+      backends = ['html', 'pdf']
   }
   asciidoctorj {
     modules {

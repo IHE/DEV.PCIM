@@ -1,0 +1,505 @@
+= Patient–Device Association Reporter Use Cases
+:doctype: book
+:toc: left
+:toclevels: 3
+:sectnums:
+:revnumber: 0.4
+:revdate: 2025-09-09
+:revremark: Draft
+:icons: font
+:source-highlighter: rouge
+:experimental:
+:imagesdir: images
+:mermaid-format: svg
+
+[abstract]
+== Abstract
+This document captures reporter-initiated association and disassociation workflows for patient–device context management,
+aligned to IHE device integration supplement structure. It includes actor responsibilities, prerequisite data,
+and Mermaid sequence diagrams for each scenario, plus a initial gap analysis across HL7v2, SDC/BICEPS SystemContext, and FHIR DeviceAssociation/Device.
+
+== Status
+Working draft for internal review.
+
+== Audience
+Clinical engineering, device vendors, EMR/PDMS integrators, interoperability architects.
+
+== Conventions
+- System-level references for source data (e.g., ADT, EMPI) rather than specific message types.
+- Diagrams are illustrative; payload schemas and protocol bindings are specified separately.
+
+== Actors and Roles
+*Reporter Actors* produce association/disassociation events:
+- EMR/PDMS 
+- Mobile App with integrated scanner
+- Real-Time Location System (RTLS)
+- Bedside Aggregator (Gateway/Hub)
+- Proximity Sensor–Based Reporter (TrueBind Proximity)
+
+*Manager* validates and publishes state.
+*Consumers* subscribe to association state (Medical Devices, Alarm Mgmt, Decision Support, EMR/PDMS, Billing/Usage, Fleet Mgmt, Other Apps).
+
+== Association Workflows
+
+=== 1. EMR / PDMS Initiated
+.Prerequisites
+- Patient admission information present in EMR/PDMS (may be sourced from ADT, EMPI, or related hospital information systems).
+- Devices registered with unique identifiers (serial number, barcode, network address).
+- Bed/location assignment available in the EMR.
+
+.Workflow
+. Clinician selects a patient record.
+. Assign device to patient (often chosen from location-scoped inventory).
+. EMR emits `AssociationEvent(patientId, deviceId, location?)`.
+. Manager validates availability and conflicts; marks association valid.
+. Manager publishes updates to consumers.
+
+.Consumers
+- Medical Devices receive patient context.
+- Alarm Management updates routing.
+- Decision Support contextualizes device data.
+- EMR/PDMS records confirmation.
+- Billing/Usage links utilization to the encounter.
+- Fleet Mgmt updates utilization/location.
+
+.Sequence Diagram
+[mermaid]
+----
+sequenceDiagram
+  autonumber
+  participant Clinician
+  participant EMR as EMR/PDMS
+  participant Manager
+  participant Devices as Medical Devices
+  participant Alarm as Alarm Mgmt
+  participant DSS as Decision Support
+  participant Billing as Billing/Usage
+  participant Fleet as Fleet Mgmt
+
+  Clinician->>EMR: Select patient & assign device
+  EMR->>Manager: AssociationEvent(patientId, deviceId, location?)
+  Manager->>EMR: Validate(patient, device status, conflicts)
+  alt association valid
+    Manager->>Devices: SetPatientContext(patientId)
+    Manager->>Alarm: UpdateMapping(patientId, deviceId)
+    Manager->>DSS: PublishAssociation(patientId, deviceId)
+    Manager->>EMR: ConfirmAssociation(status=valid)
+    Manager->>Billing: RecordUsageLink(patientId, deviceId)
+    Manager->>Fleet: UpdateUtilization(deviceId, location)
+  else requires review
+    Manager->>EMR: RequestClinicianReview(reason)
+  end
+----
+
+=== 2. Mobile App (Scanner) Initiated
+.Prerequisites
+- Wristband and device carry scannable identifiers (barcode/RFID).
+- App connected to Manager and enterprise identity network.
+- Staff trained on scan-to-associate workflow.
+
+.Workflow
+. Open app → Associate patient & device.
+. Scan patient wristband.
+. Scan device barcode.
+. App emits `AssociationEvent(patientId, deviceId, clinicianId)`.
+. Manager validates against EMR/PDMS and policy.
+. Manager publishes to consumers.
+
+.Consumers
+- Medical Devices transmit with patient context.
+- Decision Support cross-checks orders.
+- EMR/PDMS receives confirmation.
+- Billing/Usage links utilization.
+
+.Sequence Diagram
+[mermaid]
+----
+sequenceDiagram
+  autonumber
+  participant Clinician
+  participant App as Mobile App
+  participant Manager
+  participant EMR as EMR/PDMS
+  participant Devices as Medical Devices
+  participant DSS as Decision Support
+  participant Billing as Billing/Usage
+
+  Clinician->>App: Scan patient wristband
+  Clinician->>App: Scan device barcode
+  App->>Manager: AssociationEvent(patientId, deviceId, clinicianId)
+  Manager->>EMR: Cross-check(patient, orders, bed)
+  alt valid
+    Manager->>Devices: SetPatientContext(patientId)
+    Manager->>EMR: ConfirmAssociation(status=valid)
+    Manager->>DSS: PublishAssociation
+    Manager->>Billing: RecordUsageLink
+  else conflict
+    Manager->>App: Prompt to resolve conflict
+  end
+----
+
+=== 3. RTLS-Inferred Association
+.Prerequisites
+- Patients wear RTLS badges; devices have RTLS tags.
+- RTLS coverage in clinical areas.
+
+.Workflow
+. RTLS detects patient+device co-location.
+. After a dwell threshold, system infers association.
+. Optional clinician confirmation.
+. RTLS submits `AssociationEvent(patientId, deviceId, confidence)`.
+. Manager validates and publishes.
+
+.Consumers
+- Fleet Mgmt sees device at bedside.
+- Devices may inherit patient context automatically.
+- Decision Support monitors with inferred context.
+- EMR/PDMS may require clinician sign-off.
+
+.Sequence Diagram
+[mermaid]
+----
+sequenceDiagram
+  autonumber
+  participant RTLS
+  participant Clinician
+  participant Manager
+  participant EMR as EMR/PDMS
+  participant Fleet as Fleet Mgmt
+  participant Devices as Medical Devices
+
+  RTLS->>Manager: CoLocationEvent(patientTag, deviceTag, dwellTime)
+  Manager->>EMR: VerifyPatientLocation(patientId)
+  alt confidence >= threshold
+    Manager->>Clinician: Notify & (optional) confirm
+    Clinician-->>Manager: Confirm
+    Manager->>Devices: SetPatientContext
+    Manager->>EMR: LogInferredAssociation
+    Manager->>Fleet: UpdateUtilization
+  else low confidence
+    Manager->>Clinician: Suggest association (no publish)
+  end
+----
+
+=== 4. Bedside Aggregator Initiated
+.Prerequisites
+- Aggregator at bedside with UI and device connectivity.
+- EMR/PDMS source for patient pick list or wristband scan.
+
+.Workflow
+. Clinician signs in; selects/scans patient.
+. Aggregator links patient to connected devices.
+. Aggregator emits `AssociationEvent(patientId, [deviceIds], location)`.
+. Manager validates (conflicts, availability).
+. Manager publishes to consumers (bulk).
+
+.Consumers
+- All connected devices share patient context.
+- Alarm Mgmt/DSS update routes/rules in bulk.
+- EMR/PDMS records multiple device associations.
+- Billing/Usage and Fleet Mgmt updated.
+
+.Sequence Diagram
+[mermaid]
+----
+sequenceDiagram
+  autonumber
+  participant Clinician
+  participant Agg as Bedside Aggregator
+  participant Manager
+  participant EMR as EMR/PDMS
+  participant Devices as Connected Devices
+  participant Alarm as Alarm Mgmt
+  participant DSS as Decision Support
+  participant Billing as Billing/Usage
+  participant Fleet as Fleet Mgmt
+
+  Clinician->>Agg: Select/scan patient
+  Agg->>EMR: Fetch patient/bed context
+  Agg->>Manager: AssociationEvent(patientId, [deviceIds], location)
+  Manager->>Agg: Validate(all devices available, no conflicts)
+  alt valid
+    Manager->>Devices: SetPatientContext (broadcast to all deviceIds)
+    Manager->>Alarm: UpdateMappings (bulk)
+    Manager->>DSS: PublishAssociation (bulk)
+    Manager->>EMR: ConfirmAssociation
+    Manager->>Billing: RecordUsageLinks
+    Manager->>Fleet: UpdateUtilization
+  else conflict
+    Manager->>Agg: Return conflicts for resolution
+  end
+----
+
+=== 5. Proximity Sensor–Based Association (TrueBind Proximity)
+*Overview*: A fully automated reporter that uses verifiable distance measurements to bind **patient ↔ device ↔ bed** only when all are within a defined, safety-certified proximity radius. Design goal is a "holy grail" level of assurance via cryptographic distance-bounding and anti-spoofing measures.
+
+.Prerequisites
+- Each **patient wristband**, **bed**, and **device** carries a certified proximity tag (UWB/BLE + distance-bounding) with tamper detection.
+- Proximity engine enforces a *verifiable safe zone* (e.g., ≤ N cm), with time-of-flight proofs and anti-relay protections.
+- Manager is configured with policy thresholds (radius, dwell time, proof validity window) and conflict rules.
+
+.Workflow
+. Proximity engine continuously monitors loci for patients, beds, and devices.
+. When patient, bed, and device simultaneously satisfy the safe-zone policy, the Reporter emits a signed `AssociationEvent(patientId, deviceId, bedId, proof)`.
+. Manager validates cryptographic proof, checks conflicts, and records the association.
+. Manager publishes updates to all consumers.
+. Disassociation is automatic when any element exits the safe zone beyond the dwell threshold; a signed `DisassociationEvent(...)` is emitted.
+
+.Consumers
+- **Medical Devices** inherit patient context with zero manual action.
+- **Alarm Mgmt** and **DSS** receive high-confidence context immediately.
+- **EMR/PDMS** logs association/disassociation with verifiable provenance.
+- **Fleet/Billing** capture accurate, high-confidence utilization windows.
+
+.Sequence Diagram
+[mermaid]
+----
+sequenceDiagram
+  autonumber
+  participant Prox as TrueBind Proximity
+  participant Manager
+  participant Devices as Medical Devices
+  participant EMR as EMR/PDMS
+  participant Alarm as Alarm Mgmt
+  participant DSS as Decision Support
+  participant Fleet as Fleet Mgmt
+  participant Billing as Billing/Usage
+
+  Prox->>Manager: AssociationEvent(patientId, deviceId, bedId, proof)
+  Manager->>Manager: Validate cryptographic proof + safe-zone policy
+  alt valid
+    Manager->>Devices: SetPatientContext(patientId)
+    Manager->>Alarm: UpdateRouting(patientId, deviceId)
+    Manager->>DSS: PublishAssociation
+    Manager->>EMR: ConfirmAssociation
+    Manager->>Fleet: UpdateUtilization(deviceId)
+    Manager->>Billing: RecordUsage
+  else invalid
+    Manager->>Prox: Reject (invalid proof or unsafe distance)
+  end
+
+  Note over Prox,Manager: Disassociation auto-emitted when safe-zone no longer satisfied
+----
+
+== Disassociation Workflows
+
+=== A. EMR / PDMS Initiated
+.Triggers
+- Discharge, transfer, or manual unassign in EMR/PDMS.
+
+.Workflow
+. EMR emits `DisassociationEvent(patientId, deviceId, reason)`.
+. Manager validates against current state and therapy status.
+. If safe, Manager closes association and publishes updates.
+
+.Consumers
+- Devices clear patient context.
+- Alarm Mgmt removes routing.
+- DSS closes context.
+- Billing/Usage finalizes window.
+- Fleet marks device available/idle.
+
+.Sequence Diagram
+[mermaid]
+----
+sequenceDiagram
+  autonumber
+  participant Clinician
+  participant EMR as EMR/PDMS
+  participant Manager
+  participant Devices as Medical Devices
+  participant Alarm as Alarm Mgmt
+  participant DSS as Decision Support
+  participant Billing as Billing/Usage
+  participant Fleet as Fleet Mgmt
+
+  Clinician->>EMR: Discharge/Transfer/Unassign device
+  EMR->>Manager: DisassociationEvent(patientId, deviceId, reason)
+  Manager->>EMR: Validate(current state, therapy checks)
+  alt safe to disassociate
+    Manager->>Devices: ClearPatientContext(deviceId)
+    Manager->>Alarm: RemoveRouting(patientId, deviceId)
+    Manager->>DSS: CloseContext(patientId, deviceId)
+    Manager->>Billing: FinalizeUsage(patientId, deviceId)
+    Manager->>Fleet: MarkAvailable(deviceId)
+    Manager->>EMR: ConfirmDisassociation(status=closed)
+  else blocked
+    Manager->>EMR: Reject(reason: active therapy)
+  end
+----
+
+=== B. Mobile App (Scanner) Initiated
+.Triggers
+- Clinician selects association and taps *End Association* (or scan → End).
+
+.Workflow
+. App emits `DisassociationEvent(patientId, deviceId, clinicianId, reason)`.
+. Manager validates; prompts for confirmation if therapy is active.
+. Manager closes association and publishes updates.
+
+.Sequence Diagram
+[mermaid]
+----
+sequenceDiagram
+  autonumber
+  participant Clinician
+  participant App as Mobile App
+  participant Manager
+  participant Devices as Medical Devices
+  participant Alarm as Alarm Mgmt
+  participant DSS as Decision Support
+  participant Billing as Billing/Usage
+
+  Clinician->>App: Select association / Scan device → End
+  App->>Manager: DisassociationEvent(patientId, deviceId, clinicianId, reason)
+  Manager->>Manager: Validate(state, therapy, policy)
+  alt safe
+    Manager->>Devices: ClearPatientContext
+    Manager->>Alarm: RemoveRouting
+    Manager->>DSS: CloseContext
+    Manager->>Billing: FinalizeUsage
+    Manager->>App: Confirm(status=closed)
+  else requires override
+    Manager->>App: Prompt for supervisor override
+  end
+----
+
+=== C. RTLS-Driven (Separation)
+.Triggers
+- Patient and device tags separate beyond radius/dwell threshold.
+
+.Workflow
+. RTLS emits `SeparationEvent(patientTag, deviceTag, duration, distance)`.
+. Manager checks grace period policy.
+. If duration > threshold and not overridden, Manager closes association.
+
+.Sequence Diagram
+[mermaid]
+----
+sequenceDiagram
+  autonumber
+  participant RTLS
+  participant Manager
+  participant Clinician
+  participant Devices as Medical Devices
+  participant Alarm as Alarm Mgmt
+  participant DSS as Decision Support
+  participant Billing as Billing/Usage
+  participant Fleet as Fleet Mgmt
+
+  RTLS->>Manager: SeparationEvent(patientTag, deviceTag, dwell)
+  Manager->>Manager: Check grace thresholds & policy
+  alt exceeds threshold
+    Manager->>Devices: ClearPatientContext
+    Manager->>Alarm: RemoveRouting
+    Manager->>DSS: CloseContext
+    Manager->>Billing: FinalizeUsage
+    Manager->>Fleet: MarkAvailable
+    Manager->>Clinician: Notify disassociation
+  else within grace
+    Manager->>RTLS: Ignore (keep association)
+  end
+----
+
+=== D. Bedside Aggregator Initiated (Single/Bulk)
+.Triggers
+- Nurse ends association on aggregator; device removal; bed turnover.
+
+.Workflow
+. Aggregator emits `DisassociationEvent(patientId, [deviceIds], reason, location)`.
+. Manager validates (e.g., active therapies).
+. Manager closes one or many associations and publishes updates.
+
+.Sequence Diagram
+[mermaid]
+----
+sequenceDiagram
+  autonumber
+  participant Clinician
+  participant Agg as Bedside Aggregator
+  participant Manager
+  participant Devices as Connected Devices
+  participant Alarm as Alarm Mgmt
+  participant DSS as Decision Support
+  participant Billing as Billing/Usage
+  participant Fleet as Fleet Mgmt
+
+  Clinician->>Agg: End association (single/bulk)
+  Agg->>Manager: DisassociationEvent(patientId, [deviceIds], reason)
+  Manager->>Manager: Validate(per-device safety checks)
+  alt all safe
+    Manager->>Devices: ClearPatientContext (bulk)
+    Manager->>Alarm: RemoveRouting (bulk)
+    Manager->>DSS: CloseContext (bulk)
+    Manager->>Billing: FinalizeUsage (bulk)
+    Manager->>Fleet: MarkAvailable (bulk)
+    Manager->>Agg: Confirm(status=closed)
+  else partial
+    Manager->>Agg: Return per-device failures for resolution
+  end
+----
+
+== Appendix A: Next Steps
+- Define payload schemas for `AssociationEvent`, `SetPatientContext`, `DisassociationEvent`, and `SeparationEvent` plus confirmations and reason codes.
+- Specify policy knobs (dwell/grace thresholds, therapy-aware blocks, supervisor overrides).
+- Add error paths and retry/compensation logic.
+- Map to SDC/SDPi and HL7 v2/FHIR in a subsequent appendix.
+
+== Appendix B: Gap Analysis (HL7 v2 ↔ SDC ↔ FHIR)
+
+=== Summary Table
+[options="header"]
+|===
+| Concept | HL7 v2 (PCIM) | SDC/BICEPS SystemContext | FHIR DeviceAssociation/Device | Notes / TODO
+
+| Association State
+| OBX-5 ASSOCIATED/DISASSOCIATED
+| Binding or WorkflowContext state
+| DeviceAssociation.status + period.end
+| *TODO*: Normalize disassociation
+
+| Timing (Start/End)
+| OBR-7 / OBR-8
+| WorkflowContextState Start/End
+| DeviceAssociation.period vs. operation.period
+| *TODO*: Clarify operator vs. top-level
+
+| Operator Roles
+| PRT-4 AUT/RO; PRT-5 XCN
+| OperatorContextState.Role, PersonReference
+| operation.operator (no role distinction)
+| *TODO*: Add extension/coding
+
+| Location
+| PV1-3 patient; PRT-9 event
+| LocationContextState (patient only)
+| Device.location (registry)
+| *TODO*: Map event location
+
+| Device Identification
+| PRT-10 EI/UDI; fragments
+| MDIB identifiers
+| Device.identifier / udiCarrier
+| *TODO*: Multi-device handling
+
+| Relationship
+| Implicit
+| PatientContext binding only
+| DeviceAssociation.relationship
+| *TODO*: Define population strategy
+
+| Means / Tooling
+| MSH-3/4, SFT
+| MeansContextState (optional)
+| No native field; extension
+| *TODO*: FHIR extension
+
+| Body Site / Implant
+| OBX body site (optional)
+| Not represented
+| DeviceAssociation.bodyStructure
+| *TODO*: Decide implant mapping
+|===
+
+=== Narrative Gaps
+- Items marked *TODO* require profile-level guidance or potential extension requests.
