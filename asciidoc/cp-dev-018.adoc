@@ -77,6 +77,7 @@ This Change Proposal (CP) proposes changes to PCIM TI to implement the profile c
 A Device-Patient Association Reporter asserts a correction to a verified device-patient association to a Device-Patient Association Manager.
 
 An action is taken in the Device-Patient Association Reporter's system that corrects one of the key parameters of an existing verified device-patient association. The following key parameters SHALL trigger a correction if changed during the course of an active device association:
+
 * Effective begin time of the association
 * Effective end time of the association
 
