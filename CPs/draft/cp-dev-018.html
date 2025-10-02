@@ -525,7 +525,7 @@ Device-Patient Association Reporter</p></td>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>7.4.2 PCIM TI - Use Cases</em>, add use case #4 to help explain how correcting a patient identify for a merge can be handled:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>7.4.2 PCIM TI - Use Cases</em>, add use case #4 to help explain how correcting an existing verified association would work:</p></td>
 </tr>
 </tbody>
 </table>
@@ -549,7 +549,7 @@ Device-Patient Association Reporter</p></td>
 <div class="sect4">
 <h5 id="_7_4_2_4_3_pre_conditions">7.4.2.4.3 Pre-conditions</h5>
 <div class="paragraph">
-<p>An existing verified device-patient association is to be corrected. The patient has been assigned a unique identifier at registration which has been collected and verified at the point-of-care. Device identity has been registered for use. The identities of the patient and device(s) have been collected and verified by an authorized person. The patient has already been associated with a device.</p>
+<p>An existing verified device-patient association is to be corrected. The patient has been assigned a unique identifier at registration which has been collected and verified at the point-of-care. Device identity has been registered for use. The identities of the patient and device have been collected and verified by an authorized person. The patient has already been associated with a device.</p>
 </div>
 </div>
 <div class="sect4">
@@ -561,7 +561,7 @@ Device-Patient Association Reporter</p></td>
 <div class="sect4">
 <h5 id="_7_4_2_4_5_post_conditions">7.4.2.4.5 Post-conditions</h5>
 <div class="paragraph">
-<p>Upon completion of this use case, the association record identifying the patient and the associated device and giving the up-to-date start time of the association is updated in the Device-Patient Association Manager.</p>
+<p>Upon completion of this use case, the association record identifying the patient and the associated device now contains the corrected information in the Device-Patient Association Manager.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -619,7 +619,7 @@ Note that any code identifiable with an individual patient must by secured from 
 Code used to identify the patient must be chosen so as to be unique at least over the scope of the set of patients seen over all information systems in the institution, such as a Medical Record Number issued by the institution for the patient, or, if available, a national id number.
 The type and issuing entity shall be recorded with the code.
 Additional identity codes may be provided at the discretion of the institution.
-Note that any code identifiable with an individual patient must by secured from misuse in accordance with applicable legal and policy procedures. Implementations should account for cases where the patient identity for an association may change as a result of chart corrections, preferably using the ITI Patient Administration Management profile, or by correcting the patient identity for the association using PCIM.</p>
+Note that any code identifiable with an individual patient must by secured from misuse in accordance with applicable legal and policy procedures. Implementations should account for cases where the patient identity may change as a result of chart corrections. This should trigger the sending of a correction of the patient identity to the Manager.</p>
 </li>
 </ul>
 </div>
@@ -663,8 +663,8 @@ Note that any code identifiable with an individual patient must by secured from 
 <td class="tableblock halign-left valign-top"><p class="tableblock">Only changeable if human is semantically the same. Otherwise, it is a “Wrong” association and needs to be marked as such. This solves the real-world problem of patient merges ADT A40, ID change (e.g. EMPI deduplication ADT A47), unmerge (ADT A43).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User ID (RO, AUT)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Changes to the user ID of the validating person may trigger a correction.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participant (RO, AUT)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes to a participant may trigger a correction.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Location</p></td>
@@ -689,19 +689,19 @@ Note that any code identifiable with an individual patient must by secured from 
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Begin Time</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Changes to the begin time of an active association shall trigger a correction.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes to the begin time of a completed association shall trigger a correction.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">End Time</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Changes to the end time of an active association shall trigger a correction.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes to the end time of a completed association shall trigger a correction.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Patient ID</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Only changeable if human is semantically the same. Otherwise, it is a “Wrong” association and needs to be marked as such. This solves the real-world problem of patient merges ADT A40, ID change (e.g. EMPI deduplication ADT A47), unmerge (ADT A43).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User ID (RO, AUT)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Changes to the user ID of the validating person may trigger a correction.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participant (RO, AUT)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Changes to a participant may trigger a correction.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Location</p></td>
@@ -1055,7 +1055,7 @@ If null, most recently asserted/corrected time has been confirmed.</td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-09-29 13:58:50 -0700
+Last updated 2025-10-02 09:58:07 -0700
 </div>
 </div>
 </body>
