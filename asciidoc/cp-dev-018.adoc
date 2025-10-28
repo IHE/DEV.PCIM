@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2025-09-29
+|2025-10-28
 
 |Person Assigned:
 |Eldon Metz
@@ -50,7 +50,7 @@ Device-Patient Association Reporter
 |PCIM Profile TI (PCIM TI) revision 2.2, dated 2024-12-05
 
 |Volume(s) and Section(s) affected:
-|PCIM TI, Sections A.1.2.4, A.1.2.5 and A.1.2.6
+|PCIM TI, Sections 7.4, 3.51, A.3 and A.1.2.5 and A.1.2.6
 
 2+|Rationale for Change:
 
@@ -129,7 +129,34 @@ Note that any code identifiable with an individual patient must by secured from 
 
 |===
 
-| _3.51.4.1.2 in PCIM TI - Message Semantics_, add another subsection, 3.51.4.1.3 Correction Semantics to specify the semantics of corrections: 
+| _7.4.2 PCIM TI - Use Cases_, add use case #5 to help explain how declaring a "wrong" association works:
+
+|===
+
+[.text-left]
+[underline]#Proposed Use Case:#
+
+[.text-left]
+
+==== 7.4.2.5 Use Case #5 Wrong Associations
+===== 7.4.2.5.1 Description
+A Device-Patient Association Reporter asserts that a previously-reported device-patient association is wrong to a Device-Patient Association Manager.
+
+===== 7.4.2.5.2 Process Flow
+This use case is driven by an authorized user marking an existing device-patient association as being wrong. This should be based on first-person awareness of the situation at the point-of-care. For example, if a device-patient association is created and verified for a patient, but the device selected for the association was the wrong device, an authorized user may delete the association, which should trigger a message indicating that the association is wrong.
+
+===== 7.4.2.5.3 Pre-Conditions
+An existing device-patient association is deleted or otherwise indicated to be wrong in the Device-Patient Association Reporter. The device-patient association has already been reported to the Device-Patient Association Manager.
+
+===== 7.4.2.5.4 Main Flow
+The Device-Patient Association Reporter originates a message with the specific information on the wrong association, including the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the initial message that asserted the association.
+
+===== 7.4.2.5.5 Post-conditions
+Upon completion of this use case, the association record identifying the patient and associated device is marked as wrong in the Device-Patient Association Manager.
+
+|===
+
+| _3.51.4.1.3 in PCIM TI - Message Semantics_, add another subsection, 3.51.4.1.3 Correction Semantics to specify the semantics of corrections: 
 
 |===
 
@@ -183,7 +210,22 @@ The device identifier and the association unique instance identifier SHALL NOT b
 
 |===
 
-| _A.3 PCIM TI - Example Messages_, add example #5 to futher illustrate how correcting a patient identify for a merge can be handled:
+| _3.51.4.1.4 in PCIM TI - Message Semantics_, add another subsection, 3.51.4.1.4 Wrong Semantics to specify the semantics of wrong associations: 
+
+|===
+
+[.text-left]
+[underline]#Proposed Text:#
+
+An existing device-patient association should be asserted as "Wrong" from the Device-Patient Association Reporter to the Device-Patient Association Manager whenever either the device or the patient that was reported with the association was wrong. All messages asserting an existing device-patient association as wrong shall reference the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the original message that asserted the association.
+
+When a device-patient association is asserted to be "Wrong", any device data that was reported for that device-patient association should also be deleted or flagged for review in any consumers that are using the device-patient association to file received device data to the patient.
+
+Note that there are chart correction use cases where the Device-Patient Association Reporter's understanding of the identity of the patient changes but the human who is associated to the device is semantically the same (such as with a patient merge). In these cases, the patient identity change may be handled either by correcting the patient identity for the existing association as described in section 3.51.4.1.3 above or by marking the existing association as wrong and re-asserting the association. The new assertion shall have a new association unique instance identifier in OBR-3 and includes the corrected patient identity.
+
+|===
+
+| _A.3 PCIM TI - Example Messages_, add example #5 to illustrate how correcting a patient identify for a merge can be handled:
 
 |===
 
@@ -216,13 +258,53 @@ OBR|||15404649-0001|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||2016072606300
 OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||C
 PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 West ICU^3004^1|MON6789^^231A8456B1CB2484^EUI-64|20160726063000
 PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3004^1||20160726064500
+....
 
 (Acknowledgement messages not shown)
-....
 
 |===
 
-| _Table A.1.2.6.3 in PCIM TI - PRT-11 Interpretation_, update the table to to remove the participation status of deleted and to allow patient :
+| _A.3 PCIM TI - Example Messages_, add example #6 to illustrate declaring an association is wrong:
+
+|===
+
+[.text-left]
+[underline]#Proposed Example:#
+
+Example 6:
+
+At 22:00, Nurse Diesel connected patient Harrison to a continuous physiological monitor with ID MON5568. At 22:15, she records the association in the Critical Care application, but she selects MON5569 from the pick list by mistake. As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association.
+
+....
+MSH|^~&|CritCare||AssocMgr||20160726221502||ORU^R01^ORU_R01|95e03fa|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+PID|||AB60009^^^A^PI||HARRISON^D^F^^^^L
+PV1||E|3 WEST ICU^3002^1
+OBR|||15404852|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726220000|20160726220000
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 West ICU^3002^1|MON5569^^231A8456B1CB2491^EUI-64|20160726220000
+PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3002^1||20160726221500
+....
+
+(Acknowledgement messages not shown)
+
+At 22:20, Nurse Diesel notices that the physiological monitor data isn't flowing into the Critical Care system as expected and discovers that the device originally associated with the patient is wrong. She deletes the association for MON5569 from patient Harrison in the Critical Care system, which originates a message to the Device-Patient Association Manager indicating that the previously reported association is wrong. A unique identifier for the deletion event is sent in OBR-3, and the association unique instance identifier that was sent in OBR-3 for the original association is in OBR-29.2. Additionally, the observation status in OBX-11 is sent as "W" to indicate the association is wrong.
+
+....
+MSH|^~&|CritCare||AssocMgr||20160726222135||ORU^R01^ORU_R01|95e0405|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+PID|||AB60009^^^A^PI||HARRISON^D^F^^^^L
+PV1||E|3 WEST ICU^3002^1
+OBR|||15404852-0001|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726222000|20160726222000|||||||||||||||||||||^15404852
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||W
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 West ICU^3002^1|MON5569^^231A8456B1CB2491^EUI-64|
+PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3002^1||20160726222000
+....
+
+(Acknowledgement messages not shown)
+
+
+|===
+
+| _Table A.1.2.6.3 in PCIM TI - PRT-11 Interpretation_, update the table to to remove the participation status of deleted and to allow corrections and wrong declarations for the AUT role:
 
 |===
 
@@ -275,7 +357,7 @@ If null, most recently asserted/corrected time has been confirmed.
 Time that the person in this role observed the person/device in the AUT role asserting the association.
 
 | C-Corrected
-| n/a
+| Time that the person/device asserted the correction to the association between the patient and device.
 | Corrected time that the device-patient association is asserted to have been established, if the correction is for a association time change, otherwise the original time.
 | Time that the person in this role issued the correction.
 
@@ -287,7 +369,7 @@ If null, most recently asserted/corrected time has been confirmed.
 | Time that the person in this role validated the association.
 
 | W-Wrong
-| n/a
+| Time that the person/device in this role declared the association between the patient and device to be erroneous.
 | n/a
 | Time that the person in this role declared the association to be erroneous.
 |===
