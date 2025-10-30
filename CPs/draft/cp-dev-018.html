@@ -464,11 +464,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date of last update:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2025-10-28</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2025-10-30</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Person Assigned:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Eldon Metz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Person(s) Assigned:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Eldon Metz, Jacob Braschler</p></td>
 </tr>
 </tbody>
 </table>
@@ -487,8 +487,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-center valign-top" colspan="2"><p class="tableblock"><strong>Clarifying requirements and semantics for DEV-51 and DEV-52 for corrected, deleted and wrong message indicator</strong></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Submitter’s Name(s) and e-mail address(es):</p></td>
+<td class="tableblock halign-left valign-top" rowspan="2"><p class="tableblock">Submitter’s Name(s) and e-mail address(es):</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Eldon Metz, <a href="mailto:emetz@innovisionmedical.com">emetz@innovisionmedical.com</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jacob Braschler, <a href="mailto:jbraschl@epic.com">jbraschl@epic.com</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Submission Date:</p></td>
@@ -514,8 +517,8 @@ Device-Patient Association Reporter</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rationale for Change:</p>
-<p class="tableblock">While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations were also identified to be clarified and/or updated. It was also noted that it was necessary to support corrections for patient identity changes for merges, unmerges, id changes and contact moves. It was agreed on in the PCIM WG to clarify the requirements around interpretation of these fields in a CP.</p>
-<p class="tableblock">This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issue.</p></td>
+<p class="tableblock">While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations were also identified to be clarified and/or updated. It was also noted that it was necessary to add text for corrections for not only time but also for patient identity changes for merges, unmerges, id changes and contact moves. It was also oted that it was necessary to add text for handling of wrong associations. Additional use cases and examples were added to more clearly explain both how to correct associations and declare them as wrong.</p>
+<p class="tableblock">This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issues.</p></td>
 </tr>
 </tbody>
 </table>
@@ -562,6 +565,52 @@ Device-Patient Association Reporter</p></td>
 <h5 id="_7_4_2_4_5_post_conditions">7.4.2.4.5 Post-conditions</h5>
 <div class="paragraph">
 <p>Upon completion of this use case, the association record identifying the patient and the associated device now contains the corrected information in the Device-Patient Association Manager.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>7.4.2 PCIM TI - Use Cases</em>, add use case #5 to help explain how declaring a "wrong" association works:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Use Case:</span></p>
+</div>
+</div>
+</div>
+<div class="sect3 text-left">
+<h4 id="_7_4_2_5_use_case_5_wrong_associations">7.4.2.5 Use Case #5 Wrong Associations</h4>
+<div class="sect4">
+<h5 id="_7_4_2_5_1_description">7.4.2.5.1 Description</h5>
+<div class="paragraph">
+<p>A Device-Patient Association Reporter asserts that a previously-reported device-patient association is wrong to a Device-Patient Association Manager.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_7_4_2_5_2_process_flow">7.4.2.5.2 Process Flow</h5>
+<div class="paragraph">
+<p>This use case is driven by an authorized user marking an existing device-patient association as being wrong. This should be based on first-person awareness of the situation at the point-of-care. For example, if a device-patient association is created and verified for a patient, but the device selected for the association was the wrong device, an authorized user may delete the association, which should trigger a message indicating that the association is wrong.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_7_4_2_5_3_pre_conditions">7.4.2.5.3 Pre-Conditions</h5>
+<div class="paragraph">
+<p>An existing device-patient association is deleted or otherwise indicated to be wrong in the Device-Patient Association Reporter. The device-patient association has already been reported to the Device-Patient Association Manager.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_7_4_2_5_4_main_flow">7.4.2.5.4 Main Flow</h5>
+<div class="paragraph">
+<p>The Device-Patient Association Reporter originates a message with the specific information on the wrong association, including the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the initial message that asserted the association.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_7_4_2_5_5_post_conditions">7.4.2.5.5 Post-conditions</h5>
+<div class="paragraph">
+<p>Upon completion of this use case, the association record identifying the patient and associated device is marked as wrong in the Device-Patient Association Manager.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -622,52 +671,6 @@ Additional identity codes may be provided at the discretion of the institution.
 Note that any code identifiable with an individual patient must by secured from misuse in accordance with applicable legal and policy procedures. Implementations should account for cases where the patient identity may change as a result of chart corrections. This should trigger the sending of a correction of the patient identity to the Manager.</p>
 </li>
 </ul>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>7.4.2 PCIM TI - Use Cases</em>, add use case #5 to help explain how declaring a "wrong" association works:</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph text-left">
-<p><span class="underline">Proposed Use Case:</span></p>
-</div>
-</div>
-</div>
-<div class="sect3 text-left">
-<h4 id="_7_4_2_5_use_case_5_wrong_associations">7.4.2.5 Use Case #5 Wrong Associations</h4>
-<div class="sect4">
-<h5 id="_7_4_2_5_1_description">7.4.2.5.1 Description</h5>
-<div class="paragraph">
-<p>A Device-Patient Association Reporter asserts that a previously-reported device-patient association is wrong to a Device-Patient Association Manager.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_7_4_2_5_2_process_flow">7.4.2.5.2 Process Flow</h5>
-<div class="paragraph">
-<p>This use case is driven by an authorized user marking an existing device-patient association as being wrong. This should be based on first-person awareness of the situation at the point-of-care. For example, if a device-patient association is created and verified for a patient, but the device selected for the association was the wrong device, an authorized user may delete the association, which should trigger a message indicating that the association is wrong.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_7_4_2_5_3_pre_conditions">7.4.2.5.3 Pre-Conditions</h5>
-<div class="paragraph">
-<p>An existing device-patient association is deleted or otherwise indicated to be wrong in the Device-Patient Association Reporter. The device-patient association has already been reported to the Device-Patient Association Manager.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_7_4_2_5_4_main_flow">7.4.2.5.4 Main Flow</h5>
-<div class="paragraph">
-<p>The Device-Patient Association Reporter originates a message with the specific information on the wrong association, including the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the initial message that asserted the association.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_7_4_2_5_5_post_conditions">7.4.2.5.5 Post-conditions</h5>
-<div class="paragraph">
-<p>Upon completion of this use case, the association record identifying the patient and associated device is marked as wrong in the Device-Patient Association Manager.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1184,7 +1187,7 @@ If null, most recently asserted/corrected time has been confirmed.</td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-10-30 09:50:18 -0700
+Last updated 2025-10-30 10:22:26 -0700
 </div>
 </div>
 </body>
