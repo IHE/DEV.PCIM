@@ -58,10 +58,16 @@ DEV-52
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
-|FHIR retrospective query support
+|OBR-7/8 Timestamp Clarifications
 |xref:cp-dev-019.adoc[DEV-019]
 |DEV-51 +
 DEV-52
+|Draft
+|Eldon Metz (emetz@innovisionmedical.com)
+
+|FHIR retrospective query support
+|xref:cp-dev-020.adoc[DEV-020]
+|
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
