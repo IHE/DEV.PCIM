@@ -32,7 +32,7 @@
 <p style="text-align: center">Revision 2.3 &mdash; Trial Implementation</p>
 ++++
 
-Date: November 4, 2025
+Date: November 6, 2025
 
 Author: IHE Devices Technical Committee
 
@@ -46,7 +46,7 @@ Email: dev@ihe.net
 This is a supplement to the IHE Devices Domain Technical Framework.
 Each supplement undergoes a process of public comment and trial implementation before being incorporated into the volumes of the Technical Frameworks.
 
-This supplement is published on November 4, 2024 for trial implementation and may be available for testing at subsequent IHE Connectathons. The supplement may be amended based on the results
+This supplement is published on November 6, 2025 for trial implementation and may be available for testing at subsequent IHE Connectathons. The supplement may be amended based on the results
 of testing. Following successful testing, it will be incorporated into the Devices Technical Framework. Comments are invited and can be submitted at https://www.ihe.net/DEV_Public_Comments/.
 
 This supplement describes changes to the existing technical framework documents.
