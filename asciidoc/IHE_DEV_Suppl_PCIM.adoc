@@ -29,10 +29,10 @@
 
 <p style="font-size: 2.75em; text-align: center"><strong>Point-of-Care Identity Management (PCIM)</strong></p>
 
-<p style="text-align: center">Revision 2.2 &mdash; Trial Implementation</p>
+<p style="text-align: center">Revision 2.3 &mdash; Trial Implementation</p>
 ++++
 
-Date: December 5, 2024
+Date: November 6, 2025
 
 Author: IHE Devices Technical Committee
 
@@ -46,7 +46,7 @@ Email: dev@ihe.net
 This is a supplement to the IHE Devices Domain Technical Framework.
 Each supplement undergoes a process of public comment and trial implementation before being incorporated into the volumes of the Technical Frameworks.
 
-This supplement is published on December 5, 2024 for trial implementation and may be available for testing at subsequent IHE Connectathons. The supplement may be amended based on the results
+This supplement is published on November 6, 2025 for trial implementation and may be available for testing at subsequent IHE Connectathons. The supplement may be amended based on the results
 of testing. Following successful testing, it will be incorporated into the Devices Technical Framework. Comments are invited and can be submitted at https://www.ihe.net/DEV_Public_Comments/.
 
 This supplement describes changes to the existing technical framework documents.
@@ -1084,7 +1084,7 @@ A set of PRT segments accompanies it to convey the device, and the responsible o
 
 | 1
 | SI
-| O
+| R
 |
 | Set ID - OBX
 
@@ -1102,11 +1102,9 @@ A set of PRT segments accompanies it to convey the device, and the responsible o
 
 | 4
 | ST
-| O
+| R
 |
-| Observation Sub-ID.
-Use to convey a specific channel that's been associated, as <MDS>.<VMD>.<CHANNEL>.<facet>
-
+| Observation Sub-ID -- set to 0.0.0.0 to indicate no containment for this single OBX segment.
 | 5
 | CWE
 | R
@@ -1616,79 +1614,21 @@ Same as for transaction [PCD-01] in DEV TF-2 Appendix B.1, except that MSH-9 is 
 | QPD.2
 | Query Tag
 | ST
-| Optional
+| Required
 | 32
 |
 | No
 
 | QPD.3
-| User Parameters
-| VARIES
+| Query Parameters
+| QSC
 | Optional
 | 256
 |
-| No
-
-| QPD.4
-| Action Code
-| ID
-|
-|
-| 323
-|
+| Yes, but as additional fields following QPD.3.
 |===
 
-**Table A.2.3.2-2: QPD Input Parameter Specification**+++<table style="width:100%;">++++++<colgroup>++++++<col style="width: 11%">++++++</col>+++
-+++<col style="width: 19%">++++++</col>+++
-+++<col style="width: 7%">++++++</col>+++
-+++<col style="width: 7%">++++++</col>+++
-+++<col style="width: 7%">++++++</col>+++
-+++<col style="width: 6%">++++++</col>+++
-+++<col style="width: 7%">++++++</col>+++
-+++<col style="width: 12%">++++++</col>+++
-+++<col style="width: 19%">++++++</col>++++++</colgroup>+++
-+++<thead>++++++<tr class="header">++++++<th>+++Field+++<br>++++++</br>+++
-Seq+++<br>++++++</br>+++
-(Query ID=Z99)+++</th>+++
-+++<th>+++Name+++</th>+++
-+++<th>+++LEN+++</th>+++
-+++<th>+++DT+++</th>+++
-+++<th>+++OPT+++</th>+++
-+++<th>+++R/#+++</th>+++
-+++<th>+++TBL+++</th>+++
-+++<th>+++Segment+++<br>++++++</br>+++
-Field Name+++</th>+++
-+++<th>+++Element+++<br>++++++</br>+++
-Name+++</th>++++++</tr>++++++</thead>+++
-+++<tbody>++++++<tr class="odd">++++++<td>+++1+++</td>+++
-+++<td>+++MessageQueryName+++</td>+++
-+++<td>+++60+++</td>+++
-+++<td>+++CWE+++</td>+++
-+++<td>+++R+++</td>+++
-+++<td>++++++</td>+++
-+++<td>++++++</td>+++
-+++<td>++++++</td>+++
-+++<td>+++MessageQueryName+++</td>++++++</tr>+++
-+++<tr class="even">++++++<td>+++2+++</td>+++
-+++<td>+++QueryTag+++</td>+++
-+++<td>+++32+++</td>+++
-+++<td>+++ST+++</td>+++
-+++<td>+++R+++</td>+++
-+++<td>++++++</td>+++
-+++<td>++++++</td>+++
-+++<td>++++++</td>+++
-+++<td>+++QueryTag+++</td>++++++</tr>+++
-+++<tr class="odd">++++++<td>+++3+++</td>+++
-+++<td>+++User Parameters+++</td>+++
-+++<td>++++++</td>+++
-+++<td>+++ID+++</td>+++
-+++<td>+++0+++</td>+++
-+++<td>++++++</td>+++
-+++<td>+++033+++</td>+++
-+++<td>++++++</td>+++
-+++<td>+++ActionCode+++</td>++++++</tr>++++++</tbody>++++++</table>+++
-
-**Table A.2.3.2-3: Identifiers for field, component, or subcomponent in QPD.3 User Parameters**
+**Table A.2.3.2-2: Identifiers for field, component, or subcomponent in QPD.3 User Parameters**
 
 |===
 |FLD|ELEMENT NAME
@@ -1725,23 +1665,20 @@ Name+++</th>++++++</tr>++++++</thead>+++
 
 |===
 
-The QueryTag (QPD.2) is used to identify a query instance and therefore must be unique for each query.
-
-The User Parameters field (QPD.3) is used to specify "`filtering`" values, so that the query response can be limited to, for example, the records matching a particular Assigned Location (by including a PV1.3.1 specification), a particular device (by adding a Participation Device PRT specification) and so on.
-If multiple specifications are given, the responding system "`AND`"s the specifications together, so that for example, a patient location and a device identifier specification result in the response only gives associations involving that patient location and device.
-
-The form of the User Parameters specifications in QPD.3 field uses one or more repetition of the QSC data type (separated by the HL7 repetition separator, by default the tilde character ~), one for each query parameter to be specified, with each repetition using the QSC data type.
-This data type takes the form of a component specifying the field, component, or subcomponent to filter on as @<seg>.<field number>.<component number>.<subcomponent number>, followed by a logical operator component (normally EQ for "`equals`"), and a component giving the value sought for that field.
+[.text-left]
+The QueryTag (QPD.2) is used to identify a query instance and therefore must be unique for each query. A query cannot be modified, it must be cancelled and a new query issued, see section A.2.5 for details on cancellation.
+[.text-left]
+The Query Parameters field (QPD.3) is used to specify "`filtering`" values, so that the query response can be limited to, for example, the records matching a particular Assigned Location (by including a PV1.3.1 specification), a particular device (by adding a Participation Device PRT specification) and so on.
+If multiple specifications are given, the relational conjunction in QSC.4 shall be specified, except for the last one.  For example, a patient location and a device identifier query filter specification will result in the subscription including associations involving both that patient location and device. The relational conjunction is defined as follows: If more than one comparison is to be made to select qualifying rows, a conjunction relates this repetition of the field to the next. The last specification does not need to specify a conjunction, as it is the last one.
+[.text-left]
+The form of the Query Parameters specifications in QPD.3 field is a QSC data type. Any additional fields can be added as QPD.4, QPD.5, etc, one for each query parameter to be specified, with each field using the QSC data type.
 An example would be:
-
-@PV1.3.1{caret}EQ{caret}MICU~@PRT.10.1{caret}EQ{caret}PUMP1
-
-This means limit the messages given in response to ones involving patient location at point-of-care MICU and device identifier PUMP1.
-
-The Device-Patient Association Manager is responsible for executing the search in accordance with the filters.
-The different query parameter filters are ANDed together, that is, only associations where all query parameters match the sought value will be sent by the Device-Patient Association Manager.
-
-Where the association records have query parameter fields that are repeated (as for example where multiple patient identifiers of different Identifier Types, or multiple device identifiers of different Identifier Types, are present), the Device-Patient Association Manager will consider the association record matched and send it if any value present in any repeat of the repeated field matches the sought value without regard to the Identifier Type.
+[.text-left]
+PV1.3.1{caret}EQ{caret}MICU{caret}AND|PRT.10.1{caret}EQ{caret}PUMP1
+[.text-left]
+This means limit the messages for the subscription to those involving patient location at point-of-care MICU and device identifier PUMP1.
+[.text-left]
+The Device-Patient Association Manager is responsible for executing the search in accordance with the filters and associated conjunctions.
 
 === A.2.4 RCP Segment
 
@@ -1751,117 +1688,35 @@ Where the association records have query parameter fields that are repeated (as 
 | Field | Description | Type | Optionality | Length | Table | Repetition
 
 | 1
-| Query Priority
+| Query Priority - Must be set to "I" for immediate
 | ID
-| R
+| Required
 | 1
 | 91
 | No
 
 | 2
-| Query Limited Request
+| Query Limited Request - Not supported in this profile
 |
-| X
+| Not allowed
 |
 |
-|
+| No
 
 | 3
-| Response Modality
+| Response Modality - Must be set to "R" for real-time
 | CNE
-| R
+| Required
 | 
 |
-|
+| No
 
-| 4
-| Execution and Deliver Time
-|
-|
-|
-|
-|
-
-| 5
-| Modify Indicatory
-| ID
-|
-|
-|
-|
-|===
-
-**Table A.2.4-2: RCP Response Control Parameter Field Description and Commentary**+++<table>++++++<colgroup>++++++<col style="width: 14%">++++++</col>+++
-+++<col style="width: 20%">++++++</col>+++
-+++<col style="width: 15%">++++++</col>+++
-+++<col style="width: 8%">++++++</col>+++
-+++<col style="width: 8%">++++++</col>+++
-+++<col style="width: 32%">++++++</col>++++++</colgroup>+++
-+++<thead>++++++<tr class="header">++++++<th>+++Field Seq+++<br>++++++</br>+++
-(Query ID=Z99)+++</th>+++
-+++<th>+++Name+++</th>+++
-+++<th>+++Component+++<br>++++++</br>+++
-Name+++</th>+++
-+++<th>+++LEN+++</th>+++
-+++<th>+++DT+++</th>+++
-+++<th>+++Description+++</th>++++++</tr>++++++</thead>+++
-+++<tbody>++++++<tr class="odd">++++++<td>+++1+++</td>+++
-+++<td>+++Query Priority+++</td>+++
-+++<td>++++++</td>+++
-+++<td>+++1+++</td>+++
-+++<td>+++ID+++</td>+++
-+++<td>+++Deferred / Immediate+++</td>++++++</tr>+++
-+++<tr class="even">++++++<td>+++2+++</td>+++
-+++<td>+++Quantity Limited Request+++</td>+++
-+++<td>++++++</td>+++
-+++<td>+++10+++</td>+++
-+++<td>+++CQ+++</td>+++
-+++<td>+++Not applicable, this profile does not support continuation+++</td>++++++</tr>+++
-+++<tr class="odd">++++++<td>+++3+++</td>+++
-+++<td>+++Response Modality+++</td>+++
-+++<td>++++++</td>+++
-+++<td>+++60+++</td>+++
-+++<td>+++CWE+++</td>+++
-+++<td>++++++<strong>+++R+++</strong>+++eal time or +++<strong>+++B+++</strong>+++atch. Default is
-+++<strong>+++R+++</strong>+++.+++</td>++++++</tr>+++
-+++<tr class="even">++++++<td>+++4+++</td>+++
-+++<td>+++Execution and Delivery Time+++</td>+++
-+++<td>++++++</td>+++
-+++<td>++++++</td>+++
-+++<td>+++DTM+++</td>+++
-+++<td>+++Only valued when RCP-1 Query Priority contains the value D
-(deferred)+++</td>++++++</tr>+++
-+++<tr class="odd">++++++<td>+++5+++</td>+++
-+++<td>+++Modify Indicator+++</td>+++
-+++<td>++++++</td>+++
-+++<td>++++++</td>+++
-+++<td>++++++</td>+++
-+++<td>++++++</td>++++++</tr>++++++</tbody>++++++</table>+++
-
-The possible values for RCP-1, Query Priority, are:
-
-|===
-| Value | Description | Comment
-
-| D
-| Deferred
-|
-
-| I
-| Immediate
-|
 |===
 
 Quantity limited requests are not supported, so RCP-2 Quantity Limited Request value is not used.
 
 The supported values of RCP-3 Response Modality is R (Real Time).
 The Device-Patient Association Consumer must support receiving a continuous real-time feed of association events and will receive all existing associations when the connection is first established that meet the desired filter specification to get the starting state. After that initial state is received, association records are sent as they arrive at the Device-Patient Association Manager. The Device-Patient Association Consumer can optionally configure (or reconfigure) filter criteria and even cancel the continuing real-time query dynamically.
-
-RCP-4 Execution and Delivery Time is required when RCP-1 contains the value of D (Deferred).
-It specifies when the response is to be returned.
-
-RCP-5 Modify Indicator specifies whether a new subscription is being requested (value: N), or a modification is being made to an existing subscription (M).
-QPD-4 Action Code can signify the deletion of a subscription with a value of D.
 
 === A.2.5 Cancelling a Subscription
 
@@ -1926,9 +1781,9 @@ Example 3:
 A device controller needs an ongoing feed of all devices connected to a patient in a specific room. The controller opens a subscription to the Device-Patient Association Manager to get a filtered device-patient information feed of the relevant data in room 10 of the MICU:
 
 ....
-MSH|^~\&|MonitorGateway||AssocMgr||20160726160000||QSB^Z66^QSB_Q16|12d1579|P|2.6|||AL|AL||8859/1|||IHE_DEV_019^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.19.1^ISO
-QPD|Q66^Device-Patient Subscription^HL7005|Q0044|@PV1.3.1^EQ^MICU@PV1.3.2^EQ^10
-RCP|I||R||N
+MSH|^~\&|MonitorGateway||AssocMgr||20160726160000||QSB^Z66^QSB_Q16|12d1579|P|2.6|||AL|NE||8859/1|||IHE_DEV_019^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.19.1^ISO
+QPD|Q66^Device-Patient Subscription^HL7005|Q0044|PV1.3.1^EQ^MICU^AND|PV1.3.2^EQ^10
+RCP|I||R
 ....
 
 The Device-Patient Association Manager responds by starting a continuous stream of Report Association [DEV-52] messages, starting with message(s) giving the current device
