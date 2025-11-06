@@ -30,7 +30,7 @@
 [cols="1,1"]
 |===
 
-2+^|*OBR-7/8 clarifications*
+2+^|*OBR-7/8 Timestamp Clarifications*
 
 |Submitter’s Name(s) and e-mail address(es):
 |Eldon Metz, emetz@innovisionmedical.com
