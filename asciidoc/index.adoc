@@ -65,6 +65,13 @@ DEV-52
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
+|TBD -- semantics for DEV-52 for corrected, deleted and wrong
+|xref:cp-dev-027.adoc[DEV-027]
+|DEV-51 +
+DEV-52
+|Draft
+|Kurt Elliason (kurt.elliason@icumed.com)
+
 |DEV-51/52 and OBX-11 semantics (association error resolution scenarios with commit level and application Acknowledgements) 
 |
 |DEV-51 +
