@@ -15,9 +15,10 @@
 :docinfo: shared
 :source-highlighter: highlight.js
 :highlightjsdir: js/highlight
-
 [subs=attributes]
+
 ++++
+
 <div>
     <div>
         <img src="images/IHE_LOGO_for_tf-docs.jpg" style="display: block; margin-left: auto; margin-right: auto; width: 30%"/>
@@ -30,6 +31,7 @@
 <p style="font-size: 2.75em; text-align: center"><strong>Point-of-Care Identity Management (PCIM)</strong></p>
 
 <p style="text-align: center">Revision 2.3 &mdash; Trial Implementation</p>
+
 ++++
 
 Date: November 6, 2025
@@ -66,7 +68,6 @@ Information about the IHE Devices domain can be found at https://www.ihe.net/IHE
 Information about the organization of IHE Technical Frameworks and Supplements and the process used to create them can be found at https://www.ihe.net/resources/profiles/ and https://www.ihe.net/about_ihe/ihe_process/.
 
 The current version of the IHE Devices Domain Technical Framework can be found at https://profiles.ihe.net/DEV/index.html.
-
 [chapter]
 = Introduction to This Supplement
 
@@ -111,7 +112,7 @@ The https://profiles.ihe.net/GeneralIntro/#3[IHE Technical Framework General Int
 Each technical framework volume contains links to these where appropriate.
 
 |===
-Update the following appendices to the General Introduction as indicated below. Note that these are not appendices to this domain’s Technical Framework (TF-1, TF-2, TF-3 or TF-4) but
+|Update the following appendices to the General Introduction as indicated below. Note that these are not appendices to this domain’s Technical Framework (TF-1, TF-2, TF-3 or TF-4) but
 rather, they are appendices to the IHE Technical Frameworks General Introduction located https://profiles.ihe.net/GeneralIntro/index.html[here].
 |===
 
@@ -141,7 +142,7 @@ rather, they are appendices to the IHE Technical Frameworks General Introduction
 = Appendix B -- Transactions
 
 |===
-Add the following *new* transactions to the IHE Technical Frameworks General Introduction https://profiles.ihe.net/GeneralIntro/ch-B.html[Appendix B]:
+|Add the following *new* transactions to the IHE Technical Frameworks General Introduction https://profiles.ihe.net/GeneralIntro/ch-B.html[Appendix B]:
 |===
 
 |===
@@ -167,7 +168,7 @@ Add the following *new* transactions to the IHE Technical Frameworks General Int
 = Appendix D -- Glossary
 
 |===
-Add the following *new* glossary terms to the IHE Technical Frameworks General Introduction https://profiles.ihe.net/GeneralIntro/ch-D.html[Appendix D].
+|Add the following *new* glossary terms to the IHE Technical Frameworks General Introduction https://profiles.ihe.net/GeneralIntro/ch-D.html[Appendix D].
 |===
 
 |===
@@ -240,7 +241,7 @@ for example, name, sex, date of birth.
 None
 
 |===
-Editor: Add new Section 7 to DEV TF-1
+|Editor: Add new Section 7 to DEV TF-1
 |===
 
 = 7 Point-of-Care Identity Management (PCIM) Profile
@@ -550,7 +551,7 @@ None
 
 
 |===
-Editor: Insert in Section 3 of DEV TF-2 as new Section 3.51
+|Editor: Insert in Section 3 of DEV TF-2 as new Section 3.51
 |===
 
 == 3.51 Communicate Association State [DEV-51]
@@ -647,7 +648,7 @@ Examples of application level errors that can occur during device patient associ
 If the checks are passed, the Manager establishes a record of the beginning or ending of the association and the effective time.
 
 |===
-Editor: Insert in Section 3 of DEV TF-2 as new Section 3.52
+|Editor: Insert in Section 3 of DEV TF-2 as new Section 3.52
 |===
 
 == 3.52 Report Association State [DEV-52]
@@ -724,7 +725,7 @@ See Appendix 0 for details of HL7 V2 messages.
 On receipt of the message, the Consumer parses and extracts the association details before returning an appropriate commit-level acknowledgement to the Manager. If the message is semantically and syntactically valid, the Consumer returns a positive acknowledgement and utilizes the record of the beginning or ending of the association and the effective time for the specified patient and device. If the message is invalid, the Consumer returns a negative acknowledgement. Once the commit-level acknowledgement is received by the Manager, it records that the message was delivered to the Consumer along with the corresponding acknowledgement code.
 
 |===
-Editor: Insert in Section 3 of DEV TF-2 as new Section 3.19
+|Editor: Insert in Section 3 of DEV TF-2 as new Section 3.19
 |===
 
 == 3.19 Filter Associations [DEV-19]
