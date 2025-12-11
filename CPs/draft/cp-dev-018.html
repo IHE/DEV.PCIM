@@ -464,7 +464,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Date of last update:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2025-11-13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2025-12-11</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Person(s) Assigned:</p></td>
@@ -513,11 +513,11 @@ Device-Patient Association Reporter</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Volume(s) and Section(s) affected:</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PCIM TI, Sections 7.4, 3.51, A.3 and A.1.2.5 and A.1.2.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PCIM TI, Sections 7.4, 3.51, 3.52, A.3 and A.1.2.5 and A.1.2.6</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" colspan="2"><p class="tableblock">Rationale for Change:</p>
-<p class="tableblock">While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations were also identified to be clarified and/or updated. It was also noted that it was necessary to add text for corrections for not only time but also for patient identity changes for merges, unmerges, id changes and contact moves. It was also oted that it was necessary to add text for handling of wrong associations. Additional use cases and examples were added to more clearly explain both how to correct associations and declare them as wrong.</p>
+<p class="tableblock">While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations were also identified to be clarified and/or updated. It was also noted that it was necessary to add text for corrections for not only time but also for patient identity changes for merges, unmerges, id changes and contact moves. It was also noted that it was necessary to add text for handling of wrong associations. Additional use cases and examples were added to more clearly explain both how to correct associations and declare them as wrong.</p>
 <p class="tableblock">This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issues.</p></td>
 </tr>
 </tbody>
@@ -598,13 +598,13 @@ Device-Patient Association Reporter</p></td>
 <div class="sect4">
 <h5 id="_7_4_2_5_3_pre_conditions">7.4.2.5.3 Pre-Conditions</h5>
 <div class="paragraph">
-<p>An existing device-patient association is deleted or otherwise indicated to be wrong in the Device-Patient Association Reporter. The device-patient association has already been reported to the Device-Patient Association Manager.</p>
+<p>An existing verified device-patient association is to be deleted or otherwise indicated to be wrong. The device-patient association has already been reported to the Device-Patient Association Manager.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_7_4_2_5_4_main_flow">7.4.2.5.4 Main Flow</h5>
 <div class="paragraph">
-<p>The Device-Patient Association Reporter originates a message with the specific information on the wrong association, including the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the initial message that asserted the association.</p>
+<p>The Device-Patient Association Reporter originates a message with the specific information on the wrong association.</p>
 </div>
 </div>
 <div class="sect4">
@@ -668,7 +668,7 @@ Note that any code identifiable with an individual patient must by secured from 
 Code used to identify the patient must be chosen so as to be unique at least over the scope of the set of patients seen over all information systems in the institution, such as a Medical Record Number issued by the institution for the patient, or, if available, a national id number.
 The type and issuing entity shall be recorded with the code.
 Additional identity codes may be provided at the discretion of the institution.
-Note that any code identifiable with an individual patient must by secured from misuse in accordance with applicable legal and policy procedures. Implementations should account for cases where the patient identity may change as a result of chart corrections. This should trigger the sending of a correction of the patient identity to the Manager.</p>
+Note that any code identifiable with an individual patient must by secured from misuse in accordance with applicable legal and policy procedures. Implementations should account for cases where the patient identity may change as a result of chart corrections. This should trigger the sending of a correction message of the patient identity to the Manager for active associations known to the reporter. This may also trigger the sending of a correction message to the Manager for completed associations.</p>
 </li>
 </ul>
 </div>
@@ -775,13 +775,56 @@ Note that any code identifiable with an individual patient must by secured from 
 <p><span class="underline">Proposed Text:</span></p>
 </div>
 <div class="paragraph">
-<p>An existing device-patient association should be asserted as "Wrong" from the Device-Patient Association Reporter to the Device-Patient Association Manager whenever either the device or the patient that was reported with the association was wrong. All messages asserting an existing device-patient association as wrong shall reference the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the original message that asserted the association.</p>
-</div>
-<div class="paragraph">
-<p>When a device-patient association is asserted to be "Wrong", any device data that was reported for that device-patient association should also be deleted or flagged for review in any consumers that are using the device-patient association to file received device data to the patient. Device-Patient Association Consumers that are also device data reporter actors shall stop including the wrong patient identifier in outgoing messages as soon as it receives the Wrong association report. To correct a "Wrong" association, a new association may be asserted after the Wrong has been reported.</p>
+<p>An existing device-patient association should be asserted as "Wrong" from the Device-Patient Association Reporter to the Device-Patient Association Manager whenever either the device or the patient that was reported with the association was wrong. All messages asserting an existing device-patient association as wrong shall reference the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the original message that asserted the association.
+A new association with the valid patient may be asserted after the Wrong has been reported.</p>
 </div>
 <div class="paragraph">
 <p>Note that there are chart correction use cases where the Device-Patient Association Reporter&#8217;s understanding of the identity of the patient changes but the human who is associated to the device is semantically the same (such as with a patient merge). In these cases, the patient identity change may be handled either by correcting the patient identity for the existing association as described in section 3.51.4.1.3 above or by marking the existing association as wrong and re-asserting the association. The new assertion shall have a new association unique instance identifier in OBR-3 and includes the corrected patient identity.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>3.52.4.1.2 in PCIM TI - Message Semantics</em>, add subsection header 3.52.4.1.2 Message Semantics right before the sentence "The significant content of the message is the following" in section 3.52.4.1.1:</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>3.52.4.1.3 in PCIM TI - Message Semantics</em>, add subsection 3.52.4.1.3 Correction Semantics to specify the semantics of correctable associations:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph">
+<p>Correction reports must be sent from the Device-Patient Association Manager to Device-Patient Association Consumers when they are validated. See table 3.51.4.1.3-1 and table 3.51.4.1.3-2 for correctable parameters that may be reported for active and completed associations.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>3.52.4.1.4 in PCIM TI - Message Semantics</em>, add subsection 3.51.4.1.4 Wrong Semantics to specify the semantics of wrong associations:</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph text-left">
+<p><span class="underline">Proposed Text:</span></p>
+</div>
+<div class="paragraph">
+<p>An existing device-patient association should be reported as "Wrong" from the Device-Patient Association Manager to the Device-Patient Association Consumer whenever either the device or the patient that was reported with the association was wrong. All messages reporting an existing device-patient association as wrong shall reference the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the original message that reported the association.</p>
+</div>
+<div class="paragraph">
+<p>When a device-patient association is reported to be "Wrong", any device data that was reported for that device-patient association should also be deleted or flagged for review in any consumers that are using the device-patient association to file received device data to the patient. Device-Patient Association Consumers that are also device data reporter actors shall stop including the wrong patient identifier in outgoing messages as soon as it receives the Wrong association report.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -889,7 +932,7 @@ PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3002^1||20160726222000</p
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Table A.1.2.6.3 in PCIM TI - PRT-11 Interpretation</em>, update the table to to remove the participation status of deleted and to allow corrections and wrong declarations for the AUT role:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Table A.1.2.6-3 in PCIM TI - PRT-11 Interpretation</em>, update the table to to remove the participation status of deleted and to allow corrections and wrong declarations for the AUT role:</p></td>
 </tr>
 </tbody>
 </table>
@@ -1187,7 +1230,7 @@ If null, most recently asserted/corrected time has been confirmed.</td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-11-13 10:02:47 -0800
+Last updated 2025-12-11 10:03:43 -0800
 </div>
 </div>
 </body>
