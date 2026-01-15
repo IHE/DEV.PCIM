@@ -202,10 +202,10 @@ Corrections should be sent from the Device-Patient Association Reporter to the D
 |Changes to the Patient ID should trigger a correction if the human is semantically the same. Otherwise, it is a “Wrong” association and needs to be marked as such. This solves the use-case of patient merges (ADT A40), ID change (e.g. EMPI deduplication ADT A47), unmerge (ADT A43), or contact move (ADT A45).
 
 |Participant (RO, AUT)
-|Changes to a participant may trigger a correction.
+|Changes to the participants for the dissociation event may trigger a correction. Note, changes to the participants at the time of the beginning association event are not correctable.
 
 |Location
-|Changes to the beginning or ending location of the association may trigger a correction.
+|Changes to the ending location of the association may trigger a correction. Note, changes to the beginning location of a completed association are not correctable.
 
 |===
 
