@@ -58,19 +58,20 @@ DEV-52
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
-|FHIR retrospective query support
+|OBR-7/8 Timestamp Clarifications
 |xref:cp-dev-019.adoc[DEV-019]
 |DEV-51 +
 DEV-52
 |Draft
 |Eldon Metz (emetz@innovisionmedical.com)
 
-|DEV-51/52 and OBX-11 semantics (association error resolution scenarios with commit level and application Acknowledgements) 
+|FHIR retrospective query support
 |
 |DEV-51 +
 DEV-52
-|Assigned
+|Draft
 |Eldon Metz (emetz@innovisionmedical.com)
+
 
 |Adding an Optional Order ID to PCIM Transactions
 |
