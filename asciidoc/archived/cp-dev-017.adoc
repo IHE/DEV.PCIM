@@ -1,0 +1,456 @@
+:imagesdir: images 
+[.text-center]
+= IHE Change Proposal
+
+[.text-center]
+== Tracking Information
+[cols="1,1"]
+|===
+
+|IHE Domain/Program
+|DEV Domain / Patient Care Device (PCD) Program
+
+|Change Proposal ID:
+|CP-DEV-017
+
+|Change Proposal Status:
+|Submitted
+
+|Date of last update:
+|2025-08-28
+
+|Person Assigned:
+|Eldon Metz
+
+|===
+
+[.text-center]
+== Change Proposal Summary Information
+
+[cols="1,1"]
+|===
+
+2+^|*Filter associations transaction cleanup*
+
+|Submitter’s Name(s) and e-mail address(es):
+|Eldon Metz, emetz@innovisionmedical.com
+
+|Submission Date:
+|2025-08-28
+
+|Integration Profile(s) affected:
+|Point-of-Care Identity Management (PCIM)
+
+|Actor(s) affected:
+|Device-Patient Association Consumer +
+Device-Patient Association Manager +
+Device-Patient Association Reporter
+
+|IHE Technical Framework or Supplement modified:
+|PCIM Profile TI (PCIM TI) revision 2.2, dated 2024-12-05
+
+|Volume(s) and Section(s) affected:
+|PCIM TI, Sections A.2 and A.3
+
+2+|Rationale for Change:
+
+While preparing for connectathon testing in 2025, it was noted during updates to the NIST HL7v2 Test Tool that QPD in DEV-19 (Filter Associations) needed to be better defined in Table A.2.3.2-1. It was also noted during that review that Table A.2.3.2-2 was unnecessary. It was also noted that the QPD.3 field was specified to be VARIES, and that the QSC (Query Subscription Code) data type was not defined in the PCIM TI. The QPD.4 Action Code field was also specified, but it is not used in DEV-19, so it should be removed. Additional cleanup to the RCP segment was also needed, as it was not clear that the only supported modality is real-time, and that deferred execution is not supported. The RCP-4 Execution and Delivery Time and RCP-5 Modify Indicator fields were also not required in DEV-19, so they should be removed. Finally, the examples were updated to reflect the changes to QPD.3 and RCP-1.
+
+This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issues.
+
+|===
+
+|===
+
+| _Section A.2.3.2 in PCIM TI - QPD - QPD Segment_  *Table A.2.3.2-1 QPD - Query Parameter Definition*, update the table to remove Action Code (QPD.4) as editing of filters is not supported in DEV-19 (Filter Associations), cancellation and resubscribing is. Update QPD.3 QueryParameter type and definition to QSC (Query Subscription Code).
+
+|===
+
+[.text-left]
+[underline]#Existing Table:#
+
+**Table A.2.3.2-1: QPD - Query Parameter Definition**
+
+|===
+| Mnemonic | Description | Type | Optionality | Length | Table | Repetition
+
+| QPD.1
+| Message Query Name - Set to 'Q66^Device-Patient Subscription^HL7005'
+| CE
+| Required
+| 250
+| 471
+| No
+
+| QPD.2
+| Query Tag
+| ST
+| Optional
+| 32
+|
+| No
+
+| QPD.3
+| User Parameters
+| VARIES
+| Optional
+| 256
+|
+| No
+
+| QPD.4
+| Action Code
+| ID
+|
+|
+| 323
+|
+|===
+
+|===
+
+|===
+[.text-left]
+[underline]#Proposed Table:#
+
+**Table A.2.3.2-1: QPD - Query Parameter Definition**
+
+|===
+| Mnemonic | Description | Type | Optionality | Length | Table | Repetition
+
+| QPD.1
+| Message Query Name - Set to 'Q66^Device-Patient Subscription^HL7005'
+| CE
+| Required
+| 250
+| 471
+| No
+
+| QPD.2
+| Query Tag
+| ST
+| Required
+| 32
+|
+| No
+
+| QPD.3
+| Query Parameters
+| QSC
+| Optional
+| 256
+|
+| Yes, but as additional fields following QPD.3.
+|===
+
+|===
+
+| _Section A.2.3.2 in PCIM TI - QPD - QPD Segment_  *Table A.2.3.2-2 QPD Input Parameter Specificationn*, delete this unnecessary table:
+
+|===
+
+[.text-left]
+[underline]#Deleted Table:#
+
+**Table A.2.3.2-2: QPD Input Parameter Specification**+++<table style="width:100%;">++++++<colgroup>++++++<col style="width: 11%">++++++</col>+++
++++<col style="width: 19%">++++++</col>+++
++++<col style="width: 7%">++++++</col>+++
++++<col style="width: 7%">++++++</col>+++
++++<col style="width: 7%">++++++</col>+++
++++<col style="width: 6%">++++++</col>+++
++++<col style="width: 7%">++++++</col>+++
++++<col style="width: 12%">++++++</col>+++
++++<col style="width: 19%">++++++</col>++++++</colgroup>+++
++++<thead>++++++<tr class="header">++++++<th>+++Field+++<br>++++++</br>+++
+Seq+++<br>++++++</br>+++
+(Query ID=Z99)+++</th>+++
++++<th>+++Name+++</th>+++
++++<th>+++LEN+++</th>+++
++++<th>+++DT+++</th>+++
++++<th>+++OPT+++</th>+++
++++<th>+++R/#+++</th>+++
++++<th>+++TBL+++</th>+++
++++<th>+++Segment+++<br>++++++</br>+++
+Field Name+++</th>+++
++++<th>+++Element+++<br>++++++</br>+++
+Name+++</th>++++++</tr>++++++</thead>+++
++++<tbody>++++++<tr class="odd">++++++<td>+++1+++</td>+++
++++<td>+++MessageQueryName+++</td>+++
++++<td>+++60+++</td>+++
++++<td>+++CWE+++</td>+++
++++<td>+++R+++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>+++
++++<td>+++MessageQueryName+++</td>++++++</tr>+++
++++<tr class="even">++++++<td>+++2+++</td>+++
++++<td>+++QueryTag+++</td>+++
++++<td>+++32+++</td>+++
++++<td>+++ST+++</td>+++
++++<td>+++R+++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>+++
++++<td>+++QueryTag+++</td>++++++</tr>+++
++++<tr class="odd">++++++<td>+++3+++</td>+++
++++<td>+++User Parameters+++</td>+++
++++<td>++++++</td>+++
++++<td>+++ID+++</td>+++
++++<td>+++0+++</td>+++
++++<td>++++++</td>+++
++++<td>+++033+++</td>+++
++++<td>++++++</td>+++
++++<td>+++ActionCode+++</td>++++++</tr>++++++</tbody>++++++</table>+++
+
+|===
+
+| _Section A.2.3.2 in PCIM TI - QPD - QPD Segment_  *Update description to use Query Parameters field*, replace all references to User Parameters with Query Parameters and explicitly state that filter subscription editing is not possible.
+
+|===
+
+[.text-left]
+[underline]#Existing Text:#
+
+[.text-left]
+The QueryTag (QPD.2) is used to identify a query instance and therefore must be unique for each query.
+[.text-left]
+The User Parameters field (QPD.3) is used to specify "`filtering`" values, so that the query response can be limited to, for example, the records matching a particular Assigned Location (by including a PV1.3.1 specification), a particular device (by adding a Participation Device PRT specification) and so on.
+If multiple specifications are given, the responding system "`AND`"s the specifications together, so that for example, a patient location and a device identifier specification result in the response only gives associations involving that patient location and device.
+[.text-left]
+The form of the User Parameters specifications in QPD.3 field uses one or more repetition of the QSC data type (separated by the HL7 repetition separator, by default the tilde character ~), one for each query parameter to be specified, with each repetition using the QSC data type.
+This data type takes the form of a component specifying the field, component, or subcomponent to filter on as @<seg>.<field number>.<component number>.<subcomponent number>, followed by a logical operator component (normally EQ for "`equals`"), and a component giving the value sought for that field.
+An example would be:
+[.text-left]
+@PV1.3.1{caret}EQ{caret}MICU~@PRT.10.1{caret}EQ{caret}PUMP1
+[.text-left]
+This means limit the messages given in response to ones involving patient location at point-of-care MICU and device identifier PUMP1.
+[.text-left]
+The Device-Patient Association Manager is responsible for executing the search in accordance with the filters.
+The different query parameter filters are ANDed together, that is, only associations where all query parameters match the sought value will be sent by the Device-Patient Association Manager.
+[.text-left]
+Where the association records have query parameter fields that are repeated (as for example where multiple patient identifiers of different Identifier Types, or multiple device identifiers of different Identifier Types, are present), the Device-Patient Association Manager will consider the association record matched and send it if any value present in any repeat of the repeated field matches the sought value without regard to the Identifier Type.
+
+[.text-left]
+[underline]#Proposed Text:#
+[.text-left]
+The QueryTag (QPD.2) is used to identify a query instance and therefore must be unique for each query. A query cannot be modified, it must be cancelled and a new query issued, see section A.2.5 for details on cancellation.
+[.text-left]
+The Query Parameters field (QPD.3) is used to specify "`filtering`" values, so that the query response can be limited to, for example, the records matching a particular Assigned Location (by including a PV1.3.1 specification), a particular device (by adding a Participation Device PRT specification) and so on.
+If multiple specifications are given, the relational conjunction in QSC.4 shall be specified, except for the last one.  For example, a patient location and a device identifier query filter specification will result in the subscription including associations involving both that patient location and device. The relational conjunction is defined as follows: If more than one comparison is to be made to select qualifying rows, a conjunction relates this repetition of the field to the next. The last specification does not need to specify a conjunction, as it is the last one.
+[.text-left]
+The form of the Query Parameters specifications in QPD.3 field is a QSC data type. Any additional fields can be added as QPD.4, QPD.5, etc, one for each query parameter to be specified, with each field using the QSC data type.
+An example would be:
+[.text-left]
+PV1.3.1{caret}EQ{caret}MICU{caret}AND|PRT.10.1{caret}EQ{caret}PUMP1
+[.text-left]
+This means limit the messages for the subscription to those involving patient location at point-of-care MICU and device identifier PUMP1.
+[.text-left]
+The Device-Patient Association Manager is responsible for executing the search in accordance with the filters and associated conjunctions.
+|===
+
+| _Section A.2.4.1 in PCIM TI - RCP - RCP Segment_  *Table A.2.4-1 RCP - Respose Control Parameter*, update RCP.3 field to reflect real-time as the only supported option for modality and RCP.1 and RCP.4 to specify deferred execution is not possible. Also change optionality to match same language as QPD table.
+
+|===
+
+[.text-left]
+[underline]#Existing Table:#
+**Table A.2.4-1: RCP - Response Control Parameter**
+
+|===
+| Field | Description | Type | Optionality | Length | Table | Repetition
+
+| 1
+| Query Priority
+| ID
+| R
+| 1
+| 91
+| No
+
+| 2
+| Query Limited Request
+|
+| X
+|
+|
+|
+
+| 3
+| Response Modality
+| CNE
+| R
+| 
+|
+|
+
+| 4
+| Execution and Deliver Time
+|
+|
+|
+|
+|
+
+| 5
+| Modify Indicatory
+| ID
+|
+|
+|
+|
+|===
+
+[.text-left]
+[underline]#Proposed Table:#
+**Table A.2.4-1: RCP - Response Control Parameter**
+
+|===
+| Field | Description | Type | Optionality | Length | Table | Repetition
+
+| 1
+| Query Priority - Must be set to "I" for immediate
+| ID
+| Required
+| 1
+| 91
+| No
+
+| 2
+| Query Limited Request - Not supported in this profile
+|
+| Not allowed
+|
+|
+| No
+
+| 3
+| Response Modality - Must be set to "R" for real-time
+| CNE
+| Required
+| 
+|
+| No
+
+|===
+
+
+|===
+
+| _Section A.2.4-2 in PCIM TI - RCP - RCP Segment_  *Table A.2.4-2 RCP Response Control Parameter Field Description and Commentary*, delete this unnecessary table:
+
+|===
+
+[.text-left]
+[underline]#Deleted Table and possible values subtable:#
+
+**Table A.2.4-2: RCP Response Control Parameter Field Description and Commentary**+++<table>++++++<colgroup>++++++<col style="width: 14%">++++++</col>+++
++++<col style="width: 20%">++++++</col>+++
++++<col style="width: 15%">++++++</col>+++
++++<col style="width: 8%">++++++</col>+++
++++<col style="width: 8%">++++++</col>+++
++++<col style="width: 32%">++++++</col>++++++</colgroup>+++
++++<thead>++++++<tr class="header">++++++<th>+++Field Seq+++<br>++++++</br>+++
+(Query ID=Z99)+++</th>+++
++++<th>+++Name+++</th>+++
++++<th>+++Component+++<br>++++++</br>+++
+Name+++</th>+++
++++<th>+++LEN+++</th>+++
++++<th>+++DT+++</th>+++
++++<th>+++Description+++</th>++++++</tr>++++++</thead>+++
++++<tbody>++++++<tr class="odd">++++++<td>+++1+++</td>+++
++++<td>+++Query Priority+++</td>+++
++++<td>++++++</td>+++
++++<td>+++1+++</td>+++
++++<td>+++ID+++</td>+++
++++<td>+++Deferred / Immediate+++</td>++++++</tr>+++
++++<tr class="even">++++++<td>+++2+++</td>+++
++++<td>+++Quantity Limited Request+++</td>+++
++++<td>++++++</td>+++
++++<td>+++10+++</td>+++
++++<td>+++CQ+++</td>+++
++++<td>+++Not applicable, this profile does not support continuation+++</td>++++++</tr>+++
++++<tr class="odd">++++++<td>+++3+++</td>+++
++++<td>+++Response Modality+++</td>+++
++++<td>++++++</td>+++
++++<td>+++60+++</td>+++
++++<td>+++CWE+++</td>+++
++++<td>++++++<strong>+++R+++</strong>+++eal time or +++<strong>+++B+++</strong>+++atch. Default is
++++<strong>+++R+++</strong>+++.+++</td>++++++</tr>+++
++++<tr class="even">++++++<td>+++4+++</td>+++
++++<td>+++Execution and Delivery Time+++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>+++
++++<td>+++DTM+++</td>+++
++++<td>+++Only valued when RCP-1 Query Priority contains the value D
+(deferred)+++</td>++++++</tr>+++
++++<tr class="odd">++++++<td>+++5+++</td>+++
++++<td>+++Modify Indicator+++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>+++
++++<td>++++++</td>++++++</tr>++++++</tbody>++++++</table>+++
+
+[.text-left]
+The possible values for RCP-1, Query Priority, are:
+
+|===
+| Value | Description | Comment
+
+| D
+| Deferred
+|
+
+| I
+| Immediate
+|
+|===
+
+
+|===
+
+| _Section A.2.4 in PCIM TI - RCP - RCP Segment_  Remove text describing RCP-4 and RCP-5 Modify Indicator as they are not required:
+
+|===
+
+
+[.text-left]
+
+[underline]#Deleted Text:#
+
+[.text-left]
+RCP-4 Execution and Delivery Time is required when RCP-1 contains the value of D (Deferred).
+It specifies when the response is to be returned.
+
+[.text-left]
+RCP-5 Modify Indicator specifies whether a new subscription is being requested (value: N), or a modification is being made to an existing subscription (M).
+QPD-4 Action Code can signify the deletion of a subscription with a value of D.
+
+|===
+
+| _Section A.3 in PCIM TI -Example Message_  *Example 3* Update QPD and RCP segments to reflect change and MSH to reflect there is no application ACK required.
+
+|===
+
+[.text-left]
+
+[underline]#Existing Example:#
+
+[.text-left]
+....
+MSH|^~\&|MonitorGateway||AssocMgr||20160726160000||QSB^Z66^QSB_Q16|12d1579|P|2.6|||AL|AL||8859/1|||IHE_DEV_019^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.19.1^ISO
+QPD|Q66^Device-Patient Subscription^HL7005|Q0044|@PV1.3.1^EQ^MICU@PV1.3.2^EQ^10
+RCP|I||R||N
+....
+
+[.text-left]
+[underline]#Proposed Example:#
+
+[.text-left]
+....
+MSH|^~\&|MonitorGateway||AssocMgr||20160726160000||QSB^Z66^QSB_Q16|12d1579|P|2.6|||AL|NE||8859/1|||IHE_DEV_019^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.19.1^ISO
+QPD|Q66^Device-Patient Subscription^HL7005|Q0044|PV1.3.1^EQ^MICU^AND|PV1.3.2^EQ^10
+RCP|I||R
+....
+
+
+
