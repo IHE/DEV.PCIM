@@ -17,7 +17,7 @@
 |Draft
 
 |Date of last update:
-|2025-12-11
+|2026-01-15
 
 |Person(s) Assigned:
 |Eldon Metz, Jacob Braschler
@@ -55,7 +55,7 @@ Device-Patient Association Reporter
 
 2+|Rationale for Change:
 
-While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations were also identified to be clarified and/or updated. It was also noted that it was necessary to add text for corrections for not only time but also for patient identity changes for merges, unmerges, id changes and contact moves. It was also noted that it was necessary to add text for handling of wrong associations. Additional use cases and examples were added to more clearly explain both how to correct associations and declare them as wrong.  
+While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations were also identified to be clarified and/or updated. It was also noted that it was necessary to add text for corrections for not only time but also for patient identity changes for merges, unmerges, id changes and contact moves. Additionally it was necessary to add text for handling wrong associations. Tables were added to specify what was correctable for active and completed associations. Additional use cases and examples were added to more clearly explain both how to correct associations and declare them as wrong.  
 
 This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issues.
 
