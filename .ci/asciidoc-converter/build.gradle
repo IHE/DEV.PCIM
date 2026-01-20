@@ -1,6 +1,6 @@
 plugins {
-    id 'org.asciidoctor.jvm.convert' version '3.3.2'
-    id 'org.asciidoctor.jvm.pdf' version '3.3.2'
+    id 'org.asciidoctor.jvm.convert' version '4.0.5'
+    id 'org.asciidoctor.jvm.pdf' version '4.0.5'
 }
 
 apply plugin: 'java'
@@ -14,10 +14,9 @@ asciidoctor {
   sourceDir file('../../asciidoc')
   sources {
     include 'IHE_DEV_Suppl_PCIM.adoc'
-    include 'IHE_DEV_Suppl_PCIM_Use_Cases.adoc'
-    include 'cp-dev-016.adoc'
-    include 'cp-dev-017.adoc'
-    include 'cp-dev-019.adoc'
+
+    include 'cp-dev-*.adoc'
+
 
     include 'index.adoc'
   }
@@ -28,7 +27,7 @@ asciidoctor {
         include 'resources/**'
     }
   }
-  outputDir file('../../output')
+  outputDir = '../../output'
   outputOptions {
 //    backends = ['html', 'pdf']
       backends = ['html']

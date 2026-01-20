@@ -41,14 +41,14 @@ DEV-52
 |xref:cp-dev-016.adoc[DEV-016]
 |DEV-51 +
 DEV-52
-|Submitted
+|Approved
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |Filter associations transaction cleanup
 |xref:cp-dev-017.adoc[DEV-017]
 |DEV-51 +
 DEV-52
-|Submitted
+|Approved
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |OBR-7/8 and PRT-11/12 semantics for DEV-51 and DEV-52 for corrected, deleted and wrong
@@ -66,17 +66,12 @@ DEV-52
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |FHIR retrospective query support
-|xref:cp-dev-020.adoc[DEV-020]
-|
-|Draft
-|Eldon Metz (emetz@innovisionmedical.com)
-
-|DEV-51/52 and OBX-11 semantics (association error resolution scenarios with commit level and application Acknowledgements) 
 |
 |DEV-51 +
 DEV-52
-|Assigned
+|Draft
 |Eldon Metz (emetz@innovisionmedical.com)
+
 
 |Adding an Optional Order ID to PCIM Transactions
 |
