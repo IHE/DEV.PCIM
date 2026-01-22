@@ -14,10 +14,10 @@
 |CP-DEV-018
 
 |Change Proposal Status:
-|Draft
+|Submitted
 
 |Date of last update:
-|2026-01-20
+|2026-01-22
 
 |Person(s) Assigned:
 |Eldon Metz, Jacob Braschler
@@ -37,7 +37,7 @@
 |Jacob Braschler, jbraschl@epic.com
 
 |Submission Date:
-| TBD
+|2026-01-22
 
 |Integration Profile(s) affected:
 |Point-of-Care Identity Management (PCIM)
