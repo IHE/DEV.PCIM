@@ -14,10 +14,10 @@
 |CP-DEV-019
 
 |Change Proposal Status:
-|Draft
+|Submitted
 
 |Date of last update:
-|2025-11-05
+|2026-01-22
 
 |Person Assigned:
 |Eldon Metz
@@ -36,7 +36,7 @@
 |Eldon Metz, emetz@innovisionmedical.com
 
 |Submission Date:
-| TBD
+|2026-01-22
 
 |Integration Profile(s) affected:
 |Point-of-Care Identity Management (PCIM)
