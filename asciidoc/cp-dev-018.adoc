@@ -14,13 +14,13 @@
 |CP-DEV-018
 
 |Change Proposal Status:
-|Draft
+|Submitted
 
 |Date of last update:
-|2025-03-20
+|2026-01-22
 
-|Person Assigned:
-|Eldon Metz
+|Person(s) Assigned:
+|Eldon Metz, Jacob Braschler
 
 |===
 
@@ -30,13 +30,14 @@
 [cols="1,1"]
 |===
 
-2+^|*OBR-7/8 and PRT-11/12 semantics for DEV-51 and DEV-52 for corrected, deleted and wrong*
+2+^|*Clarifying requirements and semantics for DEV-51 and DEV-52 for corrected, deleted and wrong message indicator*
 
-|Submitter’s Name(s) and e-mail address(es):
-|Eldon Metz, emetz@innovisionmedical.com
+.2+|Submitter’s Name(s) and e-mail address(es):
+|Eldon Metz, emetz@innovisionmedical.com 
+|Jacob Braschler, jbraschl@epic.com
 
 |Submission Date:
-| TBD
+|2026-01-22
 
 |Integration Profile(s) affected:
 |Point-of-Care Identity Management (PCIM)
@@ -50,47 +51,300 @@ Device-Patient Association Reporter
 |PCIM Profile TI (PCIM TI) revision 2.2, dated 2024-12-05
 
 |Volume(s) and Section(s) affected:
-|PCIM TI, Sections A.1.2.4 and A.1.2.6
+|PCIM TI, Sections 7.4, 3.51, 3.52, A.3 and A.1.2.5 and A.1.2.6
 
 2+|Rationale for Change:
 
-While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations wwere also identified to be clarified and/or updated. It was agreed on in the PCIM WG to clarify the requirements around interpretation of these fields in a CP.
+While anticipating production deployment and during analsysis of edge cases, it was noted that it was unclear what OBR-7/8 should be for deleted, corrected and wrong scenarios in DEV-51 (Communicate Association State) and DEV-52 (Report Association State) transactions. While reviewing this, PRT-11/12 interpretations were also identified to be clarified and/or updated. It was also noted that it was necessary to add text for corrections for not only time but also for patient identity changes for merges, unmerges, id changes and contact moves. Additionally it was necessary to add text for handling wrong associations. Tables were added to specify what was correctable for active and completed associations. Additional use cases and examples were added to more clearly explain both how to correct associations and declare them as wrong.  
 
-This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issue.
-
-|===
+This Change Proposal (CP) proposes changes to PCIM TI to implement the profile clarifications and positions for the above issues.
 
 |===
 
-| _Section A.1.2.4 in PCIM TI - OBR - Observation Request_, update the text to clarify population of OBR-7/8 on deleted, corrected and wrong scenarios:
+|===
+
+| _7.4.2 PCIM TI - Use Cases_, add use case #4 to help explain how correcting an existing verified association would work:
+
+|===
+
+[.text-left]
+[underline]#Proposed Use Case:#
+
+[.text-left]
+==== 7.4.2.4 Use Case #4 Correcting Verified Associations
+
+===== 7.4.2.4.1 Description
+
+A Device-Patient Association Reporter asserts a correction to a verified device-patient association to a Device-Patient Association Manager.
+
+===== 7.4.2.4.2 Process Flow
+This use case is driven by an authorized user taking an action that alters one of the key parameters of an existing verified device-patient association. This should be based on first-person awareness of the situation at the point-of-care. For example, if a device-patient association is created and verified for a patient retroactively and the effective begin time of the association isn't back-dated appropriately, an authorized user may manually alter the begin time of the association, which should trigger a correction. This can also be a result of other system actions. For example, if a device-patient association was initiated for a device with a fixed location upon transferring the patient into the associated bed, and the effective time of the transfer is changed, a correction should be sent to update the effective begin time of the association.
+
+===== 7.4.2.4.3 Pre-conditions
+An existing verified device-patient association is to be corrected. The patient has been assigned a unique identifier at registration which has been collected and verified at the point-of-care. Device identity has been registered for use. The identities of the patient and device have been collected and verified by an authorized person. The patient has already been associated with a device.
+
+===== 7.4.2.4.4 Main Flow
+The Device-Patient Association Reporter originates a message with the specific information on the association, including the parameters that were corrected.
+
+===== 7.4.2.4.5 Post-conditions
+Upon completion of this use case, the association record identifying the patient and the associated device now contains the corrected information in the Device-Patient Association Manager.
+
+|===
+
+| _7.4.2 PCIM TI - Use Cases_, add use case #5 to help explain how declaring a "wrong" association works:
+
+|===
+
+[.text-left]
+[underline]#Proposed Use Case:#
+
+[.text-left]
+
+==== 7.4.2.5 Use Case #5 Wrong Associations
+===== 7.4.2.5.1 Description
+A Device-Patient Association Reporter asserts that a previously-reported device-patient association is wrong to a Device-Patient Association Manager.
+
+===== 7.4.2.5.2 Process Flow
+This use case is driven by an authorized user marking an existing device-patient association as being wrong. This should be based on first-person awareness of the situation at the point-of-care. For example, if a device-patient association is created and verified for a patient, but the device selected for the association was the wrong device, an authorized user may delete the association, which should trigger a message indicating that the association is wrong.
+
+===== 7.4.2.5.3 Pre-Conditions
+An existing verified device-patient association is to be deleted or otherwise indicated to be wrong. The device-patient association has already been reported to the Device-Patient Association Manager.
+
+===== 7.4.2.5.4 Main Flow
+The Device-Patient Association Reporter originates a message with the specific information on the wrong association.
+
+===== 7.4.2.5.5 Post-conditions
+Upon completion of this use case, the association record identifying the patient and associated device is marked as wrong in the Device-Patient Association Manager.
+
+
+|===
+
+| _7.6 PCIM TI - PCIM Cross Profile Considerations_, add text after the ADT section that references the use of MEMLS for device and patient location tracking
+
+|===
+
+[.text-left]
+[underline]#Proposed Text:#
+
+A Device-Patient Association Reporter or Device-Patient Association Consumer should utilize the MEMLS profile if the most up-to-date location information is needed.
+
+|===
+
+| _3.51.4.1.2 in PCIM TI - Message Semantics_, update the first bullet to include considerations for patient identity corrections: 
 
 |===
 
 [.text-left]
 [underline]#Existing Text:#
 
-[.text-left]
-The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. Each report consists of two Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
+The significant content of the message is the following:
 
-|===
+- Confirmed unique identity of patient, preferably derived from an AIDC (Automatic Identification and Data Capture) such as scanning the patient wristband or reading an RFID tag.
+Code used to identify the patient must be chosen so as to be unique at least over the scope of the set of patients seen over all information systems in the institution, such as a Medical Record Number issued by the institution for the patient, or, if available, a national id number.
+The type and issuing entity shall be recorded with the code.
+Additional identity codes may be provided at the discretion of the institution.
+Note that any code identifiable with an individual patient must by secured from misuse in accordance with applicable legal and policy procedures.
 
-|===
 [.text-left]
 [underline]#Proposed Text:#
 
-[.text-left]
-The OBR shall also include the timestamp of the earliest participant involvement (OBR-7) and latest participant involvement (OBR-8) for an association or disassociation event report. Each report consists of two Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. OBR-7 and OBR-8 conveys the range of time of both participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine both the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
+The significant content of the message is the following:
+
+- Confirmed unique identity of patient, preferably derived from an AIDC (Automatic Identification and Data Capture) such as scanning the patient wristband or reading an RFID tag.
+Code used to identify the patient must be chosen so as to be unique at least over the scope of the set of patients seen over all information systems in the institution, such as a Medical Record Number issued by the institution for the patient, or, if available, a national id number.
+The type and issuing entity shall be recorded with the code.
+Additional identity codes may be provided at the discretion of the institution.
+Note that any code identifiable with an individual patient must by secured from misuse in accordance with applicable legal and policy procedures. Implementations should account for cases where the patient identity may change as a result of chart corrections. This should trigger the sending of a correction message of the patient identity to the Manager for active associations known to the reporter. This may also trigger the sending of a correction message to the Manager for completed associations.
+
 
 |===
 
-| _Section A.1.2.6 in PCIM TI - OBR - Observation Request_, *Table A.1.2.6-3* update to clarify interpretation of PRT-11 on deleted, corrected and wrong scenarios:
+| _3.51.4.1.3 in PCIM TI - Message Semantics_, add another subsection, 3.51.4.1.3 Correction Semantics to specify the semantics of corrections: 
+
+|===
+
+[.text-left]
+[underline]#Proposed Text:#
+
+Corrections should be sent from the Device-Patient Association Reporter to the Device-Patient Association Manager when a key parameter for an existing device association has changed. The considerations around which parameters should initiate corrections may differ for active vs completed associations. 
+
+**Table 3.51.4.1.3-1: Correctable Parameters for Active Associations**
+[%autowidth]
+|===
+|Parameter|Semantics
+
+|Begin Time
+|Changes to the begin time of an active association shall trigger a correction.
+
+|Patient ID
+|Changes to the Patient ID should trigger a correction if the human is semantically the same. Otherwise, it is a “Wrong” association and needs to be marked as such. This solves the use-case of patient merges (ADT A40), ID change (e.g. EMPI deduplication ADT A47), unmerge (ADT A43), or contact move (ADT A45).
+
+|Participant (RO, AUT)
+|Changes to a participant may trigger a correction.
+
+|Location
+|Changes to the beginning location of the association may trigger a correction.
+
+|===
+
+**Table 3.51.4.1.3-2: Correctable Parameters for Completed Associations**
+[%autowidth]
+|===
+|Parameter|Semantics
+
+|Begin Time
+|Changes to the begin time of a completed association shall trigger a correction.
+
+|End Time
+|Changes to the end time of a completed association shall trigger a correction.
+
+|Patient ID
+|Changes to the Patient ID should trigger a correction if the human is semantically the same. Otherwise, it is a “Wrong” association and needs to be marked as such. This solves the use-case of patient merges (ADT A40), ID change (e.g. EMPI deduplication ADT A47), unmerge (ADT A43), or contact move (ADT A45).
+
+|Participant (RO, AUT)
+|Changes to the participants for the dissociation event may trigger a correction. Note, changes to the participants at the time of the beginning association event are not correctable.
+
+|Location
+|Changes to the ending location of the association may trigger a correction. Note, changes to the beginning location of a completed association are not correctable.
+
+|===
+
+The device identifier and the association unique instance identifier SHALL NOT be changed in a correction message. All correction messages shall reference the association unique instance identifier from the original message in OBR-29.2.
+
+|===
+
+| _3.51.4.1.4 in PCIM TI - Message Semantics_, add another subsection, 3.51.4.1.4 Wrong Semantics to specify the semantics of wrong associations: 
+
+|===
+
+[.text-left]
+[underline]#Proposed Text:#
+
+An existing device-patient association should be asserted as "Wrong" from the Device-Patient Association Reporter to the Device-Patient Association Manager whenever either the device or the patient that was reported with the association was wrong. All messages asserting an existing device-patient association as wrong shall reference the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the original message that asserted the association.
+A new association with the valid patient may be asserted after the Wrong has been reported.
+
+Note that there are chart correction use cases where the Device-Patient Association Reporter's understanding of the identity of the patient changes but the human who is associated to the device is semantically the same (such as with a patient merge). In these cases, the patient identity change may be handled either by correcting the patient identity for the existing association as described in section 3.51.4.1.3 above or by marking the existing association as wrong and re-asserting the association. The new assertion shall have a new association unique instance identifier in OBR-3 and includes the corrected patient identity.
+
+|===
+
+| _3.52.4.1.2 in PCIM TI - Message Semantics_, add subsection header 3.52.4.1.2 Message Semantics right before the sentence "The significant content of the message is the following" in section 3.52.4.1.1: 
+
+|===
+
+
+|===
+
+| _3.52.4.1.3 in PCIM TI - Message Semantics_, add subsection 3.52.4.1.3 Correction Semantics to specify the semantics of correctable associations: 
+
+|===
+
+[.text-left]
+[underline]#Proposed Text:#
+
+
+Correction reports must be sent from the Device-Patient Association Manager to Device-Patient Association Consumers when they are validated. See table 3.51.4.1.3-1 and table 3.51.4.1.3-2 for correctable parameters that may be reported for active and completed associations.
+
+|===
+
+| _3.52.4.1.4 in PCIM TI - Message Semantics_, add subsection 3.51.4.1.4 Wrong Semantics to specify the semantics of wrong associations: 
+
+|===
+
+[.text-left]
+[underline]#Proposed Text:#
+
+An existing device-patient association should be reported as "Wrong" from the Device-Patient Association Manager to the Device-Patient Association Consumer whenever either the device or the patient that was reported with the association was wrong. All messages reporting an existing device-patient association as wrong shall reference the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the original message that reported the association.
+
+When a device-patient association is reported to be "Wrong", any device data that was reported for that device-patient association should also be deleted or flagged for review in any consumers that are using the device-patient association to file received device data to the patient. Device-Patient Association Consumers that are also device data reporter actors shall stop including the wrong patient identifier in outgoing messages as soon as it receives the Wrong association report.
+
+
+|===
+
+| _A.3 PCIM TI - Example Messages_, add example #5 to illustrate how correcting a patient identify for a merge can be handled:
+
+|===
+
+[.text-left]
+[underline]#Proposed Example:#
+
+Example 5:
+
+Patient record Trauma, Unknown represents a patient of unknown identity who is admitted to the ICU after a vehicle accident. At 06:30, Nurse Diesel connected the patient to a continuous physiological monitor with ID MON6789. At 06:45, she records the association on the Critical Care application. As she is an RN and has witnessed and entered the association in the Critical Care system, this is considered a validated association.
+
+....
+MSH|^~&|CritCare||AssocMgr||20160726064502||ORU^R01^ORU_R01|94e03d4|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+PID|||AB60005^^^A^PI||TRAUMA^UNKNOWN^^^^^L
+PV1||E|3 WEST ICU^3004^1
+OBR|||15404649|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726063000|20160726064500
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 West ICU^3004^1|MON6789^^231A8456B1CB2484^EUI-64|20160726063000
+PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3004^1||20160726064500
+....
+
+(Acknowledgement messages not shown)
+
+At 08:00, the patient's identity has been ascertained to be patient Benjamin Davis, who has an existing record in the Critical Care system. Working with Health Information Management, it is determined to be safe to merge the temporary trauma record with the patient's existing permanent patient record. The merge is performed in the Critical Care system, and a correction for the verified association is sent to the device manager containing the updated patient information in PID. A unique identifier for the correction event is sent in OBR-3, and the association identifier that was sent in OBR-3 for the original association message is sent in OBR-29.2. Additionally, the observation status in OBX-11 is sent as "C" to indicate the event is a correction to a verified association.
+
+....
+MSH|^~&|CritCare||AssocMgr||20160726082502||ORU^R01^ORU_R01|94e05d9|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+PID|||AB40001^^^A^PI||DAVIS^BENJAMIN^C^^^^L
+PV1||E|3 WEST ICU^3004^1
+OBR|||15404649-0001|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726063000|20160726064500|||||||||||||||||||||^15404649
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||C
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 West ICU^3004^1|MON6789^^231A8456B1CB2484^EUI-64|20160726063000
+PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3004^1||20160726064500
+....
+
+(Acknowledgement messages not shown)
+
+|===
+
+| _A.3 PCIM TI - Example Messages_, add example #6 to illustrate declaring an association is wrong:
+
+|===
+
+[.text-left]
+[underline]#Proposed Example:#
+
+Example 6:
+
+At 22:00, Nurse Diesel connected patient Harrison to a continuous physiological monitor with ID MON5568. At 22:15, she records the association in the Critical Care application, but she selects MON5569 from the pick list by mistake. As she is an RN and has witnessed and entered the association on the Critical Care system, this is considered a validated association.
+
+....
+MSH|^~&|CritCare||AssocMgr||20160726221502||ORU^R01^ORU_R01|95e03fa|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+PID|||AB60009^^^A^PI||HARRISON^D^F^^^^L
+PV1||E|3 WEST ICU^3002^1
+OBR|||15404852|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726220000|20160726221500
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||F
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 West ICU^3002^1|MON5569^^231A8456B1CB2491^EUI-64|20160726220000
+PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3002^1||20160726221500
+....
+
+(Acknowledgement messages not shown)
+
+At 22:20, Nurse Diesel notices that the physiological monitor data isn't flowing into the Critical Care system as expected and discovers that the device originally associated with the patient is wrong. She deletes the association for MON5569 from patient Harrison in the Critical Care system, which originates a message to the Device-Patient Association Manager indicating that the previously reported association is wrong. A unique identifier for the deletion event is sent in OBR-3, and the association unique instance identifier that was sent in OBR-3 for the original association is in OBR-29.2. Additionally, the observation status in OBX-11 is sent as "W" to indicate the association is wrong.
+
+....
+MSH|^~&|CritCare||AssocMgr||20160726222135||ORU^R01^ORU_R01|95e0405|P|2.6|||AL|AL|USA||||IHE_DEV_051^IHE PCD^1.3.6.1.4.1.19376.1.6.1.51.1^ISO
+PID|||AB60009^^^A^PI||HARRISON^D^F^^^^L
+PV1||E|3 WEST ICU^3002^1
+OBR|||15404852-0001|69136^MDC_OBS_ASSOCIATION_PATIENT_DEVICE^MDC|||20160726222000|20160726222000|||||||||||||||||||||^15404852
+OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198332^MDC_EVT_ASSOCIATION_PATIENT_DEVICE^MDC||||||W
+PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 West ICU^3002^1|MON5569^^231A8456B1CB2491^EUI-64|
+PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3002^1||20160726222000
+....
+
+(Acknowledgement messages not shown)
+
+
+|===
+
+| _Table A.1.2.6-3 in PCIM TI - PRT-11 Interpretation_, update the table to to remove the participation status of deleted and to allow corrections and wrong declarations for the AUT role:
 
 |===
 
 [.text-left]
 [underline]#Existing Table:#
-
-**Table A.1.2.6-3: PRT-11 Interpretation**
 
 |===
 | *Participation Status* | *AUT* | *EQUIP* | *RO*
@@ -98,7 +352,7 @@ The OBR shall also include the timestamp of the earliest participant involvement
 | R-Asserted
 | Time that the person/device asserted the association between the patient and device.
 | Time that the device-patient association is asserted to have been established.
-| Unusual.
+| Unusual. 
 Time that the person in this role observed the person/device in the AUT role asserting the association.
 
 | C-Corrected
@@ -128,9 +382,6 @@ If null, most recently asserted/corrected time has been confirmed.
 |===
 [.text-left]
 [underline]#Proposed Table:#
-
-**Table A.1.2.6-3: PRT-11 Interpretation**
-
 |===
 | *Participation Status* | *AUT* | *EQUIP* | *RO*
 
@@ -141,30 +392,89 @@ If null, most recently asserted/corrected time has been confirmed.
 Time that the person in this role observed the person/device in the AUT role asserting the association.
 
 | C-Corrected
-| n/a
-| Corrected time that the device-patient association is asserted to have been established.
+| Time that the person/device asserted the correction to the association between the patient and device.
+| Corrected time that the device-patient association is asserted to have been established, if the correction is for an association time change, otherwise the original time.
 | Time that the person in this role issued the correction.
 
-| D-Deleted
-| n/a
-| n/a
-| Time that the person in this role issued the deletion order.
 
 | F-Validated
-| n/a
+| Time that the person/device validated the association between the patient and device at the time it was asserted.
 | Time that the device-patient association is confirmed to have been established.
 If null, most recently asserted/corrected time has been confirmed.
 | Time that the person in this role validated the association.
 
 | W-Wrong
-| n/a
+| Time that the person/device in this role declared the association between the patient and device to be erroneous.
 | n/a
 | Time that the person in this role declared the association to be erroneous.
 |===
+|===
+
+| _Section A.1.2.5 in PCIM TI - OBX - Observation_, *Table A.1.2.5-3* update to remove "Deleted" status option:
 
 |===
 
-| _Section A.1.2.6 in PCIM TI - OBR - Observation Request_, *Table A.1.2.6-4* update to clarify interpretation of PRT-12 on deleted, corrected and wrong scenarios:
+[.text-left]
+[underline]#Existing Table:#
+
+|===
+| *Status* | *HL7 Description* | *Adaptation*
+
+| C
+| Record coming over is a correction and thus replaces a final result.
+| Record coming over is a correction and thus replaces a validated association.
+
+| D
+| Deletes the OBX record
+| Deletes the association record.
+
+| F
+| Final results;
+can only be changed with a corrected result.
+| Validated association.
+Can only be changed with a corrected association record.
+
+| R
+| Results entered -- not verified
+| An association has been asserted, but not validated.
+
+| W
+| Post original as wrong, e.g., transmitted for wrong patient.
+| Post original as wrong, e.g., transmitted for wrong patient.
+|===
+
+|===
+
+|===
+[.text-left]
+[underline]#Proposed Table:#
+
+|===
+| *Status* | *HL7 Description* | *Adaptation*
+
+| C
+| Record coming over is a correction and thus replaces a final result.
+| Record coming over is a correction and thus replaces a validated association.
+
+| F
+| Final results;
+can only be changed with a corrected result.
+| Validated association.
+Can only be changed with a corrected association record.
+
+| R
+| Results entered -- not verified
+| An association has been asserted, but not validated.
+
+| W
+| Post original as wrong, e.g., transmitted for wrong patient.
+| Post original as wrong, e.g., transmitted for wrong patient.
+
+|===
+
+|===
+
+| _Section A.1.2.6 in PCIM TI - PRT — Participation (Observation Participation)_, *Table A.1.2.6-4* update to remove "Deleted" status option:
 
 |===
 
@@ -233,10 +543,6 @@ person/device in the AUT role asserting the disassociation.+++</td>++++++</tr>++
 +++<td>+++Corrected time that the device-patient association is asserted to
 have ended.+++</td>+++
 +++<td>+++Time that the person in this role issued the correction.+++</td>++++++</tr>+++
-+++<tr class="odd">++++++<td>+++D-Deleted+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++n/a+++</td>++++++</tr>+++
 +++<tr class="even">++++++<td>+++F-Validated+++</td>+++
 +++<td>+++n/a+++</td>+++
 +++<td>+++Time that the device-patient association is confirmed to have ended.
