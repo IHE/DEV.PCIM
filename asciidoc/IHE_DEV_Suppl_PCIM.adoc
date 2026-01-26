@@ -355,15 +355,117 @@ This section documents any additional requirements on profile's actors.
 
 ==== 7.1.1.1 Device-Patient Association Reporter
 
-The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. The reporter may update existing associations. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. Each report represents a single device patient association assertion. If the report is validated, the report observation status field shall be marked final, otherwise it shall be marked as requiring validation. 
+The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. The reporter may update existing associations. Each report represents a single device patient association assertion. 
+
+.DPAR-R1001
+[pcim_requirement#DPAR-R1001,pcim_req_level=shall,pcim_req_type=tech_feature]
+****
+
+[NORMATIVE]
+====
+Device-Patient Association Reporter actors shall report the unique Patient ID, Device ID, and timestamp of the beginning or end of an association.
+====
+
+****
+.DPAR-R1002
+[pcim_requirement#DPAR-R1002,pcim_req_level=shall,pcim_req_type=tech_feature]
+****
+
+[NORMATIVE]
+====
+Device-Patient Association Reporter actors shall report the identity of the observer or automated system responsible for asserting the association.
+
+****
+
+.DPAR-R1003
+[pcim_requirement#DPAR-R1003,pcim_req_level=shall,pcim_req_type=tech_feature]
+****
+
+[NORMATIVE]
+====
+Device-Patient Association Reporter actors shall report if the association is validated, and if so, the identity of the responsible observer.
+====
+
+****
+
+.DPAR-R1004
+[pcim_requirement#DPAR-R1004,pcim_req_level=should,pcim_req_type=tech_feature]
+****
+
+[NORMATIVE]
+====
+Device-Patient Association Reporter actors should report the location, if known, at the time of association and disassociation.
+====
+
+****
 
 ==== 7.1.1.2 Device-Patient Association Manager
 
-The Device-Patient Association Manager actor collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as event notifications. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts. 
+The Device-Patient Association Manager actor collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit.
 
+.DPAM-R2001
+[pcim_requirement#DPAM-R2001,pcim_req_level=shall,pcim_req_type=tech_feature]
+****
+[NORMATIVE]
+====
+Device-Patient Association Manager actors shall communicate validated association and disassociation reports.
+====
+
+****
+
+
+.DPAM-R2002
+[pcim_requirement#DPAM-R2002,pcim_req_level=shall,pcim_req_type=tech_feature]
+****
+[NORMATIVE]
+====
+Device-Patient Association Manager actors shall filter report delivery to Device-Patient Association Consumers as requested.
+====
+
+****
+
+.DPAM-R2003
+[pcim_requirement#DPAM-R2003,pcim_req_level=shall,pcim_req_type=tech_feature]
+****
+[NORMATIVE]
+====
+Device-Patient Association Manager actors shall provide an HMI for validating association assertions that require validation and resolving conflicts.
+====
+
+****
+
+.DPAM-R2004
+[pcim_requirement#DPAM-R2004,pcim_req_level=shall,pcim_req_type=tech_feature]
+****
+[NORMATIVE]
+====
+Device-Patient Association Manager actors shall report the identity of the observer responsible for validating an association.
+====
+
+****
 ==== 7.1.1.3 Device-Patient Association Consumer
 
 The Device-Patient Association Consumer actor receives information on what devices are associated with which patients. The actor initially receives current association status followed by updates in real-time. Common examples are a medical device or critical care system that charts device observations for a patient. The actor receives association updates in real-time. 
+
+.DPAC-R3001
+[pcim_requirement#DPAC-R3001,pcim_req_level=may,pcim_req_type=tech_feature]
+****
+[NORMATIVE]
+====
+Device-Patient Association Consumer actors may request filtering of messages from the Device-Patient Association Manager.
+====
+
+****
+
+.DPAC-R3002
+[pcim_requirement#DPAC-R3002,pcim_req_level=shall,pcim_req_type=tech_feature]
+****
+[NORMATIVE]
+====
+Device-Patient Association Consumer actors shall receive and process validated association and disassociation reports.
+====
+
+****
 
 ==== 7.1.1.4 Device Registration
 
