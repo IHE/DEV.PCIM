@@ -347,7 +347,8 @@ PRT|2|UC||AUT^AUT^HL70912|58793^Diesel^N||||3 WEST ICU^3002^1||20160726222000
 [underline]#Existing Table:#
 
 |===
-| *Participation Status* | *AUT* | *EQUIP* | *RO*
+| *Participation →* +
+*Status* | *AUT* | *EQUIP* | *RO*
 
 | R-Asserted
 | Time that the person/device asserted the association between the patient and device.
@@ -383,7 +384,8 @@ If null, most recently asserted/corrected time has been confirmed.
 [.text-left]
 [underline]#Proposed Table:#
 |===
-| *Participation Status* | *AUT* | *EQUIP* | *RO*
+| *Participation →* +
+*Status* | *AUT* | *EQUIP* | *RO*
 
 | R-Asserted
 | Time that the person/device asserted the association between the patient and device.
@@ -480,78 +482,84 @@ Can only be changed with a corrected association record.
 
 [.text-left]
 [underline]#Existing Table:#
+**Table A.1.2.6-4: PRT-12 Interpretation**
+|===
 
-**Table A.1.2.6-4: PRT-12 Interpretation**+++<table style="width:100%;">++++++<colgroup>++++++<col style="width: 20%">++++++</col>+++
-+++<col style="width: 26%">++++++</col>+++
-+++<col style="width: 26%">++++++</col>+++
-+++<col style="width: 26%">++++++</col>++++++</colgroup>+++
-+++<thead>++++++<tr class="header">++++++<th>++++++<p>++++++<strong>+++Participation →+++</strong>++++++</p>+++
-+++<p>++++++<strong>+++↓Status+++</strong>++++++</p>++++++</th>+++
-+++<th>++++++<strong>+++AUT+++</strong>++++++</th>+++
-+++<th>++++++<strong>+++EQUIP+++</strong>++++++</th>+++
-+++<th>++++++<strong>+++RO+++</strong>++++++</th>++++++</tr>++++++</thead>+++
-+++<tbody>++++++<tr class="odd">++++++<td>+++R-Asserted+++</td>+++
-+++<td>+++Time that the person/device asserted the disassociation between the
-patient and device.+++</td>+++
-+++<td>+++Time that the device-patient disassociation is asserted to have
-taken place.+++</td>+++
-+++<td>+++Unusual. Time that the person in this role observed the
-person/device in the AUT role asserting the disassociation.+++</td>++++++</tr>+++
-+++<tr class="even">++++++<td>+++C-Corrected+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++Corrected time that the device-patient association is asserted to
-have ended.+++</td>+++
-+++<td>+++Time that the person in this role issued the correction.+++</td>++++++</tr>+++
-+++<tr class="odd">++++++<td>+++D-Deleted+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++n/a+++</td>++++++</tr>+++
-+++<tr class="even">++++++<td>+++F-Validated+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++Time that the device-patient association is confirmed to have ended.
-If null, most recently asserted/corrected time has been confirmed.+++</td>+++
-+++<td>+++Time that the person in this role validated the disassociation.+++</td>++++++</tr>+++
-+++<tr class="odd">++++++<td>+++W-Wrong+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++n/a+++</td>++++++</tr>++++++</tbody>++++++</table>+++
+| *Participation →* +
+ *Status* | *AUT* | *EQUIP* | *RO*
+
+
+|R-Asserted
+|Time that the person/device asserted the disassociation between the
+patient and device.
+|Time that the device-patient disassociation is asserted to have
+taken place
+|Unusual. Time that the person in this role observed the
+person/device in the AUT role asserting the disassociation.
+
+
+|C-Corrected
+|n/a
+|Corrected time that the device-patient association is asserted to
+have ended
+|Time that the person in this role issued the correction.
+
+|D-Deleted
+|n/a
+|n/a
+|n/a
+
+|F-Validated
+|n/a
+|Time that the device-patient association is confirmed to have ended.
+If null, most recently asserted/corrected time has been confirmed.
+|Time that the person in this role validated the disassociation.
+
+|W-Wrong
+|n/a
+|n/a
+|n/a
 
 |===
 
-|===
 [.text-left]
 [underline]#Proposed Table:#
 
-**Table A.1.2.6-4: PRT-12 Interpretation**+++<table style="width:100%;">++++++<colgroup>++++++<col style="width: 20%">++++++</col>+++
-+++<col style="width: 26%">++++++</col>+++
-+++<col style="width: 26%">++++++</col>+++
-+++<col style="width: 26%">++++++</col>++++++</colgroup>+++
-+++<thead>++++++<tr class="header">++++++<th>++++++<p>++++++<strong>+++Participation →+++</strong>++++++</p>+++
-+++<p>++++++<strong>+++↓Status+++</strong>++++++</p>++++++</th>+++
-+++<th>++++++<strong>+++AUT+++</strong>++++++</th>+++
-+++<th>++++++<strong>+++EQUIP+++</strong>++++++</th>+++
-+++<th>++++++<strong>+++RO+++</strong>++++++</th>++++++</tr>++++++</thead>+++
-+++<tbody>++++++<tr class="odd">++++++<td>+++R-Asserted+++</td>+++
-+++<td>+++Time that the person/device asserted the disassociation between the
-patient and device.+++</td>+++
-+++<td>+++Time that the device-patient disassociation is asserted to have
-taken place.+++</td>+++
-+++<td>+++Unusual. Time that the person in this role observed the
-person/device in the AUT role asserting the disassociation.+++</td>++++++</tr>+++
-+++<tr class="even">++++++<td>+++C-Corrected+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++Corrected time that the device-patient association is asserted to
-have ended.+++</td>+++
-+++<td>+++Time that the person in this role issued the correction.+++</td>++++++</tr>+++
-+++<tr class="even">++++++<td>+++F-Validated+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++Time that the device-patient association is confirmed to have ended.
-If null, most recently asserted/corrected time has been confirmed.+++</td>+++
-+++<td>+++Time that the person in this role validated the disassociation.+++</td>++++++</tr>+++
-+++<tr class="odd">++++++<td>+++W-Wrong+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++n/a+++</td>+++
-+++<td>+++n/a+++</td>++++++</tr>++++++</tbody>++++++</table>+++
+**Table A.1.2.6-4: PRT-12 Interpretation**
+|===
+
+| *Participation →* +
+ *Status* | *AUT* | *EQUIP* | *RO*
+
+|R-Asserted
+|Time that the person/device asserted the disassociation between the
+patient and device.
+|Time that the device-patient disassociation is asserted to have
+taken place
+|Unusual. Time that the person in this role observed the
+person/device in the AUT role asserting the disassociation.
+
+
+|C-Corrected
+|n/a
+|Corrected time that the device-patient association is confirmed to
+have ended
+|Time that the person in this role issued the correction.
+
+
+|F-Validated
+|n/a
+|Time that the device-patient association is confirmed to have ended.
+If null, most recently asserted/corrected time has been confirmed.
+|Time that the person in this role validated the disassociation.
+
+|W-Wrong
+|n/a
+|n/a
+|n/a
+
+|===
+
 
 
 

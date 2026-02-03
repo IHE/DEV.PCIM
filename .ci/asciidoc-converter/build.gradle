@@ -27,8 +27,7 @@ asciidoctor {
   }
   outputDir = '../../output'
   outputOptions {
-//    backends = ['html', 'pdf']
-      backends = ['html']
+    backends = ['html', 'pdf']
   }
   asciidoctorj {
     modules {
