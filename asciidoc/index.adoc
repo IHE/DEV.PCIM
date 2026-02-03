@@ -55,14 +55,14 @@ DEV-52
 |xref:cp-dev-018.adoc[DEV-018]
 |DEV-51 +
 DEV-52
-|Draft
+|Submitted
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |OBR-7/8 Timestamp Clarifications
 |xref:cp-dev-019.adoc[DEV-019]
 |DEV-51 +
 DEV-52
-|Draft
+|Submitted
 |Eldon Metz (emetz@innovisionmedical.com)
 
 |FHIR retrospective query support
