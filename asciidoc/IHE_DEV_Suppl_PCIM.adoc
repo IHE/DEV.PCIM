@@ -1938,13 +1938,33 @@ The model is used as the semantic source for HL7 v2, FHIR, and SDC mappings.
 |===
 |Model Element|Cardinality|Definition
 
-|Association Time
+|Event Identifier
 |R
-|Timestamp when the device-patient association starts.
+|Identifier that uniquely identifies the event in the local/community domain.
+
+|Association Unique Instance Identifier
+|R
+|Identifier that uniquely identifies the association instance in the local/community domain. 
+
+|Event Type
+|R
+|Whether the event is an validated or unvalidated assertion, a correction or flagging an existing event as wrong.
+
+|Association/Disassociation State
+|R
+|Whether the event is an association or disassociation.
+
+|Event Time
+|R
+|Time when the event was triggered.
+
+|Association Time
+|C
+|Time when the device-patient association begins. 
 
 |Disassociation Time
 |C
-|Timestamp when the device-patient association ends. Required for disassociation events and optional when unknown at the time of association.
+|Time when the device-patient association ends. 
 
 |Patient Identifier
 |R
@@ -1958,20 +1978,16 @@ The model is used as the semantic source for HL7 v2, FHIR, and SDC mappings.
 |R
 |State indicating whether the association/disassociation assertion is validated at the time of reporting.
 
-|Location at Association
+|Location
 |O
-|Location recorded when the association occurs.
+|Location recorded when the association or disassociation occurs.
 
-|Location at Disassociation
-|O
-|Location recorded when the disassociation occurs.
-
-|Originating Participant
+|Asserter
 |R
-|Participant that initiated the association/disassociation event. May be a person or a system/device.
+|Participant that asserted the association/disassociation event. May be a person or a system/device.
 
-|Responsible Observer
-|O
+|Validator
+|C
 |Participant who verifies the assertion when it was not validated at initial reporting.
 |===
 
