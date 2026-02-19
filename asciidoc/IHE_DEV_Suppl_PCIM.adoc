@@ -71,7 +71,7 @@ The current version of the IHE Devices Domain Technical Framework can be found a
 [chapter]
 = Introduction to This Supplement
 
-This supplement to the IHE Devices Technical Framework adds rationale and implementation details of the Point-of-Care Identity Management Profile to the Framework, providing a means for standards-based exchange between systems of information collected and confirmed at the point-of-care tracking the set of medical devices originating observations about each patient.
+This supplement to the IHE Devices Technical Framework adds rationale and implementation details of the Point-of-Care Identity Management (PCIM) Profile to the Framework. It defines a multi-protocol approach in which equivalent PCIM functionality can be implemented using HL7 v2, FHIR, or SDC transactions for standards-based exchange between systems at the point-of-care.
 
 == Open Issues and Questions
 
@@ -146,22 +146,52 @@ rather, they are appendices to the IHE Technical Frameworks General Introduction
 |===
 
 |===
-|Transaction Name and Number|Definition|Transaction OID
+|Transaction Name and Number|Protocol|Definition|Transaction OID
 
-|Filter Associations 
-(DEV-19)
-|A Device-Patient Association Consumer sends an optional query to a Device-Patient Association Manager with filter criteria. The Device-Patient Association Manager  sets up a real-time subscription with the specified filter criteria applied. 
+|Filter Associations (DEV-19)
+|HL7 v2
+|A Device-Patient Association Consumer sends an optional query to a Device-Patient Association Manager with filter criteria. The Device-Patient Association Manager sets up a real-time subscription with the specified filter criteria applied.
 |1.3.6.1.4.1.19376.1.6.1.19.1
 
-|Communicate Association State
-(DEV-51) 
+|Communicate Association State (DEV-51)
+|HL7 v2
 |A Device-Patient Association Reporter asserts to a Device-Patient Association Manager that a device has been associated or disassociated with a patient and optional location. It may also report updated data for a previously reported assertion.
-|1.3.6.1.4.1.19376.1.6.1.51.1 
+|1.3.6.1.4.1.19376.1.6.1.51.1
 
-|Report Association State
-(DEV-52)  
+|Report Association State (DEV-52)
+|HL7 v2
 |A Device-Patient Association Manager reports to a Device-Patient Association Consumer that a device has been associated or disassociated with a patient with optional location. It may also report an update for an existing association.
 |1.3.6.1.4.1.19376.1.6.1.52.1
+
+|Filter Associations (DEV-19-FHIR TBD)
+|FHIR
+|A Device-Patient Association Consumer sends an optional query to a Device-Patient Association Manager with filter criteria. The Device-Patient Association Manager sets up a real-time subscription with the specified filter criteria applied.
+|TBD
+
+|Communicate Association State (DEV-51-FHIR TBD)
+|FHIR
+|A Device-Patient Association Reporter asserts to a Device-Patient Association Manager that a device has been associated or disassociated with a patient and optional location. It may also report updated data for a previously reported assertion.
+|TBD
+
+|Report Association State (DEV-52-FHIR TBD)
+|FHIR
+|A Device-Patient Association Manager reports to a Device-Patient Association Consumer that a device has been associated or disassociated with a patient with optional location. It may also report an update for an existing association.
+|TBD
+
+|Filter Associations (DEV-19-SDC TBD)
+|SDC
+|A Device-Patient Association Consumer sends an optional query to a Device-Patient Association Manager with filter criteria. The Device-Patient Association Manager sets up a real-time subscription with the specified filter criteria applied.
+|TBD
+
+|Communicate Association State (DEV-51-SDC TBD)
+|SDC
+|A Device-Patient Association Reporter asserts to a Device-Patient Association Manager that a device has been associated or disassociated with a patient and optional location. It may also report updated data for a previously reported assertion.
+|TBD
+
+|Report Association State (DEV-52-SDC TBD)
+|SDC
+|A Device-Patient Association Manager reports to a Device-Patient Association Consumer that a device has been associated or disassociated with a patient with optional location. It may also report an update for an existing association.
+|TBD
 |===
 
 
@@ -246,12 +276,12 @@ None
 
 = 7 Point-of-Care Identity Management (PCIM) Profile
 
-The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7 v2 standard messaging for devices and IT systems at a point-of-care to exchange and synchronize information about the identity of specific devices collecting clinical information about a specific patient, to:
+The Point-of-Care Identity Management (PCIM) Profile is a multi-protocol Transport Profile specifying HL7 v2, FHIR, and SDC transactions for devices and IT systems at a point-of-care to exchange and synchronize information about the identity of specific devices collecting clinical information about a specific patient, to:
 
 - Assist in the reliable association of the collected data to the proper patient record, based on first-hand observation and data entry by a person at the point-of-care, specifically designed to avoid wrong attribution of data from before or after the period of actual measurement on the patient.
 - Assist in maintaining a correct "`census`" of devices that frequently move between patients such as infusion pumps, and mechanical ventilators.
 
-The messaging defined provides for capable devices to originate messages asserting association and disassociation to a particular patient, for human interface software components to afford users the opportunity to originate or confirm association or disassociation assertions, for one or more systems to receive and persist device-patient association information, to distribute reporting messages or receive and respond to queries about such associations.
+The transactions defined provide for capable devices and systems to originate association and disassociation assertions for a particular patient, for human interface software components to afford users the opportunity to originate or confirm such assertions, for one or more systems to receive and persist device-patient association information, and to distribute reporting updates or receive and respond to association queries.
 
 == 7.1 PCIM Actors, Transactions, and Content Modules
 
@@ -274,7 +304,6 @@ Actors which have a required grouping are shown in conjoined boxes (see Section 
           |   Reporter       |           
           +------------------+           
                     |                  
-         DEV-51     |   
       Communicate   |
       Association   |
          State      |
@@ -287,8 +316,7 @@ Actors which have a required grouping are shown in conjoined boxes (see Section 
           |      Manager     |            | in the MEMDMC profile as a MEM     |
           +------------------+            | DMIC actor to obtain configuration |
                  |     ^                  | information.                       |
-      DEV-52     |     |     DEV-19       \------------------------------------/
-      Report     |     |     Filter
+      Report     |     |     Filter       \------------------------------------/
     Association  |     |  Associations
       State      |     |
                  |     |
@@ -306,10 +334,10 @@ Actors which have a required grouping are shown in conjoined boxes (see Section 
 **Figure 7.1-1: PCIM Actor Diagram**
 
 
-Table 7.1-1 lists the transactions for each actor directly involved in the PCIM Profile.
+Table 7.1-1, Table 7.1-2, and Table 7.1-3 list the transactions for each actor directly involved in the PCIM Profile for HL7 v2, FHIR, and SDC respectively.
 To claim compliance with this profile, an actor shall support all required transactions (labeled "`R`") and may support the optional transactions (labeled "`O`").
 
-**Table 7.1-1: PCIM Profile - Actors and Transactions**
+**Table 7.1-1: PCIM Profile - Actors and Transactions (HL7 v2)**
 
 |===
 |Actors|Transactions|Initiator or Responder|Optionality|Reference
@@ -321,7 +349,7 @@ To claim compliance with this profile, an actor shall support all required trans
 |DEV TF-2 3.51
 
 .2+|Device-Patient Association Consumer
-|Consume Association State
+|Report Association State
 |R
 |R
 |DEV TF-2: 3.52
@@ -331,7 +359,7 @@ To claim compliance with this profile, an actor shall support all required trans
 |DEV TF-2: 3.19
 
 .3+|Device-Patient Association Manager
-|Consume Association State
+|Communicate Association State
 |R
 |R
 |DEV TF-2: 3.51
@@ -345,6 +373,84 @@ To claim compliance with this profile, an actor shall support all required trans
 |R
 |O
 |DEV TF-2: 3.19
+
+|===
+
+**Table 7.1-2: PCIM Profile - Actors and Transactions (FHIR)**
+
+|===
+|Actors|Transactions|Initiator or Responder|Optionality|Reference
+
+|Device-Patient Association Reporter
+|Communicate Association State
+|I
+|R
+|DEV TF-2: FHIR transaction section TBD
+
+.2+|Device-Patient Association Consumer
+|Report Association State
+|R
+|R
+|DEV TF-2: FHIR transaction section TBD
+|Filter Associations
+|I
+|O
+|DEV TF-2: FHIR transaction section TBD
+
+.3+|Device-Patient Association Manager
+|Communicate Association State
+|R
+|R
+|DEV TF-2: FHIR transaction section TBD
+
+|Report Association State
+|I
+|R
+|DEV TF-2: FHIR transaction section TBD
+
+|Filter Associations
+|R
+|O
+|DEV TF-2: FHIR transaction section TBD
+
+|===
+
+**Table 7.1-3: PCIM Profile - Actors and Transactions (SDC)**
+
+|===
+|Actors|Transactions|Initiator or Responder|Optionality|Reference
+
+|Device-Patient Association Reporter
+|Communicate Association State
+|I
+|R
+|DEV TF-2: SDC transaction section TBD
+
+.2+|Device-Patient Association Consumer
+|Report Association State
+|R
+|R
+|DEV TF-2: SDC transaction section TBD
+|Filter Associations
+|I
+|O
+|DEV TF-2: SDC transaction section TBD
+
+.3+|Device-Patient Association Manager
+|Communicate Association State
+|R
+|R
+|DEV TF-2: SDC transaction section TBD
+
+|Report Association State
+|I
+|R
+|DEV TF-2: SDC transaction section TBD
+
+|Filter Associations
+|R
+|O
+|DEV TF-2: SDC transaction section TBD
 
 |===
 
@@ -1819,6 +1925,243 @@ OBX|1|CWE|68487^MDC_ATTR_EVT_COND^MDC||198334^MDC_EVT_DISASSOCIATION_PATIENT_DEV
 PRT|1|UC||EQUIP^EQUIP^HL70912|||||3 WEST ICU^3001^1|MON5596^^231A8456B1CB2366^EUI-64||20160726230000
 PRT|2|UC||AUT^AUT^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000
 ....
+
+== A.4 PCIM Association Information Model
+
+This section defines a protocol-agnostic model for device-patient association events.
+The model is used as the semantic source for HL7 v2, FHIR, and SDC mappings.
+
+=== A.4.1 Canonical Model Elements
+
+**Table A.4.1-1: Canonical Model Elements**
+
+|===
+|Model Element|Cardinality|Definition
+
+|Association Time
+|R
+|Timestamp when the device-patient association starts.
+
+|Disassociation Time
+|C
+|Timestamp when the device-patient association ends. Required for disassociation events and optional when unknown at the time of association.
+
+|Patient Identifier
+|R
+|Identifier that uniquely identifies the patient in the local/community domain.
+
+|Device Identifier
+|R
+|Identifier that uniquely identifies the device instance in the local/community domain.
+
+|Validation State
+|R
+|State indicating whether the association/disassociation assertion is validated at the time of reporting.
+
+|Location at Association
+|O
+|Location recorded when the association occurs.
+
+|Location at Disassociation
+|O
+|Location recorded when the disassociation occurs.
+
+|Originating Participant
+|R
+|Participant that initiated the association/disassociation event. May be a person or a system/device.
+
+|Responsible Observer
+|O
+|Participant who verifies the assertion when it was not validated at initial reporting.
+|===
+
+=== A.4.2 HL7 v2 Mapping
+
+**Table A.4.2-1: Canonical Model to HL7 v2 Mapping**
+
+|===
+|Model Element|HL7 v2 Mapping|Notes
+
+|Association Time
+|PRT-11 in the EQUIP participant segment
+|Device association time semantics are represented in PRT-11/PRT-12.
+
+|Disassociation Time
+|PRT-12 in the EQUIP participant segment
+|Device association time semantics are represented in PRT-11/PRT-12.
+
+|Patient Identifier
+|PID-3 (Patient Identifier List)
+|A unique identifier within scope is required.
+
+|Device Identifier
+|PRT-10 in the EQUIP participant segment.
+|The device-as-subject is identified in the EQUIP PRT segment.
+
+|Validation State
+|OBX-11 (Observation Result Status)
+|`F` indicates validated. `R` indicates asserted but not validated. `C` and `W` carry correction/wrong semantics and are richer than a simple boolean state.
+
+|Location at Association
+|PRT-9 in the EQUIP participant segment.
+|PV1-3 may convey ADT  patient assigned location; PRT-9 can convey more up-to-date participant location context.
+
+|Location at Disassociation
+|PV1-3 and/or PRT-9
+|Same structural mapping as association; event meaning depends on message semantics.
+
+|Originating Participant
+|PRT with PRT-4.1 = `AUT`
+|Person identity appears in PRT-5, system/device identity in PRT-10 as applicable. time is conveyed in PRT-11/PRT-12.
+
+|Responsible Observer
+|PRT with PRT-4.1 = `RO`
+|Used when verification is performed after initial assertion; time is conveyed in PRT-11/PRT-12.
+|===
+
+=== A.4.3 FHIR R6 Mapping
+
+The FHIR mapping in this section is based on FHIR R6 CI Build DeviceAssociation content (https://build.fhir.org/deviceassociation.html) and will be profiled further as PCIM FHIR transactions are specified.
+
+**Table A.4.3-1: Canonical Model to FHIR R6 Mapping**
+
+|===
+|Model Element|FHIR R6 Candidate Mapping|Notes / Gaps
+
+|Association Time
+|DeviceAssociation.period.start
+|Direct mapping.
+
+|Disassociation Time
+|DeviceAssociation.period.end
+|Direct mapping when known.
+
+|Patient Identifier
+|DeviceAssociation.subject (Reference(Patient))
+|Identifier carried on Patient.identifier.
+
+|Device Identifier
+|DeviceAssociation.device (Reference(Device))
+|Identifier carried on Device.identifier (e.g., UDI or other unique identifier).
+
+|Validation State
+|No direct base element
+|Gap: DeviceAssociation has `status` and `associationStatus`, but not explicit validation state equivalent to HL7 v2 `OBX-11 F/R`. Profile extension is expected.
+
+|Location at Association
+|No single direct base element
+|Gap: when subject is Patient, there is no dedicated start/end location pair. Candidate approaches include extension(s) or linked context resources.
+
+|Location at Disassociation
+|No single direct base element
+|Gap: same as above.
+
+|Originating Participant
+|DeviceAssociation.relationship (code `operator`) plus DeviceAssociation.focus reference
+|Partial mapping for person/operator use cases. System-originated assertions may require Provenance.agent and/or extension.
+
+|Responsible Observer
+|No direct base element in DeviceAssociation
+|Gap: verification actor and verification timestamp are expected to map through Provenance and/or profile extensions.
+|===
+
+=== A.4.4 SDC XML Mapping
+
+The SDC mapping in this section is based on:
+
+* `ExtensionPoint.xsd`
+* `BICEPS_ParticipantModel.xsd`
+* `BICEPS_MessageModel.xsd`
+
+The key model anchor is `pm:MdsDescriptor/pm:SystemContext`, which declares supported context descriptor types.
+Context state instances are exchanged through `msg:GetContextStatesResponse/msg:ContextState`, `msg:EpisodicContextReport/msg:ReportPart/msg:ContextState`, and related context messages where `ContextState` is typed as `pm:AbstractContextState` and specialized by context type.
+
+**Table A.4.4-1: SDC SystemContext and *Context Types**
+
+|===
+|Context Type|Descriptor in SystemContext|State Type|Key State Content
+
+|Patient
+|`pm:SystemContext/pm:PatientContext`
+|`pm:PatientContextState`
+|`pm:Identification`, `pm:CoreData`
+
+|Location
+|`pm:SystemContext/pm:LocationContext`
+|`pm:LocationContextState`
+|`pm:Identification`, `pm:LocationDetail`
+
+|Operator
+|`pm:SystemContext/pm:OperatorContext`
+|`pm:OperatorContextState`
+|`pm:Identification`, `pm:OperatorDetails`
+
+|Workflow
+|`pm:SystemContext/pm:WorkflowContext`
+|`pm:WorkflowContextState`
+|`pm:Identification`
+
+|Means
+|`pm:SystemContext/pm:MeansContext`
+|`pm:MeansContextState`
+|`pm:Identification`
+
+|Ensemble
+|`pm:SystemContext/pm:EnsembleContext`
+|`pm:EnsembleContextState`
+|`pm:Identification`
+|===
+
+**Table A.4.4-2: Canonical Model to SDC XML Mapping**
+
+|===
+|Model Element|SDC XML Mapping|Notes / Gaps
+
+|Association Time
+|`msg:GetContextStatesResponse/msg:ContextState/@BindingStartTime` (and corresponding `msg:*ContextReport` paths)
+|Direct mapping from `pm:AbstractContextState` binding lifecycle.
+
+|Disassociation Time
+|`msg:GetContextStatesResponse/msg:ContextState/@BindingEndTime` (and corresponding `msg:*ContextReport` paths)
+|Direct mapping from `pm:AbstractContextState` binding lifecycle. `@ContextAssociation='Dis'` indicates disassociated state.
+
+|Patient Identifier
+|`msg:GetContextStatesResponse/msg:ContextState[@xsi:type='pm:PatientContextState']/pm:Identification`
+|Primary mapping for unique patient identity is `pm:Identification` in `pm:PatientContextState`.
+
+|Device Identifier
+|`msg:GetContextStatesResponse/msg:ContextState/@DescriptorHandle` linked to `pm:MdsDescriptor`, then `pm:MdsDescriptor/pm:MetaData/pm:Udi/pm:DeviceIdentifier` and/or `pm:MetaData/pm:SerialNumber`
+|Resolved by handle linkage from context state to descriptor and MDS metadata; profile must define preferred identifier (e.g., UDI vs serial).
+
+|Validation State
+|`msg:GetContextStatesResponse/msg:ContextState/pm:Validator` and `@ContextAssociation`
+|No single base boolean equivalent to HL7 v2 validated/unvalidated. `pm:Validator` captures confirming actors; profile rules are needed for exact semantics.
+
+|Location at Association
+|`msg:GetContextStatesResponse/msg:ContextState[@xsi:type='pm:LocationContextState']/pm:LocationDetail` with `@BindingStartTime`
+|Location detail includes `@PoC`, `@Room`, `@Bed`, `@Facility`, `@Building`, `@Floor`.
+
+|Location at Disassociation
+|`msg:GetContextStatesResponse/msg:ContextState[@xsi:type='pm:LocationContextState']/pm:LocationDetail` with `@BindingEndTime`
+|Same location structure as association; disassociation timing from binding end.
+
+|Originating Participant
+|No direct base element in `pm:AbstractContextState`
+|Gap: nearest candidates are `pm:OperatorContextState` and extension content (`ext:Extension`), but AUT-equivalent originator is not explicit in base schema.
+
+|Responsible Observer
+|`msg:GetContextStatesResponse/msg:ContextState/pm:Validator`
+|Maps well to verifier semantics; participant identity uses `pm:InstanceIdentifier`.
+|===
+
+=== A.4.5 Cross-Protocol Gaps and Profiling Requirements
+
+The following items are expected to be profiled in protocol-specific sections:
+
+* Explicit validation-state semantics harmonized across HL7 v2 `OBX-11`, FHIR, and SDC.
+* A consistent representation of optional location at association and disassociation times.
+* A consistent representation of originating participant (AUT semantics).
+* A consistent representation of responsible observer (RO semantics), including verification time.
 
 == B.7 OBR - Observation Request Segment
 
