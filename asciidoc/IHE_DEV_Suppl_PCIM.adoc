@@ -1928,12 +1928,214 @@ PRT|2|UC||AUT^AUT^HL70912|58796^Ratched^N||||3 WEST ICU^3001^1||20160726230000
 
 == A.4 PCIM Association Information Model
 
-This section defines a protocol-agnostic model for device-patient association events.
-The model is used as the semantic source for HL7 v2, FHIR, and SDC mappings.
+This section defines protocol-agnostic models for device-patient association data.
+The models are used as semantic sources for HL7 v2, FHIR, and SDC mappings.
 
-=== A.4.1 Canonical Model Elements
+=== A.4.1 Association Instance Model
 
-**Table A.4.1-1: Canonical Model Elements**
+The Association Instance model represents the longitudinal, business-level association between one patient and one device.
+It is the enduring record that in aggregate constitutes the source of truth that consumers rely on for the current or historical state of an association relationship, including lifecycle status and begin/end context.
+Multiple event records may reference the same Association Unique Instance Identifier over time.
+
+==== A.4.1.1 Canonical Model Elements
+
+**Table A.4.1-1: Association Instance Canonical Model Elements**
+
+|===
+|Model Element|Cardinality|Definition
+
+|Association Unique Instance Identifier
+|R
+|Identifier that uniquely identifies the association instance in the local/community domain.
+
+|Association Status
+|R
+|Lifecycle status of the association instance. Captures the current state of the association, such as `active`, `inactive`, or `wrong`.
+
+|Association Begin Time
+|R
+|Time when the device-patient association began.
+
+|Association End Time
+|C
+|Time when the device-patient association ended.
+
+|Patient Identifier
+|R
+|Identifier that uniquely identifies the patient in the local/community domain.
+
+|Device Identifier
+|R
+|Identifier that uniquely identifies the device instance in the local/community domain.
+
+|Association Begin Location
+|O
+|Location of the device/patient when the association began.
+
+|Association End Location
+|O
+|Location of the device/patient when the association ended.
+
+|Asserter
+|R
+|Participant that asserted the association. May be a person or a system/device.
+
+|Validator
+|C
+|Participant who validates the association when it was not validated at initial reporting.
+|===
+
+==== A.4.1.2 HL7 v2 Mapping
+
+**Table A.4.1-2: Association Instance Canonical Model to HL7 v2 Mapping**
+
+|===
+|Model Element|HL7 v2 Mapping|Notes
+
+|Association Unique Instance Identifier
+|OBR-3 (originating association) and OBR-29.2 (subsequent updates)
+|OBR-3 identifies the update event; OBR-29.2 links updates back to the originating association instance identifier.
+
+|Association Status
+|Derived from OBX-11 + OBX-5 (`OBX-3 = MDC_ATTR_EVT_COND`)
+|`active` from active association state, `inactive` from disassociation/end state, `wrong` from wrong/error semantics (e.g., `OBX-11 = W`) per profile rules.
+
+|Association Begin Time
+|PRT-11 in EQUIP participant segment
+|Association start semantics are represented in PRT-11/PRT-12.
+
+|Association End Time
+|PRT-12 in EQUIP participant segment
+|Association end semantics are represented in PRT-11/PRT-12.
+
+|Patient Identifier
+|PID-3 (Patient Identifier List)
+|A unique identifier within scope is required.
+
+|Device Identifier
+|PRT-10 in the EQUIP participant segment
+|The device-as-subject is identified in the EQUIP PRT segment.
+
+|Association Begin Location
+|PRT-9 in EQUIP participant segment and/or PV1-3
+|Begin location is interpreted from assertion/association message semantics.
+
+|Association Location at End
+|PRT-9 in EQUIP participant segment and/or PV1-3
+|End location is interpreted from disassociation/end message semantics.
+
+|Asserter
+|PRT with PRT-4.1 = `AUT`
+|Person identity appears in PRT-5, system/device identity in PRT-10.
+
+|Validator
+|PRT with PRT-4.1 = `RO`
+|Used when verification is performed after initial assertion.
+|===
+
+==== A.4.1.3 FHIR R6 Mapping
+
+**Table A.4.1-3: Association Instance Canonical Model to FHIR R6 Mapping**
+
+|===
+|Model Element|FHIR R6 Candidate Mapping|Notes / Gaps
+
+|Association Unique Instance Identifier
+|DeviceAssociation.identifier (association-instance identifier) and/or resource logical id
+|Can be profiled as a specific identifier type for longitudinal correlation.
+
+|Association Status
+|DeviceAssociation.status
+|Direct mapping to status code values including `active`, `inactive`, and `entered-in-error`.
+
+|Association Begin Time
+|DeviceAssociation.period.start
+|Direct mapping.
+
+|Association End Time
+|DeviceAssociation.period.end
+|Direct mapping when known.
+
+|Patient Identifier
+|DeviceAssociation.subject (Reference(Patient))
+|Identifier carried on Patient.identifier.
+
+|Device Identifier
+|DeviceAssociation.device (Reference(Device))
+|Identifier carried on Device.identifier (e.g., UDI or other unique identifier).
+
+|Association Begin Location
+|No single direct base element
+|Candidate approaches include extension(s) and/or DeviceAssociation.context (e.g., Encounter -> location) with start-time semantics constrained by profile.
+
+|Association Location at End
+|No single direct base element
+|Gap: no dedicated end-location element; expected through extension and/or related context resources.
+
+|Asserter
+|No direct base element in DeviceAssociation; candidate Provenance.agent(who)
+|Asserter identity/role is expected to be constrained in profile.
+
+|Validator
+|No direct base element in DeviceAssociation; candidate Provenance.agent with verifier role
+|Verification actor and timestamp are expected to map through Provenance and/or profile extensions.
+|===
+
+==== A.4.1.4 SDC XML Mapping
+
+**Table A.4.1-4: Association Instance Canonical Model to SDC XML Mapping**
+
+|===
+|Model Element|SDC XML Mapping|Notes / Gaps
+
+|Association Unique Instance Identifier
+|`msg:GetContextStatesResponse/msg:ContextState/@Handle` (and corresponding `msg:*ContextReport` paths)
+|`@Handle` is the base candidate for longitudinal instance identity.
+
+|Association Status
+|Derived from `msg:GetContextStatesResponse/msg:ContextState/@ContextAssociation`
+|`active` maps to associated state (`Assoc`), `inactive` maps to disassociated state (`Dis`). `entered-in-error` has no single direct base element and requires profile rules/extension.
+
+|Association Begin Time
+|`msg:GetContextStatesResponse/msg:ContextState/@BindingStartTime` (and corresponding `msg:*ContextReport` paths)
+|Direct mapping from binding lifecycle.
+
+|Association End Time
+|`msg:GetContextStatesResponse/msg:ContextState/@BindingEndTime` (and corresponding `msg:*ContextReport` paths)
+|Direct mapping from binding lifecycle when present.
+
+|Patient Identifier
+|`msg:GetContextStatesResponse/msg:ContextState[@xsi:type='pm:PatientContextState']/pm:Identification`
+|Primary mapping for unique patient identity.
+
+|Device Identifier
+|`msg:GetContextStatesResponse/msg:ContextState/@DescriptorHandle` linked to `pm:MdsDescriptor/pm:MetaData/pm:Udi/pm:DeviceIdentifier` and/or `pm:MetaData/pm:SerialNumber`
+|Profile should define preferred identifier strategy (e.g., UDI vs serial).
+
+|Association Begin Location
+|`msg:GetContextStatesResponse/msg:ContextState[@xsi:type='pm:LocationContextState']/pm:LocationDetail` with `@BindingStartTime`
+|Location detail includes `@PoC`, `@Room`, `@Bed`, `@Facility`, `@Building`, `@Floor`.
+
+|Association Location at End
+|`msg:GetContextStatesResponse/msg:ContextState[@xsi:type='pm:LocationContextState']/pm:LocationDetail` with `@BindingEndTime`
+|Uses same structure as begin location with end-time context.
+
+|Asserter
+|No direct base element in `pm:AbstractContextState`
+|Nearest candidates are `pm:OperatorContextState` and extension content (`ext:Extension`); explicit AUT-equivalent source is not a base element.
+
+|Validator
+|`msg:GetContextStatesResponse/msg:ContextState/pm:Validator`
+|Maps to verifier semantics; participant identity uses `pm:InstanceIdentifier`.
+|===
+
+=== A.4.2 Event Canonical Model Elements
+
+The Event model represents a point-in-time assertion about an association instance, such as begin, end, correction, or entered-in-error scenarios.
+Events are the protocol-transport units exchanged in transactions and are used to create, update, validate, or invalidate an Association Instance record.
+In short: the instance is the longitudinal entity, and events are the time-stamped facts that evolve that entity.
+
+**Table A.4.2-1: Event Canonical Model Elements**
 
 |===
 |Model Element|Cardinality|Definition
@@ -1948,23 +2150,19 @@ The model is used as the semantic source for HL7 v2, FHIR, and SDC mappings.
 
 |Event Type
 |R
-|Whether the event is an validated or unvalidated assertion, a correction or flagging an existing event as wrong.
+|Whether the event is an assertion, a correction or flagging an existing event as wrong.
+
+|Event Recorded Time
+|R
+|Time that the event was recorded in the system.
 
 |Association/Disassociation State
 |R
 |Whether the event is an association or disassociation.
 
-|Event Time
-|R
-|Time when the event was triggered.
-
-|Association Time
+|Association State Time
 |C
-|Time when the device-patient association begins. 
-
-|Disassociation Time
-|C
-|Time when the device-patient association ends. 
+|Time when the device-patient state occurred (e.g., when the device was connected or disconnected to the patient) and depends on the Association/Disassociation State. 
 
 |Patient Identifier
 |R
@@ -1974,29 +2172,49 @@ The model is used as the semantic source for HL7 v2, FHIR, and SDC mappings.
 |R
 |Identifier that uniquely identifies the device instance in the local/community domain.
 
-|Validation State
+|Assertion Validation State
 |R
 |State indicating whether the association/disassociation assertion is validated at the time of reporting.
 
 |Location
 |O
-|Location recorded when the association or disassociation occurs.
+|Location of the device and patient recorded when the event occurs.
 
 |Asserter
 |R
-|Participant that asserted the association/disassociation event. May be a person or a system/device.
+|Participant that asserted the event. May be a person or a system/device.
 
 |Validator
 |C
-|Participant who verifies the assertion when it was not validated at initial reporting.
+|Participant who validates the assertion when it was not validated at initial reporting.
 |===
 
-=== A.4.2 HL7 v2 Mapping
+=== A.4.3 Event Model HL7 v2 Mapping
 
-**Table A.4.2-1: Canonical Model to HL7 v2 Mapping**
+**Table A.4.3-1: Event Canonical Model to HL7 v2 Mapping**
 
 |===
 |Model Element|HL7 v2 Mapping|Notes
+
+|Event Identifier
+|OBR-3
+|The Filler ID (OBR-3) is used to carry the event identifier, which uniquely identifies the event in the local/community domain. The first event in an association lifecycle (e.g., assertion) will generate the event identifier, and subsequent events in the lifecycle (e.g., correction, disassociation) will reference that same event identifier to link them together.
+
+|Association Unique Instance Identifier
+|OBR-3 or OBR-29
+|OBR-3 for the unique instance identifier originating association event and OBR-29 for subsequent updates. 
+
+|Event Type
+|OBX-11 (Observation Result Status)
+|Primary event-type semantics are conveyed by `OBX-11` (`R` asserted/unvalidated, `F` validated/final, `C` correction, `W` wrong).
+
+|Association/Disassociation State
+|OBX-5 in the event-condition OBX (`OBX-3 = MDC_ATTR_EVT_COND`)
+|Association vs disassociation is carried by MDC-coded event value (e.g., `MDC_EVT_ASSOCIATION_PATIENT_DEVICE` vs `MDC_EVT_DISASSOCIATION_PATIENT_DEVICE`).
+
+|Event Time
+|OBR-7 and/or MSH-7
+|`OBR-7` is the primary clinical event time in the association observation; `MSH-7` is message creation time.
 
 |Association Time
 |PRT-11 in the EQUIP participant segment
@@ -2014,35 +2232,51 @@ The model is used as the semantic source for HL7 v2, FHIR, and SDC mappings.
 |PRT-10 in the EQUIP participant segment.
 |The device-as-subject is identified in the EQUIP PRT segment.
 
-|Validation State
+|Assertion Validation State
 |OBX-11 (Observation Result Status)
 |`F` indicates validated. `R` indicates asserted but not validated. `C` and `W` carry correction/wrong semantics and are richer than a simple boolean state.
 
-|Location at Association
-|PRT-9 in the EQUIP participant segment.
-|PV1-3 may convey ADT  patient assigned location; PRT-9 can convey more up-to-date participant location context.
+|Location
+|PRT-9 in the EQUIP participant segment and/or PV1-3
+|PV1-3 may convey ADT patient assigned location; PRT-9 can convey participant location context at the association/disassociation event time.
 
-|Location at Disassociation
-|PV1-3 and/or PRT-9
-|Same structural mapping as association; event meaning depends on message semantics.
-
-|Originating Participant
+|Asserter
 |PRT with PRT-4.1 = `AUT`
 |Person identity appears in PRT-5, system/device identity in PRT-10 as applicable. time is conveyed in PRT-11/PRT-12.
 
-|Responsible Observer
+|Validator
 |PRT with PRT-4.1 = `RO`
 |Used when verification is performed after initial assertion; time is conveyed in PRT-11/PRT-12.
 |===
 
-=== A.4.3 FHIR R6 Mapping
+=== A.4.4 Event Model FHIR R6 Mapping
 
 The FHIR mapping in this section is based on FHIR R6 CI Build DeviceAssociation content (https://build.fhir.org/deviceassociation.html) and will be profiled further as PCIM FHIR transactions are specified.
 
-**Table A.4.3-1: Canonical Model to FHIR R6 Mapping**
+**Table A.4.4-1: Event Canonical Model to FHIR R6 Mapping**
 
 |===
 |Model Element|FHIR R6 Candidate Mapping|Notes / Gaps
+
+|Event Identifier
+|DeviceAssociation.identifier
+|Use a typed identifier slice/profile element for the event identifier.
+
+|Association Unique Instance Identifier
+|DeviceAssociation.identifier (association-instance identifier) and/or resource logical id
+|Can be profiled as a distinct identifier type from event identifier.
+
+|Event Type
+|No direct base element in DeviceAssociation
+|Gap: assertion/correction/wrong semantics are expected via `Provenance.activity` and/or profile extension.
+
+|Association/Disassociation State
+|DeviceAssociation.status and/or DeviceAssociation.associationStatus
+|Primary state is represented by association status. Disassociation is also reflected by a closed `period.end`.
+
+|Event Time
+|No single direct base element; candidate `Provenance.recorded` (or `DeviceAssociation.meta.lastUpdated`)
+|Gap: event-recorded timestamp should be explicitly profiled for interoperability.
 
 |Association Time
 |DeviceAssociation.period.start
@@ -2060,28 +2294,24 @@ The FHIR mapping in this section is based on FHIR R6 CI Build DeviceAssociation 
 |DeviceAssociation.device (Reference(Device))
 |Identifier carried on Device.identifier (e.g., UDI or other unique identifier).
 
-|Validation State
+|Assertion Validation State
 |No direct base element
 |Gap: DeviceAssociation has `status` and `associationStatus`, but not explicit validation state equivalent to HL7 v2 `OBX-11 F/R`. Profile extension is expected.
 
-|Location at Association
+|Location
 |No single direct base element
-|Gap: when subject is Patient, there is no dedicated start/end location pair. Candidate approaches include extension(s) or linked context resources.
+|Gap: no dedicated association/disassociation location pair. Candidate approaches include extension(s) and/or `DeviceAssociation.context` (e.g., Encounter -> location).
 
-|Location at Disassociation
-|No single direct base element
-|Gap: same as above.
+|Asserter
+|No direct base element in DeviceAssociation; candidate `Provenance.agent(who)`
+|Gap: asserter identity/role and timestamp should be constrained via profile.
 
-|Originating Participant
-|DeviceAssociation.relationship (code `operator`) plus DeviceAssociation.focus reference
-|Partial mapping for person/operator use cases. System-originated assertions may require Provenance.agent and/or extension.
-
-|Responsible Observer
-|No direct base element in DeviceAssociation
+|Validator
+|No direct base element in DeviceAssociation; candidate `Provenance.agent` with verifier role
 |Gap: verification actor and verification timestamp are expected to map through Provenance and/or profile extensions.
 |===
 
-=== A.4.4 SDC XML Mapping
+=== A.4.5 Event Model SDC XML Mapping
 
 The SDC mapping in this section is based on:
 
@@ -2092,7 +2322,7 @@ The SDC mapping in this section is based on:
 The key model anchor is `pm:MdsDescriptor/pm:SystemContext`, which declares supported context descriptor types.
 Context state instances are exchanged through `msg:GetContextStatesResponse/msg:ContextState`, `msg:EpisodicContextReport/msg:ReportPart/msg:ContextState`, and related context messages where `ContextState` is typed as `pm:AbstractContextState` and specialized by context type.
 
-**Table A.4.4-1: SDC SystemContext and *Context Types**
+**Table A.4.5-1: SDC SystemContext and *Context Types**
 
 |===
 |Context Type|Descriptor in SystemContext|State Type|Key State Content
@@ -2128,10 +2358,30 @@ Context state instances are exchanged through `msg:GetContextStatesResponse/msg:
 |`pm:Identification`
 |===
 
-**Table A.4.4-2: Canonical Model to SDC XML Mapping**
+**Table A.4.5-2: Event Canonical Model to SDC XML Mapping**
 
 |===
 |Model Element|SDC XML Mapping|Notes / Gaps
+
+|Event Identifier
+|`msg:GetContextStatesResponse/msg:ContextState/@Handle` (and corresponding `msg:*ContextReport` paths)
+|`@Handle` identifies the context state instance and is the best base candidate for event identifier.
+
+|Association Unique Instance Identifier
+|`msg:GetContextStatesResponse/msg:ContextState/@Handle`
+|Same handle is the base candidate to track a context association instance across updates.
+
+|Event Type
+|No single direct base element
+|Gap: correction/wrong semantics are not explicit in base context-state elements and require profile rules and/or extension.
+
+|Association/Disassociation State
+|`msg:GetContextStatesResponse/msg:ContextState/@ContextAssociation`
+|Direct mapping (`Assoc`/`Dis`; additional SDC values may appear per base model).
+
+|Event Time
+|No single direct base element; candidate message/report timestamp where available
+|Gap: base mapping relies on binding lifecycle times and message context; explicit event-recorded timestamp should be profiled.
 
 |Association Time
 |`msg:GetContextStatesResponse/msg:ContextState/@BindingStartTime` (and corresponding `msg:*ContextReport` paths)
@@ -2149,35 +2399,31 @@ Context state instances are exchanged through `msg:GetContextStatesResponse/msg:
 |`msg:GetContextStatesResponse/msg:ContextState/@DescriptorHandle` linked to `pm:MdsDescriptor`, then `pm:MdsDescriptor/pm:MetaData/pm:Udi/pm:DeviceIdentifier` and/or `pm:MetaData/pm:SerialNumber`
 |Resolved by handle linkage from context state to descriptor and MDS metadata; profile must define preferred identifier (e.g., UDI vs serial).
 
-|Validation State
+|Assertion Validation State
 |`msg:GetContextStatesResponse/msg:ContextState/pm:Validator` and `@ContextAssociation`
 |No single base boolean equivalent to HL7 v2 validated/unvalidated. `pm:Validator` captures confirming actors; profile rules are needed for exact semantics.
 
-|Location at Association
-|`msg:GetContextStatesResponse/msg:ContextState[@xsi:type='pm:LocationContextState']/pm:LocationDetail` with `@BindingStartTime`
+|Location
+|`msg:GetContextStatesResponse/msg:ContextState[@xsi:type='pm:LocationContextState']/pm:LocationDetail` with binding time context (`@BindingStartTime`/`@BindingEndTime`)
 |Location detail includes `@PoC`, `@Room`, `@Bed`, `@Facility`, `@Building`, `@Floor`.
 
-|Location at Disassociation
-|`msg:GetContextStatesResponse/msg:ContextState[@xsi:type='pm:LocationContextState']/pm:LocationDetail` with `@BindingEndTime`
-|Same location structure as association; disassociation timing from binding end.
-
-|Originating Participant
+|Asserter
 |No direct base element in `pm:AbstractContextState`
 |Gap: nearest candidates are `pm:OperatorContextState` and extension content (`ext:Extension`), but AUT-equivalent originator is not explicit in base schema.
 
-|Responsible Observer
+|Validator
 |`msg:GetContextStatesResponse/msg:ContextState/pm:Validator`
 |Maps well to verifier semantics; participant identity uses `pm:InstanceIdentifier`.
 |===
 
-=== A.4.5 Cross-Protocol Gaps and Profiling Requirements
+=== A.4.6 Event Model Cross-Protocol Gaps and Profiling Requirements
 
 The following items are expected to be profiled in protocol-specific sections:
 
 * Explicit validation-state semantics harmonized across HL7 v2 `OBX-11`, FHIR, and SDC.
 * A consistent representation of optional location at association and disassociation times.
-* A consistent representation of originating participant (AUT semantics).
-* A consistent representation of responsible observer (RO semantics), including verification time.
+* A consistent representation of asserter (AUT semantics).
+* A consistent representation of validator (RO semantics), including verification time.
 
 == B.7 OBR - Observation Request Segment
 
