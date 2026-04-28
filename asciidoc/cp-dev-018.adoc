@@ -14,10 +14,10 @@
 |CP-DEV-018
 
 |Change Proposal Status:
-|Submitted
+|Approved
 
 |Date of last update:
-|2026-01-22
+|2026-04-28
 
 |Person(s) Assigned:
 |Eldon Metz, Jacob Braschler
