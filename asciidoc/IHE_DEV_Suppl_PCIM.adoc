@@ -1,4 +1,6 @@
 = Integrating the Healthcare Enterprise
+:!version-label:
+:revnumber: 
 :doctype: book
 :imagesdir: images 
 :toc:
@@ -15,7 +17,6 @@
 :docinfo: shared
 :source-highlighter: highlight.js
 :highlightjsdir: js/highlight
-[subs=attributes]
 
 ++++
 
