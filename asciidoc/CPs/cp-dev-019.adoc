@@ -14,10 +14,10 @@
 |CP-DEV-019
 
 |Change Proposal Status:
-|Approved
+|Submitted
 
 |Date of last update:
-|2026-04-28
+|2026-01-22
 
 |Person Assigned:
 |Eldon Metz
