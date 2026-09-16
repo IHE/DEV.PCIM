@@ -36,3 +36,50 @@ asciidoctor {
     }
 }
 }
+
+tasks.register('pcimRequirementsJson', Exec) {
+  group = 'documentation'
+  description = 'Extract PCIM semantic requirement blocks to JSON.'
+  workingDir file('../..')
+  commandLine 'python3',
+      '.ci/asciidoc-converter/scripts/extract_pcim_requirements.py',
+      '--source', 'asciidoc/IHE_DEV_Suppl_PCIM.adoc',
+      '--output', 'output/referenced-artifacts/pcim-requirements.json',
+      '--trace-output', 'output/referenced-artifacts/pcim-requirement-trace.json'
+
+  inputs.file file('../../asciidoc/IHE_DEV_Suppl_PCIM.adoc')
+  inputs.file file('scripts/extract_pcim_requirements.py')
+  outputs.file file('../../output/referenced-artifacts/pcim-requirements.json')
+  outputs.file file('../../output/referenced-artifacts/pcim-requirement-trace.json')
+}
+
+tasks.register('pcimRequirementsCheck', Exec) {
+  group = 'verification'
+  description = 'Validate PCIM semantic requirement identifiers and required metadata.'
+  workingDir file('../..')
+  commandLine 'python3',
+      '.ci/asciidoc-converter/scripts/extract_pcim_requirements.py',
+      '--source', 'asciidoc/IHE_DEV_Suppl_PCIM.adoc',
+      '--check-only'
+
+  inputs.file file('../../asciidoc/IHE_DEV_Suppl_PCIM.adoc')
+  inputs.file file('scripts/extract_pcim_requirements.py')
+}
+
+tasks.register('pcimRequirementsFixture', Exec) {
+  group = 'documentation'
+  description = 'Generate a stable review fixture for PCIM requirements JSON.'
+  workingDir file('../..')
+  commandLine 'python3',
+      '.ci/asciidoc-converter/scripts/extract_pcim_requirements.py',
+      '--source', 'asciidoc/IHE_DEV_Suppl_PCIM.adoc',
+      '--output', '.ci/asciidoc-converter/fixtures/pcim-requirements.fixture.json',
+      '--omit-commit'
+
+  inputs.file file('../../asciidoc/IHE_DEV_Suppl_PCIM.adoc')
+  inputs.file file('scripts/extract_pcim_requirements.py')
+  outputs.file file('fixtures/pcim-requirements.fixture.json')
+}
+
+asciidoctor.finalizedBy tasks.named('pcimRequirementsJson')
+check.dependsOn tasks.named('pcimRequirementsCheck')

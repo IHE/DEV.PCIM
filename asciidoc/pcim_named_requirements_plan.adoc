@@ -1,0 +1,497 @@
+= PCIM Named Requirements Plan
+
+== Purpose
+
+This plan describes how to add named, traceable requirements to the PCIM
+AsciiDoc source without adding implementation, product, container, reference UI,
+or regulatory evidence artifacts to this repository.
+
+The PCIM repository remains the source for:
+
+* requirement identifiers and requirement text;
+* metadata needed to extract requirements from AsciiDoc;
+* references from requirements to PCIM actors, transactions, options, use cases,
+  and message constraints;
+* a generated requirements artifact that other tools can consume.
+
+Downstream verification, implementation, deployment, and regulatory evidence
+repositories should consume the exported PCIM requirements artifact. They should
+not write implementation-specific artifacts back to this repository.
+
+== Inputs Reviewed
+
+* `asciidoc/IHE_DEV_Suppl_PCIM.adoc`
+* `PCIM Connectathon Tests 2026.xlsx`
+* IHE DEV.SDPi semantic AsciiDoc approach:
+  https://github.com/IHE/DEV.SDPi/blob/master/articles/sdpi-article-ihe-tf-asciidoc-cookbook.adoc
+* Published SDPi requirements model:
+  https://profiles.ihe.net/DEV/SDPi/index.html
+* Requirements Interchange Format, ReqIF:
+  https://www.omg.org/reqif/
+* OSLC Requirements Management:
+  https://www.oasis-open.org/standard/oslc-requirements-management-version-2-1-project-specification-02/
+
+The spreadsheet is treated as draft test-planning input. Its README states that
+Gazelle is the authoritative source for current tests, so the workbook should
+not be treated as the canonical source of PCIM requirements.
+
+== Initial Inventory
+
+At the start of this branch, the PCIM supplement had no semantic requirement
+blocks.
+
+Initial keyword scan of `IHE_DEV_Suppl_PCIM.adoc`:
+
+|===
+|Keyword |Occurrences
+
+|shall
+|41
+
+|must
+|30
+
+|should
+|37
+
+|may
+|65
+
+|existing semantic requirement blocks
+|0
+|===
+
+The keyword counts are not the final requirement count. Some occurrences are
+editorial, explanatory, duplicate, or part of table headings. The first pass
+should convert implementation-facing normative statements into explicit
+requirements and leave explanatory text as notes.
+
+== Requirement Count To Add
+
+Initial plan: add 78 named PCIM requirement blocks.
+
+Initial implementation batch: 33 named PCIM requirement blocks have been added
+to `IHE_DEV_Suppl_PCIM.adoc` across the profile-level, DEV-51, DEV-52, DEV-19,
+and shared HL7 message-constraint ranges.
+
+|===
+|Requirement area |Estimated named requirements
+
+|Profile, actor, transaction, and option conformance
+|6
+
+|DEV-51 Communicate Association State
+|16
+
+|DEV-52 Report Association State
+|11
+
+|DEV-19 Filter Associations
+|14
+
+|Shared HL7 message structure and segment constraints
+|31
+
+|Total
+|78
+|===
+
+This number should be verified during authoring by reviewing each candidate
+requirement for atomicity. If one statement contains multiple independently
+testable obligations, split it. If two statements express the same obligation in
+different sections, keep one normative requirement and cross-reference it from
+the other location.
+
+=== Reconciled Count For First Pull Request
+
+The first pull request should add the 33 named requirements already marked in
+the PCIM supplement and should not attempt to add every item from the initial
+78-requirement estimate. The 78-item estimate remains useful as a discovery
+ceiling, but it includes repeated workbook checks, overlapping actor and
+transaction descriptions, and explanatory `should` or `may` statements that are
+not all independently testable PCIM requirements.
+
+Reconciled planning count:
+
+|===
+|Requirement area |Initial estimate |Named in first PR |Working target after duplicate review |Additional candidates after first PR
+
+|Profile, actor, transaction, and option conformance
+|6
+|7
+|7
+|0
+
+|DEV-51 Communicate Association State
+|16
+|7
+|13
+|6
+
+|DEV-52 Report Association State
+|11
+|6
+|9
+|3
+
+|DEV-19 Filter Associations
+|14
+|6
+|12
+|6
+
+|Shared HL7 message structure and segment constraints
+|31
+|7
+|23
+|16
+
+|Total
+|78
+|33
+|64
+|31
+|===
+
+The working target of 64 unique requirements should be treated as an authoring
+backlog estimate, not as a complete normative inventory. The additional 31
+candidates should be added in later passes only after review by the PCIM working
+group.
+
+=== Duplicate And Overlap Reconciliation
+
+The active connectathon workbook scenarios repeat the same protocol behaviors
+across different participant combinations. Those repetitions should map to the
+same PCIM requirement identifiers and separate test assertions, not to duplicate
+specification requirements.
+
+Current overlap decisions:
+
+|===
+|Overlap family |Disposition
+
+|Actor narrative vs. transaction role table
+|Keep actor-level requirements only for conformance claims or actor
+responsibilities. Add transaction-level requirements only when the transaction
+adds a distinct, independently testable behavior.
+
+|Reporter validation status
+|Keep the actor-level obligation to distinguish validated and unvalidated
+assertions and keep the DEV-51 message-level obligation for the concrete
+observation status encoding.
+
+|Manager HMI
+|Keep the profile-level HMI obligation for validation and conflict resolution.
+Keep the DEV-51 HMI obligation only as the transaction-specific validation
+workflow requirement.
+
+|DEV-52 publication behavior
+|Keep separate requirements for validated event notification, initial current
+state delivery, matching filter delivery, correction publication, and
+wrong-association publication because each has a different trigger or
+acceptance condition.
+
+|OBR-3 and OBR-29 rules repeated in transaction text and appendix text
+|Use shared HL7 message-constraint requirements for common data rules. Add
+transaction-specific requirements only when sender responsibility or update
+semantics differ.
+
+|Workbook scenario repetitions
+|Map repeated checks in `PCIM_03`, `PCIM_04`, `PCIM_06`, and `PCIM_07` to the
+same requirement identifiers and distinguish them by test scenario and assertion
+identifier in downstream result artifacts.
+
+|Obsolete or observational workbook tabs
+|Do not create PCIM requirement identifiers from obsolete or observational tabs
+unless the working group brings those scenarios back into scope.
+
+|Explanatory `should` and `may` statements
+|Do not create named requirements for implementation guidance unless the
+statement is independently testable or tied to a declared optional capability.
+|===
+
+Before the first pull request, the review fixture should be checked for duplicate
+identifiers and for obviously equivalent normative text. After this review, the
+first pull request scope is 33 named PCIM requirements.
+
+== Identifier Scheme
+
+Use a PCIM-specific requirement identifier that is unique, stable, readable, and
+compatible with the SDPi-style requirement-number pattern:
+
+----
+PCIMR0001
+----
+
+Proposed ranges:
+
+|===
+|Range |Use
+
+|PCIMR0001-PCIMR0099
+|Profile-level actor, transaction, option, and grouping requirements
+
+|PCIMR0100-PCIMR0199
+|DEV-51 requirements
+
+|PCIMR0200-PCIMR0299
+|DEV-52 requirements
+
+|PCIMR0300-PCIMR0399
+|DEV-19 requirements
+
+|PCIMR0400-PCIMR0599
+|Shared HL7 message structure and segment constraints
+
+|PCIMR9000-PCIMR9999
+|Deprecated or reserved identifiers
+|===
+
+Identifier rules:
+
+* never renumber a published requirement;
+* never reuse a deprecated identifier;
+* preserve old identifiers in a deprecated-requirements artifact;
+* use lower-case anchors for AsciiDoc navigation, for example `#pcimr0100`;
+* use semantic cross-references instead of plain-text requirement numbers.
+
+== AsciiDoc Markup Model
+
+Follow the SDPi pattern, generalized for PCIM. A requirement block should have:
+
+* a visible title containing the requirement identifier;
+* a stable anchor;
+* requirement level: `shall`, `should`, or `may`;
+* requirement type;
+* actor, transaction, option, use case, and message-field metadata when
+  applicable;
+* one normative statement;
+* optional notes, rationale, and verification guidance.
+
+Example:
+
+----
+.PCIMR0100
+[pcim_requirement#pcimr0100,pcim_req_level=shall,pcim_req_type=tech_feature,pcim_actor=dpar,pcim_transaction=DEV-51,pcim_message=ORU_R01,pcim_segment="PID,PRT,OBR-7,OBR-8",pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient",pcim_verification_method=test,pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Reporter shall include the patient identifier,
+device identifier, and association event timestamp in each association or
+disassociation assertion.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting a DEV-51 ORU_R01 message and confirming PID, PRT, OBR-7,
+and OBR-8 content according to the PCIM message constraints.
+====
+****
+----
+
+If the existing SDPi converter is reused before it is generalized, a temporary
+compatibility layer may map `pcim_requirement` and `pcim_req_*` attributes to
+the SDPi internal model. The PCIM source should retain PCIM names.
+
+== Export Format
+
+The primary generated artifact should be JSON because it is easy for
+connectathon tooling, dashboards, and CI systems to consume.
+
+Proposed generated files:
+
+* `pcim-requirements.json`
+* `pcim-requirements-deprecated.json`
+* `pcim-use-cases.json`
+* `pcim-transactions.json`
+* `pcim-requirement-trace.json`
+
+For requirements-management tool exchange, also support ReqIF XML export.
+ReqIF is the best fit for open requirements interchange between independent
+requirements-management tools. OSLC RM is a good fit later if a service API is
+needed for live linked-data integration.
+
+Minimum JSON fields:
+
+----
+{
+  "id": "PCIMR0100",
+  "anchor": "pcimr0100",
+  "level": "shall",
+  "type": "tech_feature",
+  "status": "active",
+  "source": {
+    "repository": "IHE/DEV.PCIM",
+    "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+    "line": 358,
+    "commit": "<git-sha>",
+    "version": "<pcim-version>"
+  },
+  "scope": {
+    "profile": "PCIM",
+    "actors": ["dpar"],
+    "transactions": ["DEV-51"],
+    "options": []
+  },
+  "normativeText": "...",
+  "verification": {
+    "method": "test",
+    "type": "system",
+    "evidenceExpected": ["message-capture", "validator-result"]
+  }
+}
+----
+
+== Connectathon Validation Contract
+
+The PCIM repository should publish requirements and trace metadata. A third-party
+connectathon validation tool should consume that metadata and produce verdicts.
+
+Recommended result contract:
+
+----
+{
+  "requirementId": "PCIMR0100",
+  "requirementVersion": "<pcim-version-or-commit>",
+  "testScenarioId": "PCIM_01",
+  "testStepId": "210",
+  "implementationUnderTest": "<vendor-or-system-id>",
+  "verdict": "pass",
+  "evidence": [
+    {
+      "type": "message-capture",
+      "uri": "<artifact-uri>",
+      "hash": "<sha256>"
+    },
+    {
+      "type": "validator-output",
+      "uri": "<artifact-uri>",
+      "hash": "<sha256>"
+    }
+  ],
+  "timestamp": "<iso-8601>"
+}
+----
+
+A green checkmark can be displayed for a requirement when all mandatory
+assertions mapped to that requirement have a `pass` verdict for the declared
+actor, option, and transaction scope. A failed or missing mandatory assertion
+should produce a red failure or gray not-run status. Recommended (`should`) and
+permitted (`may`) requirements should be reported separately so optional
+capability claims are visible but do not fail an implementation that does not
+claim the option.
+
+The result format can also be emitted as JUnit XML or Cucumber Messages for CI
+and dashboard compatibility, but the source trace should remain the PCIM
+requirement identifier.
+
+== Spreadsheet Test Scenario Summary
+
+Active workbook scenarios:
+
+|===
+|Scenario |Title |Step rows |Main transactions
+
+|PCIM_01
+|PCIM_AssociateDisassociateDevice
+|22
+|DEV-51
+
+|PCIM_02
+|PCIM_ConsumeAssociations
+|18
+|DEV-19, DEV-52
+
+|PCIM_03
+|PCIM_DPAR_DPAC_Single
+|22
+|DEV-19, DEV-51, DEV-52
+
+|PCIM_04
+|PCIM_Multiple_DPAR_DPAC
+|48
+|DEV-19, DEV-51, DEV-52
+
+|PCIM_05
+|PCIM_DPAR_DPAM_Communication_Link_Fails
+|9
+|DEV-51
+
+|PCIM_06
+|PCIM_Association_Correction
+|32
+|DEV-19, DEV-51, DEV-52
+
+|PCIM_07
+|PCIM_Wrong_Association
+|22
+|DEV-19, DEV-51, DEV-52
+
+|Total
+|
+|173
+|
+|===
+
+The active tabs contain 45 validation/pass-review steps and approximately 235
+candidate assertion checks. Many checks are repeated across scenarios; they
+should map to a smaller number of reusable PCIM requirements and test
+assertions.
+
+Obsolete or observational workbook tabs should not drive initial PCIM
+requirements unless the working group decides to bring those scenarios back into
+scope.
+
+== IEC 62304-Oriented V&V Metadata
+
+The PCIM repository should not store product-specific IEC 62304 evidence, but it
+can provide metadata that lets other repositories create IEC 62304-compatible
+traceability.
+
+Recommended requirement metadata:
+
+* `verification.method`: `inspection`, `analysis`, `test`, or `demonstration`;
+* `verification.level`: `unit`, `integration`, `system`, or `connectathon`;
+* `evidenceExpected`: expected evidence classes, such as message captures,
+  validator outputs, logs, screenshots, risk-control review, or manual monitor
+  attestation;
+* `riskRelevance`: `safety`, `effectiveness`, `security`, or `interoperability`;
+* `optionScope`: empty for mandatory profile behavior, or the PCIM option name
+  when optional behavior is claimed.
+
+This gives downstream V&V tools stable hooks for IEC 62304-style traceability:
+requirement -> design element -> test case -> test run -> evidence -> verdict.
+
+== Implementation Plan For This Branch
+
+1. Add semantic markup conventions to the PCIM AsciiDoc source or a companion
+   authoring note.
+2. Add the first requirement blocks in stable numeric ranges.
+3. Add a lightweight extraction script or adapt the SDPi converter pattern to
+   emit PCIM JSON.
+4. Add a uniqueness check for requirement identifiers.
+5. Add a generated JSON fixture for review, but do not commit generated build
+   output if the repository convention treats it as disposable.
+6. Add traceability fields for actor, transaction, option, use case, message
+   segment, and verification method.
+7. Review the 78-requirement estimate and reconcile duplicates before the
+   first pull request.
+
+Status:
+
+* Steps 1 and 2 are started in `IHE_DEV_Suppl_PCIM.adoc`.
+* Step 3 is implemented in `.ci/asciidoc-converter` with a
+  `pcimRequirementsJson` Gradle task.
+* The task emits `output/referenced-artifacts/pcim-requirements.json`.
+* The task emits `output/referenced-artifacts/pcim-requirement-trace.json`.
+* Step 4 is implemented with a `pcimRequirementsCheck` Gradle task.
+* The standard Gradle `check` lifecycle depends on `pcimRequirementsCheck`.
+* Step 5 is implemented with a `pcimRequirementsFixture` Gradle task.
+* The fixture is `.ci/asciidoc-converter/fixtures/pcim-requirements.fixture.json`.
+* Generated build output remains under ignored `output/referenced-artifacts`.
+* Step 6 is implemented for the initial 33 requirements with actor,
+  transaction, option, use case, message, segment, verification method, and
+  verification level metadata in the AsciiDoc source and generated JSON.
+* Step 7 is implemented by reconciling the initial 78-requirement estimate to a
+  first pull request scope of 33 named requirements and a working backlog target
+  of 64 unique requirements after duplicate review.
