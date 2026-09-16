@@ -1,0 +1,1869 @@
+{
+  "$schema": "https://profiles.ihe.net/DEV/PCIM/schemas/pcim-requirements.schema.json",
+  "artifactType": "pcim-requirements",
+  "profile": "PCIM",
+  "source": {
+    "repository": "IHE/DEV.PCIM",
+    "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+    "commit": null,
+    "revision": "",
+    "publicationDate": "May 7, 2026"
+  },
+  "count": 33,
+  "requirements": [
+    {
+      "id": "PCIMR0001",
+      "anchor": "pcimr0001",
+      "level": "shall",
+      "type": "ihe_profile",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 312,
+        "sectionPath": [
+          "7 Point-of-Care Identity Management (PCIM) Profile",
+          "7.1 PCIM Actors, Transactions, and Content Modules"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar",
+          "dpam",
+          "dpac"
+        ],
+        "transactions": [],
+        "options": [],
+        "useCases": [],
+        "messages": [],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "ihe_profile",
+        "pcim_actor": "dpar,dpam,dpac",
+        "pcim_verification_method": "inspection",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "To claim compliance with the PCIM Profile, an actor shall support every\ntransaction listed as required for that actor in Table 7.1-1.",
+      "verification": {
+        "method": "inspection",
+        "level": "connectathon",
+        "text": "Verify by inspecting the implementation conformance claim for the PCIM actor and\nconfirming support for all required transactions in Table 7.1-1."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0002",
+      "anchor": "pcimr0002",
+      "level": "shall",
+      "type": "ihe_profile",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 376,
+        "sectionPath": [
+          "7 Point-of-Care Identity Management (PCIM) Profile",
+          "7.1 PCIM Actors, Transactions, and Content Modules",
+          "7.1.1 Actor Descriptions and Actor Profile Requirements",
+          "7.1.1.1 Device-Patient Association Reporter"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar"
+        ],
+        "transactions": [
+          "DEV-51"
+        ],
+        "options": [],
+        "useCases": [
+          "uc1_associate_device_patient",
+          "uc2_disassociate_device_patient"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "PID",
+          "PRT",
+          "OBR-7",
+          "OBR-8"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "ihe_profile",
+        "pcim_actor": "dpar",
+        "pcim_transaction": "DEV-51",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "PID,PRT,OBR-7,OBR-8",
+        "pcim_use_case": "uc1_associate_device_patient,uc2_disassociate_device_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The Device-Patient Association Reporter shall report the patient identifier,\ndevice identifier, and beginning or ending timestamp for each association or\ndisassociation event that it asserts.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting DEV-51 messages originated by the Device-Patient Association\nReporter and confirming that the patient, device, and timestamp content is present."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0003",
+      "anchor": "pcimr0003",
+      "level": "shall",
+      "type": "ihe_profile",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 393,
+        "sectionPath": [
+          "7 Point-of-Care Identity Management (PCIM) Profile",
+          "7.1 PCIM Actors, Transactions, and Content Modules",
+          "7.1.1 Actor Descriptions and Actor Profile Requirements",
+          "7.1.1.1 Device-Patient Association Reporter"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar"
+        ],
+        "transactions": [
+          "DEV-51"
+        ],
+        "options": [],
+        "useCases": [
+          "uc1_associate_device_patient",
+          "uc2_disassociate_device_patient"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "OBX-11"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "ihe_profile",
+        "pcim_actor": "dpar",
+        "pcim_transaction": "DEV-51",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "OBX-11",
+        "pcim_use_case": "uc1_associate_device_patient,uc2_disassociate_device_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The Device-Patient Association Reporter shall mark validated reports as final\nand shall mark non-validated reports as requiring validation.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting OBX-11 in DEV-51 messages originated by the Device-Patient\nAssociation Reporter."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0004",
+      "anchor": "pcimr0004",
+      "level": "shall",
+      "type": "ihe_profile",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 413,
+        "sectionPath": [
+          "7 Point-of-Care Identity Management (PCIM) Profile",
+          "7.1 PCIM Actors, Transactions, and Content Modules",
+          "7.1.1 Actor Descriptions and Actor Profile Requirements",
+          "7.1.1.2 Device-Patient Association Manager"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [
+          "uc1_associate_device_patient",
+          "uc2_disassociate_device_patient",
+          "uc4_correct_verified_association",
+          "uc5_wrong_association"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "ihe_profile",
+        "pcim_actor": "dpam",
+        "pcim_transaction": "DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_use_case": "uc1_associate_device_patient,uc2_disassociate_device_patient,uc4_correct_verified_association,uc5_wrong_association",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The Device-Patient Association Manager shall communicate validated\ndevice-patient associations as event notifications.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting DEV-52 messages originated by the Device-Patient Association\nManager after association validation."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0005",
+      "anchor": "pcimr0005",
+      "level": "shall",
+      "type": "ihe_profile",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 429,
+        "sectionPath": [
+          "7 Point-of-Care Identity Management (PCIM) Profile",
+          "7.1 PCIM Actors, Transactions, and Content Modules",
+          "7.1.1 Actor Descriptions and Actor Profile Requirements",
+          "7.1.1.2 Device-Patient Association Manager"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpam"
+        ],
+        "transactions": [],
+        "options": [],
+        "useCases": [
+          "uc1_associate_device_patient",
+          "uc2_disassociate_device_patient",
+          "uc4_correct_verified_association",
+          "uc5_wrong_association"
+        ],
+        "messages": [],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "ihe_profile",
+        "pcim_actor": "dpam",
+        "pcim_use_case": "uc1_associate_device_patient,uc2_disassociate_device_patient,uc4_correct_verified_association,uc5_wrong_association",
+        "pcim_verification_method": "demonstration",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The Device-Patient Association Manager shall provide an HMI for validating\nassociation assertions that require validation and for resolving conflicts.",
+      "verification": {
+        "method": "demonstration",
+        "level": "connectathon",
+        "text": "Verify by inspection or demonstration of the Device-Patient Association Manager\nvalidation and conflict-resolution HMI."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0006",
+      "anchor": "pcimr0006",
+      "level": "shall",
+      "type": "ihe_profile",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 486,
+        "sectionPath": [
+          "7 Point-of-Care Identity Management (PCIM) Profile",
+          "7.2 PCIM Actor Options",
+          "7.2.1 Subscription and Filtering Option"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpac"
+        ],
+        "transactions": [
+          "DEV-19"
+        ],
+        "options": [
+          "subscription_filtering"
+        ],
+        "useCases": [
+          "uc3_filter_devices_for_patient"
+        ],
+        "messages": [
+          "QSB_Q16"
+        ],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "ihe_profile",
+        "pcim_actor": "dpac",
+        "pcim_transaction": "DEV-19",
+        "pcim_option": "subscription_filtering",
+        "pcim_message": "QSB_Q16",
+        "pcim_use_case": "uc3_filter_devices_for_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "A Device-Patient Association Consumer that supports the Subscription and\nFiltering Option shall formulate its filtering request as specified in Section\n3.19.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting DEV-19 messages originated by a Device-Patient Association\nConsumer that claims the Subscription and Filtering Option."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0007",
+      "anchor": "pcimr0007",
+      "level": "may",
+      "type": "ihe_profile",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 503,
+        "sectionPath": [
+          "7 Point-of-Care Identity Management (PCIM) Profile",
+          "7.2 PCIM Actor Options",
+          "7.2.1 Subscription and Filtering Option"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-19"
+        ],
+        "options": [
+          "subscription_filtering"
+        ],
+        "useCases": [
+          "uc3_filter_devices_for_patient"
+        ],
+        "messages": [
+          "QSB_Q16"
+        ],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "may",
+        "pcim_req_type": "ihe_profile",
+        "pcim_actor": "dpam",
+        "pcim_transaction": "DEV-19",
+        "pcim_option": "subscription_filtering",
+        "pcim_message": "QSB_Q16",
+        "pcim_use_case": "uc3_filter_devices_for_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The Device-Patient Association Manager may support the Subscription and\nFiltering Option.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting the implementation conformance claim for the Device-Patient\nAssociation Manager and, when the option is claimed, by executing DEV-19 tests."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0100",
+      "anchor": "pcimr0100",
+      "level": "shall",
+      "type": "tech_feature",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 930,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.51 Communicate Association State [DEV-51]",
+          "3.51.2 Actor Roles"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar"
+        ],
+        "transactions": [
+          "DEV-51"
+        ],
+        "options": [],
+        "useCases": [
+          "uc1_associate_device_patient",
+          "uc2_disassociate_device_patient"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "PRT"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "tech_feature",
+        "pcim_actor": "dpar",
+        "pcim_transaction": "DEV-51",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "PRT",
+        "pcim_use_case": "uc1_associate_device_patient,uc2_disassociate_device_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "When verification occurs at the Device-Patient Association Reporter, the\nReporter shall record the responsible observer.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting a DEV-51 message for the responsible observer information\nwhen the assertion is sent as already verified."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0101",
+      "anchor": "pcimr0101",
+      "level": "shall",
+      "type": "tech_feature",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 946,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.51 Communicate Association State [DEV-51]",
+          "3.51.2 Actor Roles"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar"
+        ],
+        "transactions": [
+          "DEV-51"
+        ],
+        "options": [],
+        "useCases": [
+          "uc1_associate_device_patient",
+          "uc2_disassociate_device_patient"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "OBX-11"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "tech_feature",
+        "pcim_actor": "dpar",
+        "pcim_transaction": "DEV-51",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "OBX-11",
+        "pcim_use_case": "uc1_associate_device_patient,uc2_disassociate_device_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The Device-Patient Association Reporter shall include an observation status\nfield indicating whether the assertion requires validation or is final.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting OBX-11 in DEV-51 messages originated by the Reporter."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0102",
+      "anchor": "pcimr0102",
+      "level": "shall",
+      "type": "tech_feature",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 961,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.51 Communicate Association State [DEV-51]",
+          "3.51.2 Actor Roles"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-51"
+        ],
+        "options": [],
+        "useCases": [
+          "uc1_associate_device_patient",
+          "uc2_disassociate_device_patient",
+          "uc4_correct_verified_association",
+          "uc5_wrong_association"
+        ],
+        "messages": [],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "tech_feature",
+        "pcim_actor": "dpam",
+        "pcim_transaction": "DEV-51",
+        "pcim_use_case": "uc1_associate_device_patient,uc2_disassociate_device_patient,uc4_correct_verified_association,uc5_wrong_association",
+        "pcim_verification_method": "demonstration",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The Device-Patient Association Manager shall provide an HMI to verify\nassociation and disassociation assertions received through DEV-51.",
+      "verification": {
+        "method": "demonstration",
+        "level": "connectathon",
+        "text": "Verify by inspection or demonstration of the Manager HMI for DEV-51 validation\nworkflow."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0103",
+      "anchor": "pcimr0103",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1020,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.51 Communicate Association State [DEV-51]",
+          "3.51.4 Messages",
+          "3.51.4.1 Communicate Association State",
+          "3.51.4.1.2 Message Semantics"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar"
+        ],
+        "transactions": [
+          "DEV-51"
+        ],
+        "options": [],
+        "useCases": [
+          "uc1_associate_device_patient",
+          "uc2_disassociate_device_patient"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "PID-3"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpar",
+        "pcim_transaction": "DEV-51",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "PID-3",
+        "pcim_use_case": "uc1_associate_device_patient,uc2_disassociate_device_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The patient identifier used in a DEV-51 message shall include the identifier\ntype and issuing entity.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting PID-3 in DEV-51 messages originated by the Reporter."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0104",
+      "anchor": "pcimr0104",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1112,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.51 Communicate Association State [DEV-51]",
+          "3.51.4 Messages",
+          "3.51.4.1 Communicate Association State",
+          "3.51.4.1.3 Correction Semantics"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar"
+        ],
+        "transactions": [
+          "DEV-51"
+        ],
+        "options": [],
+        "useCases": [
+          "uc4_correct_verified_association"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "OBR-29.2"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpar",
+        "pcim_transaction": "DEV-51",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "OBR-29.2",
+        "pcim_use_case": "uc4_correct_verified_association",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "DEV-51 correction messages shall reference the association unique instance\nidentifier from the original message in OBR-29.2.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting OBR-29.2 in DEV-51 correction messages and confirming it\nmatches OBR-3 from the original association message."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0105",
+      "anchor": "pcimr0105",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1128,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.51 Communicate Association State [DEV-51]",
+          "3.51.4 Messages",
+          "3.51.4.1 Communicate Association State",
+          "3.51.4.1.3 Correction Semantics"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar"
+        ],
+        "transactions": [
+          "DEV-51"
+        ],
+        "options": [],
+        "useCases": [
+          "uc4_correct_verified_association"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "PRT-10",
+          "OBR-29.2"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpar",
+        "pcim_transaction": "DEV-51",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "PRT-10,OBR-29.2",
+        "pcim_use_case": "uc4_correct_verified_association",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The device identifier and association unique instance identifier shall not be\nchanged in a DEV-51 correction message.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by comparing the device identifier and association unique instance\nidentifier in a DEV-51 correction message with the original association message."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0106",
+      "anchor": "pcimr0106",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1148,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.51 Communicate Association State [DEV-51]",
+          "3.51.4 Messages",
+          "3.51.4.1 Communicate Association State",
+          "3.51.4.1.4 Wrong Semantics"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar"
+        ],
+        "transactions": [
+          "DEV-51"
+        ],
+        "options": [],
+        "useCases": [
+          "uc5_wrong_association"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "OBR-29.2"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpar",
+        "pcim_transaction": "DEV-51",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "OBR-29.2",
+        "pcim_use_case": "uc5_wrong_association",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "DEV-51 messages asserting an existing device-patient association as wrong shall\nreference in OBR-29.2 the association unique instance identifier from OBR-3 of\nthe original association message.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting OBR-29.2 in DEV-51 wrong-association messages and confirming\nit matches OBR-3 from the original association message."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0200",
+      "anchor": "pcimr0200",
+      "level": "shall",
+      "type": "tech_feature",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1197,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.52 Report Association State [DEV-52]",
+          "3.52.2 Actor Roles"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [
+          "uc1_associate_device_patient",
+          "uc2_disassociate_device_patient",
+          "uc3_filter_devices_for_patient"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "tech_feature",
+        "pcim_actor": "dpam",
+        "pcim_transaction": "DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_use_case": "uc1_associate_device_patient,uc2_disassociate_device_patient,uc3_filter_devices_for_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The Device-Patient Association Manager shall send current associations for all\ndevices that the Consumer is configured to receive reports for immediately after\na connection is established.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by establishing a Manager-to-Consumer connection and confirming that\ncurrent matching associations are sent as DEV-52 messages."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0201",
+      "anchor": "pcimr0201",
+      "level": "shall",
+      "type": "tech_feature",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1214,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.52 Report Association State [DEV-52]",
+          "3.52.2 Actor Roles"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpac"
+        ],
+        "transactions": [
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [
+          "uc1_associate_device_patient",
+          "uc2_disassociate_device_patient",
+          "uc4_correct_verified_association",
+          "uc5_wrong_association"
+        ],
+        "messages": [
+          "ACK"
+        ],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "tech_feature",
+        "pcim_actor": "dpac",
+        "pcim_transaction": "DEV-52",
+        "pcim_message": "ACK",
+        "pcim_use_case": "uc1_associate_device_patient,uc2_disassociate_device_patient,uc4_correct_verified_association,uc5_wrong_association",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "When a DEV-52 association report is successfully received, the Device-Patient\nAssociation Consumer shall return a commit-level accept acknowledgement to the\nDevice-Patient Association Manager.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting the acknowledgement returned by the Consumer after receipt\nof a valid DEV-52 message."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0202",
+      "anchor": "pcimr0202",
+      "level": "shall",
+      "type": "tech_feature",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1255,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.52 Report Association State [DEV-52]",
+          "3.52.4 Messages",
+          "3.52.4.1 Report Association State"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [
+          "uc1_associate_device_patient",
+          "uc2_disassociate_device_patient",
+          "uc3_filter_devices_for_patient",
+          "uc4_correct_verified_association",
+          "uc5_wrong_association"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "tech_feature",
+        "pcim_actor": "dpam",
+        "pcim_transaction": "DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_use_case": "uc1_associate_device_patient,uc2_disassociate_device_patient,uc3_filter_devices_for_patient,uc4_correct_verified_association,uc5_wrong_association",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The Device-Patient Association Manager shall send DEV-52 messages to all\nconfigured Device-Patient Association Consumer instances with matching filter\ncriteria.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by configuring one or more Consumers and confirming that each matching\nConsumer receives the applicable DEV-52 message."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0203",
+      "anchor": "pcimr0203",
+      "level": "shall",
+      "type": "tech_feature",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1304,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.52 Report Association State [DEV-52]",
+          "3.52.4 Messages",
+          "3.52.4.1 Report Association State",
+          "3.52.4.1.3 Correction Semantics"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [
+          "uc4_correct_verified_association"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "tech_feature",
+        "pcim_actor": "dpam",
+        "pcim_transaction": "DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_use_case": "uc4_correct_verified_association",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The Device-Patient Association Manager shall send correction reports to\nDevice-Patient Association Consumers when the corrections are validated.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by validating a correction at the Manager and confirming that the\ncorresponding DEV-52 correction report is sent to applicable Consumers."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0204",
+      "anchor": "pcimr0204",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1324,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.52 Report Association State [DEV-52]",
+          "3.52.4 Messages",
+          "3.52.4.1 Report Association State",
+          "3.52.4.1.4 Wrong Semantics"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [
+          "uc5_wrong_association"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "OBR-29.2"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpam",
+        "pcim_transaction": "DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "OBR-29.2",
+        "pcim_use_case": "uc5_wrong_association",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "DEV-52 messages reporting an existing device-patient association as wrong shall\nreference in OBR-29.2 the association unique instance identifier from OBR-3 of\nthe original association message.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting OBR-29.2 in DEV-52 wrong-association messages and confirming\nit matches OBR-3 from the original association message."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0205",
+      "anchor": "pcimr0205",
+      "level": "shall",
+      "type": "risk_mitigation",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1343,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.52 Report Association State [DEV-52]",
+          "3.52.4 Messages",
+          "3.52.4.1 Report Association State",
+          "3.52.4.1.4 Wrong Semantics"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpac"
+        ],
+        "transactions": [
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [
+          "uc5_wrong_association"
+        ],
+        "messages": [],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "risk_mitigation",
+        "pcim_actor": "dpac",
+        "pcim_transaction": "DEV-52",
+        "pcim_use_case": "uc5_wrong_association",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "A Device-Patient Association Consumer that is also a device data reporter actor\nshall stop including the wrong patient identifier in outgoing messages as soon\nas it receives the wrong-association report.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by sending a DEV-52 wrong-association report to the Consumer and\nconfirming subsequent outgoing device data messages no longer include the wrong\npatient identifier."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0300",
+      "anchor": "pcimr0300",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1373,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.19 Filter Associations [DEV-19]",
+          "3.19.1 Scope"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-19"
+        ],
+        "options": [
+          "subscription_filtering"
+        ],
+        "useCases": [
+          "uc3_filter_devices_for_patient"
+        ],
+        "messages": [
+          "ACK"
+        ],
+        "segments": [
+          "MSA-1"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpam",
+        "pcim_transaction": "DEV-19",
+        "pcim_message": "ACK",
+        "pcim_segment": "MSA-1",
+        "pcim_option": "subscription_filtering",
+        "pcim_use_case": "uc3_filter_devices_for_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "When a DEV-19 message is accepted by the Device-Patient Association Manager, the\naccept acknowledgement shall contain the value `CA` in MSA-1.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting MSA-1 in the acknowledgement returned by the Manager for an\naccepted DEV-19 message."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0301",
+      "anchor": "pcimr0301",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1391,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.19 Filter Associations [DEV-19]",
+          "3.19.1 Scope"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-19"
+        ],
+        "options": [
+          "subscription_filtering"
+        ],
+        "useCases": [
+          "uc3_filter_devices_for_patient"
+        ],
+        "messages": [
+          "ACK"
+        ],
+        "segments": [
+          "MSA-1",
+          "ERR-3",
+          "ERR-4"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpam",
+        "pcim_transaction": "DEV-19",
+        "pcim_message": "ACK",
+        "pcim_segment": "MSA-1,ERR-3,ERR-4",
+        "pcim_option": "subscription_filtering",
+        "pcim_use_case": "uc3_filter_devices_for_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "When DEV-19 is not supported, the Device-Patient Association Manager shall return\nan acknowledgement with `CR` in MSA-1, `200` in ERR-3, and `E` in ERR-4.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by sending a DEV-19 message to a Manager that does not support DEV-19 and\ninspecting the returned acknowledgement."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0302",
+      "anchor": "pcimr0302",
+      "level": "shall",
+      "type": "tech_feature",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1407,
+        "sectionPath": [
+          "Volume 2 -- Transactions",
+          "3.19 Filter Associations [DEV-19]",
+          "3.19.1 Scope"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-19",
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [
+          "uc3_filter_devices_for_patient"
+        ],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "tech_feature",
+        "pcim_actor": "dpam",
+        "pcim_transaction": "DEV-19,DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_use_case": "uc3_filter_devices_for_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "If DEV-19 is not supported and network connectivity between the Device-Patient\nAssociation Manager and Device-Patient Association Consumer is restored after a\nloss of connection, the Manager shall send DEV-52 messages for all current\ndevice-patient associations to the Consumer.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by restoring a lost Manager-to-Consumer connection when DEV-19 is not\nsupported and confirming that current associations are sent as DEV-52 messages."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0303",
+      "anchor": "pcimr0303",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 2460,
+        "sectionPath": [
+          "Appendix A -- Proposed Messages",
+          "A.2 Filter Associations Message",
+          "A.2.3 Details of Device-Patient Association Query Message [DEV-19]",
+          "A.2.3.2 QPD Segment"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpac"
+        ],
+        "transactions": [
+          "DEV-19"
+        ],
+        "options": [
+          "subscription_filtering"
+        ],
+        "useCases": [
+          "uc3_filter_devices_for_patient"
+        ],
+        "messages": [
+          "QSB_Q16"
+        ],
+        "segments": [
+          "QPD-2"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpac",
+        "pcim_transaction": "DEV-19",
+        "pcim_message": "QSB_Q16",
+        "pcim_segment": "QPD-2",
+        "pcim_option": "subscription_filtering",
+        "pcim_use_case": "uc3_filter_devices_for_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The QueryTag in QPD.2 shall be unique for each DEV-19 query.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting QPD.2 values in DEV-19 queries originated by the Consumer."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0304",
+      "anchor": "pcimr0304",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 2478,
+        "sectionPath": [
+          "Appendix A -- Proposed Messages",
+          "A.2 Filter Associations Message",
+          "A.2.3 Details of Device-Patient Association Query Message [DEV-19]",
+          "A.2.3.2 QPD Segment"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpac"
+        ],
+        "transactions": [
+          "DEV-19"
+        ],
+        "options": [
+          "subscription_filtering"
+        ],
+        "useCases": [
+          "uc3_filter_devices_for_patient"
+        ],
+        "messages": [
+          "QSB_Q16"
+        ],
+        "segments": [
+          "QSC-4"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpac",
+        "pcim_transaction": "DEV-19",
+        "pcim_message": "QSB_Q16",
+        "pcim_segment": "QSC-4",
+        "pcim_option": "subscription_filtering",
+        "pcim_use_case": "uc3_filter_devices_for_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "If multiple DEV-19 query parameter specifications are present, QSC.4 shall\nspecify the relational conjunction except for the last specification.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting QSC.4 values in DEV-19 queries that contain multiple query\nparameter specifications."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0305",
+      "anchor": "pcimr0305",
+      "level": "shall",
+      "type": "tech_feature",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 2542,
+        "sectionPath": [
+          "Appendix A -- Proposed Messages",
+          "A.2 Filter Associations Message",
+          "A.2.4 RCP Segment"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpac"
+        ],
+        "transactions": [
+          "DEV-19"
+        ],
+        "options": [
+          "subscription_filtering"
+        ],
+        "useCases": [
+          "uc3_filter_devices_for_patient"
+        ],
+        "messages": [],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "tech_feature",
+        "pcim_actor": "dpac",
+        "pcim_transaction": "DEV-19",
+        "pcim_option": "subscription_filtering",
+        "pcim_use_case": "uc3_filter_devices_for_patient",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "A Device-Patient Association Consumer that uses DEV-19 shall support receiving a\ncontinuous real-time feed of association events and shall receive existing\nassociations matching the filter specification when the connection is first\nestablished.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by establishing a filtered subscription and confirming that the Consumer\nreceives both the initial matching association state and subsequent real-time\nupdates."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0400",
+      "anchor": "pcimr0400",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1632,
+        "sectionPath": [
+          "Appendix A -- Proposed Messages",
+          "A.1 Communicate and Report Association State",
+          "A.1.1 Message Structure"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar",
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-51",
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "MSH-21"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpar,dpam",
+        "pcim_transaction": "DEV-51,DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "MSH-21",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "DEV-51 and DEV-52 messages shall value MSH-21 with the appropriate PCIM message\nprofile identifier for the transaction.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting MSH-21 in DEV-51 and DEV-52 ORU_R01 messages."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0401",
+      "anchor": "pcimr0401",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1647,
+        "sectionPath": [
+          "Appendix A -- Proposed Messages",
+          "A.1 Communicate and Report Association State",
+          "A.1.1 Message Structure"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar",
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-51",
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": []
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpar,dpam",
+        "pcim_transaction": "DEV-51,DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "DEV-51 and DEV-52 messages shall be constrained to reporting associations for a\nsingle patient and device.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting each DEV-51 or DEV-52 ORU_R01 message and confirming that it\nreports only one patient-device association."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0402",
+      "anchor": "pcimr0402",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1691,
+        "sectionPath": [
+          "Appendix A -- Proposed Messages",
+          "A.1 Communicate and Report Association State",
+          "A.1.2 Segments",
+          "A.1.2.1 MSH -- Message Header"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar",
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-51",
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "MSH-15"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpar,dpam",
+        "pcim_transaction": "DEV-51,DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "MSH-15",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "MSH-15 in DEV-51 and DEV-52 messages shall be set to `AL`.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting MSH-15 in DEV-51 and DEV-52 ORU_R01 messages."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0403",
+      "anchor": "pcimr0403",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1713,
+        "sectionPath": [
+          "Appendix A -- Proposed Messages",
+          "A.1 Communicate and Report Association State",
+          "A.1.2 Segments",
+          "A.1.2.2 PID -- Patient Identification"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar",
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-51",
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "PID"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpar,dpam",
+        "pcim_transaction": "DEV-51,DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "PID",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "DEV-51 and DEV-52 messages shall include a PID segment to identify the patient\nassociated with the device.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting DEV-51 and DEV-52 ORU_R01 messages and confirming the PID\nsegment is present."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0404",
+      "anchor": "pcimr0404",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1729,
+        "sectionPath": [
+          "Appendix A -- Proposed Messages",
+          "A.1 Communicate and Report Association State",
+          "A.1.2 Segments",
+          "A.1.2.2 PID -- Patient Identification"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar",
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-51",
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "PID-3"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpar,dpam",
+        "pcim_transaction": "DEV-51,DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "PID-3",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "The Patient Identifier List in PID-3 shall contain an identifier that is unique\nfor all patients within the scope of the system.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting PID-3 in DEV-51 and DEV-52 ORU_R01 messages."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0405",
+      "anchor": "pcimr0405",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1792,
+        "sectionPath": [
+          "Appendix A -- Proposed Messages",
+          "A.1 Communicate and Report Association State",
+          "A.1.2 Segments",
+          "A.1.2.4 OBR -- Observation Request"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar",
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-51",
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "OBR-3"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpar,dpam",
+        "pcim_transaction": "DEV-51,DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "OBR-3",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "OBR-3 in DEV-51 and DEV-52 messages shall contain a unique association event\ninstance identifier generated so that duplicate identifiers between sources are\nnot possible.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by inspecting OBR-3 values in DEV-51 and DEV-52 ORU_R01 messages and\nconfirming uniqueness across message sources."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    },
+    {
+      "id": "PCIMR0406",
+      "anchor": "pcimr0406",
+      "level": "shall",
+      "type": "message_constraint",
+      "status": "active",
+      "source": {
+        "repository": "IHE/DEV.PCIM",
+        "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
+        "line": 1851,
+        "sectionPath": [
+          "Appendix A -- Proposed Messages",
+          "A.1 Communicate and Report Association State",
+          "A.1.2 Segments",
+          "A.1.2.4 OBR -- Observation Request"
+        ]
+      },
+      "scope": {
+        "actors": [
+          "dpar",
+          "dpam"
+        ],
+        "transactions": [
+          "DEV-51",
+          "DEV-52"
+        ],
+        "options": [],
+        "useCases": [],
+        "messages": [
+          "ORU_R01"
+        ],
+        "segments": [
+          "OBR-7",
+          "OBR-8"
+        ]
+      },
+      "metadata": {
+        "pcim_req_level": "shall",
+        "pcim_req_type": "message_constraint",
+        "pcim_actor": "dpar,dpam",
+        "pcim_transaction": "DEV-51,DEV-52",
+        "pcim_message": "ORU_R01",
+        "pcim_segment": "OBR-7,OBR-8",
+        "pcim_verification_method": "test",
+        "pcim_verification_level": "connectathon"
+      },
+      "normativeText": "DEV-51 and DEV-52 association or disassociation event reports shall include in\nOBR-7 the earliest participant involvement timestamp and in OBR-8 the latest\nparticipant involvement timestamp.",
+      "verification": {
+        "method": "test",
+        "level": "connectathon",
+        "text": "Verify by comparing OBR-7 and OBR-8 with PRT-11 and PRT-12 timestamps in the\nsame DEV-51 or DEV-52 message."
+      },
+      "notes": [],
+      "rationale": [],
+      "related": [],
+      "examples": []
+    }
+  ]
+}
