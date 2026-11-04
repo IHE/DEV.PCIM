@@ -1,5 +1,10 @@
 = PCIM Named Requirements Plan
 
+The <<oid-parity-plan>> records the November 4, 2026 analysis and proposed next
+steps for this branch. Its lifecycle and completeness recommendations supersede
+the earlier planning estimates and deprecated-identifier range below. It does
+not assign official OIDs or change normative requirements.
+
 == Purpose
 
 This plan describes how to add named, traceable requirements to the PCIM
@@ -495,3 +500,436 @@ Status:
 * Step 7 is implemented by reconciling the initial 78-requirement estimate to a
   first pull request scope of 33 named requirements and a working backlog target
   of 64 unique requirements after duplicate review.
+
+[[oid-parity-plan]]
+== SDPi OID and Requirements Parity Plan
+
+PR 1 implementation draft: the supplement now includes `pcim_oid_governance.adoc`
+with proposed governance/lifecycle rules and a typed registry linked to entity
+definitions. `pcim_oid_wg_review.adoc` provides the November 5, 2026 walkthrough,
+six decision questions, crosswalk and baseline occurrence inventory. Allocation
+and lifecycle decisions remain pending; PRs 2-6 are not implemented by this draft.
+
+Assessment date: November 4, 2026. Local baseline:
+`pcim-requirements-modeling`, commit `800f160`.
+Scope: analyze the published SDPi model and this branch, then propose migration.
+All new PCIM child OIDs below are proposals pending confirmation of delegation
+and allocations by the DEV Technical Committee / PCIM working group.
+
+=== SDPi Findings
+
+https://profiles.ihe.net/DEV/SDPi/index.html[SDPi Appendices 3:C and 1:A.4]
+establish a specification-owned hierarchy under `1.3.6.1.4.1.19376.1.6.2.10`.
+Requirements use `.10.<requirement-number>`; transaction OIDs use `.4.<transaction-number>`.
+Human identifiers coexist with generated OIDs. Material normative changes
+receive new identifiers; retired identifiers are never reused. Conformity
+versions and namespaces have separate versioning. Requirement metadata supports
+types, levels, parent/sibling relationships, groups and fulfillment links.
+Fulfillment points back to definitions. Some detailed traceability and testing
+features remain future work, so the published model is not proof of complete
+test coverage.
+
+The arc summary lists `.12` for use-case support, but Section 3:C.11 describes
+support beneath each profile OID. PCIM must specify that placement explicitly.
+Section 1:A.4.2.1 also allows some obligation-level changes without new IDs;
+PCIM should document its chosen compatibility policy.
+
+The https://github.com/IHE/DEV.SDPi/blob/master/articles/sdpi-article-ihe-tf-asciidoc-cookbook.adoc[SDPi AsciiDoc cookbook],
+Sections 4.3 and 4.7-4.11, describes the tooling pattern: semantic block metadata,
+automatic OIDs for requirements and transactions, explicit `oid-arcs` for other
+objects, full OIDs for externally assigned objects, generated summary tables,
+semantic cross-references, and deprecation exports with reuse checks.
+This supports retaining PCIM's existing identifiers while adding machine identity.
+
+[[sdpi-ci-audit]]
+=== SDPi CI Configuration Audit
+
+:sdpi-ci-source: https://github.com/IHE/DEV.SDPi/blob/76cb816ef72dd9382da02e7b3c932b29f661e9b7
+
+Audited November 4, 2026 against SDPi `master` commit
+`76cb816ef72dd9382da02e7b3c932b29f661e9b7` (October 29, 2026).
+This is a static audit of all three repository workflows, the Gradle entry
+point, converter validation/export code, selected test implementations and
+artifact preparation. It does not establish successful historical runs,
+branch-protection requirements, or deployment to profiles.ihe.net. The current
+source revision is distinct from the published specification reviewed above.
+
+|===
+|Workflow |Trigger |Configured behavior
+
+|{sdpi-ci-source}/.github/workflows/feature-review-build.yml[Feature Review Build]
+|Push and pull request
+|Runs `./gradlew run` separately for standard and supplement HTML, prepares
+assets, and uploads `sdpi-documents`.
+
+|{sdpi-ci-source}/.github/workflows/latest-master-build.yml[Latest Master Build]
+|Push to master
+|Runs the same two conversions and preparation script, but uploads
+`sdpi-standard`. This path differs from the generated `sdpi-documents` directory;
+it is a configuration defect candidate, not verified successful packaging.
+
+|{sdpi-ci-source}/.github/workflows/release-build.yml[Release Build]
+|Push of any tag
+|Runs both conversions, prepares assets and a version-named ZIP, uploads
+`sdpi-documents`, and attaches the ZIP to a GitHub release. No separate test or
+validation stage is declared before release creation.
+|===
+
+All workflows use JDK 17 and configure Ruby and Gradle. The
+{sdpi-ci-source}/.ci/asciidoc-converter/build.gradle.kts[Gradle build]
+sets `ConvertAndVerifySupplementKt` as the application entry point. It configures
+JUnit but does not make `run` depend on `test` or `check`; none of the workflows
+invokes those tasks. Validation during conversion is therefore the CI gate,
+not the separate unit-test suite.
+
+==== Checks and Generation Actually on the CI Path
+
+The {sdpi-ci-source}/.ci/asciidoc-converter/src/main/kotlin/org/sdpi/ConvertAndVerifySupplement.kt[entry point]
+runs the converter and an AsciiDoc diagnostic checker, exiting with status 1
+on an exception. The
+{sdpi-ci-source}/.ci/asciidoc-converter/src/main/kotlin/org/sdpi/asciidoc/extension/SdpiInformationCollector.kt[information collector]
+uses throwing checks for duplicate requirement IDs, duplicate OIDs among the
+objects it enumerates, reuse of recorded deprecated requirements/transactions,
+and various entity/reference constraints. It also requires normative content
+and exactly one lower-case obligation keyword matching the declared level,
+with none of the other two keywords. These checks run during collection.
+
+The {sdpi-ci-source}/.ci/asciidoc-converter/src/main/kotlin/org/sdpi/asciidoc/extension/ReferenceMacroProcessors.kt[semantic reference processors]
+reject unresolved supported reference targets. The separate
+{sdpi-ci-source}/.ci/asciidoc-converter/src/main/kotlin/org/sdpi/asciidoc/AsciidocErrorCheck.kt[diagnostic checker]
+recognizes selected stderr prefixes (`information:` and `info:`) and applies
+reference exceptions; it is not a general all-warning or comprehensive HTML
+link validator. Do not infer that any logged error necessarily fails CI:
+the relevant throwing check or recognized diagnostic must be traced.
+
+The {sdpi-ci-source}/.ci/asciidoc-converter/src/main/kotlin/org/sdpi/asciidoc/AsciidocConverter.kt[converter]
+registers {sdpi-ci-source}/.ci/asciidoc-converter/src/main/kotlin/org/sdpi/asciidoc/extension/PopulateTables.kt[table generation]
+against the same collector used for JSON serialization. It exports profiles,
+use cases, content modules, transactions, requirements and deprecation lists
+into each output directory's `exported-artifacts` folder. Thus shared-model
+generation is verified; an independent HTML-versus-JSON equality check is not.
+
+The collector also confirms the `.12` placement: profile use-case support is
+formed from each profile OID plus `.12`, resolving the documentation ambiguity
+noted above. Its duplicate-OID loop does not enumerate profile use-case-support
+OIDs, so PCIM should explicitly cover every category in its registry checks.
+
+==== What Is Not an Established SDPi CI Gate
+
+The {sdpi-ci-source}/.ci/asciidoc-converter/src/test/kotlin/org/sdpi/TestRunner.kt[test helper]
+compares generated HTML with expected fixtures, and
+{sdpi-ci-source}/.ci/asciidoc-converter/src/test/kotlin/org/sdpi/ConvertRequirementsTest.kt[requirement tests]
+exercise rendering and references. These tests exist but are not invoked by
+the audited workflows. No explicit CI gate was found for exported JSON Schema
+validation, export/appendix equality, normative-coverage accounting, comparison
+against previous-release identities, parent-cycle detection, or stability after
+source reordering. Current-source deprecation checks do not themselves prove
+that a previously published identifier was preserved or explicitly retired.
+
+The {sdpi-ci-source}/.github/prepare_artifacts.sh[artifact script]
+runs a second Ruby Asciidoctor pass for diagrams/static assets and builds the
+ZIP. It does not compare the exported model with the rendered appendix, and
+does not enable shell fail-fast behavior. Its root-level temporary HTML is
+removed; the Kotlin-generated HTML remains in the nested output directories.
+PCIM should use one validated publication model and explicitly check packaged
+outputs rather than copy this packaging arrangement.
+
+==== Consequences for the PCIM Plan
+
+Step 5 is retained but divided into verified SDPi parity and additional PCIM
+assurance. Parity means shared-model generation, semantic validation during
+the build, and packaging of generated documents and JSON. Explicit test-suite
+execution, schemas, coverage accounting, release-baseline checks and independent
+output comparison are PCIM additions. They remain justified by the requested
+traceability of all requirements, but must not be described as existing SDPi
+CI features.
+
+For obligation keyword validation, start with an inventory/lint report and
+working-group review of compound requirements. Adopt strict matching once the
+approved blocks are compatible; do not automatically split or rewrite existing
+requirements to satisfy the SDPi lexical rule. In particular, `PCIMR0003` and
+`PCIMR0305` each repeat `shall`. Lexical validation aids consistency but cannot
+establish semantic atomicity or complete normative coverage.
+
+=== Verified PCIM Baseline and Gaps
+
+Sources inspected: `asciidoc/IHE_DEV_Suppl_PCIM.adoc`, this planning document,
+`.ci/asciidoc-converter/scripts/extract_pcim_requirements.py`, its fixture,
+`build.gradle`, and `.github/workflows/latest-master-or-pr-build.yml`.
+
+The current extractor check passes for 33 identifiers. Parsed requirements,
+sorted by identifier, match the committed review fixture. This verifies current
+extraction consistency, not completeness or conformance. No full Gradle/render
+build was run for this planning-only assessment.
+
+|===
+|Capability |Current branch |Required work
+
+|Requirement identity
+|33 stable `PCIMRnnnn` titles and lower-case anchors; no generated OID field
+|Add deterministic OIDs and URNs to every exported requirement and trace record.
+
+|Requirement distribution
+|7 profile; 7 DEV-51; 6 DEV-52; 6 DEV-19; 7 shared message constraints
+|Audit the complete supplement; 64 and 78 are estimates, not completion criteria.
+
+|Classification
+|7 `ihe_profile`, 9 `tech_feature`, 16 `message_constraint`, 1 `risk_mitigation`;
+32 `shall`, 1 `may`
+|Review recommendations, permissions, prohibitions, conditions, use-case
+requirements and incorporated standards. Preserve PCIM-specific types through
+an explicit interchange mapping.
+
+|Entity identity
+|Actor and transaction OIDs appear in prose tables; scope uses string labels
+|Create one authoritative entity registry with source anchors and typed references.
+
+|Traceability
+|Actor, transaction, option, use-case, message and segment labels plus verification
+guidance; trace JSON is a projection of requirement metadata
+|Add validated relationships, fulfillment and external-standard references.
+Scope membership alone does not establish derivation or fulfillment.
+
+|Lifecycle
+|Status defaults to active; deprecated exports are planned but absent
+|Retirement records, replacement links and non-reuse checks against a release baseline.
+
+|Validation
+|Duplicate IDs, title/anchor agreement, level, nonempty type and normative-block count
+|OID syntax/uniqueness, type enums, nonempty normative text, reference integrity,
+coverage, lifecycle and schema validation. Detect malformed or orphan requirement
+markup rather than silently skipping unrecognized titles.
+
+|Publication
+|JSON and trace export follow HTML generation; `check` has a requirement check
+|Run checks explicitly in CI and generate the appendix from the same model.
+The current workflow runs `asciidoctor`, not `check`; the export itself does
+perform existing parsing checks.
+
+|Provenance and schemas
+|JSON declares schema URLs, but schema files are absent from this repository;
+`:revnumber:` is empty despite a rendered Revision 2.4 title
+|Commit actual schemas, validate against them, populate release metadata,
+and capture commit plus source digest/dirty state for unreleased builds.
+|===
+
+Concrete coverage candidates include correction triggers in Tables
+3.51.4.1.3-1/-2, manager validation and acknowledgment behavior, subscription
+cancellation/reconnection, PRT participation rules, table cardinalities and
+conditional fields, and OBR-3/OBR-29 component transcription. Many are not
+discoverable by searching only for `shall`.
+
+Existing blocks also need semantic review. For example, `PCIMR0104` and
+`PCIMR0106` require original-instance references, while Appendix A.3 discusses
+an exception for reporters updating an association they did not create.
+Resolve scope and conditions before treating these blocks as complete assertions.
+`PCIMR0003`, `PCIMR0105`, and `PCIMR0406` contain multiple obligations: either
+justify one coherent requirement with multiple assertions or split them with
+explicit lineage. Repeated prose and named blocks must not become divergent
+normative authorities.
+
+=== Proposed PCIM Identity Model
+
+The https://wiki.ihe.net/index.php/PCD_OID_Management[IHE DEV OID registry]
+reserves `1.3.6.1.4.1.19376.1.6.2.7` for PCIM and lists the existing DPAR,
+DPAC and DPAM OIDs. It also lists both `.4.51` / `.1.51.1` and `.4.52` /
+`.1.52.1` transaction identifiers. Reservation of the PCIM root is evidence for
+the proposal, not confirmation that the following child hierarchy is allocated.
+
+Let `P = 1.3.6.1.4.1.19376.1.6.2.7`. Proposed categories:
+
+|===
+|OID / arc |PCIM treatment
+
+|`P`
+|Existing PCIM profile identity; also proposed parent for PCIM-owned objects.
+
+|`P.0.<major>.<minor>.<revision>`
+|Conformity release identity, after a PCIM version policy is adopted. Do not
+infer interoperability guarantees from version numbers alone.
+
+|`P.1`
+|Reserve for namespaces/URIs if needed; no artificial namespace for HL7 fields.
+
+|`P.2`
+|Reserve for future profile subdivisions; PCIM itself retains `P`.
+
+|`P.3`
+|Reserve for PCIM-local actors if needed. Current actors retain existing DEV
+OIDs: DPAR `1.3.6.1.4.1.19376.1.6.3.22`, DPAC `.3.23`, DPAM `.3.24`.
+The abbreviated values share the `1.3.6.1.4.1.19376.1.6` prefix.
+
+|`P.4.<transaction-number>`
+|Available for specification-local transaction identity if exact structural
+parity is desired. Prefer established DEV identifiers as canonical references;
+any new local identifiers require an explicit alias/crosswalk decision.
+
+|`P.8`
+|Reserve for actual content modules; do not classify every message constraint
+as a separate content module.
+
+|`P.9.<use-case>.<scenario>`
+|Stable use-case and scenario allocations, starting with the five existing use
+cases. Allocate once; moving or inserting sections must not renumber objects.
+
+|`P.10.<integer>`
+|Requirement identity derived from the numeric part of `PCIMRnnnn`.
+
+|`P.11.<option>`
+|Profile actor options; proposed `.1` for Subscription and Filtering.
+
+|`P.12.<support>`
+|PCIM support for a use case, referencing the use-case identity. Here `P` is
+already the profile OID; this avoids ambiguity about an extra `.2` level.
+|===
+
+Keep the current human IDs and HTML anchors. Example proposed mappings:
+
+|===
+|Human ID |OID |URI
+|PCIMR0001 |1.3.6.1.4.1.19376.1.6.2.7.10.1 |urn:oid:1.3.6.1.4.1.19376.1.6.2.7.10.1
+|PCIMR0100 |1.3.6.1.4.1.19376.1.6.2.7.10.100 |urn:oid:1.3.6.1.4.1.19376.1.6.2.7.10.100
+|PCIMR0406 |1.3.6.1.4.1.19376.1.6.2.7.10.406 |urn:oid:1.3.6.1.4.1.19376.1.6.2.7.10.406
+|===
+
+Remove leading zeros only when forming the numeric OID arc. Do not encode
+transaction, actor, clause number, requirement type or publication version in
+the requirement OID. Keep these as separately changeable metadata. Existing
+allocation ranges remain authoring conveniences.
+
+Do not move retired requirements into the previously proposed 9000 range.
+Retain their original ID and OID with retirement version, reason, and zero or
+more replacement IDs/OIDs. Reserve unused numbers separately. A semantic split
+or merge must preserve explicit links to all predecessor requirements.
+
+Use a documented material-change review policy. Recommended PCIM policy:
+editorial clarification preserves identity; changes affecting previously
+conforming behavior or applicable actor/condition receive a new identity.
+Review obligation-level changes explicitly, retaining the exact release
+snapshot even when an ID is preserved. This is deliberately more cautious than
+automatically treating every level change as editorial.
+
+=== Reconcile Existing OIDs Before Publication
+
+The supplement's introductory transaction table uses
+`1.3.6.1.4.1.19376.1.6.1.<transaction>.1`. Section A.2.1 instead uses
+`1.3.6.1.4.1.19376.1.6.4.19.1` in MSH-21; the DEV-19 example uses
+`.1.19.1`. The DEV-51 acknowledgment example uses `.4.51.1`, while assertion
+examples use `.1.51.1`.
+
+Record each occurrence, its claimed object type, and its source. Have the
+working group distinguish transaction identity, message conformance profile
+identity, and historical aliases. Do not assume a registry transaction alias
+also establishes an alias for a message profile. Correct approved discrepancies
+through the normal change process, then generate repeated values from central
+attributes. Requirement OIDs must never replace MSH-21 identifiers, patient or
+device assigning authorities, or association instance identifiers.
+
+=== Delivery Sequence and Acceptance Criteria
+
+. *PR 1 -- Governance and registry.* Extend the supplement's Volume 1 Appendix A
+  with the root, child hierarchy, lifecycle and allocation rules. Add a typed
+  registry in the AsciiDoc source (with explicit roles, IDs, anchors and OIDs or
+  arcs), and an OID occurrence/crosswalk review. Confirm root delegation and
+  canonical/alias decisions with DEV leadership before publishing allocations.
+  Acceptance: no invented official assignments, ambiguous object types or
+  replacement of existing externally assigned identities.
+. *PR 2 -- OID export and lifecycle enforcement.* Extend the extractor and
+  committed JSON schemas with `oid`, `uri`, schema version, source provenance,
+  typed scope references and lifecycle relationships. Emit active requirements,
+  retirement records and an OID registry. Preserve current ID/anchor fields for
+  downstream consumers. Generate review fixtures from the model. Acceptance:
+  all 33 existing requirements have deterministic proposed OIDs; duplicate,
+  malformed and retired-ID reuse cases fail; unknown references fail; release
+  exports require confirmed allocations. No manual OID entry per requirement.
+. *PR 3 -- Entity and relationship parity.* Model profile/actor/option
+  applicability, transactions, five use cases and their scenarios, referenced
+  standards and fulfillment. Add typed `specializes`, `relatedTo`, `fulfills`,
+  `supportsUseCase` and `referencesStandard` edges as appropriate; export both
+  local IDs and resolved OIDs. Preserve source standard identifier, edition and
+  clause rather than inventing an OID owned by an external standard. Acceptance:
+  every edge resolves, parent cycles fail, and actor/profile/option queries
+  return the correct applicable requirements, including explicit conditions.
+. *PR 4 -- Complete normative inventory.* Review the entire supplement,
+  including tables and incorporated constraints. Maintain a disposition ledger:
+  source obligation -> requirement ID, duplicate/reference, informative, or
+  unresolved issue, with rationale. Add missing requirements in reviewed batches;
+  resolve contradictory or overbroad statements. Model prohibitions and
+  conditions without strengthening existing obligations. Acceptance: every
+  normative obligation has an approved disposition and every PCIM-defined
+  requirement has an OID. Neither 64 nor 78 is a cap or a completeness claim.
+. *PR 5 -- Generated appendix, CI parity and additional assurance.* Add a PCIM OID appendix in the existing
+  supplement structure, with generated tables linking OIDs to definitions,
+  requirement catalogues, deprecations and scope summaries. PCIM need not create
+  an empty Volume 3 merely to copy the SDPi appendix number. For SDPi parity,
+  generate tables and JSON from the same validated model, fail the build on
+  invalid semantic identities/references and retired-ID reuse, and package the
+  resulting documents and exports. For additional PCIM assurance, explicitly
+  invoke the test/check lifecycle and add schemas, baseline lifecycle checks,
+  coverage-ledger validation and independent output comparisons. The
+  <<sdpi-ci-audit>> distinguishes these from existing SDPi gates.
+  Acceptance: appendix and exports agree exactly; internal links resolve;
+  source reorder does not change OIDs; malformed markup, unknown scopes and
+  fixture drift fail CI; missing publication artifacts fail packaging.
+. *PR 6 -- Downstream traceability contract.* Add `requirementOid` and artifact
+  release/commit/digest to the existing result contract. Keep test assertion
+  IDs distinct from requirement IDs; support many assertions per requirement
+  and reuse across scenarios. Connect results to specification-owned fulfillment
+  and requirements without storing vendor evidence here. Acceptance: an external
+  consumer can follow a result to the precise requirement snapshot, applicable
+  actor/option, source clause and evidence URI. Missing evidence is not a pass.
+
+PRs 1-3 establish identity and model parity; PR 4 establishes coverage; PRs 5-6
+establish publication and usable traceability. ReqIF export and OSLC services
+remain later interchange work and are not prerequisites for OID parity.
+
+==== Step 5 Build Order and Failure Criteria
+
+. *Validate source and model.* Run unit/behavioral tests and model checks
+  explicitly in `.github/workflows/latest-master-or-pr-build.yml`; wire the
+  checks into the document task graph so local builds also enforce them.
+  Validate IDs, references, retirement records, approved coverage dispositions
+  and release-baseline changes. CI can validate the ledger's structure and
+  recorded mappings; human review establishes that every normative obligation
+  has been identified.
+. *Generate once.* Produce JSON and the OID appendix include before rendering
+  if retaining the Python exporter, or generate both during one AST conversion.
+  Replace the current `asciidoctor.finalizedBy(pcimRequirementsJson)` ordering
+  with dependencies appropriate to the chosen implementation. A finalizer that
+  runs after rendering cannot supply the appendix input to that render.
+. *Validate generated artifacts.* Apply committed JSON schemas; compare generated
+  fixtures without overwriting expected files; render HTML, then compare its
+  requirement/OID rows and anchors with the JSON registry. Compare catalogued
+  identities and links, not byte-identical prose across HTML and JSON formats.
+  Include tests of duplicate OIDs, retired-ID reuse, unknown targets, section
+  movement and empty/malformed normative content.
+. *Package only after success.* Verify required HTML, JSON, registry and schema
+  files exist and are nonempty in the actual upload directory. Configure upload
+  failure when files are missing. Make any asset/ZIP script propagate command
+  failures. Keep release packaging behind the same checks; run any future
+  tag/release workflow through this path rather than bypassing validation.
+
+Build-time consistency checks and downstream conformance tests remain separate:
+a successful specification build does not certify an implementation or prove
+that every requirement has a passing test result.
+
+=== Implementation Choices and Review Boundaries
+
+Keep the current Python exporter for the first OID increment. Before expanding
+to generated sections and semantic cross-references, evaluate an Asciidoctor
+AST/extension adapter against the current line-based parser. Any retained parser
+must handle comments, examples, includes and attributes consistently with the
+rendered specification; currently it scans only one file and discovers blocks
+from matching titles. Do not fork the entire SDPi converter just to obtain OIDs.
+
+Store specification metadata once in AsciiDoc and generate the registry, JSON
+and appendix from it. Generate reverse indexes from authored forward references.
+Keep normative text authoritative in one place and link repeated discussion to
+it. Add focused behavioral checks for leading-zero normalization, preserved
+identity after section moves, lifecycle transitions and unresolved relationships.
+
+Working-group decisions needed for release are the delegated root/child
+allocations, treatment of existing transaction/message-profile identifiers,
+and the requirement change policy. These decisions do not prevent implementing
+and reviewing a clearly marked draft model. This assessment makes no external
+registry edits, normative edits or claims that conformance testing is complete.

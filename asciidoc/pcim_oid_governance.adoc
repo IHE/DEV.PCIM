@@ -1,0 +1,177 @@
+[[pcim-oid-governance]]
+=== A.7 OID Governance and Requirement Lifecycle (Draft for WG Review)
+
+[IMPORTANT]
+====
+This is a proposed authoring and allocation policy for working-group review.
+New PCIM child OIDs shown here are not confirmed allocations. The proposal does
+not change transaction behavior, MSH-21 values, or conformance obligations.
+====
+
+==== A.7.1 Authority and Approval
+
+The https://wiki.ihe.net/index.php/PCD_OID_Management[IHE DEV OID registry]
+reserves `1.3.6.1.4.1.19376.1.6.2.7` for PCIM. The DEV Technical Committee
+co-chairs should confirm authority to allocate beneath this root and check for
+prior child allocations before these proposals are published as assigned OIDs.
+The PCIM working group is the proposed steward of the delegated subtree.
+
+Proposed process: the author proposes an allocation in source; a WG-designated
+reviewer checks uniqueness, meaning, authority and lifecycle; the WG records
+its decision; the approved change is merged through normal pull-request review.
+Each allocation decision records the decision date, approving authority,
+issue/PR or minutes reference, first applicable release, and any predecessor.
+Only a recorded decision can promote an entry from proposed to assigned.
+External identifiers retain their original authority.
+
+==== A.7.2 Proposed Hierarchy
+
+Let `P = 1.3.6.1.4.1.19376.1.6.2.7`. Child arcs below are proposals, not
+claims of registration. An unused category is held for future use; it does not
+create an actor, namespace, profile, content module or requirement.
+
+[cols="1,3",options="header"]
+|===
+|Arc |Meaning and allocation policy
+|`P` |PCIM profile identity; delegation as subtree parent awaits confirmation.
+|`P.0` |Conformity releases, eventually `.major.minor.revision`; a separate
+version policy is needed before any leaf is assigned.
+|`P.1` |Namespaces and URIs, if needed.
+|`P.2` |Future profile subdivisions; PCIM itself retains `P`.
+|`P.3` |Future PCIM-local actors; existing DEV actor OIDs are retained.
+|`P.4` |Optional local transaction identities; no leaves proposed until the
+WG resolves the established transaction identifiers and message-profile OIDs.
+|`P.8` |Actual content modules, if introduced.
+|`P.9` |Use cases, with scenarios beneath their use-case OID. Allocate leaves
+once; never derive them dynamically from section order.
+|`P.10` |Requirements; final arc is the integer in `PCIMRnnnn`.
+|`P.11` |Profile actor options.
+|`P.12` |PCIM support for use cases. Here `P` is already the profile OID;
+support and the use case itself are different objects.
+|===
+
+The hierarchy follows the modeling approach of
+https://profiles.ihe.net/DEV/SDPi/index.html[SDPi Appendix 3:C].
+SDPi source confirms use-case support beneath the profile OID plus `.12`.
+PCIM keeps its established external identities instead of creating replacement
+identifiers solely for structural symmetry.
+
+==== A.7.3 Requirement Identity
+
+Retain readable identifiers such as `PCIMR0100` and HTML anchors such as
+`pcimr0100`. Proposed machine identity is `P.10.100`, or
+`urn:oid:1.3.6.1.4.1.19376.1.6.2.7.10.100` in URI form. Remove leading zeros
+only from the numeric arc. An OID identifies the requirement, not its text
+location, transaction, actor, test assertion or document version.
+
+The exporter will derive requirement OIDs from the confirmed root and existing
+requirement number in a later change. Authors do not enter an OID per
+requirement. Until that change and allocation approval, the existing JSON
+exports contain human IDs only and must not be described as OID-complete.
+
+==== A.7.4 Change and Retirement Policy
+
+Proposed policy for WG approval:
+
+* Editorial changes that preserve meaning retain the identifier and OID.
+  Record the release/commit so the exact reviewed text remains recoverable.
+* Changes affecting previously conforming behavior, actor applicability or
+  conditions receive a new identifier and OID. Review changes of obligation
+  level explicitly; do not automatically classify them as editorial.
+* A removed requirement retains its original identifier and OID in a retirement
+  record. Never reuse either value, including after deletion from current prose.
+* Retirement records contain ID, OID, last active release, retirement release,
+  reason, decision reference and zero or more replacement IDs/OIDs. Splits and
+  merges preserve links to every predecessor; retirement without replacement
+  is permitted when justified.
+* Unallocated reserves are distinct from retired identities. Moving a
+  requirement to another section or allocation category never changes its ID.
+* Source releases are immutable trace targets. A test result identifies both
+  the requirement and the specification release/commit it evaluated.
+
+These are governance rules in this draft; lifecycle automation and comparison
+with prior releases are scheduled for subsequent PRs.
+
+[[pcim-oid-registry]]
+=== A.8 Typed OID Registry (Draft)
+
+This table is the authoring source for the initial entity registry. Its role is
+`pcim_oid_registry`; the columns are `type`, `local_id`, `oid`,
+`allocation_status`, `definition`, and `authority_or_decision`. Row anchors
+identify registry records; definition links identify the actual specification
+objects. The current requirement exporter does not yet consume this table.
+
+`existing` means the cited external assignment is retained; `reserved-root`
+means PCIM is listed in the DEV registry but subtree delegation is unconfirmed;
+`proposed` means a new allocation awaits approval; `unresolved` means no
+canonical OID is selected here. `pending` is a sentinel, never an OID value.
+Release export must reject proposed/unresolved allocations rather than present
+them as official. Future assigned entries require an allocation decision record.
+
+All full OIDs in the `oid` column identify only the object in that row. The
+transaction candidates in the WG review inventory are not silently treated as
+equivalent to message-profile identifiers. MSH-21 remains unchanged.
+
+[#pcim-oid-entity-table,role=pcim_oid_registry,cols="1,2,3,1,2,2",options="header"]
+|===
+|type |local_id |oid |allocation_status |definition |authority_or_decision
+
+|profile |[[pcim-oid-profile]]PCIM
+|1.3.6.1.4.1.19376.1.6.2.7 |reserved-root
+|<<pcim-profile,PCIM>> |DEV OID registry; WG Q1
+
+|actor |[[pcim-oid-dpar]]dpar
+|1.3.6.1.4.1.19376.1.6.3.22 |existing
+|<<pcim-actor-dpar,Reporter>> |DEV OID registry
+
+|actor |[[pcim-oid-dpam]]dpam
+|1.3.6.1.4.1.19376.1.6.3.24 |existing
+|<<pcim-actor-dpam,Manager>> |DEV OID registry
+
+|actor |[[pcim-oid-dpac]]dpac
+|1.3.6.1.4.1.19376.1.6.3.23 |existing
+|<<pcim-actor-dpac,Consumer>> |DEV OID registry
+
+|transaction |[[pcim-oid-dev-19]]DEV-19
+|pending |unresolved
+|<<pcim-transaction-dev-19,Filter Associations>> |WG Q3; see occurrence inventory
+
+|transaction |[[pcim-oid-dev-51]]DEV-51
+|pending |unresolved
+|<<pcim-transaction-dev-51,Communicate Association State>> |WG Q3; see occurrence inventory
+
+|transaction |[[pcim-oid-dev-52]]DEV-52
+|pending |unresolved
+|<<pcim-transaction-dev-52,Report Association State>> |WG Q3; see occurrence inventory
+
+|profile_actor_option |[[pcim-oid-option-filtering]]subscription_filtering
+|1.3.6.1.4.1.19376.1.6.2.7.11.1 |proposed
+|<<pcim-option-subscription-filtering,Subscription and Filtering>> |WG Q2
+
+|use_case |[[pcim-oid-uc1]]uc1_associate_device_patient
+|1.3.6.1.4.1.19376.1.6.2.7.9.1 |proposed
+|<<pcim-use-case-1,Associate>> |WG Q2
+
+|use_case |[[pcim-oid-uc2]]uc2_disassociate_device_patient
+|1.3.6.1.4.1.19376.1.6.2.7.9.2 |proposed
+|<<pcim-use-case-2,Disassociate>> |WG Q2
+
+|use_case |[[pcim-oid-uc3]]uc3_filter_devices_for_patient
+|1.3.6.1.4.1.19376.1.6.2.7.9.3 |proposed
+|<<pcim-use-case-3,Filter>> |WG Q2
+
+|use_case |[[pcim-oid-uc4]]uc4_correct_verified_association
+|1.3.6.1.4.1.19376.1.6.2.7.9.4 |proposed
+|<<pcim-use-case-4,Correct>> |WG Q2
+
+|use_case |[[pcim-oid-uc5]]uc5_wrong_association
+|1.3.6.1.4.1.19376.1.6.2.7.9.5 |proposed
+|<<pcim-use-case-5,Wrong Association>> |WG Q2
+|===
+
+WG question references refer to the November 5, 2026 review packet,
+`pcim_oid_wg_review.adoc`. Its baseline occurrence inventory provides historical
+source identifiers for reconciliation; it is not a second allocation registry.
+After review, replace question references with durable decisions or tracked
+open issues. Requirement rows remain defined by their semantic requirement
+blocks; their OIDs will be generated rather than copied into this table.

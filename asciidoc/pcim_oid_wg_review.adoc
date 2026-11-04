@@ -1,0 +1,234 @@
+= PCIM OID Governance: Working-Group Review
+:doctype: article
+:toc:
+:sectanchors:
+
+Meeting: Thursday, November 5, 2026. Prepared for a 30-minute walkthrough.
+Status: discussion draft; no decisions or allocations have been approved by
+this packet. All decision fields below are intentionally pending.
+
+== Desired Outcome
+
+Agree on who may assign PCIM OIDs, the proposed hierarchy, and identity lifecycle
+rules. Assign an owner to reconcile transaction versus message-profile OIDs.
+Authorize the next implementation step once the recorded allocation decisions
+permit it. Complete requirement coverage remains a later authoring task.
+
+Review artifacts:
+
+* link:IHE_DEV_Suppl_PCIM.html#pcim-oid-governance[Supplement Appendix A.7: governance and lifecycle]
+* link:IHE_DEV_Suppl_PCIM.html#pcim-oid-registry[Supplement Appendix A.8: typed registry]
+* link:pcim_named_requirements_plan.html#sdpi-ci-audit[SDPi CI audit and parity plan]
+* https://github.com/IHE/DEV.PCIM/pull/137[Existing requirements-modeling PR #137]
+* https://profiles.ihe.net/DEV/SDPi/index.html[Published SDPi: Appendices 3:C and 1:A.4]
+* https://wiki.ihe.net/index.php/PCD_OID_Management[DEV OID registry]
+
+== Walkthrough and Presenter Notes
+
+[cols="1,2,4",options="header"]
+|===
+|Minutes |Open / show |Talk track and decision
+|0-3 |Purpose and current requirements model
+|We already have 33 named requirements. An OID adds stable global identity;
+it does not establish that all requirements have been captured or tested.
+Keep `PCIMRnnnn` readable IDs and existing anchors.
+|3-7 |Appendix A.7.1-A.7.2
+|DEV reserves the PCIM root ending `.2.7`. We propose `.10` for requirements,
+`.9` for use cases and `.11` for options. Reservation is not proof that all
+children are available. Resolve Q1 and Q2, or assign the confirmation action.
+|7-11 |Appendix A.8
+|Show `dpar` as existing, use case 1 as proposed, and DEV-51 as unresolved.
+These statuses keep imported facts separate from allocations awaiting approval.
+Existing wire identifiers remain untouched. Introduce Q3.
+|11-16 |OID crosswalk and occurrence inventory below
+|Show DEV-51 `.1.51.1` versus `.4.51.1`, and DEV-19 `.1.19.1` versus
+`.4.19.1`. A transaction OID is not automatically a message-profile OID.
+Request an owner, evidence and a correction process, not a guess based on suffixes.
+|16-21 |Appendix A.7.3-A.7.4
+|Walk `PCIMR0100` to proposed `P.10.100`. Move its section: identity stays.
+Change its meaning materially: allocate a replacement and retire the original.
+The original does not move to the 9000 range. Resolve Q4 and Q5.
+|21-25 |Parity plan and boundaries
+|SDPi validates during conversion and generates tables/JSON from one model.
+Its audited CI does not run the separate tests. PCIM will add explicit tests,
+schemas and output checks later. Today's PR is governance and registry only.
+Resolve Q6; separate any normative disagreements into tracked issues.
+|25-30 |Decision record
+|Read back each decision, authority, owner and due date. Mark unresolved items
+as deferred. Decide whether the draft may merge as proposed text or requires
+changes before merge; assigned OIDs require the allocation approvals.
+|===
+
+== Questions for Decision
+
+=== Q1: Who owns the PCIM subtree and approves allocations?
+
+Can the DEV Technical Committee co-chairs confirm delegation beneath
+`1.3.6.1.4.1.19376.1.6.2.7`, identify any existing children, and designate the
+PCIM WG allocation steward/reviewer?
+
+Recommendation: retain that reserved root; record explicit delegation and the
+child-allocation check. Maintain source-controlled allocations with WG review
+and a durable decision reference. Until then, retain proposed status.
+
+Needed evidence: DEV registry or written co-chair decision covering delegation
+and pre-existing allocations. Proposed owner: DEV co-chairs with a WG-designated
+editor; actual names and dates are to be agreed in the meeting.
+
+=== Q2: Is the proposed hierarchy acceptable?
+
+Approve requirements under `P.10`, the five use cases under `P.9.1` through
+`P.9.5`, and Subscription and Filtering under `P.11.1`, subject to Q1?
+Keep PCIM itself at `P`, and keep its existing external actor identities?
+
+Recommendation: yes. Leave unused categories without assigned leaves.
+Scenarios and use-case-support objects can be allocated when modeled; they are
+not manufactured just to fill out the hierarchy. Confirm that one option
+identity with actor-specific applicability is appropriate.
+
+Decision must distinguish agreement on structure from confirmation of actual
+allocations. A future conformity-release OID needs its own version policy.
+
+=== Q3: Which transaction and message-profile identifiers are authoritative?
+
+For DEV-19, DEV-51 and DEV-52, which OID identifies the transaction, which
+identifies the HL7 message profile, and which values are supported legacy
+aliases? Do the conflicting `.1.<n>.1` and `.4.<n>.1` values require a CP,
+erratum, compatibility guidance, or another action?
+
+Recommendation: preserve all existing wire values in this PR. Nominate an
+editor to reconcile registry entries, published PCIM text, message-profile
+definitions/validators and deployed use. Record object type and evidence for
+each selected canonical value and alias before changing source examples.
+Do not assume a registry alias for a transaction establishes a message-profile
+alias. The next exporter can support unresolved draft entries but must not
+publish them as confirmed allocations.
+
+The DEV registry also reserves `1.3.6.1.4.1.19376.1.6.6.19.1` for the
+DEV-19 conformance profile. Include that distinct registry entry in the review;
+it is not evidence that current MSH-21 values can be replaced without analysis.
+
+=== Q4: What changes require a new requirement identity?
+
+Approve retaining identity for editorial changes and allocating a new ID/OID
+when previously conforming behavior, actor applicability or conditions change?
+How should changes of obligation level be reviewed?
+
+Recommendation: explicit compatibility review for level changes; retain exact
+release snapshots regardless of identity outcome. Split/merge changes record
+all predecessor and replacement links. An OID has no version suffix.
+
+Walkthrough example (hypothetical, not a proposed normative edit): correcting
+grammar in `PCIMR0100` preserves its identity; expanding the responsible-observer
+obligation to a materially different condition requires review and potentially
+a replacement. Test results keep the evaluated release/commit.
+
+=== Q5: How are retired and reserved identifiers managed?
+
+Approve keeping the original ID/OID permanently in a retirement ledger with
+last-active/retirement releases, reason, decision reference and replacements?
+Remove the old suggestion that retired requirements move to the 9000 range?
+
+Recommendation: yes. The 9000 range is unallocated reserve, not a retirement
+destination. Never reuse published IDs. Before the first OID release, establish
+a reviewed allocation baseline, including any previously published human IDs.
+
+=== Q6: Can this draft proceed, and what gates PR #2?
+
+May the governance/registry PR merge as clearly proposed authoring policy, or
+does the WG require allocation decisions before merge? Who reviews the follow-on
+exporter/schema PR? Which unresolved questions must block an official release?
+
+Recommendation: permit draft implementation review while Q1-Q3 remain open;
+require confirmed root/leaf allocations and canonical-identifier decisions
+before official OID publication. Keep normative cleanup in separately reviewed
+changes. PR #2 derives OIDs for the current 33 requirements; it does not claim
+the complete normative inventory is finished.
+
+== Decision Record to Complete in the Meeting
+
+[cols="1,3,2,2,2",options="header"]
+|===
+|Item |Decision / rationale |Approving authority / evidence |Action owner |Due date
+|Q1 |Pending |Pending |Unassigned |To agree
+|Q2 |Pending; structure and allocations recorded separately |Pending |Unassigned |To agree
+|Q3 |Pending; transaction and message-profile identities separated |Pending |Unassigned |To agree
+|Q4 |Pending |Pending |Unassigned |To agree
+|Q5 |Pending |Pending |Unassigned |To agree
+|Q6 |Pending; merge and release gates recorded separately |Pending |Unassigned |To agree
+|===
+
+After the meeting, link the approved minutes/issue/PR in registry records.
+Promote only specifically approved allocations. Track deferred decisions with
+an owner and date; do not interpret silence as approval.
+
+== OID Crosswalk for Review
+
+Let `D = 1.3.6.1.4.1.19376.1.6`. The following records are evidence/candidates,
+not newly selected canonical values. Requirement OIDs under `D.2.7.10` are
+distinct from every transaction and message-profile value below.
+
+[cols="1,2,3,3",options="header"]
+|===
+|Object |Registry / existing identity |Observed supplement use |Disposition
+|PCIM |`D.2.7` reserved |Proposed subtree parent |Q1 confirmation; no child authority inferred
+|DPAR / DPAC / DPAM |`D.3.22` / `D.3.23` / `D.3.24`
+|General Introduction Appendix A actor table |Retain existing identities
+|DEV-19 |`D.4.19` / `D.1.19.1` listed in DEV registry
+|Transaction/namespace tables and examples use `D.1.19.1`; Section A.2.1 MSH-21 uses `D.4.19.1`
+|Q3: distinguish transaction from message profile; verify aliases separately
+|DEV-51 |`D.4.51` / `D.1.51.1` listed in DEV registry
+|Transaction/namespace tables, A.1 overview and assertion examples use `D.1.51.1`;
+MSH field table and acknowledgment example use `D.4.51.1`
+|Q3: resolve both field-table and example discrepancies
+|DEV-52 |`D.4.52` / `D.1.52.1` listed in DEV registry
+|Transaction/namespace tables, A.1 overview and report example use `D.1.52.1`
+|Q3: confirm object types even without the same visible conflict
+|DEV-19 conformance profile |`D.6.19.1` reserved in DEV registry
+|Not used in the baseline DEV-prefix occurrence inventory below
+|Q3: distinguish the reserved conformance-profile identity from transaction aliases
+|===
+
+Other device identifier/UDI roots appearing in PCIM are external naming
+authorities and are not candidates for replacement by the PCIM subtree.
+This inventory is scoped to the DEV OID prefix; it is not an inventory of
+patient/device identifier instances.
+
+== Baseline Occurrence Inventory
+
+The following inventory was extracted from
+`asciidoc/IHE_DEV_Suppl_PCIM.adoc` at commit `800f160` before the governance
+addition. Line links intentionally target that immutable baseline, so the new
+appendix and its illustrative OIDs do not obscure the existing conflicts.
+Repeated values remain separate rows so each source location can be reconciled.
+
+Total: 24 DEV-prefix OID occurrences.
+
+[cols="1,4,3",options="header"]
+|===
+|Baseline line |Source section / context |Observed OID
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L130[130] |Appendix A -- Actors |`1.3.6.1.4.1.19376.1.6.3.22`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L134[134] |Appendix A -- Actors |`1.3.6.1.4.1.19376.1.6.3.24`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L138[138] |Appendix A -- Actors |`1.3.6.1.4.1.19376.1.6.3.23`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L154[154] |Appendix B -- Transactions |`1.3.6.1.4.1.19376.1.6.1.19.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L159[159] |Appendix B -- Transactions |`1.3.6.1.4.1.19376.1.6.1.51.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L164[164] |Appendix B -- Transactions |`1.3.6.1.4.1.19376.1.6.1.52.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L1509[1509] |Volume 2 Namespace Additions |`1.3.6.1.4.1.19376.1.6.1.19.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L1512[1512] |Volume 2 Namespace Additions |`1.3.6.1.4.1.19376.1.6.1.51.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L1515[1515] |Volume 2 Namespace Additions |`1.3.6.1.4.1.19376.1.6.1.52.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L1630[1630] |A.1.1 Message Structure |`1.3.6.1.4.1.19376.1.6.1.51.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L1630[1630] |A.1.1 Message Structure |`1.3.6.1.4.1.19376.1.6.1.52.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L1687[1687] |A.1.2.1 MSH -- Message Header |`1.3.6.1.4.1.19376.1.6.4.51.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2386[2386] |A.2.3.1 MSH Segment |`1.3.6.1.4.1.19376.1.6.4.19.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2571[2571] |A.3 Example Messages |`1.3.6.1.4.1.19376.1.6.1.51.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2590[2590] |A.3 Example Messages |`1.3.6.1.4.1.19376.1.6.4.51.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2604[2604] |A.3 Example Messages |`1.3.6.1.4.1.19376.1.6.1.51.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2624[2624] |A.3 Example Messages |`1.3.6.1.4.1.19376.1.6.1.19.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2632[2632] |A.3 Example Messages |`1.3.6.1.4.1.19376.1.6.1.52.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2645[2645] |A.3 Example Messages |`1.3.6.1.4.1.19376.1.6.1.19.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2653[2653] |A.3 Example Messages |`1.3.6.1.4.1.19376.1.6.1.51.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2667[2667] |A.3 Example Messages |`1.3.6.1.4.1.19376.1.6.1.51.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2681[2681] |A.3 Example Messages |`1.3.6.1.4.1.19376.1.6.1.51.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2697[2697] |A.3 Example Messages |`1.3.6.1.4.1.19376.1.6.1.51.1`
+|https://github.com/IHE/DEV.PCIM/blob/800f160/asciidoc/IHE_DEV_Suppl_PCIM.adoc#L2711[2711] |A.3 Example Messages |`1.3.6.1.4.1.19376.1.6.1.51.1`
+|===

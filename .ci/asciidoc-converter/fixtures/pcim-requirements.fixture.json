@@ -20,7 +20,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 312,
+        "line": 313,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.1 PCIM Actors, Transactions, and Content Modules"
@@ -65,7 +65,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 376,
+        "line": 378,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.1 PCIM Actors, Transactions, and Content Modules",
@@ -126,7 +126,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 393,
+        "line": 395,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.1 PCIM Actors, Transactions, and Content Modules",
@@ -184,7 +184,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 413,
+        "line": 416,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.1 PCIM Actors, Transactions, and Content Modules",
@@ -241,7 +241,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 429,
+        "line": 432,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.1 PCIM Actors, Transactions, and Content Modules",
@@ -292,7 +292,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 486,
+        "line": 491,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.2 PCIM Actor Options",
@@ -348,7 +348,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 503,
+        "line": 508,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.2 PCIM Actor Options",
@@ -404,7 +404,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 930,
+        "line": 948,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -461,7 +461,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 946,
+        "line": 964,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -518,7 +518,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 961,
+        "line": 979,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -571,7 +571,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1020,
+        "line": 1038,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -630,7 +630,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1112,
+        "line": 1130,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -688,7 +688,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1128,
+        "line": 1146,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -747,7 +747,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1148,
+        "line": 1166,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -805,7 +805,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1197,
+        "line": 1216,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -860,7 +860,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1214,
+        "line": 1233,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -916,7 +916,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1255,
+        "line": 1274,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -974,7 +974,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1304,
+        "line": 1323,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -1029,7 +1029,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1324,
+        "line": 1343,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -1087,7 +1087,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1343,
+        "line": 1362,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -1139,7 +1139,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1373,
+        "line": 1393,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.19 Filter Associations [DEV-19]",
@@ -1198,7 +1198,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1391,
+        "line": 1411,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.19 Filter Associations [DEV-19]",
@@ -1259,7 +1259,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1407,
+        "line": 1427,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.19 Filter Associations [DEV-19]",
@@ -1313,7 +1313,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 2460,
+        "line": 2480,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.2 Filter Associations Message",
@@ -1373,7 +1373,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 2478,
+        "line": 2498,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.2 Filter Associations Message",
@@ -1433,7 +1433,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 2542,
+        "line": 2562,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.2 Filter Associations Message",
@@ -1486,7 +1486,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1632,
+        "line": 1652,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -1541,7 +1541,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1647,
+        "line": 1667,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -1593,7 +1593,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1691,
+        "line": 1711,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -1649,7 +1649,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1713,
+        "line": 1733,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -1705,7 +1705,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1729,
+        "line": 1749,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -1761,7 +1761,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1792,
+        "line": 1812,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -1817,7 +1817,7 @@
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1851,
+        "line": 1871,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
