@@ -48,12 +48,20 @@ tasks.register('pcimRequirementsJson', Exec) {
       '.ci/asciidoc-converter/scripts/extract_pcim_requirements.py',
       '--source', 'asciidoc/IHE_DEV_Suppl_PCIM.adoc',
       '--output', 'output/referenced-artifacts/pcim-requirements.json',
-      '--trace-output', 'output/referenced-artifacts/pcim-requirement-trace.json'
+      '--trace-output', 'output/referenced-artifacts/pcim-requirement-trace.json',
+      '--oid-output', 'output/referenced-artifacts/pcim-oid-registry.json',
+      '--oid-attributes-output', 'output/referenced-artifacts/pcim-oid-attributes.adoc',
+      '--oid-table-output', 'output/referenced-artifacts/pcim-requirement-oids.adoc'
 
   inputs.file file('../../asciidoc/IHE_DEV_Suppl_PCIM.adoc')
   inputs.file file('scripts/extract_pcim_requirements.py')
   outputs.file file('../../output/referenced-artifacts/pcim-requirements.json')
   outputs.file file('../../output/referenced-artifacts/pcim-requirement-trace.json')
+  outputs.file file('../../output/referenced-artifacts/pcim-oid-registry.json')
+  outputs.file file('../../output/referenced-artifacts/pcim-oid-attributes.adoc')
+  outputs.file file('../../output/referenced-artifacts/pcim-requirement-oids.adoc')
+  // Provenance includes HEAD; regenerate rather than reuse a stale commit value.
+  outputs.upToDateWhen { false }
 }
 
 tasks.register('pcimRequirementsCheck', Exec) {
@@ -84,5 +92,21 @@ tasks.register('pcimRequirementsFixture', Exec) {
   outputs.file file('fixtures/pcim-requirements.fixture.json')
 }
 
-asciidoctor.finalizedBy tasks.named('pcimRequirementsJson')
+tasks.register('pcimOidTests', Exec) {
+  group = 'verification'
+  workingDir file('../..')
+  commandLine 'python3', '-m', 'unittest', 'discover',
+      '-s', '.ci/asciidoc-converter/scripts', '-p', 'test_pcim_oids.py'
+}
+
+['pcimRequirementsJson', 'pcimRequirementsCheck', 'pcimRequirementsFixture'].each { taskName ->
+  tasks.named(taskName) {
+    inputs.file file('scripts/pcim_oids.py')
+    inputs.file file('../../asciidoc/pcim_oid_entities.adoc')
+  }
+}
+
+// The appendix and inline labels must exist before document conversion.
+asciidoctor.dependsOn tasks.named('pcimRequirementsJson'), tasks.named('pcimOidTests')
 check.dependsOn tasks.named('pcimRequirementsCheck')
+check.dependsOn tasks.named('pcimOidTests')

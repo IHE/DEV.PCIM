@@ -504,11 +504,20 @@ Status:
 [[oid-parity-plan]]
 == SDPi OID and Requirements Parity Plan
 
-PR 1 implementation draft: the supplement now includes `pcim_oid_governance.adoc`
-with proposed governance/lifecycle rules and a typed registry linked to entity
-definitions. `pcim_oid_wg_review.adoc` provides the November 5, 2026 walkthrough,
-six decision questions, crosswalk and baseline occurrence inventory. Allocation
-and lifecycle decisions remain pending; PRs 2-6 are not implemented by this draft.
+PR #138 has advanced beyond the original governance-only scope at the user's
+request. The actual supplement now applies proposed OIDs to all 33 named
+requirements and to 13 entity records, including three proposed PCIM-local
+transaction identities. Appendix A.7 holds governance; Appendix B holds the
+entity registry, generated requirement catalogue, historical wire crosswalk
+and allocation status. Existing MSH-21 values remain unchanged.
+
+The exporter emits OID/URI/allocation status and resolved scope references;
+it generates attributes and the requirement catalogue before rendering. Focused
+OID tests run in the build. `pcim_oid_entities.adoc` is the authoritative entity
+table. The WG packet now walks the applied document. These are selected pieces
+of PRs 2, 3 and 5 brought forward for review; full schemas, lifecycle enforcement,
+release-baseline comparison and complete normative coverage remain outstanding.
+The baseline audit below describes `800f160`, not the advanced PR's state.
 
 Assessment date: November 4, 2026. Local baseline:
 `pcim-requirements-modeling`, commit `800f160`.
@@ -651,7 +660,7 @@ requirements to satisfy the SDPi lexical rule. In particular, `PCIMR0003` and
 `PCIMR0305` each repeat `shall`. Lexical validation aids consistency but cannot
 establish semantic atomicity or complete normative coverage.
 
-=== Verified PCIM Baseline and Gaps
+=== Verified PCIM Baseline and Gaps at 800f160
 
 Sources inspected: `asciidoc/IHE_DEV_Suppl_PCIM.adoc`, this planning document,
 `.ci/asciidoc-converter/scripts/extract_pcim_requirements.py`, its fixture,
@@ -760,9 +769,9 @@ OIDs: DPAR `1.3.6.1.4.1.19376.1.6.3.22`, DPAC `.3.23`, DPAM `.3.24`.
 The abbreviated values share the `1.3.6.1.4.1.19376.1.6` prefix.
 
 |`P.4.<transaction-number>`
-|Available for specification-local transaction identity if exact structural
-parity is desired. Prefer established DEV identifiers as canonical references;
-any new local identifiers require an explicit alias/crosswalk decision.
+|PR #138 now proposes `.19`, `.51` and `.52` for local specification identity.
+Historical DEV and message-profile identifiers remain in an explicit crosswalk;
+no equivalence or wire replacement is inferred.
 
 |`P.8`
 |Reserve for actual content modules; do not classify every message constraint

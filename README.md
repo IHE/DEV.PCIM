@@ -29,6 +29,32 @@ To generate the HTML format for the docs, use the gen-html.sh or gen-html.bat sc
 
 Double click gen-html.bat or run ```gen-html.bat``` in the command prompt or in PowerShell.
 
+## Reviewing the proposed OID edition
+
+Build from the repository root with JDK 17:
+
+```sh
+./.ci/asciidoc-converter/gradlew -p .ci/asciidoc-converter check asciidoctor
+```
+
+Open `output/html/IHE_DEV_Suppl_PCIM.html`. Appendix A.7 contains governance;
+Appendix B contains the entity registry, generated requirement OIDs, and the
+historical transaction/message-profile crosswalk. The WG walkthrough is
+`output/html/pcim_oid_wg_review.html`.
+
+The build generates OID attributes and the catalogue before rendering. Edit
+`asciidoc/pcim_oid_entities.adoc` for entity identities and the supplement's
+semantic requirement blocks for requirements; do not edit generated files.
+Keep the entity table's six-column format, explicit anchors and full numeric
+OIDs. The parser deliberately rejects unsupported cell syntax.
+
+Review JSON is in `output/referenced-artifacts`: requirements, requirement trace,
+and OID registry. These artifacts are marked draft and new allocations remain
+proposed. They are not approved assignments or a complete normative inventory.
+After intentional source edits, refresh the committed review fixture with
+`pcimRequirementsFixture`. JSON generation refreshes commit provenance on each
+run. A standalone AsciiDoc render requires its generated includes first.
+
 ## Contributing
 
 Please contact [Eldon Metz](mailto:emetz@innovisionmedical.com)  or [Tom Kowalczyk](mailto:Tom.Kowalczyk@BBraunUSA.com) if you wish to contribute to this profile.

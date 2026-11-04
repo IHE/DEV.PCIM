@@ -17,7 +17,7 @@ permit it. Complete requirement coverage remains a later authoring task.
 Review artifacts:
 
 * link:IHE_DEV_Suppl_PCIM.html#pcim-oid-governance[Supplement Appendix A.7: governance and lifecycle]
-* link:IHE_DEV_Suppl_PCIM.html#pcim-oid-registry[Supplement Appendix A.8: typed registry]
+* link:IHE_DEV_Suppl_PCIM.html#pcim-oid-registry[Supplement Appendix B: entity and requirement OIDs]
 * link:pcim_named_requirements_plan.html#sdpi-ci-audit[SDPi CI audit and parity plan]
 * https://github.com/IHE/DEV.PCIM/pull/137[Existing requirements-modeling PR #137]
 * https://profiles.ihe.net/DEV/SDPi/index.html[Published SDPi: Appendices 3:C and 1:A.4]
@@ -36,8 +36,9 @@ Keep `PCIMRnnnn` readable IDs and existing anchors.
 |DEV reserves the PCIM root ending `.2.7`. We propose `.10` for requirements,
 `.9` for use cases and `.11` for options. Reservation is not proof that all
 children are available. Resolve Q1 and Q2, or assign the confirmation action.
-|7-11 |Appendix A.8
-|Show `dpar` as existing, use case 1 as proposed, and DEV-51 as unresolved.
+|7-11 |Appendix B.1-B.2
+|Show `dpar` as existing, use case 1 and DEV-51 as proposed. Show the requirement catalogue and
+follow a requirement link to its inline OID.
 These statuses keep imported facts separate from allocations awaiting approval.
 Existing wire identifiers remain untouched. Introduce Q3.
 |11-16 |OID crosswalk and occurrence inventory below
@@ -51,7 +52,8 @@ The original does not move to the 9000 range. Resolve Q4 and Q5.
 |21-25 |Parity plan and boundaries
 |SDPi validates during conversion and generates tables/JSON from one model.
 Its audited CI does not run the separate tests. PCIM will add explicit tests,
-schemas and output checks later. Today's PR is governance and registry only.
+schemas and broader output checks later. This PR now applies draft OIDs in the
+actual supplement and JSON, and runs focused OID tests before rendering.
 Resolve Q6; separate any normative disagreements into tracked issues.
 |25-30 |Decision record
 |Read back each decision, authority, owner and due date. Mark unresolved items
@@ -77,7 +79,8 @@ editor; actual names and dates are to be agreed in the meeting.
 
 === Q2: Is the proposed hierarchy acceptable?
 
-Approve requirements under `P.10`, the five use cases under `P.9.1` through
+Approve specification transactions under `P.4.19`, `P.4.51` and `P.4.52`,
+requirements under `P.10`, the five use cases under `P.9.1` through
 `P.9.5`, and Subscription and Filtering under `P.11.1`, subject to Q1?
 Keep PCIM itself at `P`, and keep its existing external actor identities?
 
@@ -101,8 +104,8 @@ editor to reconcile registry entries, published PCIM text, message-profile
 definitions/validators and deployed use. Record object type and evidence for
 each selected canonical value and alias before changing source examples.
 Do not assume a registry alias for a transaction establishes a message-profile
-alias. The next exporter can support unresolved draft entries but must not
-publish them as confirmed allocations.
+alias. The review exporter now emits proposed local transaction identities;
+it does not declare equivalence to historical or message-profile identifiers.
 
 The DEV registry also reserves `1.3.6.1.4.1.19376.1.6.6.19.1` for the
 DEV-19 conformance profile. Include that distinct registry entry in the review;
@@ -133,17 +136,18 @@ Recommendation: yes. The 9000 range is unallocated reserve, not a retirement
 destination. Never reuse published IDs. Before the first OID release, establish
 a reviewed allocation baseline, including any previously published human IDs.
 
-=== Q6: Can this draft proceed, and what gates PR #2?
+=== Q6: Can this applied review draft proceed, and what remains before release?
 
-May the governance/registry PR merge as clearly proposed authoring policy, or
+May the applied OID review PR merge with proposed allocation status, or
 does the WG require allocation decisions before merge? Who reviews the follow-on
 exporter/schema PR? Which unresolved questions must block an official release?
 
 Recommendation: permit draft implementation review while Q1-Q3 remain open;
 require confirmed root/leaf allocations and canonical-identifier decisions
 before official OID publication. Keep normative cleanup in separately reviewed
-changes. PR #2 derives OIDs for the current 33 requirements; it does not claim
-the complete normative inventory is finished.
+changes. This PR now derives and displays OIDs for the current 33 requirements.
+Schema publication, retirement enforcement, complete normative coverage and
+release-baseline checks remain follow-on work.
 
 == Decision Record to Complete in the Meeting
 
@@ -170,18 +174,18 @@ distinct from every transaction and message-profile value below.
 
 [cols="1,2,3,3",options="header"]
 |===
-|Object |Registry / existing identity |Observed supplement use |Disposition
+|Object |Registry / existing identity |Baseline supplement use |Disposition
 |PCIM |`D.2.7` reserved |Proposed subtree parent |Q1 confirmation; no child authority inferred
 |DPAR / DPAC / DPAM |`D.3.22` / `D.3.23` / `D.3.24`
 |General Introduction Appendix A actor table |Retain existing identities
-|DEV-19 |`D.4.19` / `D.1.19.1` listed in DEV registry
+|DEV-19 (proposed local `D.2.7.4.19`) |`D.4.19` / `D.1.19.1` listed in DEV registry
 |Transaction/namespace tables and examples use `D.1.19.1`; Section A.2.1 MSH-21 uses `D.4.19.1`
 |Q3: distinguish transaction from message profile; verify aliases separately
-|DEV-51 |`D.4.51` / `D.1.51.1` listed in DEV registry
+|DEV-51 (proposed local `D.2.7.4.51`) |`D.4.51` / `D.1.51.1` listed in DEV registry
 |Transaction/namespace tables, A.1 overview and assertion examples use `D.1.51.1`;
 MSH field table and acknowledgment example use `D.4.51.1`
 |Q3: resolve both field-table and example discrepancies
-|DEV-52 |`D.4.52` / `D.1.52.1` listed in DEV registry
+|DEV-52 (proposed local `D.2.7.4.52`) |`D.4.52` / `D.1.52.1` listed in DEV registry
 |Transaction/namespace tables, A.1 overview and report example use `D.1.52.1`
 |Q3: confirm object types even without the same visible conflict
 |DEV-19 conformance profile |`D.6.19.1` reserved in DEV registry

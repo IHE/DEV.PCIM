@@ -20,3 +20,4 @@ CPs/output
 
 # Ignore Mac metadata file
 .DS_Store
+__pycache__/
