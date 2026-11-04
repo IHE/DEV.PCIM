@@ -7,6 +7,7 @@ import re
 import subprocess
 import sys
 from pathlib import Path
+from pcim_oids import apply_oids, read_entities, render_attributes, render_requirement_table
 
 
 TITLE_RE = re.compile(r"^\.(PCIMR\d{4})\s*$")
@@ -261,6 +262,10 @@ def main():
     parser.add_argument("--source", required=True)
     parser.add_argument("--output")
     parser.add_argument("--trace-output")
+    parser.add_argument("--oid-source", help="Entity table; defaults to pcim_oid_entities.adoc beside source")
+    parser.add_argument("--oid-output")
+    parser.add_argument("--oid-attributes-output")
+    parser.add_argument("--oid-table-output")
     parser.add_argument(
         "--check-only",
         action="store_true",
@@ -282,6 +287,12 @@ def main():
     trace_path = (repo_root / args.trace_output).resolve() if args.trace_output else None
 
     requirements, errors = parse_requirements(source_path, repo_root)
+    oid_source = (repo_root / args.oid_source).resolve() if args.oid_source else source_path.with_name("pcim_oid_entities.adoc")
+    try:
+        entities = read_entities(oid_source)
+        oid_root = apply_oids(requirements, entities, source_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        errors.append(str(exc))
     if errors:
         for error in errors:
             print(error, file=sys.stderr)
@@ -299,6 +310,8 @@ def main():
         "$schema": "https://profiles.ihe.net/DEV/PCIM/schemas/pcim-requirements.schema.json",
         "artifactType": "pcim-requirements",
         "profile": "PCIM",
+        "publicationStatus": "draft",
+        "oidRoot": oid_root,
         "source": {
             "repository": "IHE/DEV.PCIM",
             "file": str(source_path.relative_to(repo_root)),
@@ -316,21 +329,44 @@ def main():
             "$schema": "https://profiles.ihe.net/DEV/PCIM/schemas/pcim-requirement-trace.schema.json",
             "artifactType": "pcim-requirement-trace",
             "profile": "PCIM",
+            "publicationStatus": "draft",
+            "oidRoot": oid_root,
             "source": artifact["source"],
             "count": len(requirements),
             "requirements": [
                 {
                     "id": requirement["id"],
+                    "oid": requirement["oid"],
+                    "uri": requirement["uri"],
+                    "allocationStatus": requirement["allocationStatus"],
                     "level": requirement["level"],
                     "type": requirement["type"],
                     "source": requirement["source"],
                     "scope": requirement["scope"],
+                    "scopeReferences": requirement["scopeReferences"],
                     "verification": requirement["verification"],
                 }
                 for requirement in requirements
             ],
         }
         write_json(trace_path, trace)
+
+    if args.oid_output:
+        write_json(repo_root / args.oid_output, {
+            "artifactType": "pcim-oid-registry", "publicationStatus": "draft",
+            "oidRoot": oid_root, "source": artifact["source"],
+            "entitySource": str(oid_source.relative_to(repo_root)),
+            "entities": entities,
+            "requirements": [{key: req[key] for key in
+                              ("id", "oid", "uri", "anchor", "allocationStatus")}
+                             for req in requirements],
+        })
+    for target, content in ((args.oid_attributes_output, render_attributes(requirements, entities)),
+                            (args.oid_table_output, render_requirement_table(requirements))):
+        if target:
+            path = repo_root / target
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(content, encoding="utf-8")
 
     print(f"Extracted {len(requirements)} PCIM requirements to {output_path}")
     if trace_path:

@@ -1,0 +1,178 @@
+[[pcim-oid-governance]]
+=== A.7 OID Governance and Requirement Lifecycle (Draft for WG Review)
+
+[IMPORTANT]
+====
+This is a proposed authoring and allocation policy for working-group review.
+New PCIM child OIDs shown here are not confirmed allocations. The proposal does
+not change transaction behavior, MSH-21 values, or conformance obligations.
+====
+
+==== A.7.1 Authority and Approval
+
+The https://wiki.ihe.net/index.php/PCD_OID_Management[IHE DEV OID registry]
+reserves `1.3.6.1.4.1.19376.1.6.2.7` for PCIM. The DEV Technical Committee
+co-chairs should confirm authority to allocate beneath this root and check for
+prior child allocations before these proposals are published as assigned OIDs.
+The PCIM working group is the proposed steward of the delegated subtree.
+
+Proposed process: the author proposes an allocation in source; a WG-designated
+reviewer checks uniqueness, meaning, authority and lifecycle; the WG records
+its decision; the approved change is merged through normal pull-request review.
+Each allocation decision records the decision date, approving authority,
+issue/PR or minutes reference, first applicable release, and any predecessor.
+Only a recorded decision can promote an entry from proposed to assigned.
+External identifiers retain their original authority.
+
+==== A.7.2 Proposed Hierarchy
+
+Let `P = 1.3.6.1.4.1.19376.1.6.2.7`. Child arcs below are proposals, not
+claims of registration. An unused category is held for future use; it does not
+create an actor, namespace, profile, content module or requirement.
+
+[cols="1,3",options="header"]
+|===
+|Arc |Meaning and allocation policy
+|`P` |PCIM profile identity; delegation as subtree parent awaits confirmation.
+|`P.0` |Conformity releases, eventually `.major.minor.revision`; a separate
+version policy is needed before any leaf is assigned.
+|`P.1` |Namespaces and URIs, if needed.
+|`P.2` |Future profile subdivisions; PCIM itself retains `P`.
+|`P.3` |Future PCIM-local actors; existing DEV actor OIDs are retained.
+|`P.4` |Specification-local transaction identities: `.19`, `.51` and `.52`.
+These proposed objects do not replace historical MSH-21 values.
+|`P.8` |Actual content modules, if introduced.
+|`P.9` |Use cases, with scenarios beneath their use-case OID. Allocate leaves
+once; never derive them dynamically from section order.
+|`P.10` |Requirements; final arc is the integer in `PCIMRnnnn`.
+|`P.11` |Profile actor options.
+|`P.12` |PCIM support for use cases. Here `P` is already the profile OID;
+support and the use case itself are different objects.
+|===
+
+The hierarchy follows the modeling approach of
+https://profiles.ihe.net/DEV/SDPi/index.html[SDPi Appendix 3:C].
+SDPi source confirms use-case support beneath the profile OID plus `.12`.
+PCIM keeps its established external identities instead of creating replacement
+identifiers solely for structural symmetry.
+
+==== A.7.3 Requirement Identity
+
+Retain readable identifiers such as `PCIMR0100` and HTML anchors such as
+`pcimr0100`. Proposed machine identity is `P.10.100`, or
+`urn:oid:1.3.6.1.4.1.19376.1.6.2.7.10.100` in URI form. Remove leading zeros
+only from the numeric arc. An OID identifies the requirement, not its text
+location, transaction, actor, test assertion or document version.
+
+The exporter derives proposed requirement OIDs from the registry root and
+existing requirement numbers. Authors do not enter an OID per requirement.
+The review exports and <<pcim-oid-requirements,requirement catalogue>> contain
+all 33 currently named requirements, each marked with proposed allocation
+status. This is not a claim that all normative obligations are already modeled.
+Official allocation and publication remain subject to WG decisions.
+
+==== A.7.4 Change and Retirement Policy
+
+Proposed policy for WG approval:
+
+* Editorial changes that preserve meaning retain the identifier and OID.
+  Record the release/commit so the exact reviewed text remains recoverable.
+* Changes affecting previously conforming behavior, actor applicability or
+  conditions receive a new identifier and OID. Review changes of obligation
+  level explicitly; do not automatically classify them as editorial.
+* A removed requirement retains its original identifier and OID in a retirement
+  record. Never reuse either value, including after deletion from current prose.
+* Retirement records contain ID, OID, last active release, retirement release,
+  reason, decision reference and zero or more replacement IDs/OIDs. Splits and
+  merges preserve links to every predecessor; retirement without replacement
+  is permitted when justified.
+* Unallocated reserves are distinct from retired identities. Moving a
+  requirement to another section or allocation category never changes its ID.
+* Source releases are immutable trace targets. A test result identifies both
+  the requirement and the specification release/commit it evaluated.
+
+These are governance rules in this draft; lifecycle automation and comparison
+with prior releases are scheduled for subsequent PRs.
+
+[[pcim-oid-registry]]
+== Appendix B -- PCIM OID Identifiers (Proposed Review Edition)
+
+=== B.1 Entity OIDs
+
+This table is the authoring source for the initial entity registry. Its role is
+`pcim_oid_registry`; the columns are `type`, `local_id`, `oid`,
+`allocation_status`, `definition`, and `authority_or_decision`. Row anchors
+identify registry records; definition links identify the actual specification
+objects. The build consumes these rows to generate OID attributes and the
+`pcim-oid-registry.json` review export. Display labels in the main document
+resolve from this same registry.
+
+`existing` means the cited external assignment is retained; `reserved-root`
+means PCIM is listed in the DEV registry but subtree delegation is unconfirmed;
+`proposed` means a new allocation awaits approval. Every row now has a concrete
+OID for review; wire-identifier reconciliation remains open in Section B.3.
+The current exporter is draft-only and labels its artifacts accordingly. An
+official-release exporter must enforce allocation approval before publication;
+that release mode is not implemented here. Future assigned entries require an
+allocation decision record.
+
+All full OIDs in the `oid` column identify only the object in that row. The
+transaction candidates in the WG review inventory are not silently treated as
+equivalent to message-profile identifiers. MSH-21 remains unchanged.
+
+include::pcim_oid_entities.adoc[]
+
+WG question references refer to the November 5, 2026 review packet,
+`pcim_oid_wg_review.adoc`. Its baseline occurrence inventory provides historical
+source identifiers for reconciliation; it is not a second allocation registry.
+After review, replace question references with durable decisions or tracked
+open issues. Requirement rows remain defined by their semantic requirement
+blocks; their OIDs are generated rather than copied into this table.
+
+
+[[pcim-oid-requirements]]
+=== B.2 Requirement OIDs
+
+Every named requirement below has a derived OID and a link to its normative
+statement. Each statement also displays its proposed OID. The machine-readable
+requirements and trace exports carry the identical OID, URI and allocation
+status. All entries in this catalogue are proposed allocations for review.
+
+include::../output/referenced-artifacts/pcim-requirement-oids.adoc[]
+
+[[pcim-oid-crosswalk]]
+=== B.3 Historical Identifiers and Wire Compatibility
+
+Let `D = 1.3.6.1.4.1.19376.1.6`. The first column is a proposed PCIM-local
+specification identity. Historical values in the remaining columns describe
+source evidence; they are not automatically declared equivalent aliases.
+The WG must distinguish transaction identity from message-conformance-profile
+identity before approving any wire changes.
+
+[cols="2,2,3",options="header"]
+|===
+|Proposed specification transaction OID |Historical transaction identifiers |MSH-21 evidence in this supplement
+|{pcim-oid-dev-19} |`D.4.19` / `D.1.19.1`
+|Section A.2.1 uses `D.4.19.1`; examples use `D.1.19.1`.
+The DEV registry separately reserves `D.6.19.1` for the conformance profile.
+|{pcim-oid-dev-51} |`D.4.51` / `D.1.51.1`
+|Overview/assertion examples use `D.1.51.1`; MSH field table and acknowledgment
+example use `D.4.51.1`.
+|{pcim-oid-dev-52} |`D.4.52` / `D.1.52.1`
+|Overview/report example use `D.1.52.1`.
+|===
+
+The introductory transaction table now presents the proposed specification
+identities. The Volume 2 namespace table and all wire examples preserve their
+historical values pending reconciliation. Neither requirement OIDs nor these
+new specification OIDs are inserted into MSH-21, patient/device identifiers,
+or association instance identifiers by this review change.
+
+=== B.4 Allocation and Retirement Status
+
+This edition proposes nine entity allocations (three transactions, five use
+cases and one option) and 33 requirement allocations. It retains three actor
+identities and the reserved PCIM root. There are no requirement retirements in
+this review change. A historical retirement ledger and release-baseline checks
+remain follow-on work; absence of entries here does not assert that historical
+PCIM identifiers have never been retired.
