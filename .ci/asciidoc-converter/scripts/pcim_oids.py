@@ -62,7 +62,7 @@ def apply_oids(requirements, entities, source_text):
         anchors.add(entity["registryAnchor"])
         known[key] = entity
     for requirement in requirements:
-        match = re.fullmatch(r"PCIMR([0-9]{4})", requirement["id"])
+        match = re.fullmatch(r"PCIM-R([0-9]{4})", requirement["id"])
         if not match or int(match[1]) == 0:
             raise ValueError(f"Invalid requirement ID: {requirement['id']}")
         oid = f"{root}.10.{int(match[1])}"
@@ -86,6 +86,8 @@ def render_attributes(requirements, entities):
     lines = ["// Generated for review; edit entity registry or requirement blocks, not this file."]
     lines += [f":{e['registryAnchor']}: {e['oid']}" for e in entities]
     lines += [f":pcim-oid-{r['anchor']}: {r['oid']}" for r in requirements]
+    lines += [f":pcim-oid-link-{r['anchor']}: pass:c,q,m[([.small.pcim-oid]#<<pcim-oid-entry-{r['anchor']},{r['oid']}>>#)]"
+              for r in requirements]
     return "\n".join(lines) + "\n"
 
 
@@ -94,5 +96,5 @@ def render_requirement_table(requirements):
              '[#pcim-requirement-oid-table,cols="1,3,1,2",options="header"]',
              '|===', '|Requirement |Proposed OID |Level |Type']
     for req in requirements:
-        lines.append(f"|<<{req['anchor']},{req['id']}>> |{req['oid']} |{req['level']} |{req['type']}")
+        lines.append(f"|[[pcim-oid-entry-{req['anchor']}]]<<{req['anchor']},{req['id']}>> |{req['oid']} |{req['level']} |{req['type']}")
     return "\n".join(lines + ['|===', ''])

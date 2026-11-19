@@ -5,7 +5,7 @@
 
 |profile |[[pcim-oid-profile]]PCIM
 |1.3.6.1.4.1.19376.1.6.2.7 |reserved-root
-|<<pcim-profile,PCIM>> |DEV OID registry; WG Q1
+|<<pcim-profile,PCIM>> |DEV OID registry; subtree allocation authority pending confirmation
 
 |actor |[[pcim-oid-dpar]]dpar
 |1.3.6.1.4.1.19376.1.6.3.22 |existing
@@ -21,37 +21,37 @@
 
 |transaction |[[pcim-oid-dev-19]]DEV-19
 |1.3.6.1.4.1.19376.1.6.2.7.4.19 |proposed
-|<<pcim-transaction-dev-19,Filter Associations>> |WG Q2/Q3; local specification identity, not MSH-21
+|<<pcim-transaction-dev-19,Filter Associations>> |WG allocation and wire-identifier reconciliation pending; local specification identity, not MSH-21
 
 |transaction |[[pcim-oid-dev-51]]DEV-51
 |1.3.6.1.4.1.19376.1.6.2.7.4.51 |proposed
-|<<pcim-transaction-dev-51,Communicate Association State>> |WG Q2/Q3; local specification identity, not MSH-21
+|<<pcim-transaction-dev-51,Communicate Association State>> |WG allocation and wire-identifier reconciliation pending; local specification identity, not MSH-21
 
 |transaction |[[pcim-oid-dev-52]]DEV-52
 |1.3.6.1.4.1.19376.1.6.2.7.4.52 |proposed
-|<<pcim-transaction-dev-52,Report Association State>> |WG Q2/Q3; local specification identity, not MSH-21
+|<<pcim-transaction-dev-52,Report Association State>> |WG allocation and wire-identifier reconciliation pending; local specification identity, not MSH-21
 
 |profile_actor_option |[[pcim-oid-option-filtering]]subscription_filtering
 |1.3.6.1.4.1.19376.1.6.2.7.11.1 |proposed
-|<<pcim-option-subscription-filtering,Subscription and Filtering>> |WG Q2
+|<<pcim-option-subscription-filtering,Subscription and Filtering>> |WG allocation approval pending
 
 |use_case |[[pcim-oid-uc1]]uc1_associate_device_patient
 |1.3.6.1.4.1.19376.1.6.2.7.9.1 |proposed
-|<<pcim-use-case-1,Associate>> |WG Q2
+|<<pcim-use-case-1,Associate>> |WG allocation approval pending
 
 |use_case |[[pcim-oid-uc2]]uc2_disassociate_device_patient
 |1.3.6.1.4.1.19376.1.6.2.7.9.2 |proposed
-|<<pcim-use-case-2,Disassociate>> |WG Q2
+|<<pcim-use-case-2,Disassociate>> |WG allocation approval pending
 
 |use_case |[[pcim-oid-uc3]]uc3_filter_devices_for_patient
 |1.3.6.1.4.1.19376.1.6.2.7.9.3 |proposed
-|<<pcim-use-case-3,Filter>> |WG Q2
+|<<pcim-use-case-3,Filter>> |WG allocation approval pending
 
 |use_case |[[pcim-oid-uc4]]uc4_correct_verified_association
 |1.3.6.1.4.1.19376.1.6.2.7.9.4 |proposed
-|<<pcim-use-case-4,Correct>> |WG Q2
+|<<pcim-use-case-4,Correct>> |WG allocation approval pending
 
 |use_case |[[pcim-oid-uc5]]uc5_wrong_association
 |1.3.6.1.4.1.19376.1.6.2.7.9.5 |proposed
-|<<pcim-use-case-5,Wrong Association>> |WG Q2
+|<<pcim-use-case-5,Wrong Association>> |WG allocation approval pending
 |===

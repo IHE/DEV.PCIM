@@ -39,8 +39,7 @@ Build from the repository root with JDK 17:
 
 Open `output/html/IHE_DEV_Suppl_PCIM.html`. Appendix A.7 contains governance;
 Appendix B contains the entity registry, generated requirement OIDs, and the
-historical transaction/message-profile crosswalk. The WG walkthrough is
-`output/html/pcim_oid_wg_review.html`.
+historical transaction/message-profile crosswalk.
 
 The build generates OID attributes and the catalogue before rendering. Edit
 `asciidoc/pcim_oid_entities.adoc` for entity identities and the supplement's

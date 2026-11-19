@@ -44,7 +44,7 @@ These proposed objects do not replace historical MSH-21 values.
 |`P.8` |Actual content modules, if introduced.
 |`P.9` |Use cases, with scenarios beneath their use-case OID. Allocate leaves
 once; never derive them dynamically from section order.
-|`P.10` |Requirements; final arc is the integer in `PCIMRnnnn`.
+|`P.10` |Requirements; final arc is the integer in `PCIM-Rnnnn`.
 |`P.11` |Profile actor options.
 |`P.12` |PCIM support for use cases. Here `P` is already the profile OID;
 support and the use case itself are different objects.
@@ -58,8 +58,8 @@ identifiers solely for structural symmetry.
 
 ==== A.7.3 Requirement Identity
 
-Retain readable identifiers such as `PCIMR0100` and HTML anchors such as
-`pcimr0100`. Proposed machine identity is `P.10.100`, or
+Retain readable identifiers such as `PCIM-R0100` and HTML anchors such as
+`pcim-r0100`. Proposed machine identity is `P.10.100`, or
 `urn:oid:1.3.6.1.4.1.19376.1.6.2.7.10.100` in URI form. Remove leading zeros
 only from the numeric arc. An OID identifies the requirement, not its text
 location, transaction, actor, test assertion or document version.
@@ -117,16 +117,13 @@ that release mode is not implemented here. Future assigned entries require an
 allocation decision record.
 
 All full OIDs in the `oid` column identify only the object in that row. The
-transaction candidates in the WG review inventory are not silently treated as
+transaction candidates in Section B.3 are not silently treated as
 equivalent to message-profile identifiers. MSH-21 remains unchanged.
 
 include::pcim_oid_entities.adoc[]
 
-WG question references refer to the November 5, 2026 review packet,
-`pcim_oid_wg_review.adoc`. Its baseline occurrence inventory provides historical
-source identifiers for reconciliation; it is not a second allocation registry.
-After review, replace question references with durable decisions or tracked
-open issues. Requirement rows remain defined by their semantic requirement
+Pending allocation decisions are described in the registry. Replace pending
+references with durable decisions or tracked open issues after review. Requirement rows remain defined by their semantic requirement
 blocks; their OIDs are generated rather than copied into this table.
 
 

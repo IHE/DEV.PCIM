@@ -8,14 +8,14 @@
     "repository": "IHE/DEV.PCIM",
     "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
     "commit": null,
-    "revision": "2.4",
-    "publicationDate": "May 7, 2026"
+    "revision": "2.5",
+    "publicationDate": "November 19, 2026"
   },
   "count": 33,
   "requirements": [
     {
-      "id": "PCIMR0001",
-      "anchor": "pcimr0001",
+      "id": "PCIM-R0001",
+      "anchor": "pcim-r0001",
       "level": "shall",
       "type": "ihe_profile",
       "status": "active",
@@ -87,15 +87,15 @@
       }
     },
     {
-      "id": "PCIMR0002",
-      "anchor": "pcimr0002",
+      "id": "PCIM-R0002",
+      "anchor": "pcim-r0002",
       "level": "shall",
       "type": "ihe_profile",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 397,
+        "line": 400,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.1 PCIM Actors, Transactions, and Content Modules",
@@ -184,15 +184,15 @@
       }
     },
     {
-      "id": "PCIMR0003",
-      "anchor": "pcimr0003",
+      "id": "PCIM-R0003",
+      "anchor": "pcim-r0003",
       "level": "shall",
       "type": "ihe_profile",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 416,
+        "line": 426,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.1 PCIM Actors, Transactions, and Content Modules",
@@ -278,15 +278,15 @@
       }
     },
     {
-      "id": "PCIMR0004",
-      "anchor": "pcimr0004",
+      "id": "PCIM-R0004",
+      "anchor": "pcim-r0004",
       "level": "shall",
       "type": "ihe_profile",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 441,
+        "line": 458,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.1 PCIM Actors, Transactions, and Content Modules",
@@ -383,15 +383,15 @@
       }
     },
     {
-      "id": "PCIMR0005",
-      "anchor": "pcimr0005",
+      "id": "PCIM-R0005",
+      "anchor": "pcim-r0005",
       "level": "shall",
       "type": "ihe_profile",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 459,
+        "line": 482,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.1 PCIM Actors, Transactions, and Content Modules",
@@ -475,15 +475,15 @@
       }
     },
     {
-      "id": "PCIMR0006",
-      "anchor": "pcimr0006",
+      "id": "PCIM-R0006",
+      "anchor": "pcim-r0006",
       "level": "shall",
       "type": "ihe_profile",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 524,
+        "line": 551,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.2 PCIM Actor Options",
@@ -568,15 +568,15 @@
       }
     },
     {
-      "id": "PCIMR0007",
-      "anchor": "pcimr0007",
+      "id": "PCIM-R0007",
+      "anchor": "pcim-r0007",
       "level": "may",
       "type": "ihe_profile",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 543,
+        "line": 577,
         "sectionPath": [
           "7 Point-of-Care Identity Management (PCIM) Profile",
           "7.2 PCIM Actor Options",
@@ -661,15 +661,15 @@
       }
     },
     {
-      "id": "PCIMR0100",
-      "anchor": "pcimr0100",
+      "id": "PCIM-R0100",
+      "anchor": "pcim-r0100",
       "level": "shall",
       "type": "tech_feature",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 997,
+        "line": 1061,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -754,15 +754,15 @@
       }
     },
     {
-      "id": "PCIMR0101",
-      "anchor": "pcimr0101",
+      "id": "PCIM-R0101",
+      "anchor": "pcim-r0101",
       "level": "shall",
       "type": "tech_feature",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1015,
+        "line": 1085,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -847,15 +847,15 @@
       }
     },
     {
-      "id": "PCIMR0102",
-      "anchor": "pcimr0102",
+      "id": "PCIM-R0102",
+      "anchor": "pcim-r0102",
       "level": "shall",
       "type": "tech_feature",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1032,
+        "line": 1109,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -948,15 +948,15 @@
       }
     },
     {
-      "id": "PCIMR0103",
-      "anchor": "pcimr0103",
+      "id": "PCIM-R0103",
+      "anchor": "pcim-r0103",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1093,
+        "line": 1175,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -1043,15 +1043,15 @@
       }
     },
     {
-      "id": "PCIMR0104",
-      "anchor": "pcimr0104",
+      "id": "PCIM-R0104",
+      "anchor": "pcim-r0104",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1187,
+        "line": 1276,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -1131,15 +1131,15 @@
       }
     },
     {
-      "id": "PCIMR0105",
-      "anchor": "pcimr0105",
+      "id": "PCIM-R0105",
+      "anchor": "pcim-r0105",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1205,
+        "line": 1301,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -1220,15 +1220,15 @@
       }
     },
     {
-      "id": "PCIMR0106",
-      "anchor": "pcimr0106",
+      "id": "PCIM-R0106",
+      "anchor": "pcim-r0106",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1227,
+        "line": 1330,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.51 Communicate Association State [DEV-51]",
@@ -1308,15 +1308,15 @@
       }
     },
     {
-      "id": "PCIMR0200",
-      "anchor": "pcimr0200",
+      "id": "PCIM-R0200",
+      "anchor": "pcim-r0200",
       "level": "shall",
       "type": "tech_feature",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1281,
+        "line": 1391,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -1405,15 +1405,15 @@
       }
     },
     {
-      "id": "PCIMR0201",
-      "anchor": "pcimr0201",
+      "id": "PCIM-R0201",
+      "anchor": "pcim-r0201",
       "level": "shall",
       "type": "tech_feature",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1300,
+        "line": 1416,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -1509,15 +1509,15 @@
       }
     },
     {
-      "id": "PCIMR0202",
-      "anchor": "pcimr0202",
+      "id": "PCIM-R0202",
+      "anchor": "pcim-r0202",
       "level": "shall",
       "type": "tech_feature",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1343,
+        "line": 1465,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -1621,15 +1621,15 @@
       }
     },
     {
-      "id": "PCIMR0203",
-      "anchor": "pcimr0203",
+      "id": "PCIM-R0203",
+      "anchor": "pcim-r0203",
       "level": "shall",
       "type": "tech_feature",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1394,
+        "line": 1522,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -1706,15 +1706,15 @@
       }
     },
     {
-      "id": "PCIMR0204",
-      "anchor": "pcimr0204",
+      "id": "PCIM-R0204",
+      "anchor": "pcim-r0204",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1416,
+        "line": 1550,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -1794,15 +1794,15 @@
       }
     },
     {
-      "id": "PCIMR0205",
-      "anchor": "pcimr0205",
+      "id": "PCIM-R0205",
+      "anchor": "pcim-r0205",
       "level": "shall",
       "type": "risk_mitigation",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1437,
+        "line": 1578,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.52 Report Association State [DEV-52]",
@@ -1876,15 +1876,15 @@
       }
     },
     {
-      "id": "PCIMR0300",
-      "anchor": "pcimr0300",
+      "id": "PCIM-R0300",
+      "anchor": "pcim-r0300",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1472,
+        "line": 1618,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.19 Filter Associations [DEV-19]",
@@ -1972,15 +1972,15 @@
       }
     },
     {
-      "id": "PCIMR0301",
-      "anchor": "pcimr0301",
+      "id": "PCIM-R0301",
+      "anchor": "pcim-r0301",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1492,
+        "line": 1646,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.19 Filter Associations [DEV-19]",
@@ -2070,15 +2070,15 @@
       }
     },
     {
-      "id": "PCIMR0302",
-      "anchor": "pcimr0302",
+      "id": "PCIM-R0302",
+      "anchor": "pcim-r0302",
       "level": "shall",
       "type": "tech_feature",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1510,
+        "line": 1672,
         "sectionPath": [
           "Volume 2 -- Transactions",
           "3.19 Filter Associations [DEV-19]",
@@ -2160,15 +2160,15 @@
       }
     },
     {
-      "id": "PCIMR0303",
-      "anchor": "pcimr0303",
+      "id": "PCIM-R0303",
+      "anchor": "pcim-r0303",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 2584,
+        "line": 2793,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.2 Filter Associations Message",
@@ -2257,15 +2257,15 @@
       }
     },
     {
-      "id": "PCIMR0304",
-      "anchor": "pcimr0304",
+      "id": "PCIM-R0304",
+      "anchor": "pcim-r0304",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 2604,
+        "line": 2821,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.2 Filter Associations Message",
@@ -2354,15 +2354,15 @@
       }
     },
     {
-      "id": "PCIMR0305",
-      "anchor": "pcimr0305",
+      "id": "PCIM-R0305",
+      "anchor": "pcim-r0305",
       "level": "shall",
       "type": "tech_feature",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 2670,
+        "line": 2895,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.2 Filter Associations Message",
@@ -2444,15 +2444,15 @@
       }
     },
     {
-      "id": "PCIMR0400",
-      "anchor": "pcimr0400",
+      "id": "PCIM-R0400",
+      "anchor": "pcim-r0400",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1742,
+        "line": 1910,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -2534,15 +2534,15 @@
       }
     },
     {
-      "id": "PCIMR0401",
-      "anchor": "pcimr0401",
+      "id": "PCIM-R0401",
+      "anchor": "pcim-r0401",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1759,
+        "line": 1933,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -2621,15 +2621,15 @@
       }
     },
     {
-      "id": "PCIMR0402",
-      "anchor": "pcimr0402",
+      "id": "PCIM-R0402",
+      "anchor": "pcim-r0402",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1805,
+        "line": 1984,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -2712,15 +2712,15 @@
       }
     },
     {
-      "id": "PCIMR0403",
-      "anchor": "pcimr0403",
+      "id": "PCIM-R0403",
+      "anchor": "pcim-r0403",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1829,
+        "line": 2014,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -2803,15 +2803,15 @@
       }
     },
     {
-      "id": "PCIMR0404",
-      "anchor": "pcimr0404",
+      "id": "PCIM-R0404",
+      "anchor": "pcim-r0404",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1847,
+        "line": 2038,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -2894,15 +2894,15 @@
       }
     },
     {
-      "id": "PCIMR0405",
-      "anchor": "pcimr0405",
+      "id": "PCIM-R0405",
+      "anchor": "pcim-r0405",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1912,
+        "line": 2109,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",
@@ -2985,15 +2985,15 @@
       }
     },
     {
-      "id": "PCIMR0406",
-      "anchor": "pcimr0406",
+      "id": "PCIM-R0406",
+      "anchor": "pcim-r0406",
       "level": "shall",
       "type": "message_constraint",
       "status": "active",
       "source": {
         "repository": "IHE/DEV.PCIM",
         "file": "asciidoc/IHE_DEV_Suppl_PCIM.adoc",
-        "line": 1973,
+        "line": 2176,
         "sectionPath": [
           "Appendix A -- Proposed Messages",
           "A.1 Communicate and Report Association State",

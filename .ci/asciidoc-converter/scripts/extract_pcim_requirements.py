@@ -10,8 +10,8 @@ from pathlib import Path
 from pcim_oids import apply_oids, read_entities, render_attributes, render_requirement_table
 
 
-TITLE_RE = re.compile(r"^\.(PCIMR\d{4})\s*$")
-ATTR_RE = re.compile(r"^\[pcim_requirement#(pcimr\d{4})(?P<attrs>.*)\]\s*$")
+TITLE_RE = re.compile(r"^\.(PCIM-R\d{4})(?: \{pcim-oid-link-pcim-r\d{4}\})?\s*$")
+ATTR_RE = re.compile(r"^\[pcim_requirement#(pcim-r\d{4})(?P<attrs>.*)\]\s*$")
 SECTION_RE = re.compile(r"^(=+)\s+(.+?)\s*$")
 CONTENT_TAG_RE = re.compile(
     r"^\[(NORMATIVE|VERIFICATION|NOTE|RATIONALE|RELATED|EXAMPLE)\]\s*$"
@@ -171,6 +171,14 @@ def parse_requirements(source_path, repo_root):
             )
 
         metadata = split_attrs(attr_match.group("attrs"))
+        block_start = attr_line + 1
+        # AsciiDoc combines consecutive block attribute lists.
+        while block_start < len(lines):
+            extra = re.fullmatch(r"\[(pcim_[a-z_]+=.*)\]\s*", lines[block_start])
+            if not extra:
+                break
+            metadata.update(split_attrs(extra.group(1)))
+            block_start += 1
         level = metadata.get("pcim_req_level")
         req_type = metadata.get("pcim_req_type")
         if level not in {"shall", "should", "may"}:
@@ -178,7 +186,6 @@ def parse_requirements(source_path, repo_root):
         if not req_type:
             errors.append(f"line {attr_line + 1}: pcim_req_type is required")
 
-        block_start = attr_line + 1
         while block_start < len(lines) and not lines[block_start].strip():
             block_start += 1
         if block_start >= len(lines) or lines[block_start].strip() != "****":

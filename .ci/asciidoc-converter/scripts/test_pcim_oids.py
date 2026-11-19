@@ -11,7 +11,7 @@ class OidTests(unittest.TestCase):
         self.root = "1.3.6.1.4.1.19376.1.6.2.7"
         self.entities = [{"type": "profile", "id": "PCIM", "oid": self.root,
                           "registryAnchor": "pcim-oid-profile", "anchor": "pcim-profile"}]
-        self.req = {"id": "PCIMR0100", "anchor": "pcimr0100", "level": "shall",
+        self.req = {"id": "PCIM-R0100", "anchor": "pcim-r0100", "level": "shall",
                     "type": "tech_feature", "scope": {key: [] for key in
                     ("actors", "transactions", "options", "useCases")}}
         self.source = "[[pcim-profile]]\n= Profile\n"
@@ -23,7 +23,7 @@ class OidTests(unittest.TestCase):
         self.assertEqual(a["oid"], self.root + ".10.100")
         self.assertEqual(a, b)
         self.assertIn(a["oid"], render_requirement_table([a]))
-        self.assertIn(":pcim-oid-pcimr0100: " + a["oid"], render_attributes([a], self.entities))
+        self.assertIn(":pcim-oid-pcim-r0100: " + a["oid"], render_attributes([a], self.entities))
         self.assertEqual(a["uri"], "urn:oid:" + a["oid"])
         self.assertEqual(a["allocationStatus"], "proposed")
 
