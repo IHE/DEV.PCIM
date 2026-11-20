@@ -1,6 +1,6 @@
 = Integrating the Healthcare Enterprise
 :!version-label:
-:revnumber: 
+:revnumber: 2.5
 :doctype: book
 :imagesdir: images 
 :toc:
@@ -17,6 +17,7 @@
 :docinfo: shared
 :source-highlighter: highlight.js
 :highlightjsdir: js/highlight
+include::../output/referenced-artifacts/pcim-oid-attributes.adoc[]
 
 ++++
 
@@ -31,11 +32,19 @@
 
 <p style="font-size: 2.75em; text-align: center"><strong>Point-of-Care Identity Management (PCIM)</strong></p>
 
-<p style="text-align: center">Revision 2.4 &mdash; Trial Implementation</p>
+<p style="text-align: center">Proposed Revision 2.5 &mdash; Trial Implementation</p>
 
 ++++
 
-Date: May 7, 2026
+[IMPORTANT]
+====
+Proposed OID review edition: this document applies the draft PCIM numbering
+scheme to specification entities and all 33 named requirements. New allocations
+remain proposed. See <<pcim-oid-registry>> for the catalogue and wire-identifier
+crosswalk.
+====
+
+Date: November 19, 2026
 
 Author: IHE Devices Technical Committee
 
@@ -127,41 +136,45 @@ rather, they are appendices to the IHE Technical Frameworks General Introduction
 
 |Device-Patient Association Reporter (DPAR)
 |A system that asserts a device-patient association or disassociation with the attributes related including location, starting and ending times, and observers involved. The system may be fully automated or require human machine interaction (HMI). Provisions are made so systems may report assertions that are final or those that require additional user validation.
-|1.3.6.1.4.1.19376.1.6.3.22
+|{pcim-oid-dpar}
 
 |Device-Patient Association Manager (DPAM) 
 |A system that receives and manages association assertions and association state and coordinates conflict resolution. The system delivers records that match device-patient association query filters in real-time. The system is required to provide an HMI to allow responsible observers to validate assertions that require it.
-|1.3.6.1.4.1.19376.1.6.3.24
+|{pcim-oid-dpam}
 
 |Device-Patient Association Consumer (DPAC)
 |A system that receives device-patient association records from the manager in real-time. There is an option to dynamically filter the device-patient association records it wishes to receive via a subscription query.
-|1.3.6.1.4.1.19376.1.6.3.23
+|{pcim-oid-dpac}
 
 |===
 
 = Appendix B -- Transactions
+
+The OIDs in this review table identify the specification transactions under the
+proposed PCIM subtree. They do not prescribe MSH-21 values. Historical values
+and open reconciliation items are retained in <<pcim-oid-crosswalk>>.
 
 |===
 |Add the following *new* transactions to the IHE Technical Frameworks General Introduction https://profiles.ihe.net/GeneralIntro/ch-B.html[Appendix B]:
 |===
 
 |===
-|Transaction Name and Number|Definition|Transaction OID
+|Transaction Name and Number|Definition|Proposed Specification Transaction OID
 
 |Filter Associations 
 (DEV-19)
 |A Device-Patient Association Consumer sends an optional query to a Device-Patient Association Manager with filter criteria. The Device-Patient Association Manager  sets up a real-time subscription with the specified filter criteria applied. 
-|1.3.6.1.4.1.19376.1.6.1.19.1
+|{pcim-oid-dev-19}
 
 |Communicate Association State
 (DEV-51) 
 |A Device-Patient Association Reporter asserts to a Device-Patient Association Manager that a device has been associated or disassociated with a patient and optional location. It may also report updated data for a previously reported assertion.
-|1.3.6.1.4.1.19376.1.6.1.51.1 
+|{pcim-oid-dev-51}
 
 |Report Association State
 (DEV-52)  
 |A Device-Patient Association Manager reports to a Device-Patient Association Consumer that a device has been associated or disassociated with a patient with optional location. It may also report an update for an existing association.
-|1.3.6.1.4.1.19376.1.6.1.52.1
+|{pcim-oid-dev-52}
 |===
 
 
@@ -244,7 +257,10 @@ None
 |Editor: Add new Section 7 to DEV TF-1
 |===
 
+[[pcim-profile]]
 = 7 Point-of-Care Identity Management (PCIM) Profile
+
+Reserved profile OID: `{pcim-oid-profile}` (<<pcim-oid-registry,OID registry>>).
 
 The Point-of-Care Identity Management (PCIM) Profile is a Transport Profile specifying HL7 v2 standard messaging for devices and IT systems at a point-of-care to exchange and synchronize information about the identity of specific devices collecting clinical information about a specific patient, to:
 
@@ -309,6 +325,27 @@ Actors which have a required grouping are shown in conjoined boxes (see Section 
 Table 7.1-1 lists the transactions for each actor directly involved in the PCIM Profile.
 To claim compliance with this profile, an actor shall support all required transactions (labeled "`R`") and may support the optional transactions (labeled "`O`").
 
+.PCIM-R0001 {pcim-oid-link-pcim-r0001}
+[pcim_requirement#pcim-r0001]
+[pcim_req_level=shall]
+[pcim_req_type=ihe_profile]
+[pcim_actor="dpar,dpam,dpac"]
+[pcim_verification_method=inspection]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+To claim compliance with the PCIM Profile, an actor shall support every
+transaction listed as required for that actor in Table 7.1-1.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting the implementation conformance claim for the PCIM actor and
+confirming support for all required transactions in Table 7.1-1.
+====
+****
+
 **Table 7.1-1: PCIM Profile - Actors and Transactions**
 
 |===
@@ -353,15 +390,121 @@ To claim compliance with this profile, an actor shall support all required trans
 Requirements are documented in Transactions (Volume 2) and Content Modules (Volume 3).
 This section documents any additional requirements on profile's actors.
 
+[[pcim-actor-dpar]]
 ==== 7.1.1.1 Device-Patient Association Reporter
+
+Existing actor OID: `{pcim-oid-dpar}` (<<pcim-oid-registry,OID registry>>).
 
 The Device-Patient Association Reporter actor asserts that a given device is associated or disassociated with a specific patient. The reporter may update existing associations. For each such event, the unique Patient ID, Device ID, and timestamp of the beginning of association or end of association shall be reported. If a location is known, it should be included in the report. Each report represents a single device patient association assertion. If the report is validated, the report observation status field shall be marked final, otherwise it shall be marked as requiring validation. 
 
+.PCIM-R0002 {pcim-oid-link-pcim-r0002}
+[pcim_requirement#pcim-r0002]
+[pcim_req_level=shall]
+[pcim_req_type=ihe_profile]
+[pcim_actor=dpar]
+[pcim_transaction=DEV-51]
+[pcim_message=ORU_R01]
+[pcim_segment="PID,PRT,OBR-7,OBR-8"]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient"]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Reporter shall report the patient identifier,
+device identifier, and beginning or ending timestamp for each association or
+disassociation event that it asserts.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting DEV-51 messages originated by the Device-Patient Association
+Reporter and confirming that the patient, device, and timestamp content is present.
+====
+****
+
+.PCIM-R0003 {pcim-oid-link-pcim-r0003}
+[pcim_requirement#pcim-r0003]
+[pcim_req_level=shall]
+[pcim_req_type=ihe_profile]
+[pcim_actor=dpar]
+[pcim_transaction=DEV-51]
+[pcim_message=ORU_R01]
+[pcim_segment=OBX-11]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient"]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Reporter shall mark validated reports as final
+and shall mark non-validated reports as requiring validation.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting OBX-11 in DEV-51 messages originated by the Device-Patient
+Association Reporter.
+====
+****
+
+[[pcim-actor-dpam]]
 ==== 7.1.1.2 Device-Patient Association Manager
+
+Existing actor OID: `{pcim-oid-dpam}` (<<pcim-oid-registry,OID registry>>).
 
 The Device-Patient Association Manager actor collects and persists information on devices currently associated with patients within a defined scope, such as a clinical unit and shall communicate validated associations as event notifications. The system is responsible for resolving conflicts and shall provide an HMI for validating association assertions that require validation and resolving conflicts. 
 
+.PCIM-R0004 {pcim-oid-link-pcim-r0004}
+[pcim_requirement#pcim-r0004]
+[pcim_req_level=shall]
+[pcim_req_type=ihe_profile]
+[pcim_actor=dpam]
+[pcim_transaction=DEV-52]
+[pcim_message=ORU_R01]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient,uc4_correct_verified_association,uc5_wrong_association"]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Manager shall communicate validated
+device-patient associations as event notifications.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting DEV-52 messages originated by the Device-Patient Association
+Manager after association validation.
+====
+****
+
+.PCIM-R0005 {pcim-oid-link-pcim-r0005}
+[pcim_requirement#pcim-r0005]
+[pcim_req_level=shall]
+[pcim_req_type=ihe_profile]
+[pcim_actor=dpam]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient,uc4_correct_verified_association,uc5_wrong_association"]
+[pcim_verification_method=demonstration]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Manager shall provide an HMI for validating
+association assertions that require validation and for resolving conflicts.
+====
+
+[VERIFICATION]
+====
+Verify by inspection or demonstration of the Device-Patient Association Manager
+validation and conflict-resolution HMI.
+====
+****
+
+[[pcim-actor-dpac]]
 ==== 7.1.1.3 Device-Patient Association Consumer
+
+Existing actor OID: `{pcim-oid-dpac}` (<<pcim-oid-registry,OID registry>>).
 
 The Device-Patient Association Consumer actor receives information on what devices are associated with which patients. The actor initially receives current association status followed by updates in real-time. Common examples are a medical device or critical care system that charts device observations for a patient. The actor receives association updates in real-time. 
 
@@ -396,11 +539,65 @@ Options that may be selected for each actor in this profile, if any, are listed 
 
 |===
 
+[[pcim-option-subscription-filtering]]
 === 7.2.1 Subscription and Filtering Option
+
+Proposed option OID: `{pcim-oid-option-filtering}` (<<pcim-oid-registry,OID registry>>).
 
 The subscription and filtering option applies to interactions between Device-Patient Association Manager and Device-Patient Association Consumer and specifies that the communication between manager and consumer is a filtered real-time delivery of device-patient association state. 
 [.text-left]
 A Device-Patient Association Consumer that supports this option shall formulate its request in the form described in Section 3.19. 
+
+.PCIM-R0006 {pcim-oid-link-pcim-r0006}
+[pcim_requirement#pcim-r0006]
+[pcim_req_level=shall]
+[pcim_req_type=ihe_profile]
+[pcim_actor=dpac]
+[pcim_transaction=DEV-19]
+[pcim_option=subscription_filtering]
+[pcim_message=QSB_Q16]
+[pcim_use_case=uc3_filter_devices_for_patient]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+A Device-Patient Association Consumer that supports the Subscription and
+Filtering Option shall formulate its filtering request as specified in Section
+3.19.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting DEV-19 messages originated by a Device-Patient Association
+Consumer that claims the Subscription and Filtering Option.
+====
+****
+
+.PCIM-R0007 {pcim-oid-link-pcim-r0007}
+[pcim_requirement#pcim-r0007]
+[pcim_req_level=may]
+[pcim_req_type=ihe_profile]
+[pcim_actor=dpam]
+[pcim_transaction=DEV-19]
+[pcim_option=subscription_filtering]
+[pcim_message=QSB_Q16]
+[pcim_use_case=uc3_filter_devices_for_patient]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Manager may support the Subscription and
+Filtering Option.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting the implementation conformance claim for the Device-Patient
+Association Manager and, when the option is claimed, by executing DEV-19 tests.
+====
+****
 
 == 7.3 PCIM Required Actor Groupings
 
@@ -420,7 +617,10 @@ For example, selection of the patient and the devices could be accomplished on a
 
 === 7.4.2 Use Cases
 
+[[pcim-use-case-1]]
 ==== 7.4.2.1 Use Case #1: Associating Device with Patient
+
+Proposed use-case OID: `{pcim-oid-uc1}` (<<pcim-oid-registry,OID registry>>).
 
 ===== 7.4.2.1.1 Description
 
@@ -465,7 +665,10 @@ When such an association message is received, the manager system is responsible 
 
 After completion of this use case, an association record identifying the patient and the associated device and giving the start time of the association is created and persisted by the Device-Patient Association Manager.
 
+[[pcim-use-case-2]]
 ==== 7.4.2.2 Use Case #2: Disassociating Device From Patient
+
+Proposed use-case OID: `{pcim-oid-uc2}` (<<pcim-oid-registry,OID registry>>).
 
 ===== 7.4.2.2.1 Description
 
@@ -497,7 +700,10 @@ Device-Patient Association Reporter originates a message with the specific infor
 
 After completion of this use case, a record identifying the patient and the associated device and giving the end time of the association correlated with the starting time is persisted by the Device-Patient Association Manager.
 
+[[pcim-use-case-3]]
 ==== 7.4.2.3 Use Case #3 Filter Devices for a Patient
+
+Proposed use-case OID: `{pcim-oid-uc3}` (<<pcim-oid-registry,OID registry>>).
 
 ===== 7.4.2.3.1 Description
 
@@ -521,7 +727,10 @@ A Device-Patient Association Consumer originates a message to the Device-Patient
 
 After completion of this use case, if the manager supports the filtering option, a subscription filter for the requested devices and the requesting consumer is persisted and any matching association reports are sent by the Device-Patient Association Manager to the Device-Patient Association Consumer. If the manager does not support the filtering option, an appropriate error code is sent to the consumer when the filter request message is received.
 
+[[pcim-use-case-4]]
 ==== 7.4.2.4 Use Case #4 Correcting Verified Associations
+
+Proposed use-case OID: `{pcim-oid-uc4}` (<<pcim-oid-registry,OID registry>>).
 
 ===== 7.4.2.4.1 Description
 
@@ -539,7 +748,10 @@ The Device-Patient Association Reporter originates a message with the specific i
 ===== 7.4.2.4.5 Post-conditions
 Upon completion of this use case, the association record identifying the patient and the associated device now contains the corrected information in the Device-Patient Association Manager.
 
+[[pcim-use-case-5]]
 ==== 7.4.2.5 Use Case #5 Wrong Associations
+
+Proposed use-case OID: `{pcim-oid-uc5}` (<<pcim-oid-registry,OID registry>>).
 
 ===== 7.4.2.5.1 Description
 A Device-Patient Association Reporter asserts that a previously-reported device-patient association is wrong to a Device-Patient Association Manager.
@@ -583,7 +795,235 @@ An actor that supports retrospective queries was considered. For the use cases o
 
 = Appendices to Volume 1
 
-None
+== Appendix A -- PCIM Requirements Modeling and Markup
+
+This appendix defines the semantic AsciiDoc conventions used to identify PCIM
+requirements for traceability, extraction, and conformance assessment tooling.
+The conventions are based on the IHE DEV SDPi semantic AsciiDoc approach, using
+PCIM-specific element names and identifiers.
+
+The requirement markup is intended to make this supplement a stable source for:
+
+* PCIM requirement identifiers and requirement text;
+* references from requirements to PCIM actors, transactions, options, use cases,
+  and message constraints;
+* generated requirements artifacts that may be consumed by independent
+  conformance assessment tools.
+
+This repository is the source for PCIM specification requirements. It does not
+contain implementation-specific verification software, deployment artifacts, or
+product evidence.
+
+=== A.1 Requirement Identifiers
+
+Each PCIM requirement uses a stable identifier with the following form:
+
+----
+PCIM-R0001
+----
+
+The `PCIM-R` prefix identifies the requirement as a PCIM requirement. The
+four-digit number is assigned once and is not reused after publication.
+Requirement anchors use the same identifier in lower case, for example
+`pcim-r0001`.
+
+Requirement identifiers are assigned in the following ranges:
+
+|===
+|Range |Use
+
+|PCIM-R0001-PCIM-R0099
+|Profile-level actor, transaction, option, and grouping requirements
+
+|PCIM-R0100-PCIM-R0199
+|Communicate Association State [DEV-51] requirements
+
+|PCIM-R0200-PCIM-R0299
+|Report Association State [DEV-52] requirements
+
+|PCIM-R0300-PCIM-R0399
+|Filter Associations [DEV-19] requirements
+
+|PCIM-R0400-PCIM-R0599
+|Shared HL7 message structure and segment constraints
+
+|PCIM-R9000-PCIM-R9999
+|Unallocated reserve; not a destination for retired requirements
+|===
+
+These ranges are allocation conveniences, not a taxonomy. A requirement keeps
+its identifier when its section or classification changes. Retired requirements
+retain their original identifier and OID; they are never renumbered into the
+9000 range. See <<pcim-oid-governance>> for the proposed lifecycle policy.
+
+=== A.2 Requirement Block
+
+A PCIM requirement is represented as a titled AsciiDoc block with the
+`pcim_requirement` block style and PCIM-specific metadata attributes.
+
+Example:
+
+----
+.PCIM-Rnnnn
+[pcim_requirement#pcim-rnnnn]
+[pcim_req_level=shall]
+[pcim_req_type=tech_feature]
+[pcim_actor=dpar]
+[pcim_transaction=DEV-51]
+[pcim_message=ORU_R01]
+[pcim_segment="PID,PRT,OBR-7,OBR-8"]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient"]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Reporter shall include the patient identifier, device
+identifier, and association event timestamp in each association or
+disassociation assertion.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting a DEV-51 ORU_R01 message and confirming PID, PRT, OBR-7,
+and OBR-8 content according to the PCIM message constraints.
+====
+****
+----
+
+The block title contains the visible requirement identifier followed by its OID in parentheses.
+Authors use a generated attribute to keep the title readable in source:
+
+----
+.PCIM-Rnnnn {pcim-oid-link-pcim-rnnnn}
+----
+
+The leading dot introduces the block title. The attribute in braces expands to
+the parenthesized OID link, including its smaller font. The build generates its
+value from the requirement identity; authors do not copy the numeric OID or
+formatting markup into each requirement.
+The OID links to the matching entry in the requirement catalogue. Each metadata attribute is written on its own bracketed line; AsciiDoc combines
+these consecutive attribute lists for the following block. Quoted comma-separated
+values remain on one line.
+The block anchor
+provides a stable target for cross-references and generated artifacts.
+
+=== A.3 Requirement Metadata
+
+Requirement blocks use the following attributes:
+
+|===
+|Attribute |Required |Description
+
+|`pcim_req_level`
+|Yes
+|Requirement level. Values are `shall`, `should`, or `may`.
+
+|`pcim_req_type`
+|Yes
+|Requirement type. Initial values are `ihe_profile`, `use_case_feature`,
+`tech_feature`, `message_constraint`, and `risk_mitigation`.
+
+|`pcim_actor`
+|When applicable
+|Actor scope. Initial values are `dpar`, `dpam`, and `dpac`.
+
+|`pcim_transaction`
+|When applicable
+|Transaction scope. Initial values are `DEV-51`, `DEV-52`, and `DEV-19`.
+
+|`pcim_option`
+|When applicable
+|Option scope, such as `subscription_filtering`.
+
+|`pcim_use_case`
+|When applicable
+|Use case scope from Section 7.4.2.
+
+|`pcim_message`
+|When applicable
+|Message structure or trigger, such as `ORU_R01`, `ACK`, `QSB_Q16`, or
+`QSX_J01`.
+
+|`pcim_segment`
+|When applicable
+|HL7 segment or field scope, such as `MSH-21`, `OBR-3`, `OBR-29.2`,
+`OBX-11`, `PRT-4`, `QPD-3`, or `RCP-3`.
+
+|`pcim_verification_method`
+|When applicable
+|Expected verification method. Values are `inspection`, `analysis`, `test`, or
+`demonstration`.
+
+|`pcim_verification_level`
+|When applicable
+|Expected verification level. Values are `unit`, `integration`, `system`, or
+`connectathon`.
+|===
+
+Additional metadata may be added when needed, but processors should preserve
+unknown attributes in generated artifacts.
+
+=== A.4 Requirement Content Blocks
+
+The `[NORMATIVE]` block contains the requirement text that is rendered and
+exported as the requirement statement.
+
+The `[VERIFICATION]` block contains non-normative guidance for independent
+tools, monitors, or reviewers that evaluate whether an implementation satisfies
+the requirement.
+
+The `[NOTE]` and `[RATIONALE]` blocks may be used for supporting context. These
+blocks are exported with the requirement, but they are not the requirement
+statement.
+
+=== A.5 Extracted Artifacts
+
+The PCIM requirement processor should generate at least the following artifacts:
+
+* `pcim-requirements.json`;
+* `pcim-requirements-deprecated.json`;
+* `pcim-use-cases.json`;
+* `pcim-transactions.json`;
+* `pcim-requirement-trace.json`.
+
+ReqIF export may be generated from the same source model when exchange with
+requirements-management tools is needed. OSLC Requirements Management may be
+used later when a live service interface is needed.
+
+Each exported requirement record should include:
+
+* identifier and anchor, plus OID and `urn:oid:` URI when allocation is confirmed;
+* requirement level and type;
+* source file, source line, repository, commit, and PCIM version;
+* actor, transaction, option, use case, message, segment, and field scope;
+* normative text;
+* verification guidance;
+* status, including active, deprecated, or reserved.
+
+=== A.6 Conformance Result Mapping
+
+Conformance assessment tools should report results against PCIM requirement
+identifiers. A requirement can be displayed as passed when all mandatory
+assertions mapped to that requirement have passed for the declared actor,
+transaction, and option scope.
+
+Recommended result fields include:
+
+* PCIM requirement identifier and, when assigned, its OID;
+* PCIM version or source commit;
+* test scenario identifier;
+* test step or assertion identifier;
+* implementation under test;
+* verdict: `pass`, `fail`, `not-run`, or `not-applicable`;
+* evidence references and hashes;
+* timestamp.
+
+This result mapping supports traceability from PCIM requirement to conformance
+assertion to test execution to evidence without placing implementation-specific
+test software or product evidence in this repository.
+
+include::pcim_oid_governance.adoc[]
 
 = Volume 2 -- Transactions
 
@@ -592,7 +1032,10 @@ None
 |Editor: Insert in Section 3 of DEV TF-2 as new Section 3.51
 |===
 
+[[pcim-transaction-dev-51]]
 == 3.51 Communicate Association State [DEV-51]
+
+Proposed specification transaction OID: `{pcim-oid-dev-51}` (<<pcim-oid-registry,OID registry>>).
 
 
 === 3.51.1 Scope
@@ -614,6 +1057,77 @@ The roles in this transaction are defined in the following table and may be play
 |Device-Patient Association Manager
 |Establishes or updates the persistent record of the association. The manager must provide a HMI to verify association and disassociation assertions. The manager is also responsible for conflict resolution with the HMI and sending corresponding HL7 ACK error codes at commit or application levels. Note that the HMI need not be constrained to running on the same device as the manager. For example, the HMI may be in the form of a mobile app.
 |===
+
+.PCIM-R0100 {pcim-oid-link-pcim-r0100}
+[pcim_requirement#pcim-r0100]
+[pcim_req_level=shall]
+[pcim_req_type=tech_feature]
+[pcim_actor=dpar]
+[pcim_transaction=DEV-51]
+[pcim_message=ORU_R01]
+[pcim_segment=PRT]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient"]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+When verification occurs at the Device-Patient Association Reporter, the
+Reporter shall record the responsible observer.
+====
+[VERIFICATION]
+====
+Verify by inspecting a DEV-51 message for the responsible observer information
+when the assertion is sent as already verified.
+====
+****
+
+.PCIM-R0101 {pcim-oid-link-pcim-r0101}
+[pcim_requirement#pcim-r0101]
+[pcim_req_level=shall]
+[pcim_req_type=tech_feature]
+[pcim_actor=dpar]
+[pcim_transaction=DEV-51]
+[pcim_message=ORU_R01]
+[pcim_segment=OBX-11]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient"]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Reporter shall include an observation status
+field indicating whether the assertion requires validation or is final.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting OBX-11 in DEV-51 messages originated by the Reporter.
+====
+****
+
+.PCIM-R0102 {pcim-oid-link-pcim-r0102}
+[pcim_requirement#pcim-r0102]
+[pcim_req_level=shall]
+[pcim_req_type=tech_feature]
+[pcim_actor=dpam]
+[pcim_transaction=DEV-51]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient,uc4_correct_verified_association,uc5_wrong_association"]
+[pcim_verification_method=demonstration]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Manager shall provide an HMI to verify
+association and disassociation assertions received through DEV-51.
+====
+
+[VERIFICATION]
+====
+Verify by inspection or demonstration of the Manager HMI for DEV-51 validation
+workflow.
+====
+****
 
 === 3.51.3 Referenced Standards
 
@@ -657,6 +1171,31 @@ Code used to identify the patient must be chosen so as to be unique at least ove
 The type and issuing entity shall be recorded with the code.
 Additional identity codes may be provided at the discretion of the institution.
 Note that any code identifiable with an individual patient must by secured from misuse in accordance with applicable legal and policy procedures. Implementations should account for cases where the patient identity may change as a result of chart corrections. This should trigger the sending of a correction message of the patient identity to the Manager for active associations known to the reporter. This may also trigger the sending of a correction message to the Manager for completed associations.
+
+.PCIM-R0103 {pcim-oid-link-pcim-r0103}
+[pcim_requirement#pcim-r0103]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor=dpar]
+[pcim_transaction=DEV-51]
+[pcim_message=ORU_R01]
+[pcim_segment=PID-3]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient"]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The patient identifier used in a DEV-51 message shall include the identifier
+type and issuing entity.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting PID-3 in DEV-51 messages originated by the Reporter.
+====
+****
+
 - Unique identity of Device.
 This again is determined by site considerations.
 It is preferable to use a universally unique identification of the individual instance of the device, such as an IEEE EUI-64 or a Unique Device Identifier such as one produced in accordance with the US FDA (or other regulatory agency) UDI standards.
@@ -734,9 +1273,86 @@ Corrections should be sent from the Device-Patient Association Reporter to the D
 
 The device identifier and the association unique instance identifier SHALL NOT be changed in a correction message. All correction messages shall reference the association unique instance identifier from the original message in OBR-29.2.
 
+.PCIM-R0104 {pcim-oid-link-pcim-r0104}
+[pcim_requirement#pcim-r0104]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor=dpar]
+[pcim_transaction=DEV-51]
+[pcim_message=ORU_R01]
+[pcim_segment=OBR-29.2]
+[pcim_use_case=uc4_correct_verified_association]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+DEV-51 correction messages shall reference the association unique instance
+identifier from the original message in OBR-29.2.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting OBR-29.2 in DEV-51 correction messages and confirming it
+matches OBR-3 from the original association message.
+====
+****
+
+.PCIM-R0105 {pcim-oid-link-pcim-r0105}
+[pcim_requirement#pcim-r0105]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor=dpar]
+[pcim_transaction=DEV-51]
+[pcim_message=ORU_R01]
+[pcim_segment="PRT-10,OBR-29.2"]
+[pcim_use_case=uc4_correct_verified_association]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The device identifier and association unique instance identifier shall not be
+changed in a DEV-51 correction message.
+====
+
+[VERIFICATION]
+====
+Verify by comparing the device identifier and association unique instance
+identifier in a DEV-51 correction message with the original association message.
+====
+****
+
 ===== 3.51.4.1.4 Wrong Semantics
 
 An existing device-patient association should be asserted as "Wrong" from the Device-Patient Association Reporter to the Device-Patient Association Manager whenever either the device or the patient that was reported with the association was wrong. All messages asserting an existing device-patient association as wrong shall reference the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the original message that asserted the association.
+
+.PCIM-R0106 {pcim-oid-link-pcim-r0106}
+[pcim_requirement#pcim-r0106]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor=dpar]
+[pcim_transaction=DEV-51]
+[pcim_message=ORU_R01]
+[pcim_segment=OBR-29.2]
+[pcim_use_case=uc5_wrong_association]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+DEV-51 messages asserting an existing device-patient association as wrong shall
+reference in OBR-29.2 the association unique instance identifier from OBR-3 of
+the original association message.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting OBR-29.2 in DEV-51 wrong-association messages and confirming
+it matches OBR-3 from the original association message.
+====
+****
+
 A new association with the valid patient may be asserted after the Wrong has been reported.
 
 Note that there are chart correction use cases where the Device-Patient Association Reporter's understanding of the identity of the patient changes but the human who is associated to the device is semantically the same (such as with a patient merge). In these cases, the patient identity change may be handled either by correcting the patient identity for the existing association as described in section 3.51.4.1.3 above or by marking the existing association as wrong and re-asserting the association. The new assertion shall have a new association unique instance identifier in OBR-3 and includes the corrected patient identity.
@@ -746,7 +1362,10 @@ Note that there are chart correction use cases where the Device-Patient Associat
 |Editor: Insert in Section 3 of DEV TF-2 as new Section 3.52
 |===
 
+[[pcim-transaction-dev-52]]
 == 3.52 Report Association State [DEV-52]
+
+Proposed specification transaction OID: `{pcim-oid-dev-52}` (<<pcim-oid-registry,OID registry>>).
 
 === 3.52.1 Scope
 
@@ -768,6 +1387,56 @@ The roles in this transaction are defined in the following table and may be play
 |The receiver of the verified and final association report. The Consumer may optionally initiate a subscription by sending a message with filtering criteria, if any, to the Manager in the form of a HL7 query. The subscription and filter may also be pre-configured in the Manager. The Consumer initially receives current association status followed by updates in real-time on a connection established by the Manager.  When an association report is successfully received, a commit-level accept acknowledgement must be returned to the Manager.
 
 |===
+
+.PCIM-R0200 {pcim-oid-link-pcim-r0200}
+[pcim_requirement#pcim-r0200]
+[pcim_req_level=shall]
+[pcim_req_type=tech_feature]
+[pcim_actor=dpam]
+[pcim_transaction=DEV-52]
+[pcim_message=ORU_R01]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient,uc3_filter_devices_for_patient"]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Manager shall send current associations for all
+devices that the Consumer is configured to receive reports for immediately after
+a connection is established.
+====
+
+[VERIFICATION]
+====
+Verify by establishing a Manager-to-Consumer connection and confirming that
+current matching associations are sent as DEV-52 messages.
+====
+****
+
+.PCIM-R0201 {pcim-oid-link-pcim-r0201}
+[pcim_requirement#pcim-r0201]
+[pcim_req_level=shall]
+[pcim_req_type=tech_feature]
+[pcim_actor=dpac]
+[pcim_transaction=DEV-52]
+[pcim_message=ACK]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient,uc4_correct_verified_association,uc5_wrong_association"]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+When a DEV-52 association report is successfully received, the Device-Patient
+Association Consumer shall return a commit-level accept acknowledgement to the
+Device-Patient Association Manager.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting the acknowledgement returned by the Consumer after receipt
+of a valid DEV-52 message.
+====
+****
 
 === 3.52.3 Referenced Standards
 
@@ -792,6 +1461,31 @@ consumer -> manager : Commit Level Acknowledgement
 This is an HL7 Version 2 message giving details of the association being reported. The message reports an association between one device and one patient.
 
 The manager must send this message to all configured Consumer instances with matching filter criteria.
+
+.PCIM-R0202 {pcim-oid-link-pcim-r0202}
+[pcim_requirement#pcim-r0202]
+[pcim_req_level=shall]
+[pcim_req_type=tech_feature]
+[pcim_actor=dpam]
+[pcim_transaction=DEV-52]
+[pcim_message=ORU_R01]
+[pcim_use_case="uc1_associate_device_patient,uc2_disassociate_device_patient,uc3_filter_devices_for_patient,uc4_correct_verified_association,uc5_wrong_association"]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Manager shall send DEV-52 messages to all
+configured Device-Patient Association Consumer instances with matching filter
+criteria.
+====
+
+[VERIFICATION]
+====
+Verify by configuring one or more Consumers and confirming that each matching
+Consumer receives the applicable DEV-52 message.
+====
+****
 
 ===== 3.52.4.1.1 Trigger Events
 
@@ -825,17 +1519,95 @@ On receipt of the message, the Consumer parses and extracts the association deta
 
 Correction reports must be sent from the Device-Patient Association Manager to Device-Patient Association Consumers when they are validated. See table 3.51.4.1.3-1 and table 3.51.4.1.3-2 for correctable parameters that may be reported for active and completed associations.
 
+.PCIM-R0203 {pcim-oid-link-pcim-r0203}
+[pcim_requirement#pcim-r0203]
+[pcim_req_level=shall]
+[pcim_req_type=tech_feature]
+[pcim_actor=dpam]
+[pcim_transaction=DEV-52]
+[pcim_message=ORU_R01]
+[pcim_use_case=uc4_correct_verified_association]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Device-Patient Association Manager shall send correction reports to
+Device-Patient Association Consumers when the corrections are validated.
+====
+
+[VERIFICATION]
+====
+Verify by validating a correction at the Manager and confirming that the
+corresponding DEV-52 correction report is sent to applicable Consumers.
+====
+****
+
 ===== 3.52.4.1.4 Wrong Semantics
 
 An existing device-patient association should be reported as "Wrong" from the Device-Patient Association Manager to the Device-Patient Association Consumer whenever either the device or the patient that was reported with the association was wrong. All messages reporting an existing device-patient association as wrong shall reference the association unique instance identifier in OBR-29.2 that was sent in OBR-3 of the original message that reported the association.
 
+.PCIM-R0204 {pcim-oid-link-pcim-r0204}
+[pcim_requirement#pcim-r0204]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor=dpam]
+[pcim_transaction=DEV-52]
+[pcim_message=ORU_R01]
+[pcim_segment=OBR-29.2]
+[pcim_use_case=uc5_wrong_association]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+DEV-52 messages reporting an existing device-patient association as wrong shall
+reference in OBR-29.2 the association unique instance identifier from OBR-3 of
+the original association message.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting OBR-29.2 in DEV-52 wrong-association messages and confirming
+it matches OBR-3 from the original association message.
+====
+****
+
 When a device-patient association is reported to be "Wrong", any device data that was reported for that device-patient association should also be deleted or flagged for review in any consumers that are using the device-patient association to file received device data to the patient. Device-Patient Association Consumers that are also device data reporter actors shall stop including the wrong patient identifier in outgoing messages as soon as it receives the Wrong association report.
+
+.PCIM-R0205 {pcim-oid-link-pcim-r0205}
+[pcim_requirement#pcim-r0205]
+[pcim_req_level=shall]
+[pcim_req_type=risk_mitigation]
+[pcim_actor=dpac]
+[pcim_transaction=DEV-52]
+[pcim_use_case=uc5_wrong_association]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+A Device-Patient Association Consumer that is also a device data reporter actor
+shall stop including the wrong patient identifier in outgoing messages as soon
+as it receives the wrong-association report.
+====
+
+[VERIFICATION]
+====
+Verify by sending a DEV-52 wrong-association report to the Consumer and
+confirming subsequent outgoing device data messages no longer include the wrong
+patient identifier.
+====
+****
 
 |===
 |Editor: Insert in Section 3 of DEV TF-2 as new Section 3.19
 |===
 
+[[pcim-transaction-dev-19]]
 == 3.19 Filter Associations [DEV-19]
+
+Proposed specification transaction OID: `{pcim-oid-dev-19}` (<<pcim-oid-registry,OID registry>>).
 
 === 3.19.1 Scope
 
@@ -843,7 +1615,85 @@ This transaction is used by a Device Patient Association Consumer to access filt
 
 As stated previously, the DEV-19 transaction is optional. If the message is accepted by the Device-Patient Association Manager, the accept acknowledgement shall contain the value CA in MSA-1. 
 
+.PCIM-R0300 {pcim-oid-link-pcim-r0300}
+[pcim_requirement#pcim-r0300]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor=dpam]
+[pcim_transaction=DEV-19]
+[pcim_message=ACK]
+[pcim_segment=MSA-1]
+[pcim_option=subscription_filtering]
+[pcim_use_case=uc3_filter_devices_for_patient]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+When a DEV-19 message is accepted by the Device-Patient Association Manager, the
+accept acknowledgement shall contain the value `CA` in MSA-1.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting MSA-1 in the acknowledgement returned by the Manager for an
+accepted DEV-19 message.
+====
+****
+
 If this message is not supported, MSA-1 shall contain the value CR, ERR-3 (HL7 Error Code) shall contain the value 200 (Unsupported Message Type), and ERR-4 (Severity) shall contain the value E. If the transaction is not supported, and the network connection between the Device-Patient Association Manager and Device-Patient Association Consumer is lost, the Device-Patient Association Manager shall send DEV-52 messages for all current Device-Patient associations to the Device-Patient Association Consumer when network connectivity is restored. This ensures the Device-Patient Association Consumer has the current association state.
+
+.PCIM-R0301 {pcim-oid-link-pcim-r0301}
+[pcim_requirement#pcim-r0301]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor=dpam]
+[pcim_transaction=DEV-19]
+[pcim_message=ACK]
+[pcim_segment="MSA-1,ERR-3,ERR-4"]
+[pcim_option=subscription_filtering]
+[pcim_use_case=uc3_filter_devices_for_patient]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+When DEV-19 is not supported, the Device-Patient Association Manager shall return
+an acknowledgement with `CR` in MSA-1, `200` in ERR-3, and `E` in ERR-4.
+====
+
+[VERIFICATION]
+====
+Verify by sending a DEV-19 message to a Manager that does not support DEV-19 and
+inspecting the returned acknowledgement.
+====
+****
+
+.PCIM-R0302 {pcim-oid-link-pcim-r0302}
+[pcim_requirement#pcim-r0302]
+[pcim_req_level=shall]
+[pcim_req_type=tech_feature]
+[pcim_actor=dpam]
+[pcim_transaction="DEV-19,DEV-52"]
+[pcim_message=ORU_R01]
+[pcim_use_case=uc3_filter_devices_for_patient]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+If DEV-19 is not supported and network connectivity between the Device-Patient
+Association Manager and Device-Patient Association Consumer is restored after a
+loss of connection, the Manager shall send DEV-52 messages for all current
+device-patient associations to the Consumer.
+====
+
+[VERIFICATION]
+====
+Verify by restoring a lost Manager-to-Consumer connection when DEV-19 is not
+supported and confirming that current associations are sent as DEV-52 messages.
+====
+****
 
 === 3.19.2 Actor Roles
 
@@ -924,7 +1774,12 @@ No special security or security audit considerations beyond the general ones alr
 
 The PCD registry of OIDs is located at https://wiki.ihe.net/index.php/PCD_OID_Management.
 
-Additions to the PCD OID Registry are:
+Historical identifiers recorded by this supplement are shown below. The
+proposed specification transaction identities are listed in
+<<pcim-oid-crosswalk>>; this table does not resolve the outstanding MSH-21
+identity questions.
+
+Historical additions to the PCD OID Registry:
 
 |===
 | OID | Refers to
@@ -1052,6 +1907,52 @@ l|}
 
 MSH, SFT, and UAC Segments follow the specifications for [PCD-01] in DEV TF-2 Appendix B.1, except that in the MSH segment, MSH-21 is valued “IHE_DEV_051^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.51.1^ISO” to identify it as a Communicate Device-Patient Association or “IHE_DEV_052^IHE PCD\^1.3.6.1.4.1.19376.1.6.1.52.1^ISO” to identify it as a Report Device-Patient Association. In the context of this specification, the message is constrained to reporting association(s) for a single patient and device. 
 
+.PCIM-R0400 {pcim-oid-link-pcim-r0400}
+[pcim_requirement#pcim-r0400]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor="dpar,dpam"]
+[pcim_transaction="DEV-51,DEV-52"]
+[pcim_message=ORU_R01]
+[pcim_segment=MSH-21]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+DEV-51 and DEV-52 messages shall value MSH-21 with the appropriate PCIM message
+profile identifier for the transaction.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting MSH-21 in DEV-51 and DEV-52 ORU_R01 messages.
+====
+****
+
+.PCIM-R0401 {pcim-oid-link-pcim-r0401}
+[pcim_requirement#pcim-r0401]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor="dpar,dpam"]
+[pcim_transaction="DEV-51,DEV-52"]
+[pcim_message=ORU_R01]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+DEV-51 and DEV-52 messages shall be constrained to reporting associations for a
+single patient and device.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting each DEV-51 or DEV-52 ORU_R01 message and confirming that it
+reports only one patient-device association.
+====
+****
+
 === A.1.2 Segments
 
 ==== A.1.2.1 MSH -- Message Header
@@ -1080,6 +1981,28 @@ Since this message is effectively an unsolicited observation report, the content
 
 |===
 
+.PCIM-R0402 {pcim-oid-link-pcim-r0402}
+[pcim_requirement#pcim-r0402]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor="dpar,dpam"]
+[pcim_transaction="DEV-51,DEV-52"]
+[pcim_message=ORU_R01]
+[pcim_segment=MSH-15]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+MSH-15 in DEV-51 and DEV-52 messages shall be set to `AL`.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting MSH-15 in DEV-51 and DEV-52 ORU_R01 messages.
+====
+****
+
 ==== A.1.2.2 PID -- Patient Identification
 
 In order to assert an association between a patient and a device, the PID segment is required.
@@ -1087,6 +2010,53 @@ It identifies the patient who is associated to the device.
 The Patient Identifier List must contain an identifier that is unique for all patients within the scope of the system.
 By default, if an identifier on the list is identified as a medical record number, it is used (PID-3.5 Identifier Type code valued as "`MR`").
 There may be multiple identifiers in the list, and implementers may choose to allow a different identifier than the medical record number to be used as a configuration option.
+
+.PCIM-R0403 {pcim-oid-link-pcim-r0403}
+[pcim_requirement#pcim-r0403]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor="dpar,dpam"]
+[pcim_transaction="DEV-51,DEV-52"]
+[pcim_message=ORU_R01]
+[pcim_segment=PID]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+DEV-51 and DEV-52 messages shall include a PID segment to identify the patient
+associated with the device.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting DEV-51 and DEV-52 ORU_R01 messages and confirming the PID
+segment is present.
+====
+****
+
+.PCIM-R0404 {pcim-oid-link-pcim-r0404}
+[pcim_requirement#pcim-r0404]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor="dpar,dpam"]
+[pcim_transaction="DEV-51,DEV-52"]
+[pcim_message=ORU_R01]
+[pcim_segment=PID-3]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The Patient Identifier List in PID-3 shall contain an identifier that is unique
+for all patients within the scope of the system.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting PID-3 in DEV-51 and DEV-52 ORU_R01 messages.
+====
+****
 
 **Table A.1.2.2-1: PID Fields**
 
@@ -1136,6 +2106,31 @@ It gives the association message a unique identifier in the Filler Order Number 
 This is a required field: it acts as an association object instance identifier for tracking is used for tracking messages from all sources in the overall configuration of systems, so it must be constrained by some method of generation that assures that duplicate identifiers between sources are not possible.
 It gives the timestamp of the earliest participant involvement (OBR-7) and the latest participant involvement (OBR-8).
 
+.PCIM-R0405 {pcim-oid-link-pcim-r0405}
+[pcim_requirement#pcim-r0405]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor="dpar,dpam"]
+[pcim_transaction="DEV-51,DEV-52"]
+[pcim_message=ORU_R01]
+[pcim_segment=OBR-3]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+OBR-3 in DEV-51 and DEV-52 messages shall contain a unique association event
+instance identifier generated so that duplicate identifiers between sources are
+not possible.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting OBR-3 values in DEV-51 and DEV-52 ORU_R01 messages and
+confirming uniqueness across message sources.
+====
+****
+
 **Table A.1.2.4-1: OBR Fields**
 
 |===
@@ -1177,6 +2172,31 @@ The OBR shall also include the timestamp of the earliest participant involvement
 Each report consists of two or more Participation Information Segments (PRT) and each may have timestamps for their involvement in PRT-11 and/or PRT-12. 
 OBR-7 and OBR-8 conveys the range of time of all participants. See Table A.1.2.6-3 and Table A.1.2.6-4 for definitions of the timestamp semantics in PRT-11 and PRT-12. 
 The logic for filling in the timestamp values for OBR-7 and OBR-8 is to examine the PRT segments that will be sent out in the report and set OBR-7 to the earliest timestamp value and OBR-8 to the latest timestamp value. OBR-7 and 8 may contain the same timestamp.
+
+.PCIM-R0406 {pcim-oid-link-pcim-r0406}
+[pcim_requirement#pcim-r0406]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor="dpar,dpam"]
+[pcim_transaction="DEV-51,DEV-52"]
+[pcim_message=ORU_R01]
+[pcim_segment="OBR-7,OBR-8"]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+DEV-51 and DEV-52 association or disassociation event reports shall include in
+OBR-7 the earliest participant involvement timestamp and in OBR-8 the latest
+participant involvement timestamp.
+====
+
+[VERIFICATION]
+====
+Verify by comparing OBR-7 and OBR-8 with PRT-11 and PRT-12 timestamps in the
+same DEV-51 or DEV-52 message.
+====
+****
 
 ==== A.1.2.5 OBX -- Observation 
 
@@ -1769,9 +2789,61 @@ Same as for transaction [PCD-01] in DEV TF-2 Appendix B.1, except that MSH-9 is 
 
 [.text-left]
 The QueryTag (QPD.2) is used to identify a query instance and therefore must be unique for each query. A query cannot be modified, it must be cancelled and a new query issued, see section A.2.5 for details on cancellation.
+
+.PCIM-R0303 {pcim-oid-link-pcim-r0303}
+[pcim_requirement#pcim-r0303]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor=dpac]
+[pcim_transaction=DEV-19]
+[pcim_message=QSB_Q16]
+[pcim_segment=QPD-2]
+[pcim_option=subscription_filtering]
+[pcim_use_case=uc3_filter_devices_for_patient]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+The QueryTag in QPD.2 shall be unique for each DEV-19 query.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting QPD.2 values in DEV-19 queries originated by the Consumer.
+====
+****
+
 [.text-left]
 The Query Parameters field (QPD.3) is used to specify "`filtering`" values, so that the query response can be limited to, for example, the records matching a particular Assigned Location (by including a PV1.3.1 specification), a particular device (by adding a Participation Device PRT specification) and so on.
 If multiple specifications are given, the relational conjunction in QSC.4 shall be specified, except for the last one.  For example, a patient location and a device identifier query filter specification will result in the subscription including associations involving both that patient location and device. The relational conjunction is defined as follows: If more than one comparison is to be made to select qualifying rows, a conjunction relates this repetition of the field to the next. The last specification does not need to specify a conjunction, as it is the last one.
+
+.PCIM-R0304 {pcim-oid-link-pcim-r0304}
+[pcim_requirement#pcim-r0304]
+[pcim_req_level=shall]
+[pcim_req_type=message_constraint]
+[pcim_actor=dpac]
+[pcim_transaction=DEV-19]
+[pcim_message=QSB_Q16]
+[pcim_segment=QSC-4]
+[pcim_option=subscription_filtering]
+[pcim_use_case=uc3_filter_devices_for_patient]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+If multiple DEV-19 query parameter specifications are present, QSC.4 shall
+specify the relational conjunction except for the last specification.
+====
+
+[VERIFICATION]
+====
+Verify by inspecting QSC.4 values in DEV-19 queries that contain multiple query
+parameter specifications.
+====
+****
+
 [.text-left]
 The form of the Query Parameters specifications in QPD.3 field is a QSC data type. Any additional fields can be added as QPD.4, QPD.5, etc, one for each query parameter to be specified, with each field using the QSC data type.
 An example would be:
@@ -1819,6 +2891,33 @@ Quantity limited requests are not supported, so RCP-2 Quantity Limited Request v
 
 The supported values of RCP-3 Response Modality is R (Real Time).
 The Device-Patient Association Consumer must support receiving a continuous real-time feed of association events and will receive all existing associations when the connection is first established that meet the desired filter specification to get the starting state. After that initial state is received, association records are sent as they arrive at the Device-Patient Association Manager. The Device-Patient Association Consumer can optionally configure (or reconfigure) filter criteria and even cancel the continuing real-time query dynamically.
+
+.PCIM-R0305 {pcim-oid-link-pcim-r0305}
+[pcim_requirement#pcim-r0305]
+[pcim_req_level=shall]
+[pcim_req_type=tech_feature]
+[pcim_actor=dpac]
+[pcim_transaction=DEV-19]
+[pcim_option=subscription_filtering]
+[pcim_use_case=uc3_filter_devices_for_patient]
+[pcim_verification_method=test]
+[pcim_verification_level=connectathon]
+****
+[NORMATIVE]
+====
+A Device-Patient Association Consumer that uses DEV-19 shall support receiving a
+continuous real-time feed of association events and shall receive existing
+associations matching the filter specification when the connection is first
+established.
+====
+
+[VERIFICATION]
+====
+Verify by establishing a filtered subscription and confirming that the Consumer
+receives both the initial matching association state and subsequent real-time
+updates.
+====
+****
 
 === A.2.5 Cancelling a Subscription
 
