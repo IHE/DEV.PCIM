@@ -17,7 +17,7 @@ A work list is in place for review of additional CPs.
 
 ## Process
 
-We are using AsciiDoc to author our CP documents and use a GitHub flow process. Create a PR branch and make your changes and then push and assign Eldon Metz and Tom Kowalczyk as approvers for review. 
+We are using AsciiDoc to author our CP documents and use a GitHub flow process. Create a PR branch and make your changes and then push and assign Eldon Metz as the approver for review. 
 
 To generate the HTML format for the docs, use the gen-html.sh or gen-html.bat scripts. The output is found in the output directory in your local workspace at the root of the repo. Note, they are ignored and not saved in the repository.
 
@@ -56,6 +56,6 @@ run. A standalone AsciiDoc render requires its generated includes first.
 
 ## Contributing
 
-Please contact [Eldon Metz](mailto:emetz@innovisionmedical.com)  or [Tom Kowalczyk](mailto:Tom.Kowalczyk@BBraunUSA.com) if you wish to contribute to this profile.
+Please contact [Eldon Metz](mailto:emetz@ctrlmedical.com) if you wish to contribute to this profile.
 
 Working Group meetings are held weekly on Thursday's at 11am Central Time.
